@@ -55,12 +55,12 @@
         }
 
         .chatbox .user {
-            background-color: #4CAF50;
+            background-color: #235142;
             color: #FFF;
         }
 
         .chatbox .bot {
-            background-color: #2980B9;
+            background-color: #E37B1C;
             color: #FFF;
         }
     </style>
