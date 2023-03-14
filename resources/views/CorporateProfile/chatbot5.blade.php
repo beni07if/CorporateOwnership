@@ -84,7 +84,7 @@
             </li>
             <li>PT Anugerah Pelangi Sukses
             </li>
-            <li>Dan subsidiary lainnya yang ada di data consolidasi
+            <li>Dan data subsidiary lainnya yang ada di file consolidasi
             </li>
         </ol>
         </p>
