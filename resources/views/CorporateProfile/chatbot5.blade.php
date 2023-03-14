@@ -56,11 +56,13 @@
         .chatbox .user {
             background-color: #235142;
             color: #FFF;
+            font-size: 14px;
         }
 
         .chatbox .bot {
             background-color: #E37B1C;
             color: #FFF;
+            font-size: 14px;
         }
 
         /* Media queries for mobile phones */
