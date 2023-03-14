@@ -36,6 +36,7 @@
             border: none;
             border-radius: 5px;
             box-shadow: 0px 0px 5px #BDBDBD;
+            font-size: 12;
         }
 
         .chatbox input[type="submit"] {
@@ -52,18 +53,19 @@
             border-radius: 5px;
             margin-bottom: 10px;
             box-shadow: 0px 0px 5px #BDBDBD;
+            font-size: 12;
         }
 
         .chatbox .user {
             background-color: #235142;
             color: #FFF;
-            font-size: medium;
+            font-size: 12;
         }
 
         .chatbox .bot {
             background-color: #E37B1C;
             color: #FFF;
-            font-size: medium;
+            font-size: 12;
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
