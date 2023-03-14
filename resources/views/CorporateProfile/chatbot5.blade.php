@@ -56,16 +56,16 @@
         .chatbox .user {
             background-color: #235142;
             color: #FFF;
-            font-size: 14px;
+            font-size: 14px !important;
         }
 
         .chatbox .bot {
             background-color: #E37B1C;
             color: #FFF;
-            font-size: 14px;
+            font-size: 14px !important;
         }
 
-        /* Media queries for mobile phones */
+        /* Media queries for mobile phoness */
         @media screen and (max-width: 500px) {
             .chatbox {
                 max-width: 100%;
@@ -74,13 +74,13 @@
             .chatbox .user {
                 background-color: #235142;
                 color: #FFF;
-                font-size: 14px;
+                font-size: 14px !important;
             }
 
             .chatbox .bot {
                 background-color: #E37B1C;
                 color: #FFF;
-                font-size: 14px;
+                font-size: 14px !important;
             }
         }
 
@@ -101,19 +101,19 @@
             .chatbox .response {
                 padding: 8px;
                 margin-bottom: 8px;
-                font-size: 14px;
+                font-size: 14px !important;
             }
 
             .chatbox .user {
                 background-color: #235142;
                 color: #FFF;
-                font-size: 14px;
+                font-size: 14px !important;
             }
 
             .chatbox .bot {
                 background-color: #E37B1C;
                 color: #FFF;
-                font-size: 14px;
+                font-size: 14px !important;
             }
         }
     </style>
