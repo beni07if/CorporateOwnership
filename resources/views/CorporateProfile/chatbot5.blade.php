@@ -116,22 +116,19 @@
         <h1>Get Subsidiary</h1>
         <div id="response"></div>
         <form>
-            <input type="text" id="subsidiary" name="subsidiary" placeholder="Enter subsidiary name...">
+            <input type="text" id="subsidiary" name="subsidiary" list="subsidiary-list" placeholder="Enter subsidiary name...">
+            <!-- Input selection field -->
+            <!-- <input type="text" id="subsidiary-selection" name="subsidiary-selection" list="subsidiary-list"> -->
+
+            <!-- Datalist element -->
+            <datalist id="subsidiary-list">
+                @foreach(DB::table('consolidations')->pluck('subsidiary')->unique() as $subsidiary)
+                <option value="{{ $subsidiary }}">
+                    @endforeach
+            </datalist>
             <input type="submit" id="search" value="Send">
         </form>
         <br><br>
-        <p>Masukan subsidiary yang ingin dicari contoh:
-        <ol>
-            <li>PT Anugerah Sawit Andalan
-            </li>
-            <li>PT Andika Permata Sawit Lestari
-            </li>
-            <li>PT Kriya Swarna Pubian
-            </li>
-            <li>Dan data subsidiary lainnya yang ada di file Consolidation
-            </li>
-        </ol>
-        </p>
     </div>
 
     <script>
