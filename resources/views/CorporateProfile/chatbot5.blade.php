@@ -10,7 +10,6 @@
             padding: 20px;
         }
 
-
         .chatbox {
             background-color: #FFF;
             max-width: 500px;
@@ -36,7 +35,6 @@
             border: none;
             border-radius: 5px;
             box-shadow: 0px 0px 5px #BDBDBD;
-            font-size: 12;
         }
 
         .chatbox input[type="submit"] {
@@ -53,19 +51,43 @@
             border-radius: 5px;
             margin-bottom: 10px;
             box-shadow: 0px 0px 5px #BDBDBD;
-            font-size: 12;
         }
 
         .chatbox .user {
             background-color: #235142;
             color: #FFF;
-            font-size: 12;
         }
 
         .chatbox .bot {
             background-color: #E37B1C;
             color: #FFF;
-            font-size: 12;
+        }
+
+        /* Media queries for mobile phones */
+        @media screen and (max-width: 500px) {
+            .chatbox {
+                max-width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .chatbox form {
+                padding: 10px;
+            }
+
+            .chatbox input[type="text"] {
+                padding: 8px;
+                margin-bottom: 8px;
+            }
+
+            .chatbox input[type="submit"] {
+                padding: 8px 16px;
+            }
+
+            .chatbox .response {
+                padding: 8px;
+                margin-bottom: 8px;
+            }
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

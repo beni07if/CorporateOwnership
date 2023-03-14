@@ -267,7 +267,7 @@ class ChatbotController extends Controller
 
     public function getSubsidiary(Request $request)
     {
-        $input = $request->input('message'); // ambil input pesan dari usersss
+        $input = $request->input('message'); // ambil input pesan dari userssss
         $subsidiaries = Consolidation::where('subsidiary', 'like', '%' . $input . '%')->get(); // cari data subsidiary yang cocok dengan input
 
         $regencies0 = [];
