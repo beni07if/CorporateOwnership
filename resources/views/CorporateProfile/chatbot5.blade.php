@@ -17,6 +17,7 @@
             border-radius: 10px;
             box-shadow: 0px 0px 10px #BDBDBD;
             padding: 20px;
+            font-size: 16px;
         }
 
         .chatbox form {
@@ -26,6 +27,7 @@
         .chatbox h1 {
             margin-top: 0;
             margin-bottom: 20px;
+            font-size: 24px;
         }
 
         .chatbox input[type="text"] {
@@ -35,6 +37,7 @@
             border: none;
             border-radius: 5px;
             box-shadow: 0px 0px 5px #BDBDBD;
+            font-size: 16px;
         }
 
         .chatbox input[type="submit"] {
@@ -44,6 +47,7 @@
             border-radius: 5px;
             padding: 10px 20px;
             cursor: pointer;
+            font-size: 16px;
         }
 
         .chatbox .response {
@@ -51,69 +55,25 @@
             border-radius: 5px;
             margin-bottom: 10px;
             box-shadow: 0px 0px 5px #BDBDBD;
+            font-size: 16px;
         }
 
         .chatbox .user {
             background-color: #235142;
             color: #FFF;
-            font-size: 14px !important;
+            font-size: 16px;
         }
 
         .chatbox .bot {
             background-color: #E37B1C;
             color: #FFF;
-            font-size: 14px !important;
+            font-size: 16px;
         }
 
-        /* Media queries for mobile phoness */
-        @media screen and (max-width: 500px) {
+        /* atur tampilan untuk layar kecil */
+        @media (max-width: 576px) {
             .chatbox {
                 max-width: 100%;
-            }
-
-            .chatbox .user {
-                background-color: #235142;
-                color: #FFF;
-                font-size: 14px !important;
-            }
-
-            .chatbox .bot {
-                background-color: #E37B1C;
-                color: #FFF;
-                font-size: 14px !important;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            .chatbox form {
-                padding: 10px;
-            }
-
-            .chatbox input[type="text"] {
-                padding: 8px;
-                margin-bottom: 8px;
-            }
-
-            .chatbox input[type="submit"] {
-                padding: 8px 16px;
-            }
-
-            .chatbox .response {
-                padding: 8px;
-                margin-bottom: 8px;
-                font-size: 14px !important;
-            }
-
-            .chatbox .user {
-                background-color: #235142;
-                color: #FFF;
-                font-size: 14px !important;
-            }
-
-            .chatbox .bot {
-                background-color: #E37B1C;
-                color: #FFF;
-                font-size: 14px !important;
             }
         }
     </style>
