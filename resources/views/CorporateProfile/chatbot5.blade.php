@@ -61,12 +61,16 @@
         .chatbox .user {
             background-color: #235142;
             color: #FFF;
-            font-size: 16px;
         }
 
         .chatbox .bot {
             background-color: #E37B1C;
             color: #FFF;
+        }
+
+        /* atur ukuran huruf pada respon user dan bot sama */
+        .chatbox .user,
+        .chatbox .bot {
             font-size: 16px;
         }
 
@@ -95,7 +99,7 @@
             </li>
             <li>PT Andika Permata Sawit Lestari
             </li>
-            <li>PT Anugerah Pelangi Sukses
+            <li>PT Surya Agrolika Reksa
             </li>
             <li>Dan data subsidiary lainnya yang ada di file Consolidasi
             </li>
