@@ -70,6 +70,18 @@
             .chatbox {
                 max-width: 100%;
             }
+
+            .chatbox .user {
+                background-color: #235142;
+                color: #FFF;
+                font-size: 14px;
+            }
+
+            .chatbox .bot {
+                background-color: #E37B1C;
+                color: #FFF;
+                font-size: 14px;
+            }
         }
 
         @media screen and (max-width: 480px) {
@@ -89,6 +101,19 @@
             .chatbox .response {
                 padding: 8px;
                 margin-bottom: 8px;
+                font-size: 14px;
+            }
+
+            .chatbox .user {
+                background-color: #235142;
+                color: #FFF;
+                font-size: 14px;
+            }
+
+            .chatbox .bot {
+                background-color: #E37B1C;
+                color: #FFF;
+                font-size: 14px;
             }
         }
     </style>
