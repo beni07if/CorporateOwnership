@@ -70,6 +70,25 @@
             font-size: 16px;
         }
 
+        /* atur ukuran font untuk respon user dan bot agar sama */
+        .chatbox .response.user,
+        .chatbox .response.bot {
+            font-size: 16px;
+        }
+
+        /* atur tampilan untuk layar kecil */
+        @media (max-width: 576px) {
+            .chatbox {
+                max-width: 100%;
+            }
+
+            /* atur ukuran font untuk respon user dan bot agar sama di layar kecil */
+            .chatbox .response.user,
+            .chatbox .response.bot {
+                font-size: 14px;
+            }
+        }
+
         /* atur tampilan untuk layar kecil */
         @media (max-width: 576px) {
             .chatbox {
