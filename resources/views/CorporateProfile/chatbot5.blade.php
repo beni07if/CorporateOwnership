@@ -57,11 +57,13 @@
         .chatbox .user {
             background-color: #235142;
             color: #FFF;
+            font-size: medium;
         }
 
         .chatbox .bot {
             background-color: #E37B1C;
             color: #FFF;
+            font-size: medium;
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -84,7 +86,7 @@
             </li>
             <li>PT Anugerah Pelangi Sukses
             </li>
-            <li>Dan data subsidiary lainnya yang ada di file consolidasi
+            <li>Dan data subsidiary lainnya yang ada di file Consolidasi
             </li>
         </ol>
         </p>
