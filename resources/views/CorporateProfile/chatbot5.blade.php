@@ -5,7 +5,7 @@
     <title>Get Subsidiary</title>
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: "Segoe UI", sans-serif;
             background-color: #F5F5F5;
             padding: 20px;
         }
@@ -61,17 +61,12 @@
         .chatbox .user {
             background-color: #235142;
             color: #FFF;
+            font-size: 16px;
         }
 
         .chatbox .bot {
             background-color: #E37B1C;
             color: #FFF;
-            font-size: 100%;
-        }
-
-        /* atur ukuran huruf pada respon user dan bot sama */
-        .chatbox .user,
-        .chatbox .bot {
             font-size: 16px;
         }
 
@@ -79,6 +74,18 @@
         @media (max-width: 576px) {
             .chatbox {
                 max-width: 100%;
+            }
+
+            .chatbox .response {
+                font-size: 16px;
+            }
+
+            .chatbox .user {
+                font-size: 16px;
+            }
+
+            .chatbox .bot {
+                font-size: 16px;
             }
         }
     </style>
