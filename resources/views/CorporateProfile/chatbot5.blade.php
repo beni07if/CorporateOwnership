@@ -121,11 +121,22 @@
             <!-- <input type="text" id="subsidiary-selection" name="subsidiary-selection" list="subsidiary-list"> -->
 
             <!-- Datalist element -->
-            <datalist id="subsidiary-list">
+            <!-- <datalist id="subsidiary-list">
                 @foreach(DB::table('consolidations')->pluck('subsidiary')->unique() as $subsidiary)
                 <option value="{{ $subsidiary }}">
                     @endforeach
+            </datalist> -->
+            <datalist id="subsidiary-list">
+                @foreach(DB::table('consolidations')->pluck('subsidiary')->unique() as $subsidiary)
+                @php
+                $shareholder = DB::table('consolidations')->where('subsidiary', $subsidiary)->value('shareholder_subsidiary');
+                @endphp
+                @if(!empty($shareholder) && $shareholder != 'N/A' && $shareholder != 'check')
+                <option value="{{ $subsidiary }}">
+                    @endif
+                    @endforeach
             </datalist>
+
             <input type="submit" id="search" value="Send">
         </form>
         <br><br>
