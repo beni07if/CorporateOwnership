@@ -17,7 +17,7 @@
             border-radius: 10px;
             box-shadow: 0px 0px 10px #BDBDBD;
             padding: 20px;
-            font-size: 16px;
+            font-size: 10px;
         }
 
         .chatbox form {
@@ -37,7 +37,7 @@
             border: none;
             border-radius: 5px;
             box-shadow: 0px 0px 5px #BDBDBD;
-            font-size: 16px;
+            font-size: 10px;
         }
 
         .chatbox input[type="submit"] {
@@ -47,7 +47,7 @@
             border-radius: 5px;
             padding: 10px 20px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 10px;
         }
 
         .chatbox .response {
@@ -55,25 +55,25 @@
             border-radius: 5px;
             margin-bottom: 10px;
             box-shadow: 0px 0px 5px #BDBDBD;
-            font-size: 16px;
+            font-size: 10px;
         }
 
         .chatbox .user {
             background-color: #235142;
             color: #FFF;
-            font-size: 16px;
+            font-size: 10px;
         }
 
         .chatbox .bot {
             background-color: #E37B1C;
             color: #FFF;
-            font-size: 16px;
+            font-size: 10px;
         }
 
         /* atur ukuran font untuk respon user dan bot agar sama */
         .chatbox .response.user,
         .chatbox .response.bot {
-            font-size: 16px;
+            font-size: 10px;
         }
 
         /* atur tampilan untuk layar kecil */
@@ -96,15 +96,15 @@
             }
 
             .chatbox .response {
-                font-size: 16px;
+                font-size: 10px;
             }
 
             .chatbox .user {
-                font-size: 16px;
+                font-size: 10px;
             }
 
             .chatbox .bot {
-                font-size: 16px;
+                font-size: 10px;
             }
         }
     </style>
