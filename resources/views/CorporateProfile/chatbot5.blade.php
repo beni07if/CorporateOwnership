@@ -128,7 +128,7 @@
             </li>
             <li>PT Kriya Swarna Pubian
             </li>
-            <li>Dan data subsidiary lainnya yang ada di file Consolidasi
+            <li>Dan data subsidiary lainnya yang ada di file Consolidation
             </li>
         </ol>
         </p>
