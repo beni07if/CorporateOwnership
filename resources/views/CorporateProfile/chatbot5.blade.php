@@ -75,6 +75,19 @@
             <input type="text" id="subsidiary" name="subsidiary" placeholder="Enter subsidiary name...">
             <input type="submit" id="search" value="Send">
         </form>
+        <br><br>
+        <p>Masukan subsidiary yang ingin dicari contoh:
+        <ol>
+            <li>PT Anugerah Sawit Andalan
+            </li>
+            <li>PT Andika Permata Sawit Lestari
+            </li>
+            <li>PT Anugerah Pelangi Sukses
+            </li>
+            <li>Dan subsidiary lainnya yang ada di data consolidasi
+            </li>
+        </ol>
+        </p>
     </div>
 
     <script>
