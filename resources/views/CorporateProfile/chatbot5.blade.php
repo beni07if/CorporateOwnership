@@ -66,6 +66,7 @@
         .chatbox .bot {
             background-color: #E37B1C;
             color: #FFF;
+            font-size: 100%;
         }
 
         /* atur ukuran huruf pada respon user dan bot sama */
