@@ -126,7 +126,7 @@
             </li>
             <li>PT Andika Permata Sawit Lestari
             </li>
-            <li>PT Surya Agrolika Reksa
+            <li>PT Kriya Swarna Pubian
             </li>
             <li>Dan data subsidiary lainnya yang ada di file Consolidasi
             </li>
