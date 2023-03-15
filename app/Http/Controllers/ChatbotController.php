@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Chatbot;
+use App\Models\Shareholder;
 use App\Models\Consolidation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -329,6 +330,42 @@ class ChatbotController extends Controller
                 )) . '. ';
             }
 
+            // // Ini dipakai jika tabel shareholder data shareholdernya lengkap, karena shareholder name nya clickable biar pas klik tidak kosong atau memunculkan pesan error
+            // $shareholders = explode(',', $subsidiary->shareholder_subsidiary);
+            // $shareholder_data = [];
+            // $total_share = 0;
+
+            // foreach ($shareholders as $shareholder) {
+            //     $share_info = explode('(', $shareholder);
+            //     $shareholder_name = trim($share_info[0]);
+            //     $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
+            //     $total_share += $share_percentage;
+            //     $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
+            // }
+
+            // usort($shareholder_data, function ($a, $b) {
+            //     return $b['share_percentage'] <=> $a['share_percentage'];
+            // });
+
+            // $majority_shareholder = $shareholder_data[0]['name'];
+            // $majority_share_percentage = $shareholder_data[0]['share_percentage'];
+
+            // if (count($shareholder_data) > 1) {
+            //     if ($total_share > 50) {
+            //         $response = $subsidiary->subsidiary . ' adalah anak perusahaan dari group ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '% dan sisanya dimiliki oleh ' . implode(', ', array_map(function ($data) {
+            //             return '<a href="' . route('shareholder', ['name' => $data['name']]) . '">' . $data['name'] . '</a> sebesar ' . $data['share_percentage'] . '%';
+            //         }, array_slice($shareholder_data, 1))) . '. ';
+            //     } else {
+            //         $response = $subsidiary->subsidiary . ' adalah anak perusahaan dari group ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Kepemilikan sahamnya didistribusikan di antara beberapa pemegang saham, yaitu ' . implode(', ', array_map(function ($data) {
+            //             return '<a href="' . route('shareholder', ['name' => $data['name']]) . '">' . $data['name'] . '</a> sebesar ' . $data['share_percentage'] . '%';
+            //         }, $shareholder_data)) . '. ';
+            //     }
+            // } else {
+            //     $response = $subsidiary->subsidiary . ' adalah anak perusahaan dari group ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
+            // }
+            // // end clickable
+
+
 
             $estates = [];
             $facilities = [];
@@ -347,9 +384,9 @@ class ChatbotController extends Controller
                         if ($sub->sizebyeq) {
                             $estates[] = $sub->sizebyeq;
                             if ($key == 0) {
-                                $response .= '. ' . $sub->subsidiary . ' memiliki kebun ' . $sub->estate . ' di ' . $sub->regency . ' dengan luas ' . $sub->sizebyeq . ' hektar dan saat ini status operasionalnya ' . $sub->status_operation;
+                                $response .= '. ' . $sub->subsidiary . ' memiliki kebun ' . $sub->estate . ' di ' . $sub->regency . ' dengan luas ' . $sub->sizebyeq . ' hektar.';
                             } else {
-                                $response .= ', selain itu juga memiliki kebun ' . $sub->estate . ' di ' . $sub->regency . ' dengan luas ' . $sub->sizebyeq . ' hektar dan saat ini status operasionalnya ' . $sub->status_operation;
+                                $response .= ', selain itu juga memiliki kebun ' . $sub->estate . ' di ' . $sub->regency . ' dengan luas ' . $sub->sizebyeq . ' hektar.';
                             }
                             $total_sizebyeq += $sub->sizebyeq;
                         }
@@ -402,11 +439,12 @@ class ChatbotController extends Controller
         return response()->json(['message' => $response]);
     }
 
+    public function showShareholder($name)
+    {
+        $shareholders = Shareholder::where('shareholder_name', $name)->first();
 
-
-
-
-
+        return view('CorporateProfile.shareholder', ['shareholder' => $shareholders]);
+    }
 
 
 

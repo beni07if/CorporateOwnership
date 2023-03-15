@@ -34,7 +34,9 @@ Route::post('/chatbot7', [ChatbotController::class, 'getSubsidiary7'])->name('ch
 Route::get('/chatbot6', [ChatbotController::class, 'chatbot6'])->name('chatbot6');
 Route::post('/chatbot6', [ChatbotController::class, 'getResponse6'])->name('chatbot.process');
 
-Route::get('/shareholder/{name}', [ChatbotController::class, 'showShareholder'])->name('showShareholder');
+Route::get('/shareholder/{name}', [ChatbotController::class, 'showShareholder'])->name('shareholder');
+// Route::get('/shareholder/{name}', 'ShareholderController@show')->name('shareholder');
+
 // Route::get('/shareholder/{name}', 'ShareholderController@show')
 // Route::get('/shareholder/{name}', 'ShareholderController@show');
 
