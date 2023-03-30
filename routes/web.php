@@ -29,12 +29,15 @@ Route::post('/chatbot4', [ChatbotController::class, 'response'])->name('chatbot.
 // Route::post('/chatbot/response', [ChatbotController::class, 'getResponse'])->name('chatbot.response');
 Route::get('/chatbot5', [ChatbotController::class, 'chatbot5'])->name('chatbot5');
 Route::post('/chatbot5', [ChatbotController::class, 'getSubsidiary'])->name('chatbot.subsidiary');
+Route::get('/chatbot-group', [ChatbotController::class, 'chatbotGroup'])->name('chatbotGroup');
+Route::post('/chatbot-group', [ChatbotController::class, 'getGroup'])->name('chatbot.group');
 Route::get('/chatbot7', [ChatbotController::class, 'chatbot7'])->name('chatbot7');
 Route::post('/chatbot7', [ChatbotController::class, 'getSubsidiary7'])->name('chatbot.subsidiary7');
 Route::get('/chatbot6', [ChatbotController::class, 'chatbot6'])->name('chatbot6');
 Route::post('/chatbot6', [ChatbotController::class, 'getResponse6'])->name('chatbot.process');
 
 Route::get('/shareholder/{name}', [ChatbotController::class, 'showShareholder'])->name('shareholder');
+Route::get('/company/{subsidiary}', [ChatbotController::class, 'company'])->name('company');
 // Route::get('/shareholder/{name}', 'ShareholderController@show')->name('shareholder');
 
 // Route::get('/shareholder/{name}', 'ShareholderController@show')

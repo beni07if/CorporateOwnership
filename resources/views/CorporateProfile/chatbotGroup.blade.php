@@ -107,14 +107,6 @@
             font-size: 16px;
         }
 
-        .chatbox .response-group {
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            box-shadow: 0px 0px 5px #BDBDBD;
-            font-size: 16px;
-        }
-
         .chatbox .user {
             background-color: #235142;
             color: #FFF;
@@ -129,8 +121,6 @@
 
         /* atur ukuran font untuk respon user dan bot agar sama */
         .chatbox .response.user,
-        .chatbox .response-group.user,
-        .chatbox .response-group.bot,
         .chatbox .response.bot {
             font-size: 16px;
         }
@@ -143,8 +133,6 @@
 
             /* atur ukuran font untuk respon user dan bot agar sama di layar kecil */
             .chatbox .response.user,
-            .chatbox .response-group.user,
-            .chatbox .response-group.bot,
             .chatbox .response.bot {
                 font-size: 14px;
             }
@@ -177,42 +165,14 @@
     <div class="chatbox">
         <nav>
             <ul>
-                <li class="nav-item"><a class="nav-link active" href="#company" data-toggle="tab">Subsidiary</a></li>
-                <li class="nav-item"><a href="{{route ('chatbotGroup') }}">Group</a></li>
+                <li class="nav-item"><a href="{{route ('chatbot5') }}" data-toggle="tab">Subsidiary</a></li>
+                <li class="nav-item"><a class="nav-link active" href="{{route ('chatbotGroup') }}">Group</a></li>
                 <!-- <li class="nav-item"><a class="nav-link" href="#shareholder" data-toggle="tab">Shareholder</a></li> -->
             </ul>
         </nav>
-        <div class="tab pane" id="company">
-            <h1>Get Subsidiary</h1>
-            <div id="response"></div>
-            <form>
-                <input type="text" id="subsidiary" name="subsidiary" list="subsidiary-list" placeholder="Enter subsidiary name...">
-                <!-- Input selection field -->
-                <!-- <input type="text" id="subsidiary-selection" name="subsidiary-selection" list="subsidiary-list"> -->
-
-                <!-- Datalist element -->
-                <!-- <datalist id="subsidiary-list">
-                @foreach(DB::table('consolidations')->pluck('subsidiary')->unique() as $subsidiary)
-                <option value="{{ $subsidiary }}">
-                    @endforeach
-            </datalist> -->
-                <datalist id="subsidiary-list">
-                    @foreach(DB::table('consolidations')->pluck('subsidiary')->unique() as $subsidiary)
-                    @php
-                    $shareholder = DB::table('consolidations')->where('subsidiary', $subsidiary)->value('shareholder_subsidiary');
-                    @endphp
-                    @if(!empty($shareholder) && $shareholder != 'N/A' && $shareholder != 'check')
-                    <option value="{{ $subsidiary }}">
-                        @endif
-                        @endforeach
-                </datalist>
-
-                <input type="submit" id="search" value="Send">
-            </form>
-        </div>
-        <div class="tab pane" id="group" hidden>
+        <div class="tab pane">
             <h1>Get Group</h1>
-            <div id="response-group"></div>
+            <div id="response"></div>
             <form class="group">
                 <input type="text" id="group_name" name="group_name" list="group_name-list" placeholder="Enter group name...">
                 <datalist id="group_name-list">
@@ -237,18 +197,18 @@
     <script>
         $(document).ready(function() {
             // group 
-            $(".chatbox form .group").submit(function(e) {
+            $(".chatbox form").submit(function(e) {
                 e.preventDefault();
-                sendMessage2();
+                sendMessage();
             });
 
-            function sendMessage2() {
+            function sendMessage() {
                 var group_name = $("#group_name").val();
-                var message = "<div class='response-group user'>" + group_name + "</div>";
-                $("#response-group").append(message);
+                var message = "<div class='response user'>" + group_name + "</div>";
+                $("#response").append(message);
 
                 $.ajax({
-                    url: "/chatbot5",
+                    url: "/chatbot-group",
                     type: "POST",
                     dataType: "json",
                     data: {
@@ -256,44 +216,14 @@
                         _token: "{{ csrf_token() }}"
                     },
                     success: function(response2) {
-                        var message = "<div class='response-group bot'>" + response2.message + "</div>";
-                        $("#response-group").append(message);
+                        var message = "<div class='response bot'>" + response2.message + "</div>";
+                        $("#response").append(message);
                     }
                 });
 
                 $("#group_name").val("");
             }
             // end group
-
-
-            // subsidiary 
-            $(".chatbox form").submit(function(e) {
-                e.preventDefault();
-                sendMessage();
-            });
-
-            function sendMessage() {
-                var subsidiary = $("#subsidiary").val();
-                var message = "<div class='response user'>" + subsidiary + "</div>";
-                $("#response").append(message);
-
-                $.ajax({
-                    url: "/chatbot5",
-                    type: "POST",
-                    dataType: "json",
-                    data: {
-                        message: subsidiary,
-                        _token: "{{ csrf_token() }}"
-                    },
-                    success: function(response) {
-                        var message = "<div class='response bot'>" + response.message + "</div>";
-                        $("#response").append(message);
-                    }
-                });
-
-                $("#subsidiary").val("");
-            }
-            // end 
 
 
             // nav 

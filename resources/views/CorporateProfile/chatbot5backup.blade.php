@@ -107,14 +107,6 @@
             font-size: 16px;
         }
 
-        .chatbox .response-group {
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            box-shadow: 0px 0px 5px #BDBDBD;
-            font-size: 16px;
-        }
-
         .chatbox .user {
             background-color: #235142;
             color: #FFF;
@@ -129,8 +121,6 @@
 
         /* atur ukuran font untuk respon user dan bot agar sama */
         .chatbox .response.user,
-        .chatbox .response-group.user,
-        .chatbox .response-group.bot,
         .chatbox .response.bot {
             font-size: 16px;
         }
@@ -143,8 +133,6 @@
 
             /* atur ukuran font untuk respon user dan bot agar sama di layar kecil */
             .chatbox .response.user,
-            .chatbox .response-group.user,
-            .chatbox .response-group.bot,
             .chatbox .response.bot {
                 font-size: 14px;
             }
@@ -178,8 +166,8 @@
         <nav>
             <ul>
                 <li class="nav-item"><a class="nav-link active" href="#company" data-toggle="tab">Subsidiary</a></li>
-                <li class="nav-item"><a href="{{route ('chatbotGroup') }}">Group</a></li>
-                <!-- <li class="nav-item"><a class="nav-link" href="#shareholder" data-toggle="tab">Shareholder</a></li> -->
+                <li class="nav-item" disabled><a class="nav-link" href="#group" data-toggle="tab">Group</a></li>
+                <li class="nav-item"><a class="nav-link" href="#shareholder" data-toggle="tab">Shareholder</a></li>
             </ul>
         </nav>
         <div class="tab pane" id="company">
@@ -215,6 +203,7 @@
             <div id="response-group"></div>
             <form class="group">
                 <input type="text" id="group_name" name="group_name" list="group_name-list" placeholder="Enter group name...">
+
                 <datalist id="group_name-list">
                     @foreach(DB::table('consolidations')->pluck('group_name')->unique() as $group_name)
                     @php
@@ -225,8 +214,8 @@
                         @endif
                         @endforeach
                 </datalist>
-                <input type="submit" id="search-group" value="Send">
-            </form>
+
+                <input type="submit" id="search" value="Send">
         </div>
         <div class="tab pane" id="shareholder" hidden>
             Shareholder
@@ -236,43 +225,13 @@
 
     <script>
         $(document).ready(function() {
-            // group 
-            $(".chatbox form .group").submit(function(e) {
-                e.preventDefault();
-                sendMessage2();
-            });
-
-            function sendMessage2() {
-                var group_name = $("#group_name").val();
-                var message = "<div class='response-group user'>" + group_name + "</div>";
-                $("#response-group").append(message);
-
-                $.ajax({
-                    url: "/chatbot5",
-                    type: "POST",
-                    dataType: "json",
-                    data: {
-                        message: group_name,
-                        _token: "{{ csrf_token() }}"
-                    },
-                    success: function(response2) {
-                        var message = "<div class='response-group bot'>" + response2.message + "</div>";
-                        $("#response-group").append(message);
-                    }
-                });
-
-                $("#group_name").val("");
-            }
-            // end group
-
-
-            // subsidiary 
             $(".chatbox form").submit(function(e) {
                 e.preventDefault();
                 sendMessage();
             });
 
             function sendMessage() {
+                // subsidiary 
                 var subsidiary = $("#subsidiary").val();
                 var message = "<div class='response user'>" + subsidiary + "</div>";
                 $("#response").append(message);
@@ -292,47 +251,43 @@
                 });
 
                 $("#subsidiary").val("");
+                // end subsidiary 
             }
-            // end 
-
-
-            // nav 
-            // Ambil semua link navigasi
-            const navLinks = document.querySelectorAll('.nav-link');
-
-            // Tambahkan event listener pada setiap link navigasi
-            navLinks.forEach(link => {
-                link.addEventListener('click', e => {
-                    e.preventDefault(); // Hentikan aksi default link navigasi
-
-                    // Ambil id tab pane yang sesuai dengan link navigasi yang ditekan
-                    const tabId = link.getAttribute('href');
-
-                    // Hapus class active dari semua link navigasi
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                    });
-
-                    // Tambahkan class active pada link navigasi yang ditekan
-                    link.classList.add('active');
-
-                    // Sembunyikan semua tab pane
-                    const tabPanes = document.querySelectorAll('.tab.pane');
-                    tabPanes.forEach(pane => {
-                        pane.style.display = 'none';
-                    });
-
-                    // Tampilkan tab pane yang sesuai dengan link navigasi yang ditekan
-                    const tabPane = document.querySelector(tabId);
-                    tabPane.style.display = 'block';
-                });
-            });
-
-            var nav = document.querySelector('nav');
-            nav.classList.add('active');
-            // end nav 
         });
 
+        // nav 
+        // Ambil semua link navigasi
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // Tambahkan event listener pada setiap link navigasi
+        navLinks.forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault(); // Hentikan aksi default link navigasi
+
+                // Ambil id tab pane yang sesuai dengan link navigasi yang ditekan
+                const tabId = link.getAttribute('href');
+
+                // Hapus class active dari semua link navigasi
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                // Tambahkan class active pada link navigasi yang ditekan
+                link.classList.add('active');
+
+                // Sembunyikan semua tab pane
+                const tabPanes = document.querySelectorAll('.tab.pane');
+                tabPanes.forEach(pane => {
+                    pane.style.display = 'none';
+                });
+
+                // Tampilkan tab pane yang sesuai dengan link navigasi yang ditekan
+                const tabPane = document.querySelector(tabId);
+                tabPane.style.display = 'block';
+            });
+        });
+        var nav = document.querySelector('nav');
+        nav.classList.add('active');
         // end nav 
     </script>
 </body>
