@@ -27,7 +27,7 @@
             </ul>
         </nav>
         <div class="tab pane">
-            <h1>Cari Group</h1>
+            <h1>Cari Grup</h1>
             <div id="response"></div>
             <form class="group">
                 <input type="text" id="group_name" name="group_name" list="group_name-list" placeholder="Enter group name...">

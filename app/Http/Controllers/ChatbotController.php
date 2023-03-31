@@ -1153,7 +1153,7 @@ class ChatbotController extends Controller
             // $response .= ' Provinsi ' . implode(', ', $provinces) . ' Kabupaten ' . implode(', ', $regencies) . ' dan secara geografis terletak di koordinat ' . $subsidiary->latitude . ' (latitude) – ' . $subsidiary->longitude . ' (longitude).';
             // $response .= ' Aktivitas prinsipal perusahaan adalah ' . implode(' dan ', $principal_activities);
         } else {
-            $response = 'Data subsidiary tidak ditemukan.';
+            $response = 'Group not found..';
         }
 
         return response()->json(['message' => $response]);
@@ -1751,7 +1751,7 @@ class ChatbotController extends Controller
             // $response .= ' Provinsi ' . implode(', ', $provinces) . ' Kabupaten ' . implode(', ', $regencies) . ' dan secara geografis terletak di koordinat ' . $subsidiary->latitude . ' (latitude) – ' . $subsidiary->longitude . ' (longitude).';
             // $response .= ' Aktivitas prinsipal perusahaan adalah ' . implode(' dan ', $principal_activities);
         } else {
-            $response = 'Data subsidiary tidak ditemukan.';
+            $response = 'Subsidiary not found..';
         }
 
         return response()->json(['message' => $response]);
