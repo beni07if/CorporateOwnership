@@ -260,11 +260,7 @@ class ChatbotController extends Controller
     }
 
 
-    public function chatbot5(Request $request)
-    {
 
-        return view('CorporateProfile.chatbot5');
-    }
 
     public function getSubsidiary0(Request $request)
     {
@@ -825,6 +821,345 @@ class ChatbotController extends Controller
         return redirect('/import-csv-consolidation')->with('error', 'Error importing data.');
     }
 
+    // get group en
+    public function getGroupEn(Request $request)
+    {
+        $input = $request->input('message'); // ambil input pesan dari userssss
+        $subsidiaries = Consolidation::where('group_name', 'like', '%' . $input . '%')->get(); // cari data subsidiary yang cocok dengan input
+
+        $regencies0 = [];
+        $provinces0 = [];
+        $countries0 = [];
+
+        foreach ($subsidiaries as $sub0) {
+            if (!in_array($sub0->regency, $regencies0)) {
+                $regencies0[] = $sub0->regency;
+            }
+
+            if (!in_array($sub0->province, $provinces0)) {
+                $provinces0[] = $sub0->province;
+            }
+
+            if (!in_array($sub0->country_operation, $countries0)) {
+                $countries0[] = $sub0->country_operation;
+            }
+        }
+
+        if ($subsidiaries->isNotEmpty()) {
+            $subsidiary = $subsidiaries->first();
+            // // Not clickable shareholder 
+            // $response = $subsidiary->subsidiary . ' adalah anak perusahaan dari group ' . $subsidiary->group_name . ' yang berlokasi di Kabupaten ' . implode(', Kabupaten ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '.';
+
+            // $shareholders = explode(',', $subsidiary->shareholder_subsidiary);
+            // $shareholder_data = [];
+            // $total_share = 0;
+
+            // foreach ($shareholders as $shareholder) {
+            //     $share_info = explode('(', $shareholder);
+            //     $shareholder_name = trim($share_info[0]);
+            //     $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
+            //     $total_share += $share_percentage;
+            //     $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
+            // }
+
+            // usort($shareholder_data, function ($a, $b) {
+            //     return $b['share_percentage'] <=> $a['share_percentage'];
+            // });
+
+            // $majority_shareholder = $shareholder_data[0]['name'];
+            // $majority_share_percentage = $shareholder_data[0]['share_percentage'];
+
+            // if ($subsidiary->group_type == 'Independent') {
+            //     $group_narrative = 'adalah perusahaan yang dikendalikan oleh';
+            // } else if ($subsidiary->group_type == 'Coop') {
+            //     $group_narrative = 'adalah koperasi yang dikendalikan oleh';
+            // } else {
+            //     $group_narrative = 'adalah anak perusahaan dari group';
+            // }
+
+            // if (count($shareholder_data) > 1) {
+            //     if ($total_share > 50) {
+            //         $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Mayoritas kepemilikan sahamnya dimiliki oleh ' . $majority_shareholder . ' sebesar ' . $majority_share_percentage . '% dan sisanya dimiliki oleh ' . implode(', ', array_map(function ($data) {
+            //             return $data['name'] . ' (' . $data['share_percentage'] . '%)';
+            //         }, array_slice($shareholder_data, 1))) . '. ';
+            //     } else {
+            //         $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Kepemilikan sahamnya didistribusikan di antara beberapa pemegang saham, yaitu ' . implode(', ', array_map(function ($data) {
+            //             return $data['name'] . ' sebesar ' . $data['share_percentage'] . '%';
+            //         }, $shareholder_data)) . '. ';
+            //     }
+            // } else {
+            //     $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Kepemilikan sahamnya dimiliki oleh ' . implode(', ', array_map(
+            //         function ($data) {
+            //             return $data['name'] . ' sebesar ' . $data['share_percentage'] . '%';
+            //         },
+            //         $shareholder_data
+            //     )) . '. ';
+            // }
+            // // End not clickable shareholder 
+
+            // Clickable shareholder, Ini dipakai jika tabel shareholder data shareholdernya lengkap, karena shareholder name nya clickable biar pas klik tidak kosong atau memunculkan pesan error
+            $shareholders = explode(',', $subsidiary->shareholder_subsidiary);
+            $shareholder_data = [];
+            $total_share = 0;
+            $company = [];
+
+            foreach ($shareholders as $shareholder) {
+                $share_info = explode('(', $shareholder);
+                $shareholder_name = trim($share_info[0]);
+                $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
+                $total_share += $share_percentage;
+                $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
+            }
+
+            usort($shareholder_data, function ($a, $b) {
+                return $b['share_percentage'] <=> $a['share_percentage'];
+            });
+
+            $majority_shareholder = $shareholder_data[0]['name'];
+            $majority_share_percentage = $shareholder_data[0]['share_percentage'];
+
+            if ($subsidiary->group_type == 'Independent') {
+                $group_narrative2 = 'is the oil palm plantation industry that controls';
+            } else if ($subsidiary->group_type == 'Coop') {
+                $group_narrative2 = 'is the controlling cooperative';
+            } else {
+                $group_narrative2 = 'is a group of oil palm plantation industries that have subsidiaries namely';
+            }
+
+            // narasi shareholder v1 
+            if (count($shareholder_data) > 1) {
+                if ($total_share > 50) {
+                    // narasi dengan subsidiary dengan link 
+                    $subLinks = [];
+                    $subCount = $subsidiaries->pluck('subsidiary')->unique()->count();
+                    $subNarrative = '';
+                    $i = 0;
+
+                    foreach ($subsidiaries->pluck('subsidiary')->unique() as $subsidiaryName) {
+                        $subLink =  $subsidiaryName;
+                        // $subLink = '<a href="' . route('company', ['subsidiary' => $subsidiaryName]) . '">' . $subsidiaryName . '</a>';
+                        if ($subCount > 1) {
+                            $i++;
+                            if ($i == $subCount) {
+                                $subNarrative .= 'dan ' . $subLink;
+                            } elseif ($i == $subCount - 1) {
+                                $subNarrative .= $subLink . ' ';
+                            } else {
+                                $subNarrative .= $subLink . ', ';
+                            }
+                        } else {
+                            $subNarrative = $subLink;
+                        }
+                    }
+
+                    $response = sprintf('%s %s %s.', $subsidiary->group_name, $group_narrative2, $subNarrative);
+
+                    // end narasi dengan subsidiary dengan link 
+
+                    // // narasi dengan subsidiary tanpa link 
+                    // $response = 'Grup ' . $subsidiary->group_name . ' ' . $group_narrative2 . ' ' . implode(', ', $subsidiaries->pluck('subsidiary')->unique()->toArray()) . '.';
+                    // // end narasi dengan subsidiary tanpa link 
+
+                    // $response = $subsidiary->group_name . ' ' . $group_narrative2 . ' ' . implode(', ', $subsidiary) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '% dan sisanya dimiliki oleh ' . implode(', ', array_map(
+                    //     function ($data) {
+                    //         return '<a href="' . route('shareholder', ['name' => $data['name']]) . '">' . $data['name'] . '</a> ' . $data['share_percentage'] . '%';
+                    //     },
+                    //     array_slice($shareholder_data, 1)
+                    // )) . '. ';
+                } else {
+                    // narasi dengan subsidiary dengan link 
+                    $subLinks = [];
+                    $subCount = $subsidiaries->pluck('subsidiary')->unique()->count();
+                    $subNarrative = '';
+                    $i = 0;
+
+                    foreach ($subsidiaries->pluck('subsidiary')->unique() as $subsidiaryName) {
+                        $subLink = $subsidiaryName;
+                        // $subLink = '<a href="' . route('company', ['subsidiary' => $subsidiaryName]) . '">' . $subsidiaryName . '</a>';
+                        if ($subCount > 1) {
+                            $i++;
+                            if ($i == $subCount) {
+                                $subNarrative .= 'dan ' . $subLink;
+                            } elseif ($i == $subCount - 1) {
+                                $subNarrative .= $subLink . ' ';
+                            } else {
+                                $subNarrative .= $subLink . ', ';
+                            }
+                        } else {
+                            $subNarrative = $subLink;
+                        }
+                    }
+
+                    $response = sprintf('%s %s %s.', $subsidiary->group_name, $group_narrative2, $subNarrative);
+
+                    // end narasi dengan subsidiary dengan link 
+
+                    // // narasi dengan subsidiary tanpa link 
+                    // $response = 'Grup ' . $subsidiary->group_name . ' ' . $group_narrative2 . ' ' . implode(', ', $subsidiaries->pluck('subsidiary')->unique()->toArray()) . '.';
+                    // // end narasi dengan subsidiary tanpa link 
+
+                    // $response = $subsidiary->group_name . ' ' . $group_narrative2 . ' ' . implode(', ', $subsidiary) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Kepemilikan sahamnya didistribusikan di antara beberapa pemegang saham, yaitu ' . implode(', ', array_map(
+                    //     function ($data) {
+                    //         return '<a href="' . route('shareholder', ['name' => $data['name']]) . '">' . $data['name'] . '</a> sebesar ' . $data['share_percentage'] . '%';
+                    //     },
+                    //     $shareholder_data
+                    // )) . '. ';
+                }
+            } else {
+                // narasi dengan subsidiary dengan link 
+                $subLinks = [];
+                $subCount = $subsidiaries->pluck('subsidiary')->unique()->count();
+                $subNarrative = '';
+                $i = 0;
+
+                foreach ($subsidiaries->pluck('subsidiary')->unique() as $subsidiaryName) {
+                    $subLink = $subsidiaryName;
+                    // $subLink = '<a href="' . route('company', ['subsidiary' => $subsidiaryName]) . '">' . $subsidiaryName . '</a>';
+                    if ($subCount > 1) {
+                        $i++;
+                        if ($i == $subCount) {
+                            $subNarrative .= 'dan ' . $subLink;
+                        } elseif ($i == $subCount - 1) {
+                            $subNarrative .= $subLink . ' ';
+                        } else {
+                            $subNarrative .= $subLink . ', ';
+                        }
+                    } else {
+                        $subNarrative = $subLink;
+                    }
+                }
+
+                $response = sprintf('%s %s %s.', $subsidiary->group_name, $group_narrative2, $subNarrative);
+
+                // end narasi dengan subsidiary dengan link 
+
+                // // narasi dengan subsidiary tanpa link 
+                // $response = 'Grup ' . $subsidiary->group_name . ' ' . $group_narrative2 . ' ' . implode(', ', $subsidiaries->pluck('subsidiary')->unique()->toArray()) . '.';
+                // // end narasi dengan subsidiary tanpa link 
+
+                // $response = $subsidiary->subsidiary . ' ' . $group_narrative2 . ' '. implode(', ', $subsidiary) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
+                // $response = $subsidiary->group_name . ' ' . $group_narrative2 . ' ' . implode(', ', $subsidiary) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Kepemilikan sahamnya dimiliki oleh ' . implode(', ', array_map(function ($data) {
+                //     return '<a href="' . route('shareholder', ['name' => $data['name']]) . '">' . $data['name'] . '</a> sebesar ' . $data['share_percentage'] . '%';
+                // }, $shareholder_data)) . '. ';
+            }
+            // end narasi shareholder v1 
+
+            // // narasi shareholder v2 
+            // $principal_activities = $subsidiaries->pluck('principal_activities')->unique()->toArray();
+
+            // if (count($shareholder_data) >= 1) {
+            //     // Calculate total share percentage owned by all shareholders
+            //     $total_share = collect($shareholder_data)->sum('share_percentage');
+
+            //     if ($total_share >= 50) {
+            //         if (in_array('Oil Palm Plantation', $principal_activities) && in_array('Palm Oil Mill', $principal_activities)) {
+            //             $principal_activity = ' perkebunan kelapa sawit dan pabrik kelapa sawit (PKS)';
+            //         } else if (in_array(
+            //             'Oil Palm Plantation & Mill',
+            //             $principal_activities
+            //         )) {
+            //             $principal_activity = ' perkebunan kelapa sawit dan pabrik kelapa sawit (PKS)';
+            //         } else if (in_array('Manufacturer', $principal_activities)) {
+            //             $principal_activity = ' manufaktur';
+            //         } else if (in_array('Palm Oil Mill', $principal_activities)) {
+            //             $principal_activity = ' pabrik kelapa sawit';
+            //         } else if (in_array('Oil Palm Plantation', $principal_activities)) {
+            //             $principal_activity = ' perkebunan kelapa sawit';
+            //         } else {
+            //             $principal_activity = implode(' dan ', $principal_activities);
+            //         }
+            //         $shareholder_data_formatted = array_map(function ($data) {
+            //             return '<a href="' . route('shareholder', ['name' => $data['name']]) . '">' . $data['name'] . '</a> sebesar ' . $data['share_percentage'] . '%';
+            //         }, $shareholder_data);
+            //         // Add majority shareholder to formatted shareholder data
+            //         array_unshift($shareholder_data_formatted, '<a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%');
+            //         $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . $principal_activity . '. Mayoritas kepemilikan sahamnya dimiliki oleh ' . implode(' dan ', $shareholder_data_formatted) . '. ';
+            //     } else {
+            //         $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $principal_activities) . '. Kepemilikan sahamnya hanya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar 100%. ';
+            //     }
+            // } else {
+            //     $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $principal_activities) . '. Kepemilikan sahamnya dimiliki oleh ' . implode(', ', array_map(function ($data) {
+            //         return '<a href="' . route('shareholder', ['name' => $data['name']]) . '">' . $data['name'] . '</a> sebesar ' . $data['share_percentage'] . '%';
+            //     }, $shareholder_data)) . '. ';
+            // }
+            // // end narasi shareholder v2 
+            // end clickable
+
+
+
+            $estates = [];
+            $facilities = [];
+            $regencies = [];
+            $provinces = [];
+            $rspo_member = null;
+            $rspo_certified = null;
+            $total_sizebyeq = 0;
+            $principal_activities = [];
+            // $shareholder = [];
+
+            // foreach ($subsidiaries as $key => $sub) {
+            //     if (in_array($sub->principal_activities, ["Oil Palm Plantation", "Rubber Plantation", "Nursery", "Smallholder"])) {
+
+            //         if (!in_array($sub->sizebyeq, $estates)) {
+            //             if ($sub->sizebyeq) {
+            //                 $estates[] = $sub->sizebyeq;
+            //                 if ($key == 0) {
+            //                     $response .= '. ' . $sub->subsidiary . ' memiliki kebun ' . $sub->estate . ' di ' . $sub->regency . ' dengan luas ' . $sub->sizebyeq . ' hektar.';
+            //                 } else {
+            //                     $response .= ', selain itu juga memiliki kebun ' . $sub->estate . ' di ' . $sub->regency . ' dengan luas ' . $sub->sizebyeq . ' hektar.';
+            //                 }
+            //                 $total_sizebyeq += $sub->sizebyeq;
+            //             }
+            //         } else {
+            //             $total_sizebyeq += $sub->sizebyeq;
+            //             $response .= ', ' . $sub->regency;
+            //         }
+            //     } elseif ($sub->principal_activities == "Oil Palm Plantation & Mill") {
+            //         $response .= ' ' . $sub->subsidiary . ' memiliki kebun kelapa sawit dengan luas ' . $sub->sizebyeq . ' hektar';
+            //         if (!empty($sub->capacity)) {
+            //             $response .= ' dan PKS dengan kapasitas ' . $sub->capacity . '.';
+            //         } else {
+            //             $response .= '.';
+            //         }
+            //     } elseif (in_array($sub->principal_activities, ["Palm Oil Mill", "Manufacturer", "Refinery", "Rubber Factory", "Oleochemical", "Kernel Crhursing Plant", "Biodisel Plant"])) {
+            //         // $response .= ' ' . $sub->subsidiary . ' memiliki ' . $sub->principal_activities . ' dengan kapasitas ';
+            //         if (!empty($sub->capacity)) {
+            //             $response .= '. ' . $sub->subsidiary . ' memiliki ' . $sub->principal_activities . ' dengan kapasitas ' . $sub->capacity . '.';
+            //         } else {
+            //             $response .= '.';
+            //         }
+            //     }
+
+            //     if (!in_array($sub->principal_activities, $principal_activities)) {
+            //         $principal_activities[] = $sub->principal_activities;
+            //     }
+
+
+            //     if (!in_array($sub->regency, $regencies)) {
+            //         $regencies[] = $sub->regency;
+            //     }
+
+            //     if (!in_array($sub->province, $provinces)) {
+            //         $provinces[] = $sub->province;
+            //     }
+            //     // if (!in_array($sub->shareholder_subsidiary, $shareholder)) {
+            //     //     $shareholder[] = $sub->shareholder_subsidiary;
+            //     // }
+            // }
+
+
+            // $response .= '. Kepemilikan saham  ' . $sub->subsidiary . ' dimiliki oleh ' . implode(', ', $shareholder) . '.';
+            // $response .= '. Kepemilikan saham  ' . $sub->subsidiary . ' dimiliki oleh ' . implode(', ', $shareholder) . ' dan sisanya dimiliki oleh  ' . implode(', ', $shareholder) . '.';
+            // $response .= ' Provinsi ' . implode(', ', $provinces) . ' Kabupaten ' . implode(', ', $regencies) . ' dan secara geografis terletak di koordinat ' . $subsidiary->latitude . ' (latitude) – ' . $subsidiary->longitude . ' (longitude).';
+            // $response .= ' Aktivitas prinsipal perusahaan adalah ' . implode(' dan ', $principal_activities);
+        } else {
+            $response = 'Data subsidiary tidak ditemukan.';
+        }
+
+        return response()->json(['message' => $response]);
+    }
+    // end get group end
+
     // get group
     public function getGroup(Request $request)
     {
@@ -1164,6 +1499,265 @@ class ChatbotController extends Controller
     }
     // end get group 
 
+    // get subsidiary en
+    public function getSubsidiaryEn(Request $request)
+    {
+        $input = $request->input('message'); // ambil input pesan dari userssss
+        $subsidiaries = Consolidation::where('subsidiary', 'like', '%' . $input . '%')->get(); // cari data subsidiary yang cocok dengan input
+
+        $regencies0 = [];
+        $provinces0 = [];
+        $countries0 = [];
+
+        foreach ($subsidiaries as $sub0) {
+            if (!in_array($sub0->regency, $regencies0)) {
+                $regencies0[] = $sub0->regency;
+            }
+
+            if (!in_array($sub0->province, $provinces0)) {
+                $provinces0[] = $sub0->province;
+            }
+
+            if (!in_array($sub0->country_operation, $countries0)) {
+                $countries0[] = $sub0->country_operation;
+            }
+        }
+
+        if ($subsidiaries->isNotEmpty()) {
+            $subsidiary = $subsidiaries->first();
+            // // Not clickable shareholder 
+            // $response = $subsidiary->subsidiary . ' adalah anak perusahaan dari group ' . $subsidiary->group_name . ' yang berlokasi di Kabupaten ' . implode(', Kabupaten ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '.';
+
+            // $shareholders = explode(',', $subsidiary->shareholder_subsidiary);
+            // $shareholder_data = [];
+            // $total_share = 0;
+
+            // foreach ($shareholders as $shareholder) {
+            //     $share_info = explode('(', $shareholder);
+            //     $shareholder_name = trim($share_info[0]);
+            //     $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
+            //     $total_share += $share_percentage;
+            //     $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
+            // }
+
+            // usort($shareholder_data, function ($a, $b) {
+            //     return $b['share_percentage'] <=> $a['share_percentage'];
+            // });
+
+            // $majority_shareholder = $shareholder_data[0]['name'];
+            // $majority_share_percentage = $shareholder_data[0]['share_percentage'];
+
+            // if ($subsidiary->group_type == 'Independent') {
+            //     $group_narrative = 'adalah perusahaan yang dikendalikan oleh';
+            // } else if ($subsidiary->group_type == 'Coop') {
+            //     $group_narrative = 'adalah koperasi yang dikendalikan oleh';
+            // } else {
+            //     $group_narrative = 'adalah anak perusahaan dari group';
+            // }
+
+            // if (count($shareholder_data) > 1) {
+            //     if ($total_share > 50) {
+            //         $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Mayoritas kepemilikan sahamnya dimiliki oleh ' . $majority_shareholder . ' sebesar ' . $majority_share_percentage . '% dan sisanya dimiliki oleh ' . implode(', ', array_map(function ($data) {
+            //             return $data['name'] . ' (' . $data['share_percentage'] . '%)';
+            //         }, array_slice($shareholder_data, 1))) . '. ';
+            //     } else {
+            //         $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Kepemilikan sahamnya didistribusikan di antara beberapa pemegang saham, yaitu ' . implode(', ', array_map(function ($data) {
+            //             return $data['name'] . ' sebesar ' . $data['share_percentage'] . '%';
+            //         }, $shareholder_data)) . '. ';
+            //     }
+            // } else {
+            //     $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Kepemilikan sahamnya dimiliki oleh ' . implode(', ', array_map(
+            //         function ($data) {
+            //             return $data['name'] . ' sebesar ' . $data['share_percentage'] . '%';
+            //         },
+            //         $shareholder_data
+            //     )) . '. ';
+            // }
+            // // End not clickable shareholder 
+
+
+            // Clickable shareholder, Ini dipakai jika tabel shareholder data shareholdernya lengkap, karena shareholder name nya clickable biar pas klik tidak kosong atau memunculkan pesan error
+            $shareholders = explode(',', $subsidiary->shareholder_subsidiary);
+            $shareholder_data = [];
+            $total_share = 0;
+
+            foreach ($shareholders as $shareholder) {
+                $share_info = explode('(', $shareholder);
+                $shareholder_name = trim($share_info[0]);
+                $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
+                $total_share += $share_percentage;
+                $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
+            }
+
+            usort($shareholder_data, function ($a, $b) {
+                return $b['share_percentage'] <=> $a['share_percentage'];
+            });
+
+            $majority_shareholder = $shareholder_data[0]['name'];
+            $majority_share_percentage = $shareholder_data[0]['share_percentage'];
+
+            if ($subsidiary->group_type == 'Independent') {
+                $group_narrative = 'is a company controlled by';
+            } else if ($subsidiary->group_type == 'Coop') {
+                $group_narrative = 'is a cooperative controlled by';
+            } else {
+                $group_narrative = 'is a subsidiary of the group';
+            }
+
+            // narasi shareholder v1 with no link
+            if (count($shareholder_data) > 1) {
+                if ($total_share > 50) {
+                    $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . implode(', ', $regencies0) . ', Province ' . implode(', Province ', $provinces0) . ', ' . implode(', ', $countries0) . '. Principal activity of ' .  $subsidiary->subsidiary . ' is ' . implode(' and ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. The majority of its shares are owned by ' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '% dan sisanya dimiliki oleh ' . implode(', ', array_map(function ($data) {
+                        return $data['name'] . $data['share_percentage'] . '%';
+                    }, array_slice($shareholder_data, 1))) . '. ';
+                } else {
+                    $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . implode(', ', $regencies0) . ', Province ' . implode(', Province ', $provinces0) . ', ' . implode(', ', $countries0) . '. Principal activity of ' .  $subsidiary->subsidiary . ' is ' . implode(' and ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Its share ownership is distributed among several shareholders, viz ' . implode(', ', array_map(function ($data) {
+                        return $data['name'] . $data['share_percentage'] . '%';
+                    }, $shareholder_data)) . '. ';
+                }
+            } else {
+                // $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . implode(', ', $regencies0) . ', Province ' . implode(', Province ', $provinces0) . ', ' . implode(', ', $countries0) . '. Principal activity of ' .  $subsidiary->subsidiary . ' is ' . implode(' and ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
+                $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . implode(', ', $regencies0) . ', Province ' . implode(', Province ', $provinces0) . ', ' . implode(', ', $countries0) . '. Principal activity of ' .  $subsidiary->subsidiary . ' is ' . implode(' and ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Share ownership is owned by ' . implode(', ', array_map(function ($data) {
+                    return $data['name'] . $data['share_percentage'] . '%';
+                }, $shareholder_data)) . '. ';
+            }
+            // end narasi shareholder v1 with no link
+
+            // // narasi shareholder v1 with link
+            // if (count($shareholder_data) > 1) {
+            //     if ($total_share > 50) {
+            //         $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '% dan sisanya dimiliki oleh ' . implode(', ', array_map(function ($data) {
+            //             return '<a href="' . route('shareholder', ['name' => $data['name']]) . '">' . $data['name'] . '</a> ' . $data['share_percentage'] . '%';
+            //         }, array_slice($shareholder_data, 1))) . '. ';
+            //     } else {
+            //         $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Kepemilikan sahamnya didistribusikan di antara beberapa pemegang saham, yaitu ' . implode(', ', array_map(function ($data) {
+            //             return '<a href="' . route('shareholder', ['name' => $data['name']]) . '">' . $data['name'] . '</a> sebesar ' . $data['share_percentage'] . '%';
+            //         }, $shareholder_data)) . '. ';
+            //     }
+            // } else {
+            //     // $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
+            //     $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Kepemilikan sahamnya dimiliki oleh ' . implode(', ', array_map(function ($data) {
+            //         return '<a href="' . route('shareholder', ['name' => $data['name']]) . '">' . $data['name'] . '</a> sebesar ' . $data['share_percentage'] . '%';
+            //     }, $shareholder_data)) . '. ';
+            // }
+            // // end narasi shareholder v1 with link
+
+            // // narasi shareholder v2 
+            // $principal_activities = $subsidiaries->pluck('principal_activities')->unique()->toArray();
+
+            // if (count($shareholder_data) >= 1) {
+            //     // Calculate total share percentage owned by all shareholders
+            //     $total_share = collect($shareholder_data)->sum('share_percentage');
+
+            //     if ($total_share >= 50) {
+            //         if (in_array('Oil Palm Plantation', $principal_activities) && in_array('Palm Oil Mill', $principal_activities)) {
+            //             $principal_activity = ' perkebunan kelapa sawit dan pabrik kelapa sawit (PKS)';
+            //         } else if (in_array(
+            //             'Oil Palm Plantation & Mill',
+            //             $principal_activities
+            //         )) {
+            //             $principal_activity = ' perkebunan kelapa sawit dan pabrik kelapa sawit (PKS)';
+            //         } else if (in_array('Manufacturer', $principal_activities)) {
+            //             $principal_activity = ' manufaktur';
+            //         } else if (in_array('Palm Oil Mill', $principal_activities)) {
+            //             $principal_activity = ' pabrik kelapa sawit';
+            //         } else if (in_array('Oil Palm Plantation', $principal_activities)) {
+            //             $principal_activity = ' perkebunan kelapa sawit';
+            //         } else {
+            //             $principal_activity = implode(' dan ', $principal_activities);
+            //         }
+            //         $shareholder_data_formatted = array_map(function ($data) {
+            //             return '<a href="' . route('shareholder', ['name' => $data['name']]) . '">' . $data['name'] . '</a> sebesar ' . $data['share_percentage'] . '%';
+            //         }, $shareholder_data);
+            //         // Add majority shareholder to formatted shareholder data
+            //         array_unshift($shareholder_data_formatted, '<a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%');
+            //         $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . $principal_activity . '. Mayoritas kepemilikan sahamnya dimiliki oleh ' . implode(' dan ', $shareholder_data_formatted) . '. ';
+            //     } else {
+            //         $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $principal_activities) . '. Kepemilikan sahamnya hanya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar 100%. ';
+            //     }
+            // } else {
+            //     $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $principal_activities) . '. Kepemilikan sahamnya dimiliki oleh ' . implode(', ', array_map(function ($data) {
+            //         return '<a href="' . route('shareholder', ['name' => $data['name']]) . '">' . $data['name'] . '</a> sebesar ' . $data['share_percentage'] . '%';
+            //     }, $shareholder_data)) . '. ';
+            // }
+            // // end narasi shareholder v2 
+            // end clickable
+
+
+
+            $estates = [];
+            $facilities = [];
+            $regencies = [];
+            $provinces = [];
+            $rspo_member = null;
+            $rspo_certified = null;
+            $total_sizebyeq = 0;
+            $principal_activities = [];
+            // $shareholder = [];
+
+            // foreach ($subsidiaries as $key => $sub) {
+            //     if (in_array($sub->principal_activities, ["Oil Palm Plantation", "Rubber Plantation", "Nursery", "Smallholder"])) {
+
+            //         if (!in_array($sub->sizebyeq, $estates)) {
+            //             if ($sub->sizebyeq) {
+            //                 $estates[] = $sub->sizebyeq;
+            //                 if ($key == 0) {
+            //                     $response .= '. ' . $sub->subsidiary . ' memiliki kebun ' . $sub->estate . ' di ' . $sub->regency . ' dengan luas ' . $sub->sizebyeq . ' hektar.';
+            //                 } else {
+            //                     $response .= ', selain itu juga memiliki kebun ' . $sub->estate . ' di ' . $sub->regency . ' dengan luas ' . $sub->sizebyeq . ' hektar.';
+            //                 }
+            //                 $total_sizebyeq += $sub->sizebyeq;
+            //             }
+            //         } else {
+            //             $total_sizebyeq += $sub->sizebyeq;
+            //             $response .= ', ' . $sub->regency;
+            //         }
+            //     } elseif ($sub->principal_activities == "Oil Palm Plantation & Mill") {
+            //         $response .= ' ' . $sub->subsidiary . ' memiliki kebun kelapa sawit dengan luas ' . $sub->sizebyeq . ' hektar';
+            //         if (!empty($sub->capacity)) {
+            //             $response .= ' dan PKS dengan kapasitas ' . $sub->capacity . '.';
+            //         } else {
+            //             $response .= '.';
+            //         }
+            //     } elseif (in_array($sub->principal_activities, ["Palm Oil Mill", "Manufacturer", "Refinery", "Rubber Factory", "Oleochemical", "Kernel Crhursing Plant", "Biodisel Plant"])) {
+            //         // $response .= ' ' . $sub->subsidiary . ' memiliki ' . $sub->principal_activities . ' dengan kapasitas ';
+            //         if (!empty($sub->capacity)) {
+            //             $response .= '. ' . $sub->subsidiary . ' memiliki ' . $sub->principal_activities . ' dengan kapasitas ' . $sub->capacity . '.';
+            //         } else {
+            //             $response .= '.';
+            //         }
+            //     }
+
+            //     if (!in_array($sub->principal_activities, $principal_activities)) {
+            //         $principal_activities[] = $sub->principal_activities;
+            //     }
+
+
+            //     if (!in_array($sub->regency, $regencies)) {
+            //         $regencies[] = $sub->regency;
+            //     }
+
+            //     if (!in_array($sub->province, $provinces)) {
+            //         $provinces[] = $sub->province;
+            //     }
+            //     // if (!in_array($sub->shareholder_subsidiary, $shareholder)) {
+            //     //     $shareholder[] = $sub->shareholder_subsidiary;
+            //     // }
+            // }
+
+
+            // $response .= '. Kepemilikan saham  ' . $sub->subsidiary . ' dimiliki oleh ' . implode(', ', $shareholder) . '.';
+            // $response .= '. Kepemilikan saham  ' . $sub->subsidiary . ' dimiliki oleh ' . implode(', ', $shareholder) . ' dan sisanya dimiliki oleh  ' . implode(', ', $shareholder) . '.';
+            // $response .= ' Provinsi ' . implode(', ', $provinces) . ' Kabupaten ' . implode(', ', $regencies) . ' dan secara geografis terletak di koordinat ' . $subsidiary->latitude . ' (latitude) – ' . $subsidiary->longitude . ' (longitude).';
+            // $response .= ' Aktivitas prinsipal perusahaan adalah ' . implode(' dan ', $principal_activities);
+        } else {
+            $response = 'Data subsidiary tidak ditemukan.';
+        }
+
+        return response()->json(['message' => $response]);
+    }
+    // end get subsidiary en
+
     // get subsidiary 
     public function getSubsidiary(Request $request)
     {
@@ -1434,8 +2028,26 @@ class ChatbotController extends Controller
     }
     // end get company
 
-    public function chatbotGroup()
+    public function chatbot5(Request $request)
     {
-        return view('CorporateProfile.chatbotGroup');
+        return view('CorporateProfile.chatbot5');
+    }
+
+    public function chatbotSubsidiaryId()
+    {
+        return view('CorporateProfile.Id.ChatbotSubsidiaryId');
+    }
+    public function chatbotGroupId()
+    {
+        return view('CorporateProfile.Id.ChatbotGroupId');
+    }
+
+    public function chatbotSubsidiaryEn()
+    {
+        return view('CorporateProfile.En.ChatbotSubsidiaryEn');
+    }
+    public function chatbotGroupEn()
+    {
+        return view('CorporateProfile.En.ChatbotGroupEn');
     }
 }

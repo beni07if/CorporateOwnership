@@ -27,10 +27,15 @@ Route::post('chatbots', [App\Http\Controllers\ChatbotController::class, 'chat'])
 Route::get('/chatbot4', [ChatbotController::class, 'chat4'])->name('chat4');
 Route::post('/chatbot4', [ChatbotController::class, 'response'])->name('chatbot.response');
 // Route::post('/chatbot/response', [ChatbotController::class, 'getResponse'])->name('chatbot.response');
-Route::get('/chatbot5', [ChatbotController::class, 'chatbot5'])->name('chatbot5');
-Route::post('/chatbot5', [ChatbotController::class, 'getSubsidiary'])->name('chatbot.subsidiary');
-Route::get('/chatbot-group', [ChatbotController::class, 'chatbotGroup'])->name('chatbotGroup');
-Route::post('/chatbot-group', [ChatbotController::class, 'getGroup'])->name('chatbot.group');
+Route::get('/eq-subsidiary', [ChatbotController::class, 'chatbotSubsidiaryId'])->name('chatbotSubsidiaryId');
+Route::post('/eq-subsidiary', [ChatbotController::class, 'getSubsidiary'])->name('chatbot.subsidiary');
+Route::get('/eq-group', [ChatbotController::class, 'chatbotGroupId'])->name('chatbotGroupId');
+Route::post('/eq-group', [ChatbotController::class, 'getGroup'])->name('chatbot.group');
+Route::get('/eq-subsidiary-en', [ChatbotController::class, 'chatbotSubsidiaryEn'])->name('chatbotSubsidiaryEn');
+Route::post('/eq-subsidiary-en', [ChatbotController::class, 'getSubsidiaryEn'])->name('getSubsidiaryEn');
+Route::get('/eq-group-en', [ChatbotController::class, 'chatbotGroupEn'])->name('chatbotGroupEn');
+Route::post('/eq-group-en', [ChatbotController::class, 'getGroupEn'])->name('chatbotGroupEn');
+
 Route::get('/chatbot7', [ChatbotController::class, 'chatbot7'])->name('chatbot7');
 Route::post('/chatbot7', [ChatbotController::class, 'getSubsidiary7'])->name('chatbot.subsidiary7');
 Route::get('/chatbot6', [ChatbotController::class, 'chatbot6'])->name('chatbot6');

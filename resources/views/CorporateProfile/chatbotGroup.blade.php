@@ -3,159 +3,9 @@
 
 <head>
     <title>Get Subsidiary</title>
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <style>
-        body {
-            font-family: "Segoe UI", sans-serif;
-            background-color: #F5F5F5;
-            padding: 20px;
-        }
 
-        /* style nav  */
-        nav {
-            display: none;
-        }
-
-        nav.active {
-            display: flex;
-            justify-content: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav li {
-            margin: 0 10px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-            padding: 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        nav a:hover,
-        nav a.active {
-            background-color: gray;
-            color: white;
-        }
-
-        .tab-pane {
-            display: none;
-        }
-
-        .tab-pane.active {
-            display: block;
-        }
-
-        /* end style nav  */
-
-        .chatbox {
-            background-color: #FFF;
-            max-width: 1200px;
-            margin: auto;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px #BDBDBD;
-            padding: 20px;
-            font-size: 16px;
-        }
-
-        .chatbox form {
-            padding: 20px;
-        }
-
-        .chatbox h1 {
-            margin-top: 0;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-
-        .chatbox input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: none;
-            border-radius: 5px;
-            box-shadow: 0px 0px 5px #BDBDBD;
-            font-size: 16px;
-        }
-
-        .chatbox input[type="submit"] {
-            background-color: #4CAF50;
-            color: #FFF;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .chatbox .response {
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            box-shadow: 0px 0px 5px #BDBDBD;
-            font-size: 16px;
-        }
-
-        .chatbox .user {
-            background-color: #235142;
-            color: #FFF;
-            font-size: 16px;
-        }
-
-        .chatbox .bot {
-            background-color: #E37B1C;
-            color: #FFF;
-            font-size: 16px;
-        }
-
-        /* atur ukuran font untuk respon user dan bot agar sama */
-        .chatbox .response.user,
-        .chatbox .response.bot {
-            font-size: 16px;
-        }
-
-        /* atur tampilan untuk layar kecil */
-        @media (max-width: 576px) {
-            .chatbox {
-                max-width: 100%;
-            }
-
-            /* atur ukuran font untuk respon user dan bot agar sama di layar kecil */
-            .chatbox .response.user,
-            .chatbox .response.bot {
-                font-size: 14px;
-            }
-        }
-
-        /* atur tampilan untuk layar kecil */
-        @media (max-width: 576px) {
-            .chatbox {
-                max-width: 100%;
-            }
-
-            .chatbox .response {
-                font-size: 16px;
-            }
-
-            .chatbox .user {
-                font-size: 16px;
-            }
-
-            .chatbox .bot {
-                font-size: 16px;
-            }
-        }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -163,6 +13,12 @@
 <body>
 
     <div class="chatbox">
+        <div class="language">
+            <ul>
+                <li><a class="active" href="#">Indonesia</a></li>
+                <li><a href="{{ route('chatbotGroupEn') }}">English</a></li>
+            </ul>
+        </div>
         <nav>
             <ul>
                 <li class="nav-item"><a href="{{route ('chatbot5') }}" data-toggle="tab">Subsidiary</a></li>
@@ -171,7 +27,7 @@
             </ul>
         </nav>
         <div class="tab pane">
-            <h1>Get Group</h1>
+            <h1>Cari Group</h1>
             <div id="response"></div>
             <form class="group">
                 <input type="text" id="group_name" name="group_name" list="group_name-list" placeholder="Enter group name...">
@@ -208,7 +64,7 @@
                 $("#response").append(message);
 
                 $.ajax({
-                    url: "/chatbot-group",
+                    url: "/eq-group",
                     type: "POST",
                     dataType: "json",
                     data: {
