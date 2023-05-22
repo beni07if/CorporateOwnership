@@ -65,5 +65,5 @@ Route::get('/corporate-profile-index', [CorporateProfileController::class, 'inde
 Route::post('/corporate-profile-subsidiary-show', [CorporateProfileController::class, 'subsidiaryShow'])->name('subsidiaryShow');
 
 
-// Scraper 
+// Scraperss 
 Route::get('/scrape', 'ScraperController@scrape');
