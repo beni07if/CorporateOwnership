@@ -22,7 +22,7 @@
                 <div class="col-xl-8 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
                     @foreach($consolidations as $subs)
                     <h3>{{$subs->subsidiary}}</h3>
-                    <p>PT Abidin Palmita Bros adalah anak perusahaan dari group Abidin Palmita Bros yang berlokasi di Rokan Hulu, Provinsi Riau, Indonesia. Aktivitas utama PT Abidin Palmita Bros adalah Oil Palm Plantation. Mayoritas kepemilikan sahamnya dimiliki oleh Hj. Nurhayati Rafida Abidin sebesar 40% dan sisanya dimiliki oleh Britt Irwin Abidin 20%, Ezra Rafael Abidin 20%, Novida Estrelita Abidin 20%.</p>
+                    <p>{{$subs->subsidiary}} adalah anak perusahaan dari group {{$subs->group_name}} yang berlokasi di {{$subs->regency}}, {{$subs->province}}, {{$subs->country_operation}}. Aktivitas utama {{$subs->subsidiary}} adalah {{$subs->principal_activities}}. Kepemilikan sahamnya dimiliki oleh {{$subs->shareholder_subsidiary}}.</p>
                     <div class="row">
 
                         <div class="col-md-6">
