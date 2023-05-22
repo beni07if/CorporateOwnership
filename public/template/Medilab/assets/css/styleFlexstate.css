@@ -1,0 +1,142 @@
+/**
+* Template Name: FlexStart - v1.9.0
+* Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+
+
+.features .feature-icons {
+    margin-top: 120px;
+}
+
+.features .feature-icons h3 {
+    color: #012970;
+    font-weight: 700;
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .features .feature-icons h3 {
+        font-size: 28px;
+    }
+}
+
+.features .feature-icons .content .icon-box {
+    display: flex;
+}
+
+.features .feature-icons .content .icon-box h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: #012970;
+}
+
+.features .feature-icons .content .icon-box i {
+    font-size: 44px;
+    line-height: 44px;
+    color: #0245bc;
+    margin-right: 15px;
+}
+
+.features .feature-icons .content .icon-box p {
+    font-size: 15px;
+    color: #848484;
+}
+
+/* search  */
+#search-form {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 50px;
+}
+
+.input-group {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-control {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.btn-primary {
+    flex-shrink: 0;
+}
+
+.col-xl-5 img {
+    object-fit: cover;
+    height: 80%;
+}
+
+.map-container {
+    display: flex;
+    justify-content: center;
+}
+/* end search  */
+
+/* indexSubsidiary */
+.book {
+    outline: 2px solid green;
+    color: grey;
+    padding: 14px 25px 34px 25px;
+    text-align: center;
+    text-decoration: none;
+    /* display: inline-block; */
+    margin-bottom: 40px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.narasi-full-report {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.appointment-btn {
+    width: 85%;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+    font-weight: bold;
+}
+
+.line {
+    padding-top: 40px ;
+    padding-top: 40px;
+    border-bottom: 1px solid grey;
+}
+
+.report-benefit{
+    padding-top: 40px;
+}
+
+.benefit-list{
+    color: grey;
+}
+
+.sample-subsidiary{
+    text-decoration: underline;
+    color: deepskyblue;
+}
+        
+/* end indexSubsidiary  */

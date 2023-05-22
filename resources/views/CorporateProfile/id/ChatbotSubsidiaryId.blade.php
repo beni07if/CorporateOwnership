@@ -28,7 +28,7 @@
             </ul>
         </nav>
         <div class="tab pane" id="company">
-            <h1>Cari Subsidiary</h1>
+            <h1>Cari Company/Subsidiary</h1>
             <div id="response"></div>
             <form>
                 <input type="text" id="subsidiary" name="subsidiary" list="subsidiary-list" placeholder="Enter subsidiary name...">

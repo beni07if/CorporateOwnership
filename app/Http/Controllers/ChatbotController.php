@@ -1610,17 +1610,17 @@ class ChatbotController extends Controller
             // narasi shareholder v1 with no link
             if (count($shareholder_data) > 1) {
                 if ($total_share > 50) {
-                    $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . $group_narrative2 . ' located at ' . implode(', ', $regencies0) . ', ' . implode(', Province', $provinces0) . ' Province' . ', ' . implode(', ', $countries0) . '. Principal activity of ' .  $subsidiary->subsidiary . ' is ' . implode(' and ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. The majority of its shares are owned by ' . $majority_shareholder . '</a> by ' . $majority_share_percentage . '% and the rest are owned by ' . implode(', ', array_map(function ($data) {
+                    $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . $group_narrative2 . ' located at ' . implode(', ', $regencies0) . ', ' . implode(', ', $provinces0) . ' Province' . ', ' . implode(', ', $countries0) . '. Main activity of ' .  $subsidiary->subsidiary . ' is ' . implode(' and ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. The majority of its shares are owned by ' . $majority_shareholder . '</a> by ' . $majority_share_percentage . '% and the rest are owned by ' . implode(', ', array_map(function ($data) {
                         return $data['name'] . ' ' . $data['share_percentage'] . '%';
                     }, array_slice($shareholder_data, 1))) . '. ';
                 } else {
-                    $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . $group_narrative2 .  ' located at ' . implode(', ', $regencies0) . ', ' . implode(', Province', $provinces0) . ' Province' . ', ' . implode(', ', $countries0) . '. Principal activity of ' .  $subsidiary->subsidiary . ' is ' . implode(' and ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Its share ownership is distributed among several shareholders, viz ' . implode(', ', array_map(function ($data) {
+                    $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . $group_narrative2 .  ' located at ' . implode(', ', $regencies0) . ', ' . implode(', ', $provinces0) . ' Province' . ', ' . implode(', ', $countries0) . '. Main activity of ' .  $subsidiary->subsidiary . ' is ' . implode(' and ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Its share ownership is distributed among several shareholders, viz ' . implode(', ', array_map(function ($data) {
                         return $data['name'] . ' ' . $data['share_percentage'] . '%';
                     }, $shareholder_data)) . '. ';
                 }
             } else {
-                // $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . implode(', ', $regencies0) . ', ' . implode(', Province', $provinces0) . ' Province' . ', ' . implode(', ', $countries0) . '. Principal activity of ' .  $subsidiary->subsidiary . ' is ' . implode(' and ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
-                $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . $group_narrative2 .  ' located at ' . implode(', ', $regencies0) . ', ' . implode(', Province', $provinces0) . ' Province' . ', ' . implode(', ', $countries0) . '. Principal activity of ' .  $subsidiary->subsidiary . ' is ' . implode(' and ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Share ownership is owned by ' . implode(', ', array_map(function ($data) {
+                // $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . implode(', ', $regencies0) . ', ' . implode(', ', $provinces0) . ' Province' . ', ' . implode(', ', $countries0) . '. Main activity of ' .  $subsidiary->subsidiary . ' is ' . implode(' and ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
+                $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . $group_narrative2 .  ' located at ' . implode(', ', $regencies0) . ', ' . implode(', ', $provinces0) . ' Province' . ', ' . implode(', ', $countries0) . '. Main activity of ' .  $subsidiary->subsidiary . ' is ' . implode(' and ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Share ownership is owned by ' . implode(', ', array_map(function ($data) {
                     return $data['name'] . ' ' . $data['share_percentage'] . '%';
                 }, $shareholder_data)) . '. ';
             }
@@ -1870,17 +1870,17 @@ class ChatbotController extends Controller
             if (count($shareholder_data) > 1) {
                 if ($total_share > 50) {
                     $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Mayoritas kepemilikan sahamnya dimiliki oleh ' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '% dan sisanya dimiliki oleh ' . implode(', ', array_map(function ($data) {
-                        return $data['name'] . $data['share_percentage'] . '%';
+                        return $data['name'] . ' ' . $data['share_percentage'] . '%';
                     }, array_slice($shareholder_data, 1))) . '. ';
                 } else {
                     $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Kepemilikan sahamnya didistribusikan di antara beberapa pemegang saham, yaitu ' . implode(', ', array_map(function ($data) {
-                        return $data['name'] . $data['share_percentage'] . '%';
+                        return $data['name'] . ' ' . $data['share_percentage'] . '%';
                     }, $shareholder_data)) . '. ';
                 }
             } else {
                 // $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
                 $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' yang berlokasi di ' . implode(', ', $regencies0) . ', Provinsi ' . implode(', Provinsi ', $provinces0) . ', ' . implode(', ', $countries0) . '. Aktivitas utama ' .  $subsidiary->subsidiary . ' adalah ' . implode(' dan ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Kepemilikan sahamnya dimiliki oleh ' . implode(', ', array_map(function ($data) {
-                    return $data['name'] . $data['share_percentage'] . '%';
+                    return $data['name'] . ' ' . $data['share_percentage'] . '%';
                 }, $shareholder_data)) . '. ';
             }
             // end narasi shareholder v1 with no link

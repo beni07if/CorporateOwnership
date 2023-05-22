@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatbotController;
+use App\Http\Controllers\CorporateProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,3 +57,13 @@ Route::post('/import-csv', [ChatbotController::class, 'importCsv'])->name('impor
 Route::get('/import-csv-consolidation', [ChatbotController::class, 'importCsvFormConsolidation'])->name('importCsvFormConsolidation');
 Route::post('/import-csv-consolidation', [ChatbotController::class, 'importCsvConsolidation'])->name('importCsvConsolidation');
 Route::get('/export', [App\Http\Controllers\ChatbotController::class, 'export']);
+
+// Website corporate profile
+Route::get('/corporate-profile-en', [CorporateProfileController::class, 'index'])->name('corporateProfileEn');
+Route::get('/corporate-profile-index', [CorporateProfileController::class, 'index'])->name('index');
+// Route::get('/corporate-profile-subsidiary-show', [CorporateProfileController::class, 'subsidiaryShow'])->name('subsidiaryShow');
+Route::post('/corporate-profile-subsidiary-show', [CorporateProfileController::class, 'subsidiaryShow'])->name('subsidiaryShow');
+
+
+// Scraper 
+Route::get('/scrape', 'ScraperController@scrape');
