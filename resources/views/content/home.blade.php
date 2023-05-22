@@ -12,8 +12,8 @@
         <form id="search-form">
             <label for="search-input" class="visually-hidden">Search</label>
             <div class="input-group">
-                <input type="text" id="search-input" class="form-control" placeholder="Find group and subsidiary profile...">
-                <button type="submit" class="btn btn-primary">Search</button>
+                <!-- <input type="text" id="search-input" class="form-control" placeholder="Find group and subsidiary profile...">
+                <button type="submit" class="btn btn-primary">Search</button> -->
             </div>
         </form>
         <!-- </div> -->
