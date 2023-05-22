@@ -17,7 +17,8 @@ class CorporateProfileController extends Controller
     public function index()
     {
         $subsidiary = Consolidation::all();
-        return view('content.home', compact('subsidiary'));
+        $groupName = Consolidation::all();
+        return view('content.home', compact('subsidiary', 'groupName'));
     }
 
     public function subsidiaryShow(Request $request)
@@ -48,6 +49,16 @@ class CorporateProfileController extends Controller
         // $subs = route('subsidiaryShow', ['subsidiary' => $subsidiary]);
         // $subsidiary = Consolidation::where('subsidiary', $subs)->get();
         // return view('content.en.indexSubsidiary', compact('subsidiary'));
+    }
+    public function groupShow(Request $request)
+    {
+        $groupName = $request->input('group_name');
+
+        $consolidations = DB::table('consolidations')
+            ->where('group_name', $groupName)
+            ->get();
+
+        return view('content.en.indexSubsidiary', compact('consolidations'));
     }
 
     /**

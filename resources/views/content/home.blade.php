@@ -31,9 +31,9 @@
             <div class="row">
                 <div class="col-lg-4 d-flex align-items-stretch">
                     <div class="content">
-                        <h3>Why EQ Corporate</h3>
+                        <h3>ID Corporate</h3>
                         <p>
-                            Welcome to our page that will display a list of companies engaged in the palm oil industry. Before you explore the list, we would like to explain some important concepts related to the corporate structure in the palm oil industry.
+                            ID Corporate is a service provided by PT. Digital Innovation to display company data engaged in oil palm plantations.
                         </p>
                     </div>
                 </div>
@@ -101,12 +101,20 @@
                                     <h3>Group of company</h3>
                                     <p class="fst-italic">A group is a collection of companies that are interrelated and owned by the same parent company. In our list of companies, you will find some companies that are part of the same group company.</p>
                                     <div class="container">
-                                        <form id="search-form">
-                                            <label for="search-input" class="visually-hidden">Search</label>
-                                            <div class="input-group">
-                                                <input type="text" id="search-input" class="form-control" placeholder="Find group/company..">
-                                                <button type="submit" class="btn btn-primary">Search</button>
-                                            </div>
+                                        <form id="search-form" method="POST" action="{{ route('subsidiaryShow') }}" enctype="multipart/form-data">
+                                            @csrf
+                                            <!-- <input type="text" id="subsidiary search-input" class="form-control" name="subsidiary" list="subsidiary-list" placeholder="Enter subsidiary name...">
+                                            <datalist id="subsidiary-list">
+                                                @foreach(DB::table('consolidations')->pluck('group_name')->unique() as $group_name)
+                                                @php
+                                                $shareholder = DB::table('consolidations')->where('group_name', $group_name)->value('group_name');
+                                                @endphp
+                                                @if(!empty($shareholder) && $shareholder != 'N/A' && $shareholder != 'check')
+                                                <option value="{{ $group_name }}"></option>
+                                                @endif
+                                                @endforeach
+                                            </datalist> -->
+                                            <!-- <button type="submit" class="btn btn-primary">Search</button> -->
                                         </form>
                                     </div>
                                 </div>
@@ -127,7 +135,7 @@
                                             <datalist id="subsidiary-list">
                                                 @foreach(DB::table('consolidations')->pluck('subsidiary')->unique() as $subsidiary)
                                                 @php
-                                                $shareholder = DB::table('consolidations')->where('subsidiary', $subsidiary)->value('shareholder_subsidiary');
+                                                $shareholder = DB::table('consolidations')->where('subsidiary', $subsidiary)->value('subsidiary');
                                                 @endphp
                                                 @if(!empty($shareholder) && $shareholder != 'N/A' && $shareholder != 'check')
                                                 <option value="{{ $subsidiary }}"></option>
@@ -148,7 +156,7 @@
                                 <div class="col-lg-8 details order-2 order-lg-1">
                                     <h3>Company shareholders</h3>
                                     <p class="fst-italic">Shareholding refers to the ownership of shares in a company. Shareholders are the owners of the company and their level of ownership is determined by the number of shares they hold. In the palm oil industry, understanding shareholding is essential for making informed investment decisions.</p>
-                                    <div class="container">
+                                    <!-- <div class="container">
                                         <form id="search-form">
                                             <label for="search-input" class="visually-hidden">Search</label>
                                             <div class="input-group">
@@ -156,7 +164,7 @@
                                                 <button type="submit" class="btn btn-primary">Search</button>
                                             </div>
                                         </form>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="col-lg-4 text-center order-1 order-lg-2">
                                     <img src="assets/img/departments-3.jpg" alt="" class="img-fluid">
@@ -180,48 +188,48 @@
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
-                    <img src="{{ asset('img/EQ.png') }}" alt="" class="img-fluid">
+                <div class="col-xl-6 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
+                    <img src="{{ asset('img/id.png') }}" alt="" class="img-fluid" style="width: 80%; height:30%;">
                 </div>
 
-                <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
+                <div class="col-xl-6 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
                     <h3>Company Information</h3>
-                    <p>Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed minima temporibus laudantium. Soluta voluptate sed facere corporis dolores excepturi. Libero laboriosam sint et id nulla tenetur. Suscipit aut voluptate.</p>
+                    <p>Company information.</p>
 
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-fingerprint"></i></div>
                         <h4 class="title"><a href="">Company name</a></h4>
-                        <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+                        <p class="description">Company name</p>
                     </div>
 
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-gift"></i></div>
                         <h4 class="title"><a href="">Shareholder of company</a></h4>
-                        <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+                        <p class="description">Shareholder of campany</p>
                     </div>
 
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-atom"></i></div>
                         <h4 class="title"><a href="">Principal activity</a></h4>
-                        <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
+                        <p class="description">Principal activity</p>
                     </div>
 
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-atom"></i></div>
                         <h4 class="title"><a href="">Location</a></h4>
-                        <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
+                        <p class="description">Addres</p>
                     </div>
 
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-atom"></i></div>
                         <h4 class="title"><a href="">LatLong</a></h4>
-                        <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
+                        <p class="description">Latitude and longitude</p>
                     </div>
 
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-atom"></i></div>
                         <h4 class="title"><a href="">Etc</a></h4>
-                        <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
+                        <p class="description">Etc</p>
                     </div>
 
                 </div>
@@ -295,20 +303,20 @@
                     <div class="info">
                         <div class="address">
                             <i class="bi bi-geo-alt"></i>
-                            <h4>Location:</h4>
-                            <p>A108 Adam Street, New York, NY 535022</p>
+                            <h4>Address:</h4>
+                            <p>Jl. Tangkuban Prahu No.8, Kota Bogor.</p>
                         </div>
 
                         <div class="email">
                             <i class="bi bi-envelope"></i>
                             <h4>Email:</h4>
-                            <p>info@example.com</p>
+                            <p>info@inovasidigital.asia</p>
                         </div>
 
                         <div class="phone">
                             <i class="bi bi-phone"></i>
                             <h4>Call:</h4>
-                            <p>+1 5589 55488 55s</p>
+                            <p>+62 898 2950 531</p>
                         </div>
 
                     </div>
