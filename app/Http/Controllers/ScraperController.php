@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
 class ScraperController extends Controller
 {
-    protected $scraper;
-
-    public function __construct(MyScraper $scraper)
+    public function index()
     {
-        $this->scraper = $scraper;
-    }
+        $scraper = new Scraper();
 
-    public function scrape()
-    {
-        $this->scraper->scrapeWebsite();
+        $data = $scraper->scrapeData('https://example.com');
 
-        // Add any necessary response or redirection logic
+        dd($data);
     }
 }

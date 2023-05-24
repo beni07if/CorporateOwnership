@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\CorporateProfileController;
+use App\Http\Controllers\Scraper;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,4 +67,12 @@ Route::post('/corporate-profile-subsidiary-show', [CorporateProfileController::c
 
 
 // Scraperss 
-Route::get('/scrape', 'ScraperController@scrape');
+// Route::get('/scrape', 'ScraperController@scrape');
+Route::get('/scrape', [ScraperController::class, 'index'])->name('scrape');
+// Route::get('/scrape', function () {
+//     $scraper = new Scraper();
+//     $scraper->scrape();
+
+//     return 'Scraping completed';
+// });
+Route::get('/search', [CorporateProfileController::class, 'search'])->name('search');

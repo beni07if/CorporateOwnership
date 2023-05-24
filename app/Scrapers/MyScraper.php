@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Scrapers;
+
 use GuzzleHttp\Client;
 
 class MyScraper

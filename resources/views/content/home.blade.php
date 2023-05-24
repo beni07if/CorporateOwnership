@@ -183,6 +183,12 @@
         </div>
     </section><!-- End Departments Section -->
 
+    <!-- <div>
+        <form action="{{ route('search') }}" method="GET">
+            <input type="text" name="keyword" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+    </div> -->
     <!-- ======= About Sections ======= -->
     <section id="about" class="about">
         <div class="container-fluid">

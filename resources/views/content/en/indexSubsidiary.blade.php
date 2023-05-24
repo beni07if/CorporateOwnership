@@ -22,7 +22,8 @@
                 <div class="col-xl-8 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
                     @foreach($consolidations as $subs)
                     <h3>{{$subs->subsidiary}}</h3>
-                    <p>{{$subs->subsidiary}} adalah anak perusahaan dari group {{$subs->group_name}} yang berlokasi di {{$subs->regency}}, {{$subs->province}}, {{$subs->country_operation}}. Aktivitas utama {{$subs->subsidiary}} adalah {{$subs->principal_activities}}. Kepemilikan sahamnya dimiliki oleh {{$subs->shareholder_subsidiary}}.</p>
+                    <p>{{$subsidiary}}</p>
+                    <!-- <p>{{$subs->subsidiary}} adalah anak perusahaan dari group {{$subs->group_name}} yang berlokasi di {{$subs->regency}}, {{$subs->province}}, {{$subs->country_operation}}. Aktivitas utama {{$subs->subsidiary}} adalah {{$subs->principal_activities}}. Kepemilikan sahamnya dimiliki oleh {{$subs->shareholder_subsidiary}}.</p> -->
                     <div class="row">
 
                         <div class="col-md-6">
@@ -128,6 +129,32 @@
                     </div>
                 </div>
             </div>
+
+        </div>
+
+        <div>
+            <!-- resources/views/search.blade.php -->
+
+            <!-- <form action="{{ route('search') }}" method="GET">
+                <input type="text" name="keyword" placeholder="Search...">
+                <button type="submit">Search</button>
+            </form>
+
+            <h2>Search Results</h2>
+
+            <h3>Users</h3>
+            <ul>
+                @foreach ($users as $user)
+                <li>{{ $user->message }} - {{ $user->reply }}</li>
+                @endforeach
+            </ul>
+
+            <h3>Products</h3>
+            <ul>
+                @foreach ($consolidations as $product)
+                <li>{{ $product->group_name }} - {{ $product->shareholder_subsidiary }}</li>
+                @endforeach
+            </ul> -->
 
         </div>
     </section><!-- End About Section -->
