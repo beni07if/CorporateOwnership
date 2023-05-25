@@ -1,5 +1,9 @@
 @extends('layout.app')
 
+@section('styleMaps')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+@endsection
+
 @section('content')
 <main id="main">
 
@@ -18,85 +22,144 @@
             </div>
 
             <div class="row" style="box-shadow: rgba(44, 73, 100, 0.08) 0px 2px 15px 0px;">
-                @if(count($consolidations)>0)
                 <div class="col-xl-8 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-                    @foreach($consolidations as $subs)
-                    <h3>{{$subs->subsidiary}}</h3>
-                    <p>{{$subsidiary}}</p>
-                    <!-- <p>{{$subs->subsidiary}} adalah anak perusahaan dari group {{$subs->group_name}} yang berlokasi di {{$subs->regency}}, {{$subs->province}}, {{$subs->country_operation}}. Aktivitas utama {{$subs->subsidiary}} adalah {{$subs->principal_activities}}. Kepemilikan sahamnya dimiliki oleh {{$subs->shareholder_subsidiary}}.</p> -->
-                    <div class="row">
 
+                    <h3>{{$perusahaan}}</h3>
+                    <p>{{$subsidiary}}</p>
+                    @if(count($consolidations)>0)
+
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title"><a href="">Subsidiary name</a></h4>
-                                <p class="description">{{$subs->subsidiary}}</p>
+                                @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
+                                <p class="description">{{$subs}}</p>
+                                @endforeach
                             </div>
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title"><a href="">Group</a></h4>
-                                <p class="description">{{$subs->group_name}}</p>
+                                @foreach($consolidations->pluck('group_name')->unique() as $subs)
+                                <p class="description">{{$subs}}</p>
+                                @endforeach
                             </div>
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title"><a href="">Shareholder of company</a></h4>
-                                <p class="description">{{$subs->shareholder_subsidiary}}</p>
+                                @foreach($consolidations->pluck('shareholder_subsidiary')->unique() as $subs)
+                                <p class="description">{{$subs}}</p>
+                                @endforeach
                             </div>
-                            <!-- <div>
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25034.653727798323!2d100.72741630529931!3d0.9904701800450332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d4b114cddeb057%3A0x119c6f62951397ec!2sPT.%20Rohul%20Palmindo%20Muara%20Dilam!5e1!3m2!1sid!2sid!4v1684138457370!5m2!1sid!2sid" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div><br> -->
-                            <div id="mapid" style="height: 500px;"></div>
-
                         </div>
                         <div class="col-md-6">
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title"><a href="">Main activity</a></h4>
+                                @if(count($consolidations) > 1)
+                                @foreach($consolidations as $key => $subs)
+                                @if($subs->principal_activities)
+                                <p class="description">{{ $key + 1 }}) {{$subs->principal_activities}}</p>
+                                @else
+                                <p class="description">{{ $key + 1 }}) -</p>
+                                @endif
+                                @endforeach
+                                @else
+                                @foreach($consolidations as $subs)
+                                @if($subs->principal_activities)
                                 <p class="description">{{$subs->principal_activities}}</p>
-                            </div>
-                            <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Address (Country, Province and Regency)</a></h4>
-                                <p class="description">{{$subs->country_operation}}, {{$subs->province}}, {{$subs->regency}}</p>
+                                @else
+                                <p class="description">-</p>
+                                @endif
+                                @endforeach
+                                @endif
                             </div>
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title"><a href="">Planted area</a></h4>
-                                <p class="description">
-                                    @if($subs->sizebyeq)
-                                    {{$subs->sizebyeq}} hectare
-                                    @else
-                                    -
-                                    @endif
-                                </p>
-                            </div>
-                            <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Mill capacity</a></h4>
-                                <p class="description">
-                                    @if($subs->capacity)
-                                    {{$subs->capacity}} ton/hours
-                                    @else
-                                    -
-                                    @endif
-                                </p>
-                            </div>
-                            <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Latitude</a></h4>
-                                <p class="description">{{$subs->latitude}}</p>
-                            </div>
-                            <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Longitude</a></h4>
-                                <p class="description">{{$subs->longitude}}</p>
-                            </div>
+                                @if(count($consolidations) > 1)
+                                @foreach($consolidations as $key => $subs)
+                                @if($subs->sizebyeq)
+                                <p class="description">{{ $key + 1 }}) {{$subs->sizebyeq}} hectare</p>
+                                @else
+                                <p class="description">{{ $key + 1 }}) -</p>
+                                @endif
+                                @endforeach
+                                @else
+                                @foreach($consolidations as $subs)
+                                @if($subs->sizebyeq)
+                                <p class="description">{{$subs->sizebyeq}} hectare</p>
+                                @else
+                                <p class="description">-</p>
+                                @endif
+                                @endforeach
+                                @endif
 
+                            </div>
+                            <div class="icon-box">
+                                <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title"><a href="">Mill name & capacity</a></h4>
+                                @if(count($consolidations) > 1)
+                                @foreach($consolidations as $key => $subs)
+                                @if($subs->facilities)
+                                <p class="description">{{ $key + 1 }}) {{$subs->facilities}} ({{$subs->capacity}})</p>
+                                @else
+                                <p class="description">{{ $key + 1 }}) -</p>
+                                @endif
+                                @endforeach
+                                @else
+                                @foreach($consolidations as $subs)
+                                @if($subs->facilities)
+                                <p class="description">{{$subs->facilities}} ({{$subs->capacity}})</p>
+                                @else
+                                <p class="description">-</p>
+                                @endif
+                                @endforeach
+                                @endif
+                            </div>
+                            <div class="icon-box">
+                                <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title"><a href="">Address</a></h4>
+                                @if(count($consolidations) > 1)
+                                @foreach($consolidations as $key => $subs)
+                                @if($subs->country_operation)
+                                <p class="description">{{ $key + 1 }}) {{$subs->country_operation}}, {{$subs->province}} Province, {{$subs->regency}} District</p>
+                                @else
+                                <p class="description">{{ $key + 1 }}) -</p>
+                                @endif
+                                @endforeach
+                                @else
+                                @foreach($consolidations as $subs)
+                                @if($subs->country_operation)
+                                <p class="description">{{$subs->country_operation}}, {{$subs->province}} Province, {{$subs->regency}} District</p>
+                                @else
+                                <p class="description">-</p>
+                                @endif
+                                @endforeach
+                                @endif
+                            </div>
                         </div>
                     </div>
-                    @endforeach
+                    @endif
+                    <!-- <div id="mapid" style="height: 500px;"></div> -->
+                    <!-- <div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25034.653727798323!2d100.72741630529931!3d0.9904701800450332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d4b114cddeb057%3A0x119c6f62951397ec!2sPT.%20Rohul%20Palmindo%20Muara%20Dilam!5e1!3m2!1sid!2sid!4v1684138457370!5m2!1sid!2sid" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div><br> -->
+                    <div id="map" style="height: 400px;">
+                        <div id="basemapSelector">
+                            <label class="basemap-option">
+                                <input type="radio" name="basemap" value="osm" checked> OpenStreetMap
+                            </label>
+                            <label class="basemap-option">
+                                <input type="radio" name="basemap" value="satellite"> Satellite
+                            </label>
+                            <label class="basemap-option">
+                                <input type="radio" name="basemap" value="topo"> Topographic
+                            </label>
+                        </div>
+                    </div>
+
                 </div>
-                @endif
                 <div class="col-xl-4 col-lg-6 icon-boxes d-flex flex-column align-items-stretch py-5 px-lg-5" style="background-color: #F5F5F5;">
                     <div class="blog sidebar">
 
@@ -161,7 +224,6 @@
 
     <!-- Leaflet JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js" integrity="sha384-dRnG3QipUv9zvMAkW8XVg+heW0jhvccrGM6yDNC4uK+xmqvBnp+0xuL50PYs10n/" crossorigin=""></script>
-
 
 </main><!-- End #main -->
 @endsection
@@ -268,18 +330,45 @@
     // end nav 
 </script>
 
+@section('mapsLeaflet')
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+
 <script>
-    // Inisialisasi peta
-    var mymap = L.map('mapid').setView([-6.1753924, 106.8271528], 13);
+    const coordinates = <?php echo json_encode($coordinates); ?>;
 
-    // Menambahkan tile layer (OpenStreetMap)
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-        maxZoom: 19,
-    }).addTo(mymap);
+    const map = L.map('map').setView([coordinates[0].latitude, coordinates[0].longitude], 13);
 
-    // Menambahkan marker
-    L.marker([-6.1753924, 106.8271528]).addTo(mymap)
-        .bindPopup('Lokasi saya')
-        .openPopup();
+    // Pilihan basemap
+    const basemaps = {
+        'OpenStreetMap': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            maxZoom: 18,
+        }),
+        'Esri WorldStreetMap': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri'
+        }),
+        'Esri Satellite': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri'
+        })
+        // Tambahkan jenis basemap lainnya sesuai kebutuhan
+    };
+
+    // Pilih basemap default
+    basemaps['OpenStreetMap'].addTo(map);
+
+    // Tambahkan kontrol layer untuk mengubah basemap
+    L.control.layers(basemaps).addTo(map);
+
+    const markers = [];
+
+    coordinates.forEach((coord, index) => {
+        const marker = L.marker([coord.latitude, coord.longitude]).addTo(map);
+        marker.bindPopup(`Latitude: ${coord.latitude}, Longitude: ${coord.longitude}`); // Label berdasarkan koordinat
+        markers.push(marker);
+    });
+
+    const group = new L.featureGroup(markers);
+    map.fitBounds(group.getBounds());
 </script>
+
+@endsection

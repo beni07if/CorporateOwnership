@@ -10,7 +10,7 @@
     <meta content="" name="keywords">
 
     <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" integrity="sha384-JjZo+iNM2+TbLZF4Vp/06+C2C7jJUm/n5+Z4arGtYQmYTlYw0tF4J9CC5LwXKLf" crossorigin="">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" integrity="sha384-JjZo+iNM2+TbLZF4Vp/06+C2C7jJUm/n5+Z4arGtYQmYTlYw0tF4J9CC5LwXKLf" crossorigin=""> -->
 
     <!-- Favicons -->
     <link href="{{ asset('template/Medilab/assets/img/favicon.png') }}" rel="icon">
@@ -37,6 +37,17 @@
     <link href="{{ asset('template/Medilab/assets/css/styleFlexstate.css') }}" rel="stylesheet">
     <!-- <link href="{{ asset('css/style.css') }}" rel="stylesheet"> -->
 
+    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" /> -->
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+
+    @yield('styleMaps')
+
+    <style>
+        #map {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
 
 
     <!-- =======================================================
@@ -188,7 +199,7 @@
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('template/Medilab/assets/vendor/bootstrap/js/bootstrap.bundle.min')}}.js"></script>
-    <script src="{{ asset('template/Medilab/assets/vendor/glightbox/js/glightbox.min')}}.js"></script>
+    <!-- <script src="{{ asset('template/Medilab/assets/vendor/glightbox/js/glightbox.min')}}.js"></script> -->
     <script src="{{ asset('template/Medilab/assets/vendor/php-email-form/validate')}}.js"></script>
     <script src="{{ asset('template/Medilab/assets/vendor/purecounter/purecounter')}}.js"></script>
     <script src="{{ asset('template/Medilab/assets/vendor/swiper/swiper-bundle.min')}}.js"></script>
@@ -245,6 +256,8 @@
 
     <!-- <script src='//fw-cdn.com/7785646/3277539.js' chat='true'>
     </script> -->
+
+    @yield('mapsLeaflet')
 
 </body>
 

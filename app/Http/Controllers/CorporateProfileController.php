@@ -25,13 +25,37 @@ class CorporateProfileController extends Controller
 
     public function subsidiaryShow(Request $request)
     {
+
+        $consol = Consolidation::all();
+        $coordinates = null; // Initialize coordinates variable
         $users = User::all();
         $consul = User::all();
         $subsidiaryName = $request->input('subsidiary');
+        // $distinctSubsidiary = Consolidation::where('subsidiary', $subsidiaryName)
+        //     ->distinct('subsidiary')
+        //     ->pluck('subsidiary');
+
+        if ($subsidiaryName) {
+            // Fetch the coordinate data from the database based on the subsidiary
+            // $coordinates = DB::table('consolidations')->select('latitude', 'longitude')->where('subsidiary', $subsidiaryName)->first();
+            $coordinates = DB::table('consolidations')->select('latitude', 'longitude')->where('subsidiary', $subsidiaryName)->get();
+        }
+        // return view('maps', compact('coordinates', 'consol', 'subsidiary'));
 
         $consolidations = DB::table('consolidations')
             ->where('subsidiary', $subsidiaryName)
             ->get();
+
+        foreach ($consolidations as $subs) {
+            $number = intval($subs->sizebyeq);
+            $formattedNumber = number_format($number);
+
+            if ($number) {
+                $subs->sizebyeq = $formattedNumber;
+            } else {
+                $subs->sizebyeq = '-';
+            }
+        }
 
         // return view('content.en.indexSubsidiary', compact('consolidations', 'users', 'consul'));
 
@@ -135,14 +159,30 @@ class CorporateProfileController extends Controller
             $shareholder_data = [];
             $total_share = 0;
 
-            foreach ($shareholders as $shareholder) {
-                $share_info = explode('(', $shareholder);
+            if (is_array($shareholders)) {
+                foreach ($shareholders as $shareholder) {
+                    $share_info = explode('(', $shareholder);
+                    $shareholder_name = trim($share_info[0]);
+
+                    if (isset($share_info[1])) {
+                        $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
+                        $total_share += $share_percentage;
+                        $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
+                    } else {
+                        $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => null];
+                    }
+                }
+            } else {
+                $share_info = explode('(', $shareholders);
                 $shareholder_name = trim($share_info[0]);
-                $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
-                // $share_percentage = str_replace(['%', ')'], '', $share_info[0]);
-                $total_share += $share_percentage;
-                // $total_share . $share_percentage;
-                $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
+
+                if (isset($share_info[1])) {
+                    $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
+                    $total_share += $share_percentage;
+                    $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
+                } else {
+                    $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => null];
+                }
             }
 
             usort($shareholder_data, function ($a, $b) {
@@ -180,6 +220,13 @@ class CorporateProfileController extends Controller
                     return $data['name'] . ' ' . $data['share_percentage'] . '%';
                 }, $shareholder_data)) . '. ';
             }
+
+            if (count($shareholder_data) > 0) {
+                $perusahaan = implode(' and ', $subsidiaries->pluck('subsidiary')->unique()->toArray());
+            } else {
+                $perusahaan = '';
+            }
+
             // end narasi shareholder v1 with no link
         } else {
             $response = 'Subsidiary not found..';
@@ -189,7 +236,8 @@ class CorporateProfileController extends Controller
         $subsidiary = $response;
         // return $subsidiary;
         // return view('content.en.test', compact('consolidations'));
-        return view('content.en.indexSubsidiary', compact('consolidations', 'subsidiary', 'users', 'consul'));
+        return view('content.en.indexSubsidiary', compact('consolidations', 'perusahaan', 'subsidiary', 'users', 'consul', 'consol', 'coordinates'));
+        // return view('maps', compact('coordinates', 'consol', 'subsidiary'));
         // end versi chat 
     }
 
@@ -227,6 +275,21 @@ class CorporateProfileController extends Controller
     {
         //
     }
+
+    public function maps(Request $request)
+    {
+        $consol = Consolidation::all();
+        $subsidiary = $request->input('subsidiary');
+        $coordinates = null; // Initialize coordinates variable
+
+        if ($subsidiary) {
+            // Fetch the coordinate data from the database based on the subsidiary
+            $coordinates = DB::table('consolidations')->select('latitude', 'longitude')->where('subsidiary', $subsidiary)->first();
+        }
+
+        return view('maps', compact('coordinates', 'consol', 'subsidiary'));
+    }
+
 
     /**
      * Store a newly created resource in storage.
