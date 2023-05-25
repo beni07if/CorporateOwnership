@@ -340,6 +340,9 @@
 
     // Pilihan basemap
     const basemaps = {
+        'Esri Satellite': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri'
+        }),
         'OpenStreetMap': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
             maxZoom: 18,
@@ -347,14 +350,11 @@
         'Esri WorldStreetMap': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
             attribution: 'Tiles &copy; Esri'
         }),
-        'Esri Satellite': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            attribution: 'Tiles &copy; Esri'
-        })
         // Tambahkan jenis basemap lainnya sesuai kebutuhan
     };
 
     // Pilih basemap default
-    basemaps['OpenStreetMap'].addTo(map);
+    basemaps['Esri Satellite'].addTo(map);
 
     // Tambahkan kontrol layer untuk mengubah basemap
     L.control.layers(basemaps).addTo(map);
@@ -363,9 +363,10 @@
 
     coordinates.forEach((coord, index) => {
         const marker = L.marker([coord.latitude, coord.longitude]).addTo(map);
-        marker.bindPopup(`Latitude: ${coord.latitude}, Longitude: ${coord.longitude}`); // Label berdasarkan koordinat
+        marker.bindPopup(`Subsidiary Name: ${coord.subsidiary}<br>Address: ${coord.country_operation}, ${coord.province} Province, ${coord.regency} District<br>Latitude: ${coord.latitude}<br>Longitude: ${coord.longitude}<br>`); // Menambahkan atribut "nama"
         markers.push(marker);
     });
+
 
     const group = new L.featureGroup(markers);
     map.fitBounds(group.getBounds());
