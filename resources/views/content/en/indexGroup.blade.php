@@ -32,13 +32,6 @@
                         <div class="col-md-6">
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Company name</a></h4>
-                                @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
-                                <p class="description">{{$subs}}</p>
-                                @endforeach
-                            </div>
-                            <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title"><a href="">Group</a></h4>
                                 @foreach($consolidations->pluck('group_name')->unique() as $subs)
                                 <p class="description">{{$subs}}</p>
@@ -46,82 +39,75 @@
                             </div>
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Shareholders</a></h4>
-                                @foreach($consolidations as $subs)
-                                @php
-                                $shareholders = explode(',', $subs->shareholder_subsidiary);
-                                @endphp
-
-                                @if(count($shareholders) > 1)
-                                @foreach($shareholders as $key => $shareholder)
-                                @php
-                                preg_match('/^(.*?)\s*\((.*?)\)$/', $shareholder, $matches);
-                                $name = trim($matches[1]);
-                                $ownership = trim($matches[2]);
-                                @endphp
-                                <p class="description">{{ $key + 1 }}) {{ $name }} ({{ $ownership }})</p>
-                                @endforeach
-                                @else
-                                <p class="description">{{ $subs->shareholder_subsidiary }}</p>
-                                @endif
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Activity</a></h4>
-                                @foreach($consolidations as $subs)
-                                @if($subs->principal_activities)
-                                <p class="description">{{$subs->principal_activities}}</p>
-                                @else
-                                <p class="description">-</p>
-                                @endif
+                                <h4 class="title"><a href="">Subsidiaries</a></h4>
+                                @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
+                                <p class="description">{{$subs}}</p>
                                 @endforeach
                             </div>
                             <!-- <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Planted</a></h4>
-                                @if(count($consolidations) > 1)
-                                @foreach($consolidations as $key => $subs)
-                                @if($subs->sizebyeq)
-                                <p class="description">{{ $key + 1 }}) {{$subs->sizebyeq}} hectare</p>
-                                @else
-                                <p class="description">{{ $key + 1 }}) -</p>
-                                @endif
-                                @endforeach
-                                @else
-                                @foreach($consolidations as $subs)
-                                @if($subs->sizebyeq)
-                                <p class="description">{{$subs->sizebyeq}} hectare</p>
-                                @else
-                                <p class="description">-</p>
-                                @endif
-                                @endforeach
-                                @endif
-
-                            </div>
-                            <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Capacity</a></h4>
-                                @foreach($consolidations as $subs)
-                                @if($subs->facilities)
-                                <p class="description">{{$subs->facilities}} ({{$subs->capacity}})</p>
+                                <h4 class="title"><a href="">Shareholders</a></h4>
+                                @foreach($consolidations->pluck('shareholder_subsidiary')->unique() as $shareholders)
+                                @if($shareholders)
+                                <p class="description">{{ $shareholders }}</p>
                                 @else
                                 <p class="description">-</p>
                                 @endif
                                 @endforeach
                             </div> -->
-                            <div class="icon-box">
+                            <div class="icon-box @if(!$consolidations->pluck('owner')->unique()->count() || in_array('Check', $consolidations->pluck('owner')->unique()->toArray())) d-none @endif">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Location</a></h4>
-                                @foreach($consolidations as $subs)
-                                @if($subs->country_operation)
-                                <p class="description">{{$subs->country_operation}}, {{$subs->province}} Province, {{$subs->regency}} District</p>
+                                <h4 class="title"><a href="">Owner</a></h4>
+                                @foreach($consolidations->pluck('owner')->unique() as $owner)
+                                @if($owner)
+                                @if($owner == 'Check')
+                                <p class="description">-</p>
+                                @else
+                                <p class="description">{{ $owner }}</p>
+                                @endif
                                 @else
                                 <p class="description">-</p>
                                 @endif
                                 @endforeach
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="icon-box">
+                                <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title"><a href="">Activity</a></h4>
+                                @foreach($consolidations->pluck('principal_activities')->unique() as $activity)
+                                @if($activity)
+                                <p class="description">{{ $activity }}</p>
+                                @else
+                                <p class="description">-</p>
+                                @endif
+                                @endforeach
+
+                            </div>
+                            <div class="icon-box">
+                                <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title"><a href="">Location</a></h4>
+                                @php
+                                $uniqueLocations = $consolidations->unique(function($item) {
+                                return $item->country_operation . $item->province . $item->regency;
+                                });
+                                @endphp
+
+                                @foreach($uniqueLocations as $location)
+                                @php
+                                $country = $location->country_operation;
+                                $province = $location->province;
+                                $regency = $location->regency;
+                                @endphp
+
+                                @if($country && $province && $regency)
+                                <p class="description">{{$country}}, {{$province}} Province, {{$regency}} District</p>
+                                @else
+                                <p class="description">-</p>
+                                @endif
+                                @endforeach
+
                             </div>
                         </div>
                     </div>
@@ -143,16 +129,16 @@
                             </label>
                         </div>
                     </div>
-                    <form id="search-form" method="POST" action="{{ route('subsidiaryShow') }}" enctype="multipart/form-data">
+                    <form id="search-form" method="POST" action="{{ route('groupShow') }}" enctype="multipart/form-data">
                         @csrf
-                        <input type="text" id="subsidiary search-input" class="form-control" name="subsidiary" list="subsidiary-list" placeholder="Search other company...">
-                        <datalist id="subsidiary-list">
-                            @foreach(DB::table('consolidations')->pluck('subsidiary')->unique() as $subsidiary)
+                        <input type="text" id="group_name search-input" class="form-control" name="group_name" list="group_name-list" placeholder="Search other company...">
+                        <datalist id="group_name-list">
+                            @foreach(DB::table('consolidations')->pluck('group_name')->unique() as $group_name)
                             @php
-                            $shareholder = DB::table('consolidations')->where('subsidiary', $subsidiary)->value('subsidiary');
+                            $shareholder = DB::table('consolidations')->where('group_name', $group_name)->value('group_name');
                             @endphp
                             @if(!empty($shareholder) && $shareholder != 'N/A' && $shareholder != 'check')
-                            <option value="{{ $subsidiary }}"></option>
+                            <option value="{{ $group_name }}"></option>
                             @endif
                             @endforeach
                         </datalist>
@@ -191,32 +177,6 @@
                     </div>
                 </div>
             </div>
-
-        </div>
-
-        <div>
-            <!-- resources/views/search.blade.php -->
-
-            <!-- <form action="{{ route('search') }}" method="GET">
-                <input type="text" name="keyword" placeholder="Search...">
-                <button type="submit">Search</button>
-            </form>
-
-            <h2>Search Results</h2>
-
-            <h3>Users</h3>
-            <ul>
-                @foreach ($users as $user)
-                <li>{{ $user->message }} - {{ $user->reply }}</li>
-                @endforeach
-            </ul>
-
-            <h3>Products</h3>
-            <ul>
-                @foreach ($consolidations as $product)
-                <li>{{ $product->group_name }} - {{ $product->shareholder_subsidiary }}</li>
-                @endforeach
-            </ul> -->
 
         </div>
     </section><!-- End About Section -->
@@ -362,7 +322,7 @@
     coordinates.forEach((coord, index) => {
         const marker = L.marker([coord.latitude, coord.longitude]).addTo(map);
         const formattedSize = Math.round(coord.sizebyeq).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Format angka bulat tanpa angka desimal dengan tanda koma sebagai pemisah ribuan
-        marker.bindPopup(`<b>${coord.principal_activities}</b><br>Company Name: ${coord.subsidiary}<br>Mill Name: ${coord.facilities}<br>Capacity: ${coord.capacity}<br>Estate Name: ${coord.estate}<br>Planted: ${formattedSize} hectare<br>Location: ${coord.regency} District, ${coord.province} Province, ${coord.country_operation}<br>Latitude: ${coord.latitude}<br>Longitude: ${coord.longitude}<br>`);
+        marker.bindPopup(`<b>${coord.principal_activities}</b><br>Group Name: ${coord.subsidiary}<br>Subsidiary: ${coord.subsidiary}<br>Mill Name: ${coord.facilities}<br>Capacity: ${coord.capacity}<br>Estate Name: ${coord.estate}<br>Planted: ${formattedSize} hectare<br>Location: ${coord.regency} District, ${coord.province} Province, ${coord.country_operation}<br>Latitude: ${coord.latitude}<br>Longitude: ${coord.longitude}<br>`);
         markers.push(marker);
     });
 

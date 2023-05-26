@@ -4,8 +4,8 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
     <div class="container">
-        <h1>Find group and subsidiary profile</h1>
-        <h2>Find thousands of palm oil companies around the world</h2>
+        <h1>Find palm oil companies around the world</h1>
+        <h2>Find group and subsidiary profile</h2>
         <!-- <a href="#about" hidden class="btn-get-started scrollto">Search</a> -->
         <!-- <section id="hero" class="d-flex align-items-center"> -->
         <!-- <div class="container"> -->
@@ -57,7 +57,7 @@
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box mt-4 mt-xl-0">
                                     <i class="bx bx-images"></i>
-                                    <h4>Shareholder of company</h4>
+                                    <h4>Shareholders</h4>
                                     <p>Shareholding refers to the ownership of shares in a company. Shareholders are the owners of the company and their level of ownership is determined by the number of shares they hold. In the palm oil industry, understanding shareholding is essential for making informed investment decisions.</p>
                                 </div>
                             </div>
@@ -83,13 +83,13 @@
                 <div class="col-lg-3">
                     <ul class="nav nav-tabs flex-column">
                         <li class="nav-item">
-                            <a class="nav-link " data-bs-toggle="tab" href="#tab-1">Group of company</a>
+                            <a class="nav-link " data-bs-toggle="tab" href="#tab-1">Group</a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link active show" data-bs-toggle="tab" href="#tab-2">Subsidiary</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Company shareholders</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Shareholders</a>
                         </li>
                     </ul>
                 </div>
@@ -98,13 +98,13 @@
                         <div class="tab-pane " id="tab-1">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Group of company</h3>
+                                    <h3>Group of subsidiaries</h3>
                                     <p class="fst-italic">A group is a collection of companies that are interrelated and owned by the same parent company. In our list of companies, you will find some companies that are part of the same group company.</p>
                                     <div class="container">
-                                        <form id="search-form" method="POST" action="{{ route('subsidiaryShow') }}" enctype="multipart/form-data">
+                                        <form id="search-form" method="POST" action="{{ route('groupShow') }}" enctype="multipart/form-data">
                                             @csrf
-                                            <!-- <input type="text" id="subsidiary search-input" class="form-control" name="subsidiary" list="subsidiary-list" placeholder="Enter subsidiary name...">
-                                            <datalist id="subsidiary-list">
+                                            <input type="text" id="group_name search-input" class="form-control" name="group_name" list="group_name-list" placeholder="Enter group_name name...">
+                                            <datalist id="group_name-list">
                                                 @foreach(DB::table('consolidations')->pluck('group_name')->unique() as $group_name)
                                                 @php
                                                 $shareholder = DB::table('consolidations')->where('group_name', $group_name)->value('group_name');
@@ -113,8 +113,8 @@
                                                 <option value="{{ $group_name }}"></option>
                                                 @endif
                                                 @endforeach
-                                            </datalist> -->
-                                            <!-- <button type="submit" class="btn btn-primary">Search</button> -->
+                                            </datalist>
+                                            <button type="submit" class="btn btn-primary">Search</button>
                                         </form>
                                     </div>
                                 </div>

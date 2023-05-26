@@ -38,7 +38,7 @@ class CorporateProfileController extends Controller
         if ($subsidiaryName) {
             // Fetch the coordinate data from the database based on the subsidiary
             // $coordinates = DB::table('consolidations')->select('latitude', 'longitude')->where('subsidiary', $subsidiaryName)->first();
-            $coordinates = DB::table('consolidations')->select('latitude', 'longitude', 'subsidiary', 'country_operation', 'province', 'regency', 'facilities', 'capacity', 'sizebyeq', 'estate')->where('subsidiary', $subsidiaryName)->get();
+            $coordinates = DB::table('consolidations')->select('latitude', 'longitude', 'subsidiary', 'country_operation', 'province', 'regency', 'facilities', 'capacity', 'sizebyeq', 'estate', 'group_name', 'principal_activities')->where('subsidiary', $subsidiaryName)->get();
         }
         // return view('maps', compact('coordinates', 'consol', 'subsidiary'));
 
@@ -242,6 +242,155 @@ class CorporateProfileController extends Controller
     }
 
     public function groupShow(Request $request)
+    {
+
+        $consol = Consolidation::all();
+        $coordinates = null; // Initialize coordinates variable
+        $users = User::all();
+        $consul = User::all();
+        $subsidiaryName = $request->input('group_name');
+
+        $input = $request->input('group_name'); // ambil input pesan dari userssss
+        $subsidiaries = Consolidation::where('group_name', 'like', '%' . $input . '%')->get(); // cari data subsidiary yang cocok dengan input
+
+        // $distinctSubsidiary = Consolidation::where('subsidiary', $subsidiaryName)
+        //     ->distinct('subsidiary')
+        //     ->pluck('subsidiary');
+
+        if ($subsidiaryName) {
+            // Fetch the coordinate data from the database based on the subsidiary
+            // $coordinates = DB::table('consolidations')->select('latitude', 'longitude')->where('subsidiary', $subsidiaryName)->first();
+            $coordinates = DB::table('consolidations')->select('latitude', 'longitude', 'subsidiary', 'country_operation', 'province', 'regency', 'facilities', 'capacity', 'sizebyeq', 'estate', 'group_name', 'principal_activities')->where('group_name', $subsidiaryName)->get();
+        }
+        // return view('maps', compact('coordinates', 'consol', 'subsidiary'));
+
+        $consolidations = DB::table('consolidations')
+            ->where('group_name', $subsidiaryName)
+            ->get();
+
+        foreach ($consolidations as $subs) {
+            $number = intval($subs->sizebyeq);
+            $formattedNumber = number_format($number);
+
+            if ($number) {
+                $subs->sizebyeq = $formattedNumber;
+            } else {
+                $subs->sizebyeq = '-';
+            }
+        }
+
+        $regencies0 = [];
+        $provinces0 = [];
+        $countries0 = [];
+        $subsidiary0 = [];
+
+        foreach ($subsidiaries as $sub0) {
+            if (!in_array($sub0->regency, $regencies0)) {
+                $regencies0[] = $sub0->regency;
+            }
+
+            if (!in_array($sub0->province, $provinces0)) {
+                $provinces0[] = $sub0->province;
+            }
+
+            if (!in_array($sub0->country_operation, $countries0)) {
+                $countries0[] = $sub0->country_operation;
+            }
+
+            if (!in_array($sub0->subsidiary, $subsidiary0)) {
+                $subsidiary0[] = $sub0->subsidiary;
+            }
+        }
+
+        if ($subsidiaries->isNotEmpty()) {
+            $subsidiary = $subsidiaries->first();
+            $shareholders = explode(',', $subsidiary->shareholder_subsidiary);
+            $shareholder_data = [];
+            $total_share = 0;
+
+            if (is_array($shareholders)) {
+                foreach ($shareholders as $shareholder) {
+                    $share_info = explode('(', $shareholder);
+                    $shareholder_name = trim($share_info[0]);
+
+                    if (isset($share_info[1])) {
+                        $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
+                        $total_share += $share_percentage;
+                        $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
+                    } else {
+                        $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => null];
+                    }
+                }
+            } else {
+                $share_info = explode('(', $shareholders);
+                $shareholder_name = trim($share_info[0]);
+
+                if (isset($share_info[1])) {
+                    $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
+                    $total_share += $share_percentage;
+                    $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
+                } else {
+                    $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => null];
+                }
+            }
+
+            usort($shareholder_data, function ($a, $b) {
+                return $b['share_percentage'] <=> $a['share_percentage'];
+            });
+
+            $majority_shareholder = $shareholder_data[0]['name'];
+            $majority_share_percentage = $shareholder_data[0]['share_percentage'];
+
+            if ($subsidiary->group_type == 'Independent') {
+                $group_narrative = 'is a company controlled by';
+                $group_narrative2 = '';
+            } else if ($subsidiary->group_type == 'Coop') {
+                $group_narrative = 'is a cooperative controlled by';
+                $group_narrative2 = '';
+            } else {
+                $group_narrative = 'is a subsidiary of the ';
+                $group_narrative2 = ' group';
+            }
+
+            // narasi shareholder v1 with no link
+            if (count($shareholder_data) > 1) {
+                if ($total_share > 50) {
+                    $response = $subsidiary->group_name . ' is a company in the field of oil palm plantations registered in ' . $subsidiary->country_registration . ' and has subsidiaries namely ' . implode(', ', $subsidiary0) . '. The majority of its shares are owned by ' . $majority_shareholder . ' by ' . $majority_share_percentage . '% and the rest are owned by ' . implode(', ', array_map(function ($data) {
+                        return $data['name'] . ' ' . $data['share_percentage'] . '%';
+                    }, array_slice($shareholder_data, 1))) . '. ';
+                } else {
+                    $response = $subsidiary->group_name .  ' is a company in the field of oil palm plantations registered in ' . $subsidiary->country_registration . ' and has subsidiaries namely ' . implode(', ', $subsidiary0) . '. Its share ownership is distributed among several shareholders, viz ' . implode(', ', array_map(function ($data) {
+                        return $data['name'] . ' ' . $data['share_percentage'] . '%';
+                    }, $shareholder_data)) . '. ';
+                }
+            } else {
+                // $response = $subsidiary->group_name . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . implode(', ', $subsidiary0) . 'Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
+                $response = $subsidiary->group_name .  ' is a company in the field of oil palm plantations registered in ' . $subsidiary->country_registration . ' and has subsidiaries namely ' . implode(', ', $subsidiary0) . '. Share ownership is owned by ' . implode(', ', array_map(function ($data) {
+                    return $data['name'] . ' ' . $data['share_percentage'] . '%';
+                }, $shareholder_data)) . '. ';
+            }
+
+            if (count($shareholder_data) > 0) {
+                $perusahaan = implode(' and ', $subsidiaries->pluck('group_name')->unique()->toArray());
+            } else {
+                $perusahaan = '';
+            }
+
+            // end narasi shareholder v1 with no link
+        } else {
+            $response = 'Subsidiary not found..';
+        }
+
+        // $subsidiary = response()->json(['message' => $response]);
+        $subsidiary = $response;
+        // return $subsidiary;
+        // return view('content.en.test', compact('consolidations'));
+        return view('content.en.indexGroup', compact('consolidations', 'perusahaan', 'subsidiary', 'users', 'consul', 'consol', 'coordinates'));
+        // return view('maps', compact('coordinates', 'consol', 'subsidiary'));
+        // end versi chat 
+    }
+
+    public function groupShow2(Request $request)
     {
         $groupName = $request->input('group_name');
 
