@@ -75,7 +75,7 @@
 
             <div class="section-title">
                 <h2>Company Profile</h2>
-                <p>Thousands of corporate ownership structure and ownership data worldwide</p>
+                <p>Find data on thousands of companies and their shareholdings around the world</p>
             </div>
             <!-- <div id="mapid" style="height: 500px;"></div> -->
 
@@ -98,12 +98,12 @@
                         <div class="tab-pane " id="tab-1">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Group of subsidiaries</h3>
+                                    <h3>Group</h3>
                                     <p class="fst-italic">A group is a collection of companies that are interrelated and owned by the same parent company. In our list of companies, you will find some companies that are part of the same group company.</p>
                                     <div class="container">
                                         <form id="search-form" method="POST" action="{{ route('groupShow') }}" enctype="multipart/form-data">
                                             @csrf
-                                            <input type="text" id="group_name search-input" class="form-control" name="group_name" list="group_name-list" placeholder="Enter group_name name...">
+                                            <input type="text" id="group_name search-input" class="form-control" name="group_name" list="group_name-list" placeholder="Search company">
                                             <datalist id="group_name-list">
                                                 @foreach(DB::table('consolidations')->pluck('group_name')->unique() as $group_name)
                                                 @php
@@ -131,7 +131,7 @@
                                     <div class="container">
                                         <form id="search-form" method="POST" action="{{ route('subsidiaryShow') }}" enctype="multipart/form-data">
                                             @csrf
-                                            <input type="text" id="subsidiary search-input" class="form-control" name="subsidiary" list="subsidiary-list" placeholder="Enter subsidiary name...">
+                                            <input type="text" id="subsidiary search-input" class="form-control" name="subsidiary" list="subsidiary-list" placeholder="Search company">
                                             <datalist id="subsidiary-list">
                                                 @foreach(DB::table('consolidations')->pluck('subsidiary')->unique() as $subsidiary)
                                                 @php
@@ -154,7 +154,7 @@
                         <div class="tab-pane" id="tab-3">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Company shareholders</h3>
+                                    <h3>Shareholders</h3>
                                     <p class="fst-italic">Shareholding refers to the ownership of shares in a company. Shareholders are the owners of the company and their level of ownership is determined by the number of shares they hold. In the palm oil industry, understanding shareholding is essential for making informed investment decisions.</p>
                                     <!-- <div class="container">
                                         <form id="search-form">
@@ -210,32 +210,26 @@
 
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-gift"></i></div>
-                        <h4 class="title"><a href="">Shareholder of company</a></h4>
+                        <h4 class="title"><a href="">Shareholders</a></h4>
                         <p class="description">Shareholder of campany</p>
                     </div>
 
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-atom"></i></div>
-                        <h4 class="title"><a href="">Principal activity</a></h4>
-                        <p class="description">Principal activity</p>
+                        <h4 class="title"><a href="">Activity</a></h4>
+                        <p class="description">Main activity</p>
                     </div>
 
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-atom"></i></div>
                         <h4 class="title"><a href="">Location</a></h4>
-                        <p class="description">Addres</p>
-                    </div>
-
-                    <div class="icon-box">
-                        <div class="icon"><i class="bx bx-atom"></i></div>
-                        <h4 class="title"><a href="">LatLong</a></h4>
-                        <p class="description">Latitude and longitude</p>
+                        <p class="description">Latitude Longitude</p>
                     </div>
 
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-atom"></i></div>
                         <h4 class="title"><a href="">Etc</a></h4>
-                        <p class="description">Etc</p>
+                        <p class="description">Other information</p>
                     </div>
 
                 </div>
