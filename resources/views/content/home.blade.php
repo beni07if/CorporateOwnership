@@ -33,7 +33,7 @@
                     <div class="content">
                         <h3>ID Corporate</h3>
                         <p>
-                            ID Corporate is a service provided by PT. Digital Innovation to display company data engaged in oil palm plantations.
+                            ID Corporate is a service provided by PT. Inovasi Digital to display company data engaged in oil palm plantations.
                         </p>
                     </div>
                 </div>
