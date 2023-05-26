@@ -32,7 +32,7 @@
                         <div class="col-md-6">
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Subsidiary name</a></h4>
+                                <h4 class="title"><a href="">Company name</a></h4>
                                 @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
                                 <p class="description">{{$subs}}</p>
                                 @endforeach
@@ -46,7 +46,7 @@
                             </div>
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Shareholder of company</a></h4>
+                                <h4 class="title"><a href="">Shareholders</a></h4>
                                 @foreach($consolidations->pluck('shareholder_subsidiary')->unique() as $subs)
                                 <p class="description">{{$subs}}</p>
                                 @endforeach
@@ -55,16 +55,7 @@
                         <div class="col-md-6">
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Main activity</a></h4>
-                                @if(count($consolidations) > 1)
-                                @foreach($consolidations as $key => $subs)
-                                @if($subs->principal_activities)
-                                <p class="description">{{ $key + 1 }}) {{$subs->principal_activities}}</p>
-                                @else
-                                <p class="description">{{ $key + 1 }}) -</p>
-                                @endif
-                                @endforeach
-                                @else
+                                <h4 class="title"><a href="">Activity</a></h4>
                                 @foreach($consolidations as $subs)
                                 @if($subs->principal_activities)
                                 <p class="description">{{$subs->principal_activities}}</p>
@@ -72,11 +63,10 @@
                                 <p class="description">-</p>
                                 @endif
                                 @endforeach
-                                @endif
                             </div>
-                            <div class="icon-box">
+                            <!-- <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Planted area</a></h4>
+                                <h4 class="title"><a href="">Planted</a></h4>
                                 @if(count($consolidations) > 1)
                                 @foreach($consolidations as $key => $subs)
                                 @if($subs->sizebyeq)
@@ -98,16 +88,7 @@
                             </div>
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Mill name & capacity</a></h4>
-                                @if(count($consolidations) > 1)
-                                @foreach($consolidations as $key => $subs)
-                                @if($subs->facilities)
-                                <p class="description">{{ $key + 1 }}) {{$subs->facilities}} ({{$subs->capacity}})</p>
-                                @else
-                                <p class="description">{{ $key + 1 }}) -</p>
-                                @endif
-                                @endforeach
-                                @else
+                                <h4 class="title"><a href="">Capacity</a></h4>
                                 @foreach($consolidations as $subs)
                                 @if($subs->facilities)
                                 <p class="description">{{$subs->facilities}} ({{$subs->capacity}})</p>
@@ -115,20 +96,10 @@
                                 <p class="description">-</p>
                                 @endif
                                 @endforeach
-                                @endif
-                            </div>
+                            </div> -->
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Address</a></h4>
-                                @if(count($consolidations) > 1)
-                                @foreach($consolidations as $key => $subs)
-                                @if($subs->country_operation)
-                                <p class="description">{{ $key + 1 }}) {{$subs->country_operation}}, {{$subs->province}} Province, {{$subs->regency}} District</p>
-                                @else
-                                <p class="description">{{ $key + 1 }}) -</p>
-                                @endif
-                                @endforeach
-                                @else
+                                <h4 class="title"><a href="">Location</a></h4>
                                 @foreach($consolidations as $subs)
                                 @if($subs->country_operation)
                                 <p class="description">{{$subs->country_operation}}, {{$subs->province}} Province, {{$subs->regency}} District</p>
@@ -136,7 +107,6 @@
                                 <p class="description">-</p>
                                 @endif
                                 @endforeach
-                                @endif
                             </div>
                         </div>
                     </div>
@@ -158,7 +128,21 @@
                             </label>
                         </div>
                     </div>
-
+                    <form id="search-form" method="POST" action="{{ route('subsidiaryShow') }}" enctype="multipart/form-data">
+                        @csrf
+                        <input type="text" id="subsidiary search-input" class="form-control" name="subsidiary" list="subsidiary-list" placeholder="Search other company...">
+                        <datalist id="subsidiary-list">
+                            @foreach(DB::table('consolidations')->pluck('subsidiary')->unique() as $subsidiary)
+                            @php
+                            $shareholder = DB::table('consolidations')->where('subsidiary', $subsidiary)->value('subsidiary');
+                            @endphp
+                            @if(!empty($shareholder) && $shareholder != 'N/A' && $shareholder != 'check')
+                            <option value="{{ $subsidiary }}"></option>
+                            @endif
+                            @endforeach
+                        </datalist>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
                 </div>
                 <div class="col-xl-4 col-lg-6 icon-boxes d-flex flex-column align-items-stretch py-5 px-lg-5" style="background-color: #F5F5F5;">
                     <div class="blog sidebar">
@@ -289,7 +273,6 @@
         }
         // end 
 
-
         // nav 
         // Ambil semua link navigasi
         const navLinks = document.querySelectorAll('.nav-link');
@@ -363,10 +346,10 @@
 
     coordinates.forEach((coord, index) => {
         const marker = L.marker([coord.latitude, coord.longitude]).addTo(map);
-        marker.bindPopup(`Subsidiary Name: ${coord.subsidiary}<br>Address: ${coord.country_operation}, ${coord.province} Province, ${coord.regency} District<br>Latitude: ${coord.latitude}<br>Longitude: ${coord.longitude}<br>`); // Menambahkan atribut "nama"
+        const formattedSize = Math.round(coord.sizebyeq).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Format angka bulat tanpa angka desimal dengan tanda koma sebagai pemisah ribuan
+        marker.bindPopup(`Company Name: ${coord.subsidiary}<br>Mill Name: ${coord.facilities}<br>Capacity: ${coord.capacity}<br>Estate Name: ${coord.estate}<br>Planted: ${formattedSize} hectare<br>Location: ${coord.regency} District, ${coord.province} Province, ${coord.country_operation}<br>Latitude: ${coord.latitude}<br>Longitude: ${coord.longitude}<br>`);
         markers.push(marker);
     });
-
 
     const group = new L.featureGroup(markers);
     map.fitBounds(group.getBounds());

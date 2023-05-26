@@ -38,7 +38,7 @@ class CorporateProfileController extends Controller
         if ($subsidiaryName) {
             // Fetch the coordinate data from the database based on the subsidiary
             // $coordinates = DB::table('consolidations')->select('latitude', 'longitude')->where('subsidiary', $subsidiaryName)->first();
-            $coordinates = DB::table('consolidations')->select('latitude', 'longitude', 'subsidiary', 'country_operation', 'province', 'regency')->where('subsidiary', $subsidiaryName)->get();
+            $coordinates = DB::table('consolidations')->select('latitude', 'longitude', 'subsidiary', 'country_operation', 'province', 'regency', 'facilities', 'capacity', 'sizebyeq', 'estate')->where('subsidiary', $subsidiaryName)->get();
         }
         // return view('maps', compact('coordinates', 'consol', 'subsidiary'));
 
@@ -206,17 +206,17 @@ class CorporateProfileController extends Controller
             // narasi shareholder v1 with no link
             if (count($shareholder_data) > 1) {
                 if ($total_share > 50) {
-                    $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . $group_narrative2 . ' located at ' . implode(', ', $countries0) . ', ' . implode(', ', $provinces0) . ' Province' . ', ' . implode(', ', $regencies0) . ' District. Main activity of ' .  $subsidiary->subsidiary . ' is ' . implode(' and ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. The majority of its shares are owned by ' . $majority_shareholder . ' by ' . $majority_share_percentage . '% and the rest are owned by ' . implode(', ', array_map(function ($data) {
+                    $response = $subsidiary->subsidiary . ' is a company engaged in the field of oil palm plantations located in ' . implode(', ', $countries0) . ', ' . implode(', ', $regencies0) . ' District' . ', ' . implode(', ', $provinces0) . ' Province. ' . 'The majority of its shares are owned by ' . $majority_shareholder . ' by ' . $majority_share_percentage . '% and the rest are owned by ' . implode(', ', array_map(function ($data) {
                         return $data['name'] . ' ' . $data['share_percentage'] . '%';
                     }, array_slice($shareholder_data, 1))) . '. ';
                 } else {
-                    $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . $group_narrative2 .  ' located at ' . implode(', ', $countries0) . ', ' . implode(', ', $provinces0) . ' Province' . ', ' . implode(', ', $regencies0) . ' District. Main activity of ' .  $subsidiary->subsidiary . ' is ' . implode(' and ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Its share ownership is distributed among several shareholders, viz ' . implode(', ', array_map(function ($data) {
+                    $response = $subsidiary->subsidiary .  ' is a company engaged in the field of oil palm plantations located in ' . implode(', ', $countries0) . ', ' . implode(', ', $regencies0) . ' District' . ', ' . implode(', ', $provinces0) . ' Province. ' . 'Its share ownership is distributed among several shareholders, viz ' . implode(', ', array_map(function ($data) {
                         return $data['name'] . ' ' . $data['share_percentage'] . '%';
                     }, $shareholder_data)) . '. ';
                 }
             } else {
-                // $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . implode(', ', $countries0) . ', ' . implode(', ', $provinces0) . ' Province' . ', ' . implode(', ', $regencies0) . ' District. Main activity of ' .  $subsidiary->subsidiary . ' is ' . implode(' and ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
-                $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . $group_narrative2 .  ' located at ' . implode(', ', $countries0) . ', ' . implode(', ', $provinces0) . ' Province' . ', ' . implode(', ', $regencies0) . ' District. Main activity of ' .  $subsidiary->subsidiary . ' is ' . implode(' and ', $subsidiaries->pluck('principal_activities')->unique()->toArray()) . '. Share ownership is owned by ' . implode(', ', array_map(function ($data) {
+                // $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . implode(', ', $countries0) . ', ' . implode(', ', $regencies0) . ' District' . ', ' . implode(', ', $provinces0) . ' Province. ' . 'Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
+                $response = $subsidiary->subsidiary .  ' is a company engaged in the field of oil palm plantations located in ' . implode(', ', $countries0) . ', ' . implode(', ', $regencies0) . ' District' . ', ' . implode(', ', $provinces0) . ' Province. ' . 'Share ownership is owned by ' . implode(', ', array_map(function ($data) {
                     return $data['name'] . ' ' . $data['share_percentage'] . '%';
                 }, $shareholder_data)) . '. ';
             }
