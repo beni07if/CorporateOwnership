@@ -13,10 +13,10 @@
         <div class="container">
             <div class="breadcrumbs" style="padding-left: 40px; background-color:white;">
                 <ol style="color:#4682B4;">
-                    <li><a href="" style="color:#4682B4;">Home</a></li>
-                    <li><a href="" style="color:#4682B4;">Indonesia</a></li>
-                    <li><a href="" style="color:#4682B4;">Corporate Profile</a></li>
-                    <li><a href="" style="color:#4682B4;">Subsidiary</a></li>
+                    <li><a href="#" style="color:#4682B4;">Home</a></li>
+                    <li><a href="#" style="color:#4682B4;">Indonesia</a></li>
+                    <li><a href="#" style="color:#4682B4;">Corporate Profile</a></li>
+                    <li><a href="#" style="color:#4682B4;">Subsidiary</a></li>
                 </ol>
                 <!-- <h2 style="color:#4682B4;">Subsidiary</h2> -->
             </div>
@@ -47,9 +47,9 @@
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title"><a href="">Shareholders</a></h4>
-                                @foreach($consolidations as $subs)
+                                @foreach($consolidations->pluck('shareholder_subsidiary')->flatten()->unique() as $shareholder)
                                 @php
-                                $shareholders = explode(',', $subs->shareholder_subsidiary);
+                                $shareholders = explode(',', $shareholder);
                                 @endphp
 
                                 @if(count($shareholders) > 1)
@@ -62,18 +62,19 @@
                                 <p class="description">{{ $key + 1 }}) {{ $name }} ({{ $ownership }})</p>
                                 @endforeach
                                 @else
-                                <p class="description">{{ $subs->shareholder_subsidiary }}</p>
+                                <p class="description">{{ $shareholder }}</p>
                                 @endif
                                 @endforeach
+
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title"><a href="">Activity</a></h4>
-                                @foreach($consolidations as $subs)
-                                @if($subs->principal_activities)
-                                <p class="description">{{$subs->principal_activities}}</p>
+                                @foreach($consolidations->pluck('principal_activities')->unique() as $activity)
+                                @if($activity)
+                                <p class="description">{{ $activity }}</p>
                                 @else
                                 <p class="description">-</p>
                                 @endif
@@ -114,13 +115,16 @@
                             </div> -->
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Location</a></h4>
-                                @foreach($consolidations as $subs)
+                                <h4 class="title"><a href="">Country Operation</a></h4>
+                                <!-- @foreach($consolidations as $subs)
                                 @if($subs->country_operation)
                                 <p class="description">{{$subs->country_operation}}, {{$subs->province}} Province, {{$subs->regency}} District</p>
                                 @else
                                 <p class="description">-</p>
                                 @endif
+                                @endforeach -->
+                                @foreach($consolidations->pluck('country_operation')->unique() as $subs)
+                                <p class="description">{{$subs}}</p>
                                 @endforeach
                             </div>
                         </div>

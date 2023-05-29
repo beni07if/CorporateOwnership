@@ -2,6 +2,36 @@
 
 @section('styleMaps')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+<style>
+    .descriptions {
+        display: inline-block;
+        padding: 5px 5px;
+        font-size: 16px;
+        background-color: #f0f0f0;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.5s ease, transform 0.5s ease;
+    }
+
+    .descriptions:hover {
+        background-color: #e0e0e0;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .descriptions:active {
+        background-color: #d0d0d0;
+        transform: translateY(1px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-map p {
+        padding-top: 50px;
+        display: inline-block;
+        margin: 0;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -13,10 +43,10 @@
         <div class="container">
             <div class="breadcrumbs" style="padding-left: 40px; background-color:white;">
                 <ol style="color:#4682B4;">
-                    <li><a href="" style="color:#4682B4;">Home</a></li>
-                    <li><a href="" style="color:#4682B4;">Indonesia</a></li>
-                    <li><a href="" style="color:#4682B4;">Corporate Profile</a></li>
-                    <li><a href="" style="color:#4682B4;">Subsidiary</a></li>
+                    <li><a href="#" style="color:#4682B4;">Home</a></li>
+                    <li><a href="#" style="color:#4682B4;">Indonesia</a></li>
+                    <li><a href="#" style="color:#4682B4;">Corporate Profile</a></li>
+                    <li><a href="#" style="color:#4682B4;">Subsidiary</a></li>
                 </ol>
                 <!-- <h2 style="color:#4682B4;">Subsidiary</h2> -->
             </div>
@@ -39,10 +69,18 @@
                             </div>
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title"><a href="">Address</a></h4>
+                                <p class="description">Data alamat grup</p>
+                            </div>
+                            <div class="icon-box">
+                                <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title"><a href="">Subsidiaries</a></h4>
-                                @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
-                                <p class="description">{{$subs}}</p>
-                                @endforeach
+                                <form action="{{ route('subsidiaryShow') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
+                                    <input type="submit" name="subsidiary" value="{{ $subs }}" class="descriptions">
+                                    @endforeach
+                                </form>
                             </div>
                             <!-- <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
@@ -83,18 +121,17 @@
                                 <p class="description">-</p>
                                 @endif
                                 @endforeach
-
                             </div>
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Location</a></h4>
-                                @php
+                                <h4 class="title"><a href="">Country Operation</a></h4>
+                                <!-- @php
                                 $uniqueLocations = $consolidations->unique(function($item) {
                                 return $item->country_operation . $item->province . $item->regency;
                                 });
                                 @endphp
 
-                                @foreach($uniqueLocations as $location)
+                                @foreach($uniqueLocations->take(3) as $location)
                                 @php
                                 $country = $location->country_operation;
                                 $province = $location->province;
@@ -108,6 +145,14 @@
                                 @endif
                                 @endforeach
 
+                                @if($uniqueLocations->count() > 3)
+                                <p class="description">Other locations..</p>
+                                @endif -->
+
+                                @foreach($consolidations->pluck('country_operation')->unique() as $subs)
+                                <p class="description">{{$subs}}</p>
+                                @endforeach
+
                             </div>
                         </div>
                     </div>
@@ -116,6 +161,13 @@
                     <!-- <div>
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25034.653727798323!2d100.72741630529931!3d0.9904701800450332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d4b114cddeb057%3A0x119c6f62951397ec!2sPT.%20Rohul%20Palmindo%20Muara%20Dilam!5e1!3m2!1sid!2sid!4v1684138457370!5m2!1sid!2sid" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div><br> -->
+                    <div class="header-map">
+                        <p class="description">
+                            Location of subsidiary of @foreach($consolidations->pluck('group_name')->unique() as $subs) {{$subs}}
+                            @endforeach
+                            group
+                        </p>
+                    </div>
                     <div id="map" style="height: 400px;">
                         <div id="basemapSelector">
                             <label class="basemap-option">

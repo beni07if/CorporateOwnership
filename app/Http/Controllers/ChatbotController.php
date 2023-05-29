@@ -2038,19 +2038,19 @@ class ChatbotController extends Controller
 
     public function chatbotSubsidiaryId()
     {
-        return view('CorporateProfile.Id.ChatbotSubsidiaryId');
+        return view('CorporateProfile.id.ChatbotSubsidiaryId');
     }
     public function chatbotGroupId()
     {
-        return view('CorporateProfile.Id.ChatbotGroupId');
+        return view('CorporateProfile.id.chatbotGroupId');
     }
 
     public function chatbotSubsidiaryEn()
     {
-        return view('CorporateProfile.En.ChatbotSubsidiaryEn');
+        return view('CorporateProfile.en.ChatbotSubsidiaryEn');
     }
     public function chatbotGroupEn()
     {
-        return view('CorporateProfile.En.ChatbotGroupEn');
+        return view('CorporateProfile.en.chatbotGroupEn');
     }
 }
