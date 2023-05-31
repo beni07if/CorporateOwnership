@@ -1,5 +1,20 @@
 @extends('layout.app')
 
+@section('headstyle')
+<!-- Favicons -->
+<link href="{{asset('template/Flexstart/assets/img/favicon.png') }}" rel="icon">
+<link href="{{asset('template/Flexstart/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="{{asset('template/Flexstart/assets/vendor/aos/aos.css')}}" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<!-- <link href="{{asset('template/Flexstart/assets/css/style.css')}}" rel="stylesheet"> -->
+@endsection
+
 @section('carousel')
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
@@ -179,7 +194,6 @@
             </div>
             <!-- <iframe src="https://www.chatbase.co/chatbot-iframe/wvn9H81maP5rt0gQhmEpj" width="100%" height="700" frameborder="0"></iframe> -->
             <iframe src="https://www.chatbase.co/chatbot-iframe/VRXUJ-HRD1JcdZQIduOLV" width="100%" height="700" frameborder="0"></iframe>
-
         </div>
     </section><!-- End Departments Section -->
 
@@ -191,48 +205,58 @@
     </div> -->
     <!-- ======= About Sections ======= -->
     <section id="about" class="about">
-        <div class="container-fluid">
+        <div class="container">
 
             <div class="row">
-                <div class="col-xl-6 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
+                <div class="col-xl-4 col-lg-4 video-box d-flex justify-content-center align-items-stretch position-relative">
                     <img src="{{ asset('img/id.png') }}" alt="" class="img-fluid" style="width: 80%; height:30%;">
                 </div>
 
-                <div class="col-xl-6 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
+                <div class="col-xl-8 col-lg-8 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
                     <h3>Company Information</h3>
                     <p>Company information.</p>
 
-                    <div class="icon-box">
-                        <div class="icon"><i class="bx bx-fingerprint"></i></div>
-                        <h4 class="title"><a href="">Company name</a></h4>
-                        <p class="description">Company name</p>
-                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="icon-box">
+                                <div class="icon"><i class="bx bx-fingerprint"></i></div>
+                                <h4 class="title"><a href="">Company name</a></h4>
+                                <p class="description">Company name</p>
+                            </div>
+                            <div class="icon-box">
+                                <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title"><a href="">Group</a></h4>
+                                <p class="description">Group</p>
+                            </div>
+                            <div class="icon-box">
+                                <div class="icon"><i class="bx bx-gift"></i></div>
+                                <h4 class="title"><a href="">Shareholders</a></h4>
+                                <p class="description">Shareholder of company</p>
+                            </div>
+                        </div>
 
-                    <div class="icon-box">
-                        <div class="icon"><i class="bx bx-gift"></i></div>
-                        <h4 class="title"><a href="">Shareholders</a></h4>
-                        <p class="description">Shareholder of campany</p>
-                    </div>
+                        <div class="col-md-6">
+                            <div class="icon-box">
+                                <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title"><a href="">Activity</a></h4>
+                                <p class="description">Main activity</p>
+                            </div>
 
-                    <div class="icon-box">
-                        <div class="icon"><i class="bx bx-atom"></i></div>
-                        <h4 class="title"><a href="">Activity</a></h4>
-                        <p class="description">Main activity</p>
-                    </div>
+                            <div class="icon-box">
+                                <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title"><a href="">Location</a></h4>
+                                <p class="description">Latitude Longitude</p>
+                            </div>
 
-                    <div class="icon-box">
-                        <div class="icon"><i class="bx bx-atom"></i></div>
-                        <h4 class="title"><a href="">Location</a></h4>
-                        <p class="description">Latitude Longitude</p>
+                            <div class="icon-box">
+                                <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title"><a href="">Etc</a></h4>
+                                <p class="description">Other information</p>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="icon-box">
-                        <div class="icon"><i class="bx bx-atom"></i></div>
-                        <h4 class="title"><a href="">Etc</a></h4>
-                        <p class="description">Other information</p>
-                    </div>
-
                 </div>
+
             </div>
 
         </div>

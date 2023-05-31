@@ -8,6 +8,8 @@ use Illuminate\Http\Response;
 use App\Models\Consolidation;
 use App\Models\Chatbot;
 use App\Models\User;
+use Illuminate\Support\Facades\Http;
+use DOMDocument;
 use Illuminate\Support\Facades\DB;
 
 class CorporateProfileController extends Controller
@@ -206,17 +208,17 @@ class CorporateProfileController extends Controller
             // narasi shareholder v1 with no link
             if (count($shareholder_data) > 1) {
                 if ($total_share > 50) {
-                    $response = $subsidiary->subsidiary . ' is a company engaged in the field of oil palm plantations located in ' . implode(', ', $countries0) . ', ' . implode(', ', $regencies0) . ' District' . ', ' . implode(', ', $provinces0) . ' Province. ' . 'The majority of its shares are owned by ' . $majority_shareholder . ' by ' . $majority_share_percentage . '% and the rest are owned by ' . implode(', ', array_map(function ($data) {
+                    $response = $subsidiary->subsidiary . ' is a company engaged in the field of oil palm plantations located in ' . implode(', ', $regencies0) . ', ' . implode(', ', $countries0) . '. The majority of its shares are owned by ' . $majority_shareholder . ' by ' . $majority_share_percentage . '% and the rest are owned by ' . implode(', ', array_map(function ($data) {
                         return $data['name'] . ' ' . $data['share_percentage'] . '%';
                     }, array_slice($shareholder_data, 1))) . '. ';
                 } else {
-                    $response = $subsidiary->subsidiary .  ' is a company engaged in the field of oil palm plantations located in ' . implode(', ', $countries0) . ', ' . implode(', ', $regencies0) . ' District' . ', ' . implode(', ', $provinces0) . ' Province. ' . 'Its share ownership is distributed among several shareholders, viz ' . implode(', ', array_map(function ($data) {
+                    $response = $subsidiary->subsidiary .  ' is a company engaged in the field of oil palm plantations located in ' . implode(', ', $regencies0) . ', ' . implode(', ', $countries0) . '. Its share ownership is distributed among several shareholders, viz ' . implode(', ', array_map(function ($data) {
                         return $data['name'] . ' ' . $data['share_percentage'] . '%';
                     }, $shareholder_data)) . '. ';
                 }
             } else {
-                // $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . implode(', ', $countries0) . ', ' . implode(', ', $regencies0) . ' District' . ', ' . implode(', ', $provinces0) . ' Province. ' . 'Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
-                $response = $subsidiary->subsidiary .  ' is a company engaged in the field of oil palm plantations located in ' . implode(', ', $countries0) . ', ' . implode(', ', $regencies0) . ' District' . ', ' . implode(', ', $provinces0) . ' Province. ' . 'Share ownership is owned by ' . implode(', ', array_map(function ($data) {
+                // $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . implode(', ', $regencies0) . ', ' . implode(', ', $countries0) . '. Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
+                $response = $subsidiary->subsidiary .  ' is a company engaged in the field of oil palm plantations located in ' . implode(', ', $regencies0) . ', ' . implode(', ', $countries0) . '. Share ownership is owned by ' . implode(', ', array_map(function ($data) {
                     return $data['name'] . ' ' . $data['share_percentage'] . '%';
                 }, $shareholder_data)) . '. ';
             }
@@ -478,5 +480,49 @@ class CorporateProfileController extends Controller
     public function destroy(string $id): RedirectResponse
     {
         //
+    }
+
+    public function scrapingLatLong()
+    {
+        // Send a GET request to the URL
+        $response = Http::get('https://app.maritimeoptima.com/?lat=11.322245742167155&lon=49.155221727790405&vessel=9007350&z=9.279270815398522');
+
+        // Create a new DOM Document
+        $dom = new DOMDocument();
+
+        // Disable error handling
+        libxml_use_internal_errors(true);
+
+        // Load the HTML content from the response
+        $dom->loadHTML($response->body());
+
+        // Re-enable error handling
+        libxml_use_internal_errors(false);
+
+        // Find the latitude and longitude values on the webpage
+        $latitudeElement = $dom->getElementById('lat');
+        $longitudeElement = $dom->getElementById('lon');
+
+        // Check if the elements exist before accessing their attributes
+        if ($latitudeElement && $longitudeElement) {
+            $latitude = $latitudeElement->getAttribute('value');
+            $longitude = $longitudeElement->getAttribute('value');
+
+            // Return the latitude and longitude as JSON response
+            return response()->json([
+                'latitude' => $latitude,
+                'longitude' => $longitude
+            ]);
+        } else {
+            // Return an error response if the elements were not found
+            return response()->json([
+                'error' => 'Latitude and longitude elements not found'
+            ], 500);
+        }
+    }
+
+    public function wef()
+    {
+        return view('wef');
     }
 }

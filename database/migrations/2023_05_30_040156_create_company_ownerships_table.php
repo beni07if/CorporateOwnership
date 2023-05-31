@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shareholders', function (Blueprint $table) {
+        Schema::create('company_ownerships', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('company_name')->nullable();
             $table->string('company_type')->nullable();
@@ -47,6 +47,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shareholders');
+        Schema::dropIfExists('company_ownerships');
     }
 };

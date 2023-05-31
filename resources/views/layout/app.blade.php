@@ -42,6 +42,8 @@
 
     @yield('styleMaps')
 
+    @yield('headstyle')
+
     <style>
         #map {
             width: 100%;

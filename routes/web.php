@@ -78,3 +78,6 @@ Route::get('/scrape', [ScraperController::class, 'index'])->name('scrape');
 Route::get('/search', [CorporateProfileController::class, 'search'])->name('search');
 Route::get('/maps', [CorporateProfileController::class, 'maps'])->name('maps');
 Route::post('/maps', [CorporateProfileController::class, 'maps'])->name('maps');
+
+Route::get('/scraping', [CorporateProfileController::class, 'scrapingLatLong'])->name('scrapingLatLong');
+Route::get('/wef', [CorporateProfileController::class, 'wef'])->name('wef');
