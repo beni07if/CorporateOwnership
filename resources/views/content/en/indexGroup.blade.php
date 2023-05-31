@@ -31,6 +31,47 @@
         display: inline-block;
         margin: 0;
     }
+
+
+    /* .icon-box {
+        text-align: center;
+    }
+
+    .icon {
+        margin-bottom: 10px;
+    }
+
+    .title {
+        margin-bottom: 15px;
+        font-size: 18px;
+    } */
+
+    .card {
+        width: 300px;
+        margin: 0 auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .descriptions {
+        display: block;
+        width: 100%;
+        background-color: #F5F5F5;
+        color: #696969;
+        padding: 8px 15px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        text-align: left;
+    }
 </style>
 @endsection
 
@@ -62,40 +103,14 @@
                         <div class="col-md-6">
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Group</a></h4>
+                                <h4 class="title">Group</h4>
                                 @foreach($consolidations->pluck('group_name')->unique() as $subs)
                                 <p class="description">{{$subs}}</p>
                                 @endforeach
                             </div>
-                            <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Address</a></h4>
-                                <p class="description">Data alamat grup</p>
-                            </div>
-                            <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Subsidiaries</a></h4>
-                                <form action="{{ route('subsidiaryShow') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
-                                    <input type="submit" name="subsidiary" value="{{ $subs }}" class="descriptions">
-                                    @endforeach
-                                </form>
-                            </div>
-                            <!-- <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Shareholders</a></h4>
-                                @foreach($consolidations->pluck('shareholder_subsidiary')->unique() as $shareholders)
-                                @if($shareholders)
-                                <p class="description">{{ $shareholders }}</p>
-                                @else
-                                <p class="description">-</p>
-                                @endif
-                                @endforeach
-                            </div> -->
                             <div class="icon-box @if(!$consolidations->pluck('owner')->unique()->count() || in_array('Check', $consolidations->pluck('owner')->unique()->toArray())) d-none @endif">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Owner</a></h4>
+                                <h4 class="title">Owner</h4>
                                 @foreach($consolidations->pluck('owner')->unique() as $owner)
                                 @if($owner)
                                 @if($owner == 'Check')
@@ -108,12 +123,45 @@
                                 @endif
                                 @endforeach
                             </div>
+                            <div class="icon-box">
+                                <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title">Address</h4>
+                                <p class="description">Data alamat grup</p>
+                            </div>
+                            <div class="icon-box">
+                                <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title">Subsidiaries</h4>
+                                <form action="{{ route('subsidiaryShow') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="card">
+                                        <div class="card-body">
+                                            @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
+                                            <div class="form-group">
+                                                <input type="submit" name="subsidiary" value="{{ $subs }}" class="descriptions">
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- <div class="icon-box">
+                                <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title">Shareholders</h4>
+                                @foreach($consolidations->pluck('shareholder_subsidiary')->unique() as $shareholders)
+                                @if($shareholders)
+                                <p class="description">{{ $shareholders }}</p>
+                                @else
+                                <p class="description">-</p>
+                                @endif
+                                @endforeach
+                            </div> -->
 
                         </div>
                         <div class="col-md-6">
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Activity</a></h4>
+                                <h4 class="title">Activity</h4>
                                 @foreach($consolidations->pluck('principal_activities')->unique() as $activity)
                                 @if($activity)
                                 <p class="description">{{ $activity }}</p>
@@ -124,7 +172,7 @@
                             </div>
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Country Operation</a></h4>
+                                <h4 class="title">Country Operation</h4>
                                 <!-- @php
                                 $uniqueLocations = $consolidations->unique(function($item) {
                                 return $item->country_operation . $item->province . $item->regency;

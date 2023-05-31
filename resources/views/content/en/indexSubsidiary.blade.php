@@ -32,21 +32,21 @@
                         <div class="col-md-6">
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Company name</a></h4>
+                                <h4 class="title">Company name</h4>
                                 @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
                                 <p class="description">{{$subs}}</p>
                                 @endforeach
                             </div>
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Group</a></h4>
+                                <h4 class="title">Group</h4>
                                 @foreach($consolidations->pluck('group_name')->unique() as $subs)
                                 <p class="description">{{$subs}}</p>
                                 @endforeach
                             </div>
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Shareholders</a></h4>
+                                <h4 class="title">Shareholders</h4>
                                 @foreach($consolidations->pluck('shareholder_subsidiary')->flatten()->unique() as $shareholder)
                                 @php
                                 $shareholders = explode(',', $shareholder);
@@ -71,7 +71,7 @@
                         <div class="col-md-6">
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Activity</a></h4>
+                                <h4 class="title">Activity</h4>
                                 @foreach($consolidations->pluck('principal_activities')->unique() as $activity)
                                 @if($activity)
                                 <p class="description">{{ $activity }}</p>
@@ -82,7 +82,7 @@
                             </div>
                             <!-- <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Planted</a></h4>
+                                <h4 class="title">Planted</h4>
                                 @if(count($consolidations) > 1)
                                 @foreach($consolidations as $key => $subs)
                                 @if($subs->sizebyeq)
@@ -104,7 +104,7 @@
                             </div>
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Capacity</a></h4>
+                                <h4 class="title">Capacity</h4>
                                 @foreach($consolidations as $subs)
                                 @if($subs->facilities)
                                 <p class="description">{{$subs->facilities}} ({{$subs->capacity}})</p>
@@ -115,7 +115,7 @@
                             </div> -->
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title"><a href="">Country Operation</a></h4>
+                                <h4 class="title">Country Operation</h4>
                                 <!-- @foreach($consolidations as $subs)
                                 @if($subs->country_operation)
                                 <p class="description">{{$subs->country_operation}}, {{$subs->province}} Province, {{$subs->regency}} District</p>
