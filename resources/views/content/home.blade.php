@@ -189,11 +189,10 @@
                     </div>
                 </div>
             </div>
-            <div class="section-title" style="padding-top: 70px;">
+            <!-- <div class="section-title" style="padding-top: 70px;">
                 <h2>CHAT WITH US</h2>
             </div>
-            <!-- <iframe src="https://www.chatbase.co/chatbot-iframe/wvn9H81maP5rt0gQhmEpj" width="100%" height="700" frameborder="0"></iframe> -->
-            <iframe src="https://www.chatbase.co/chatbot-iframe/VRXUJ-HRD1JcdZQIduOLV" width="100%" height="700" frameborder="0"></iframe>
+            <iframe src="https://www.chatbase.co/chatbot-iframe/VRXUJ-HRD1JcdZQIduOLV" width="100%" height="700" frameborder="0"></iframe> -->
         </div>
     </section><!-- End Departments Section -->
 
@@ -208,18 +207,18 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-xl-4 col-lg-4 video-box d-flex justify-content-center align-items-stretch position-relative">
-                    <img src="{{ asset('img/id.png') }}" alt="" class="img-fluid" style="width: 80%; height:30%;">
-                </div>
+                <!-- <div class="col-xl-4 col-lg-4 video-box d-flex justify-content-center align-items-stretch position-relative">
+                    <img src="{{ asset('img/bulet-list-attribute.jpg') }}" alt="" class="img-fluid" style="width: 80%; height:70%;">
+                </div> -->
 
-                <div class="col-xl-8 col-lg-8 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-                    <h3>Company Information</h3>
-                    <p>Company information.</p>
+                <div class="col-xl-12 col-lg-12 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
+                    <h3 style="text-align: center;">Company Information</h3>
+                    <!-- <p style="text-align: center;">Company information.</p> -->
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="icon-box">
-                                <div class="icon"><i class="bx bx-fingerprint"></i></div>
+                                <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title"><a href="">Company name</a></h4>
                                 <p class="description">Company name</p>
                             </div>
@@ -229,31 +228,46 @@
                                 <p class="description">Group</p>
                             </div>
                             <div class="icon-box">
-                                <div class="icon"><i class="bx bx-gift"></i></div>
+                                <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title"><a href="">Shareholders</a></h4>
                                 <p class="description">Shareholder of company</p>
                             </div>
                         </div>
-
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title"><a href="">Activity</a></h4>
                                 <p class="description">Main activity</p>
                             </div>
-
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title"><a href="">Location</a></h4>
                                 <p class="description">Latitude Longitude</p>
                             </div>
-
+                            <div class="icon-box">
+                                <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title"><a href="">Company structure</a></h4>
+                                <p class="description">Company structure ownerships</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="icon-box">
+                                <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title"><a href="">Status operation</a></h4>
+                                <p class="description">Active or Non active</p>
+                            </div>
+                            <div class="icon-box">
+                                <div class="icon"><i class="bx bx-gift"></i></div>
+                                <h4 class="title"><a href="">Planted & Facility</a></h4>
+                                <p class="description">Planted area (hectare)</p>
+                            </div>
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title"><a href="">Etc</a></h4>
                                 <p class="description">Other information</p>
                             </div>
                         </div>
+
                     </div>
                 </div>
 

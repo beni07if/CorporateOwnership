@@ -248,10 +248,10 @@
 
     <script>
         window.chatbaseConfig = {
-            chatbotId: "wvn9H81maP5rt0gQhmEpj",
+            chatbotId: "VRXUJ-HRD1JcdZQIduOLV",
         }
     </script>
-    <script src="https://www.chatbase.co/embed.min.js" id="wvn9H81maP5rt0gQhmEpj" defer>
+    <script src="https://www.chatbase.co/embed.min.js" id="VRXUJ-HRD1JcdZQIduOLV" defer>
     </script>
 
     <!-- <script src="//code.tidio.co/carbtvyc0k1qdzokypuyityetfilftms.js" async></script> -->
