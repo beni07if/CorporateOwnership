@@ -475,7 +475,7 @@
                     link.classList.remove('active');
                 });
 
-                // Tambahkan class active pada link navigasi yang ditekan
+                // Tambahkan class active pada link navigasi yang ditekannnn
                 link.classList.add('active');
 
                 // Sembunyikan semua tab pane
