@@ -405,8 +405,8 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: 90vh;
-  /* background: url("../img/hero-bg.jpg") top center; */
-  background: url("../../../../img/bg3.jpg") top center;
+  /* background: url("../../../../img/bg/bgwl1.jpeg") top center; */
+    background-image: linear-gradient(rgba(240, 248, 255, 0.9), rgba(240, 248, 255, 0.9)), url("../../../../img/bg/bgwl2.jpeg");
   background-size: cover;
   margin-bottom: -200px;
 }

@@ -63,11 +63,11 @@
 <body>
 
     <!-- ======= Top Bar ======= -->
-    <div id="topbar" class="d-flex align-items-center fixed-top">
+    <div id="topbar" class="d-flex align-items-center fixed-top" style="background-color: #F0F8FF;">
         <div class="container d-flex justify-content-between">
             <div class="contact-info d-flex align-items-center">
                 <i class="bi bi-english"></i><b>English</b>
-                <i class="bi bi-indonesia"></i> <a href="mailto:contact@example.com">Indonesia</a>
+                <i class="bi bi-indonesia"></i> <a href="#">Indonesia</a>
             </div>
             <!-- <div class="d-none d-lg-flex social-links align-items-center">
                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -79,7 +79,7 @@
     </div>
 
     <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top">
+    <header id="header" class="fixed-top" style="background-color: #F0F8FF;">
         <div class="container d-flex align-items-center">
 
             <h1 class="logo me-auto"><a href="{{route('corporateProfileEn')}}">ID Corporate</a></h1>
@@ -89,6 +89,7 @@
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     <li><a class="" href="#hero">Home</a></li>
+                    <li><a class="" href="#pricing">Pricing</a></li>
                     <li><a class="" href="#about">About</a></li>
                     <!-- <li><a class="nav-link scrollto" href="#services">Services</a></li>
                     <li><a class="nav-link scrollto" href="#departments">Departments</a></li>
@@ -131,7 +132,7 @@
             <div class="container">
                 <div class="row">
 
-                    <div class="col-lg-3 col-md-6 footer-contact">
+                    <div class="col-lg-5 col-md-6 footer-contact">
                         <h3>Inovasi Digital</h3>
                         <p>
                             Jl. Tangkuban Prahu No.8, Babakan <br>
@@ -141,7 +142,7 @@
                         </p>
                     </div>
 
-                    <div class="col-lg-2 col-md-6 footer-links">
+                    <!-- <div class="col-lg-2 col-md-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
@@ -149,7 +150,7 @@
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
                         </ul>
-                    </div>
+                    </div> -->
 
                     <div class="col-lg-3 col-md-6 footer-links">
                         <h4>Our Services</h4>
@@ -187,10 +188,10 @@
                 </div>
             </div>
             <div class="social-links text-center text-md-right pt-3 pt-md-0">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <!-- <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a> -->
                 <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
                 <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <!-- <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a> -->
                 <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
             </div>
         </div>
