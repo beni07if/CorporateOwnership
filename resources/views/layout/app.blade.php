@@ -88,7 +88,7 @@
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="" href="#hero">Home</a></li>
+                    <li><a class="" href="{{route('corporateProfileEn')}}">Home</a></li>
                     <li><a class="" href="#pricing">Pricing</a></li>
                     <li><a class="" href="#about">About</a></li>
                     <!-- <li><a class="nav-link scrollto" href="#services">Services</a></li>
@@ -135,8 +135,8 @@
                     <div class="col-lg-5 col-md-6 footer-contact">
                         <h3>Inovasi Digital</h3>
                         <p>
-                            Jl. Tangkuban Prahu No.8, Babakan <br>
-                            Kecamatan Bogor Tengah, Kota Bogor, Jawa Barat 16128 <br><br>
+                            Jl. Tangkuban Prahu No. 8, Babakan<br>
+                            Central Bogor District, Bogor City, West Java 16128 <br><br>
                             <strong>Phone:</strong> +62 898 2950 531<br>
                             <strong>Email:</strong> beni@inovasidigital.asia<br>
                         </p>
@@ -163,7 +163,7 @@
 
                     <div class="col-lg-4 col-md-6 footer-newsletter">
                         <h4>Corporate Profile</h4>
-                        <p>Find thousands of palm oil companies around the world</p>
+                        <p>Find thousands of palm oil companies and their shareholdings around the world</p>
                         <!-- <form action="" method="post">
                             <input type="email" name="email"><input type="submit" value="Subscribe">
                         </form> -->

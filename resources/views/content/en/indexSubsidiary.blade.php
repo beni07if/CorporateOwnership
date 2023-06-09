@@ -166,13 +166,20 @@
                 <div class="col-xl-4 col-lg-6 icon-boxes d-flex flex-column align-items-stretch py-5 px-lg-5" style="background-color: #F5F5F5;">
                     <div class="blog sidebar">
 
-                        <h3>Buy company report</h3>
-                        <p>Official company report of PT. Abidin Palmita Bros.</p>
+                        <h3>Buy Company Report</h3>
+                        <p>Official company report of @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
+                            {{$subs}}.
+                            @endforeach
+                        </p>
                         <!-- End sidebar tags-->
                         <!-- <a href="default.asp" class="book" target="_blank">This is a link</a><span>test</span> -->
                         <div class="book">
                             <!-- <div class="left">Full Report</div>
                             <div class="right">$100</div> -->
+                            <p class="left">Report</p>
+                            <span class="right">$70</span>
+                        </div>
+                        <div class="book">
                             <p class="left">Full Report</p>
                             <span class="right">$100</span>
                         </div>
@@ -190,7 +197,10 @@
                         </ul>
                         <p>Download sample report</p>
                         <ul class="sample-subsidiary">
-                            <li>Report of PT. Abidin Palmita Bros</li>
+                            <li><a href="#">Report</a>
+                            </li>
+                            <li><a href="#">Full Report</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

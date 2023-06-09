@@ -357,19 +357,13 @@ class CorporateProfileController extends Controller
             // narasi shareholder v1 with no link
             if (count($shareholder_data) > 1) {
                 if ($total_share > 50) {
-                    $response = $subsidiary->group_name . ' is a company in the field of oil palm plantations registered in ' . $subsidiary->country_registration . ' and has subsidiaries namely ' . implode(', ', $subsidiary0) . '. The majority of its shares are owned by ' . $majority_shareholder . ' by ' . $majority_share_percentage . '% and the rest are owned by ' . implode(', ', array_map(function ($data) {
-                        return $data['name'] . ' ' . $data['share_percentage'] . '%';
-                    }, array_slice($shareholder_data, 1))) . '. ';
+                    $response = $subsidiary->group_name . ' is a group of companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
                 } else {
-                    $response = $subsidiary->group_name .  ' is a company in the field of oil palm plantations registered in ' . $subsidiary->country_registration . ' and has subsidiaries namely ' . implode(', ', $subsidiary0) . '. Its share ownership is distributed among several shareholders, viz ' . implode(', ', array_map(function ($data) {
-                        return $data['name'] . ' ' . $data['share_percentage'] . '%';
-                    }, $shareholder_data)) . '. ';
+                    $response = $subsidiary->group_name .  ' is a group companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
                 }
             } else {
-                // $response = $subsidiary->group_name . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . implode(', ', $subsidiary0) . 'Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
-                $response = $subsidiary->group_name .  ' is a company in the field of oil palm plantations registered in ' . $subsidiary->country_registration . ' and has subsidiaries namely ' . implode(', ', $subsidiary0) . '. Share ownership is owned by ' . implode(', ', array_map(function ($data) {
-                    return $data['name'] . ' ' . $data['share_percentage'] . '%';
-                }, $shareholder_data)) . '. ';
+                // $response = $subsidiary->group_name . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . $subsidiary->principal_activities . '.' . 'Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
+                $response = $subsidiary->group_name .  ' is a group companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
             }
 
             if (count($shareholder_data) > 0) {

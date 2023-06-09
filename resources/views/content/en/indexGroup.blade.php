@@ -126,11 +126,11 @@
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title">Address</h4>
-                                <p class="description">Data alamat grup</p>
+                                <p class="description">...</p>
                             </div>
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title">Subsidiaries</h4>
+                                <h4 class="title">List of Subsidiary</h4>
                                 <form action="{{ route('subsidiaryShow') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="card">
@@ -161,7 +161,7 @@
                         <div class="col-md-6">
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title">Activity</h4>
+                                <h4 class="title">Sector</h4>
                                 @foreach($consolidations->pluck('principal_activities')->unique() as $activity)
                                 @if($activity)
                                 <p class="description">{{ $activity }}</p>
@@ -248,13 +248,21 @@
                 <div class="col-xl-4 col-lg-6 icon-boxes d-flex flex-column align-items-stretch py-5 px-lg-5" style="background-color: #F5F5F5;">
                     <div class="blog sidebar">
 
-                        <h3>Buy company report</h3>
-                        <p>Official company report of PT. Abidin Palmita Bros.</p>
+                        <h3>Buy Company Report</h3>
+                        <p>Official group company report of
+                            @foreach($consolidations->pluck('group_name')->unique() as $subs)
+                            {{$subs}}
+                        </p>
+                        @endforeach
                         <!-- End sidebar tags-->
                         <!-- <a href="default.asp" class="book" target="_blank">This is a link</a><span>test</span> -->
                         <div class="book">
                             <!-- <div class="left">Full Report</div>
                             <div class="right">$100</div> -->
+                            <p class="left">Report</p>
+                            <span class="right">$70</span>
+                        </div>
+                        <div class="book">
                             <p class="left">Full Report</p>
                             <span class="right">$100</span>
                         </div>
@@ -269,10 +277,12 @@
                             <li>Shareholder table</li>
                             <li>List of corporate commissioners and directors</li>
                             <li>List of corporate commissioners and directors</li>
+                            <li>Etc</li>
                         </ul>
                         <p>Download sample report</p>
                         <ul class="sample-subsidiary">
-                            <li>Report of PT. Abidin Palmita Bros</li>
+                            <li><a href="#">Report</a></li>
+                            <li><a href="#">Full Report</a></li>
                         </ul>
                     </div>
                 </div>

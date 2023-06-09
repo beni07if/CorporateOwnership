@@ -48,7 +48,7 @@
                     <div class="content">
                         <h3>ID Company Profile</h3>
                         <p>
-                            ID Corporate is a service provided by PT. Inovasi Digital to display company data engaged in oil palm plantations.
+                            ID Corporate is a service provider by PT. Inovasi Digital to display company data engaged in oil palm plantations.
                         </p>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                                 <div class="icon-box mt-4 mt-xl-0">
                                     <i class="bx bx-receipt"></i>
                                     <h4>Subsidiary</h4>
-                                    <p>A subsidiary is a company that is owned by another company, where the parent company has control over the operational and financial decisions of the subsidiary. In our list of companies, you will find some companies that are subsidiaries of other companies in the palm oil industry.</p>
+                                    <p>A subsidiary is a company that is controlled or wholly owned by another company, known as the parent company or parent corporation. The parent company holds the majority of the subsidiary's shares, granting it the authority to govern the subsidiary's operations and decision-making.</p>
                                 </div>
                             </div>
                             <div class="col-xl-4 d-flex align-items-stretch">
@@ -404,7 +404,7 @@
                         <div class="address">
                             <i class="bi bi-geo-alt"></i>
                             <h4>Address:</h4>
-                            <p>Jl. Tangkuban Prahu No.8, Kota Bogor.</p>
+                            <p>Jl. Tangkuban Prahu No. 8, Bogor City, West Java 16128</p>
                         </div>
 
                         <div class="email">
