@@ -48,7 +48,7 @@
                     <div class="content">
                         <h3>ID Company Profile</h3>
                         <p>
-                            ID Corporate is a service provider by PT. Inovasi Digital to display company data engaged in oil palm plantations.
+                            ID Corporate is an information about the company’s ownership and its relationship with other possible companies. This data provides information of the man or family behind the existence of a company. Therefore, it can be used to identify its supply chain and linkage.
                         </p>
                     </div>
                 </div>
@@ -59,21 +59,21 @@
                                 <div class="icon-box mt-4 mt-xl-0">
                                     <i class="bx bx-receipt"></i>
                                     <h4>Subsidiary</h4>
-                                    <p>A subsidiary is a company that is controlled or wholly owned by another company, known as the parent company or parent corporation. The parent company holds the majority of the subsidiary's shares, granting it the authority to govern the subsidiary's operations and decision-making.</p>
+                                    <p>There are tens of thousands of subsidiaries along with their location, shareholder, and other important information.</p>
                                 </div>
                             </div>
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box mt-4 mt-xl-0">
                                     <i class="bx bx-cube-alt"></i>
                                     <h4>Group</h4>
-                                    <p>A group is a collection of companies that are interrelated and owned by the same parent company. In our list of companies, you will find some companies that are part of the same group company.</p>
+                                    <p>There are thousands of groups along with their subsidiaries, shareholders and other important information.</p>
                                 </div>
                             </div>
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box mt-4 mt-xl-0">
                                     <i class="bx bx-images"></i>
                                     <h4>Shareholders</h4>
-                                    <p>Shareholding refers to the ownership of shares in a company. Shareholders are the owners of the company and their level of ownership is determined by the number of shares they hold. In the palm oil industry, understanding shareholding is essential for making informed investment decisions.</p>
+                                    <p>There are tens of thousands of shareholders and their shareholdings in several companies</p>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
                                     <h3>Group</h3>
-                                    <p class="fst-italic">A group is a collection of companies that are interrelated and owned by the same parent company. In our list of companies, you will find some companies that are part of the same group company.</p>
+                                    <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the subsidiary companies. The information about Group Company can be used to identify the subsidiary under.</p>
                                     <div class="container">
                                         <form id="search-form" method="POST" action="{{ route('groupShow') }}" enctype="multipart/form-data">
                                             @csrf
@@ -142,7 +142,7 @@
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
                                     <h3>Subsidiary</h3>
-                                    <p class="fst-italic">A subsidiary is a company that is owned by another company, where the parent company has control over the operational and financial decisions of the subsidiary. In our list of companies, you will find some companies that are subsidiaries of other companies in the palm oil industry.</p>
+                                    <p class="fst-italic">A subsidiary is a company that is controlled by another company, known as the parent company or holding company. Subsidiaries have their own assets, liabilities, and financial statements from their parent companies, but because of the controlling ownership by the parent company, the subsidiary's activities are often aligned with the overall business objectives of the parent company.</p>
                                     <div class="container">
                                         <form id="search-form" method="POST" action="{{ route('subsidiaryShow') }}" enctype="multipart/form-data">
                                             @csrf
@@ -170,7 +170,7 @@
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
                                     <h3>Shareholders</h3>
-                                    <p class="fst-italic">Shareholding refers to the ownership of shares in a company. Shareholders are the owners of the company and their level of ownership is determined by the number of shares they hold. In the palm oil industry, understanding shareholding is essential for making informed investment decisions.</p>
+                                    <p class="fst-italic">Shareholders are the owners of a corporation and have a financial interest in the company's performance and profitability. Shareholders can be individual or entities. The information about company’s shareholders can be used to identify the people responsible and rule the company.</p>
                                     <!-- <div class="container">
                                         <form id="search-form">
                                             <label for="search-input" class="visually-hidden">Search</label>
