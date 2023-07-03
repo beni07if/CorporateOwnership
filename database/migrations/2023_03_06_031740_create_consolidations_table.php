@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('consolidations', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement();
+            $table->bigIncrements('id');
             $table->string('user_id')->nullable();
             $table->string('id_subsidiary')->nullable();
             $table->string('id_group')->nullable();
