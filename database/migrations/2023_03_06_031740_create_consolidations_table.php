@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrationssssss.
+     * Run the migrations.
      */
     public function up(): void
     {
         Schema::create('consolidations', function (Blueprint $table) {
-            $table->integer('id');
+            $table->bigIncrements('id');
             $table->string('user_id')->nullable();
             $table->string('id_subsidiary')->nullable();
             $table->string('id_group')->nullable();
