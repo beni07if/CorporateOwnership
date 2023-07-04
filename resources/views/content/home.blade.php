@@ -19,8 +19,8 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
     <div class="container">
-        <h1>Find palm oil companies around the world</h1>
-        <h2>Find group and subsidiary profile</h2>
+        <h1>Global Corporate Profile Structure</h1>
+        <h2>Explore group and subsidiary profile</h2>
         <!-- <a href="#about" hidden class="btn-get-started scrollto">Search</a> -->
         <!-- <section id="hero" class="d-flex align-items-center"> -->
         <!-- <div class="container"> -->
@@ -46,9 +46,9 @@
             <div class="row">
                 <div class="col-lg-4 d-flex align-items-stretch">
                     <div class="content">
-                        <h3>ID Company Profile</h3>
+                        <h3>Inovasi Corporate Profile</h3>
                         <p>
-                            ID Corporate is an information about the company’s ownership and its relationship with other possible companies. This data provides information of the man or family behind the existence of a company. Therefore, it can be used to identify its supply chain and linkage.
+                            Inovasi Corporate Profile is an information about the company’s ownership and its relationship with other possible companies. This data provides information of the man or family behind the existence of a company. Therefore, it can be used to identify its supply chain and linkage.
                         </p>
                     </div>
                 </div>

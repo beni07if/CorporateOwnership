@@ -82,9 +82,9 @@
     <header id="header" class="fixed-top" style="background-color: #F0F8FF;">
         <div class="container d-flex align-items-center">
 
-            <h1 class="logo me-auto"><a href="{{route('corporateProfileEn')}}">ID Corporate</a></h1>
+            <!-- <h1 class="logo me-auto"><a href="{{route('corporateProfileEn')}}">ID Corporate</a></h1> -->
             <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo me-auto"><img src="img/log/assetso.png" alt="" class="img-fluid"></a>-->
+            <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/png/logo-no-background.png')}}" alt="" class="img-fluid"></a>
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
