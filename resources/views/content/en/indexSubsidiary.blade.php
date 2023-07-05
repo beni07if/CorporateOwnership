@@ -166,7 +166,7 @@
                 <div class="col-xl-4 col-lg-6 icon-boxes d-flex flex-column align-items-stretch py-5 px-lg-5" style="background-color: #F5F5F5;">
                     <div class="blog sidebar">
 
-                        <h3>Buy Company Report</h3>
+                        <h3>Company Profile Access</h3>
                         <p>Official company report of @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
                             {{$subs}}.
                             @endforeach
@@ -176,11 +176,11 @@
                         <div class="book">
                             <!-- <div class="left">Full Report</div>
                             <div class="right">$100</div> -->
-                            <p class="left">Report</p>
+                            <p class="left">Standard (full access)</p>
                             <span class="right">$70</span>
                         </div>
                         <div class="book">
-                            <p class="left">Full Report</p>
+                            <p class="left">Advance (standard + shareholders)</p>
                             <span class="right">$100</span>
                         </div>
 

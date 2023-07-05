@@ -51,13 +51,6 @@
         }
     </style>
 
-
-    <!-- =======================================================
-  * Template Name: Medilab - v4.6.0
-  * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -89,8 +82,9 @@
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     <li><a class="" href="{{route('corporateProfileEn')}}">Home</a></li>
+                    <li><a class="" href="#departments">Search</a></li>
+                    <li><a class="" href="#about">Feature</a></li>
                     <li><a class="" href="#pricing">Pricing</a></li>
-                    <li><a class="" href="#about">About</a></li>
                     <!-- <li><a class="nav-link scrollto" href="#services">Services</a></li>
                     <li><a class="nav-link scrollto" href="#departments">Departments</a></li>
                     <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li> -->
@@ -246,6 +240,11 @@
             });
         });
     </script>
+
+        <!-- tambahan -->
+    <!-- Template Main JS File -->
+    <!-- <script src="assets/js/main.js"></script> -->
+        <!-- end tambahan  -->
 
     <script>
         window.chatbaseConfig = {
