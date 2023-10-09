@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\CorporateProfileController;
 use App\Http\Controllers\Scraper;
+use App\Http\Controllers\ClientCorporateProfileController;
+use App\Http\Middleware\CheckUserLevel;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,3 +84,71 @@ Route::post('/maps', [CorporateProfileController::class, 'maps'])->name('maps');
 
 Route::get('/scraping', [CorporateProfileController::class, 'scrapingLatLong'])->name('scrapingLatLong');
 Route::get('/wef', [CorporateProfileController::class, 'wef'])->name('wef');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// // Route for client
+// Route::prefix('client')->group(function () {
+//     // Rute-rute yang memiliki prefix 'client'
+//     Route::get('/corporate-profile-en', [ClientCorporateProfileController::class, 'index'])->name('index');
+//     Route::get('/subsidiary', [ClientCorporateProfileController::class, 'subsidiaryShow'])->name('subsidiaryShow');
+//     Route::get('/group', [ClientCorporateProfileController::class, 'groupShow'])->name('groupShow');
+// });
+// // End route for client 
+
+// Role 
+// Route untuk user 1 (admin) yang harus login untuk mengakses dashboard
+Route::middleware('auth')->group(function () {
+    // Tambahkan route untuk mengelola dashboard dan konten lainnya di sini
+});
+
+// Route untuk user 2 yang tidak perlu login
+Route::get('/halaman-tertentu', function () {
+    // Logika untuk halaman dengan batasan tertentu
+    return "User";
+});
+
+// // Route untuk user 3 yang login level 1
+// Route::middleware(CheckUserLevel::class . ':Standard')->group(function () {
+//     // Tambahkan route untuk fitur tertentu yang hanya bisa diakses oleh user 3
+//     Route::get('/standard', function () {
+//         return 'Hello client standard, this is a route without a controller!';
+//     });
+// });
+
+// // Route untuk user 4 yang login level 2
+// Route::middleware(CheckUserLevel::class . ':Advanced')->group(function () {
+//     // Tambahkan route untuk fitur tertentu yang hanya bisa diakses oleh user 4
+//     Route::get('/advanced', function () {
+//         return 'Hello client advanced, this is a route without a controller!';
+//     });
+// });
+
+// Route untuk user 1 yang login sebagai admin dan dapat mengelola dashboard
+Route::middleware(['auth', CheckUserLevel::class . ':Admin'])->group(function () {
+    // Tambahkan route untuk mengelola dashboard dan konten lainnya di sini
+});
+
+// Route untuk user 3 yang login level 1
+Route::middleware(['auth', CheckUserLevel::class . ':Standard'])->group(function () {
+    // Tambahkan route untuk fitur tertentu yang hanya bisa diakses oleh user 3
+});
+
+// Route untuk user 4 yang login level 2
+Route::middleware(['auth', CheckUserLevel::class . ':Premium'])->group(function () {
+    // Tambahkan route untuk fitur tertentu yang hanya bisa diakses oleh user 4
+});
+
+// // Route untuk user 2 yang tidak perlu login tapi memiliki akses terbatas
+// Route::get('/limited-access', function () {
+//     return 'Hello user with limited access!';
+// });
+
+// Route untuk user 2 yang tidak perlu login tapi memiliki akses terbatas
+Route::middleware([CheckUserLevel::class . ':Basic'])->group(function () {
+    Route::get('/limited-access', function () {
+        return 'Hello user with limited access!';
+    });
+});

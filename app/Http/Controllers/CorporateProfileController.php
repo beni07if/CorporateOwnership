@@ -206,28 +206,52 @@ class CorporateProfileController extends Controller
             }
 
             // narasi shareholder v1 with no link
-            if (count($shareholder_data) > 1) {
-                if ($total_share > 50) {
-                    $response = $subsidiary->subsidiary . ' is a company engaged in the field of oil palm plantations located in ' . implode(', ', $regencies0) . ', ' . implode(', ', $countries0) . '. The majority of its shares are owned by ' . $majority_shareholder . ' by ' . $majority_share_percentage . '% and the rest are owned by ' . implode(', ', array_map(function ($data) {
-                        return $data['name'] . ' ' . $data['share_percentage'] . '%';
-                    }, array_slice($shareholder_data, 1))) . '. ';
-                } else {
-                    $response = $subsidiary->subsidiary .  ' is a company engaged in the field of oil palm plantations located in ' . implode(', ', $regencies0) . ', ' . implode(', ', $countries0) . '. Its share ownership is distributed among several shareholders, viz ' . implode(', ', array_map(function ($data) {
-                        return $data['name'] . ' ' . $data['share_percentage'] . '%';
-                    }, $shareholder_data)) . '. ';
-                }
-            } else {
-                // $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . implode(', ', $regencies0) . ', ' . implode(', ', $countries0) . '. Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
-                $response = $subsidiary->subsidiary .  ' is a company engaged in the field of oil palm plantations located in ' . implode(', ', $regencies0) . ', ' . implode(', ', $countries0) . '. Share ownership is owned by ' . implode(', ', array_map(function ($data) {
-                    return $data['name'] . ' ' . $data['share_percentage'] . '%';
-                }, $shareholder_data)) . '. ';
-            }
+            if (auth()->check() && ($user_level = auth()->user()->user_level)) {
+                if ($user_level === 'Premium') {
+                    if (count($shareholder_data) > 1) {
 
-            if (count($shareholder_data) > 0) {
-                $perusahaan = implode(' and ', $subsidiaries->pluck('subsidiary')->unique()->toArray());
-            } else {
-                $perusahaan = '';
-            }
+                        if ($total_share > 50) {
+                            $response = $subsidiary->subsidiary . ' is a company engaged in the field of oil palm plantations located in ' . implode(', ', $regencies0) . ', ' . implode(', ', $countries0) . '. The majority of its shares are owned by ' . $majority_shareholder . ' by ' . $majority_share_percentage . '% and the rest are owned by ' . implode(', ', array_map(function ($data) {
+                                return $data['name'] . ' ' . $data['share_percentage'] . '%';
+                            }, array_slice($shareholder_data, 1))) . '. ';
+                        } else {
+                            $response = $subsidiary->subsidiary . ' is a company engaged in the field of oil palm plantations located in ' . implode(', ', $regencies0) . ', ' . implode(', ', $countries0) . '. Its share ownership is distributed among several shareholders, viz ' . implode(', ', array_map(function ($data) {
+                                return $data['name'] . ' ' . $data['share_percentage'] . '%';
+                            }, $shareholder_data)) . '. ';
+                        }
+                    } else {
+                        // $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . implode(', ', $regencies0) . ', ' . implode(', ', $countries0) . '. Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
+                        $response = $subsidiary->subsidiary . ' is a company engaged in the field of oil palm plantations located in ' . implode(', ', $regencies0) . ', ' . implode(', ', $countries0) . '. Share ownership is owned by ' . implode(', ', array_map(function ($data) {
+                            return $data['name'] . ' ' . $data['share_percentage'] . '%';
+                        }, $shareholder_data)) . '. ';
+                    }
+
+                    if (count($shareholder_data) > 0) {
+                        $perusahaan = implode(' and ', $subsidiaries->pluck('subsidiary')->unique()->toArray());
+                    } else {
+                        $perusahaan = '';
+                    }
+                }
+
+                } else
+                    if (count($shareholder_data) > 1) {
+
+                        if ($total_share > 50) {
+                            $response = $subsidiary->subsidiary . ' is a company engaged in the field of oil palm plantations located in ' . implode(', ', $regencies0) . ', ' . implode(', ', $countries0) . '. ';
+
+                        } else {
+                            $response = $subsidiary->subsidiary . ' is a company engaged in the field of oil palm plantations located in ' . implode(', ', $regencies0) . ', ' . implode(', ', $countries0) . '. ';
+                        }
+                    } else {
+                        // $response = $subsidiary->subsidiary . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . implode(', ', $regencies0) . ', ' . implode(', ', $countries0) . '. Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
+                        $response = $subsidiary->subsidiary . ' is a company engaged in the field of oil palm plantations located in ' . implode(', ', $regencies0) . ', ' . implode(', ', $countries0) . '. ';
+                    }
+
+                if (count($shareholder_data) > 0) {
+                    $perusahaan = implode(' and ', $subsidiaries->pluck('subsidiary')->unique()->toArray());
+                } else {
+                    $perusahaan = '';
+                }
 
             // end narasi shareholder v1 with no link
         } else {
@@ -359,11 +383,11 @@ class CorporateProfileController extends Controller
                 if ($total_share > 50) {
                     $response = $subsidiary->group_name . ' is a group of companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
                 } else {
-                    $response = $subsidiary->group_name .  ' is a group companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
+                    $response = $subsidiary->group_name . ' is a group companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
                 }
             } else {
                 // $response = $subsidiary->group_name . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . $subsidiary->principal_activities . '.' . 'Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
-                $response = $subsidiary->group_name .  ' is a group companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
+                $response = $subsidiary->group_name . ' is a group companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
             }
 
             if (count($shareholder_data) > 0) {
@@ -513,10 +537,5 @@ class CorporateProfileController extends Controller
                 'error' => 'Latitude and longitude elements not found'
             ], 500);
         }
-    }
-
-    public function wef()
-    {
-        return view('wef');
     }
 }

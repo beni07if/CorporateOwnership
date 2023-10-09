@@ -23,6 +23,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // Mengatur guard yang digunakan oleh permission
+        config()->set('permission.guard_name', 'web'); // Ubah 'web' dengan guard yang sesuai
+
+        // Mengatur tipe role yang digunakan
+        config()->set('permission.models.role', Role::class);
+
+        // Mengatur tipe permission yang digunakan
+        config()->set('permission.models.permission', Permission::class);
     }
 }

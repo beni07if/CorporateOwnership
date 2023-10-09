@@ -31,41 +31,65 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title">Company name</h4>
+                            <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title">Company Name</h4>
                                 @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
-                                <p class="description">{{$subs}}</p>
+                                    <p class="description">{{$subs}}</p>
                                 @endforeach
                             </div>
                             <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
+                            <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title">Group</h4>
-                                @foreach($consolidations->pluck('group_name')->unique() as $subs)
-                                <p class="description">{{$subs}}</p>
-                                @endforeach
+                                @if(auth()->check() && in_array(auth()->user()->user_level, ['Standard', 'Premium']))
+                                    @foreach($consolidations->pluck('group_name')->unique() as $subs)
+                                    <p class="description">{{$subs}}</p>
+                                    @endforeach
+                                @else
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <div class="alert alert-danger" role="alert">
+                                                For standard/premium subscribed users
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                             <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
+                            <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title">Shareholders</h4>
-                                @foreach($consolidations->pluck('shareholder_subsidiary')->flatten()->unique() as $shareholder)
-                                @php
-                                $shareholders = explode(',', $shareholder);
-                                @endphp
+                                @if(auth()->check() && in_array(auth()->user()->user_level, ['Premium']))
+                                    @foreach($consolidations->pluck('shareholder_subsidiary')->flatten()->unique() as $shareholder)
+                                    @php
+                                    $shareholders = explode(',', $shareholder);
+                                    @endphp
 
-                                @if(count($shareholders) > 1)
-                                @foreach($shareholders as $key => $shareholder)
-                                @php
-                                preg_match('/^(.*?)\s*\((.*?)\)$/', $shareholder, $matches);
-                                $name = trim($matches[1]);
-                                $ownership = trim($matches[2]);
-                                @endphp
-                                <p class="description">{{ $key + 1 }}) {{ $name }} ({{ $ownership }})</p>
-                                @endforeach
+                                    @if(count($shareholders) > 1)
+                                    @foreach($shareholders as $key => $shareholder)
+                                    @php
+                                    preg_match('/^(.*?)\s*\((.*?)\)$/', $shareholder, $matches);
+                                    $name = trim($matches[1]);
+                                    $ownership = trim($matches[2]);
+                                    @endphp
+                                    <p class="description">{{ $key + 1 }}) {{ $name }} ({{ $ownership }})</p>
+                                    @endforeach
+                                    @else
+                                    <p class="description">{{ $shareholder }}</p>
+                                    @endif
+                                    @endforeach
                                 @else
-                                <p class="description">{{ $shareholder }}</p>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <div class="alert alert-danger" role="alert">
+                                                For premium subscribed users
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    
                                 @endif
-                                @endforeach
-
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -114,8 +138,11 @@
                                 @endforeach
                             </div> -->
                             <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title">Country Operation</h4>
+                            <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title">Country</h4>
+                                @foreach($consolidations->pluck('country_operation')->unique() as $subs)
+                                <p class="description">{{$subs}}</p>
+                                @endforeach
                                 <!-- @foreach($consolidations as $subs)
                                 @if($subs->country_operation)
                                 <p class="description">{{$subs->country_operation}}, {{$subs->province}} Province, {{$subs->regency}} District</p>
@@ -123,9 +150,6 @@
                                 <p class="description">-</p>
                                 @endif
                                 @endforeach -->
-                                @foreach($consolidations->pluck('country_operation')->unique() as $subs)
-                                <p class="description">{{$subs}}</p>
-                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -145,6 +169,17 @@
                             <label class="basemap-option">
                                 <input type="radio" name="basemap" value="topo"> Topographic
                             </label>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                @if(!auth()->check() || (auth()->user()->user_level === "Standard"))
+                                    <div class="alert alert-danger" role="alert">
+                                    Location information popup for premium subscribed users.
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                     </div>
                     <form id="search-form" method="POST" action="{{ route('subsidiaryShow') }}" enctype="multipart/form-data">
@@ -167,41 +202,85 @@
                     <div class="blog sidebar">
 
                         <h3>Company Profile Access</h3>
-                        <p>Official company report of @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
+                        <p>Official company dataset of @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
                             {{$subs}}.
                             @endforeach
                         </p>
                         <!-- End sidebar tags-->
                         <!-- <a href="default.asp" class="book" target="_blank">This is a link</a><span>test</span> -->
-                        <div class="book">
-                            <!-- <div class="left">Full Report</div>
-                            <div class="right">$100</div> -->
-                            <p class="left">Standard (full access)</p>
-                            <span class="right">$70</span>
-                        </div>
-                        <div class="book">
-                            <p class="left">Advance (standard + shareholders)</p>
-                            <span class="right">$100</span>
-                        </div>
-
+                        <button type="button" class="alert alert-success d-block w-100 left" data-bs-toggle="modal" data-bs-target="#modalStandard">
+                            Standard (full dataset)
+                            <span class="right">$5.000</span>
+                        </button>
+                        <br>
+                        <button type="button" class="alert alert-primary d-block w-100 left" data-bs-toggle="modal" data-bs-target="#modalPremium">
+                            Premium (Standard + etc)
+                            <span class="right">$10.000</span>
+                        </button>
+                        
                     </div><!-- End sidebar -->
-                    <a href="#appointment" class="appointment-btn" style="justify-content: center; align-items:center; text-align:center;">Add to chart</a>
+                    <a href="#appointment" class="appointment-btn" style="justify-content: center; align-items:center; text-align:center;">Buy</a>
                     <div class="line"></div>
                     <div class="report-benefit">
-                        <p>What's included in the report?</p>
+                        <p>What's included in company dataset?</p>
                         <ul class="benefit-list">
-                            <li>Registered business classifications</li>
-                            <li>Shareholder table</li>
-                            <li>List of corporate commissioners and directors</li>
-                            <li>List of corporate commissioners and directors</li>
+                            <li>Sector operation</li>
+                            <li>Group</li>
+                            <li>Shareholder</li>
+                            <li>Etc</li>
                         </ul>
-                        <p>Download sample report</p>
+                        <!-- <p>View sample data</p>
                         <ul class="sample-subsidiary">
-                            <li><a href="#">Report</a>
+                            <li><a href="#">Standard member</a>
                             </li>
-                            <li><a href="#">Full Report</a>
+                            <li><a href="#">Premium member</a>
                             </li>
-                        </ul>
+                        </ul> -->
+                    </div>
+                    <!-- Modal Standard -->
+                    <div class="modal fade" id="modalStandard" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Standard member data set overview</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Tambahkan elemen gambar di bawah ini -->
+                                <div style="max-width: 100%; height: auto; text-align: center;">
+                                <img src="{{asset('img/standard.JPG')}}" alt="Image">
+                                </div>
+                                <!-- Akhiri bagian elemen gambar -->
+                                <p></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div><!-- Modal Premium-->
+                    <div class="modal fade" id="modalPremium" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Premium member data set overview</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Tambahkan elemen gambar di bawah ini -->
+                                <div style="max-width: 100%; height: auto; text-align: center;">
+                                <img src="{{asset('img/premium.JPG')}}" alt="Image">
+                                </div>
+                                <!-- Akhiri bagian elemen gambar -->
+                                <p></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -374,11 +453,30 @@
     const markers = [];
 
     coordinates.forEach((coord, index) => {
-        const marker = L.marker([coord.latitude, coord.longitude]).addTo(map);
-        const formattedSize = Math.round(coord.sizebyeq).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Format angka bulat tanpa angka desimal dengan tanda koma sebagai pemisah ribuan
-        marker.bindPopup(`<b>${coord.principal_activities}</b><br>Company Name: ${coord.subsidiary}<br>Mill Name: ${coord.facilities}<br>Capacity: ${coord.capacity}<br>Estate Name: ${coord.estate}<br>Planted: ${formattedSize} hectare<br>Location: ${coord.regency} District, ${coord.province} Province, ${coord.country_operation}<br>Latitude: ${coord.latitude}<br>Longitude: ${coord.longitude}<br>`);
-        markers.push(marker);
-    });
+    const marker = L.marker([coord.latitude, coord.longitude]).addTo(map);
+    const formattedSize = Math.round(coord.sizebyeq).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+    @if(auth()->check() && in_array(auth()->user()->user_level, ['Premium']))
+        if (coord.principal_activities === "Palm Oil Mill") {
+            marker.bindPopup(`<b>${coord.principal_activities}</b><br>Company Name: ${coord.subsidiary}<br>Mill Name: ${coord.facilities}<br>Mill Capacity: ${coord.capacity}<br>Location: ${coord.regency} District, ${coord.province} Province, ${coord.country_operation}<br>Latitude: ${coord.latitude}<br>Longitude: ${coord.longitude}<br>`);
+        }else if (coord.principal_activities === "Refinery") {
+            marker.bindPopup(`<b>${coord.principal_activities}</b><br>Company Name: ${coord.subsidiary}<br>Refinery Name: ${coord.facilities}<br>Refinery Capacity: ${coord.capacity}<br>Location: ${coord.regency} District, ${coord.province} Province, ${coord.country_operation}<br>Latitude: ${coord.latitude}<br>Longitude: ${coord.longitude}<br>`);
+        }else if (coord.principal_activities === "Manufacturer") {
+            marker.bindPopup(`<b>${coord.principal_activities}</b><br>Company Name: ${coord.subsidiary}<br>Manufacturer Name: ${coord.facilities}<br>Manufacturer Capacity: ${coord.capacity}<br>Location: ${coord.regency} District, ${coord.province} Province, ${coord.country_operation}<br>Latitude: ${coord.latitude}<br>Longitude: ${coord.longitude}<br>`);
+        }else if (coord.principal_activities === "Oil Palm Plantation & Mill") {
+            marker.bindPopup(`<b>${coord.principal_activities}</b><br>Company Name: ${coord.subsidiary}<br>Mill Name: ${coord.facilities}<br>Mill Capacity: ${coord.capacity}<br>Estate Name: ${coord.estate}<br>Planted: ${formattedSize} hectare<br>Location: ${coord.regency} District, ${coord.province} Province, ${coord.country_operation}<br>Latitude: ${coord.latitude}<br>Longitude: ${coord.longitude}<br>`);
+        }else
+            marker.bindPopup(`<b>${coord.principal_activities}</b><br>Company Name: ${coord.subsidiary}<br>Estate Name: ${coord.estate}<br>Location: ${coord.regency} District, ${coord.province} Province, ${coord.country_operation}<br>Latitude: ${coord.latitude}<br>Longitude: ${coord.longitude}<br>`);
+    @else
+        // Add conditions for non-Premium users if needed
+        // if (coord.principal_activities === "Non-Premium Activity") {
+        //     marker.bindPopup(`Non-Premium Activity: ${coord.principal_activities}<br>Company Name: ${coord.subsidiary}<br>Estate Name: ${coord.estate}<br>Location: ${coord.regency} District, ${coord.province} Province, ${coord.country_operation}<br>Latitude: ${coord.latitude}<br>Longitude: ${coord.longitude}<br>`);
+        // }
+    @endif
+
+    markers.push(marker);
+});
+
 
     const group = new L.featureGroup(markers);
     map.fitBounds(group.getBounds());

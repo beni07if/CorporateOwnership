@@ -114,6 +114,7 @@
                         </li>
                     </ul>
                 </div>
+                
                 <div class="col-lg-9 mt-4 mt-lg-0">
                     <div class="tab-content">
                         <div class="tab-pane " id="tab-1">
@@ -218,7 +219,7 @@
                 </div> -->
 
                 <div class="col-xl-12 col-lg-12 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-                    <h3 style="text-align: center;">CORPORATE PROFILE INFORMATION</h3>
+                    <h3 style="text-align: center;">CORPORATE PROFILE DATASET</h3>
                     <!-- <p style="text-align: center;">Company information.</p> -->
 
                     <div class="row">
@@ -387,7 +388,7 @@
           <div class="col-lg-4 mb-4 mb-lg-0">
             <div class="pricing h-100 text-center">
               <span class="popularity">Full Dataset</span>
-              <h3>ADVANCE</h3>
+              <h3>PREMIUM</h3>
               <ul class="list-unstyled">
                 <li>..</li>
                 <li>..</li>
@@ -519,6 +520,7 @@
 
         </div>
     </section><!-- End Contact Section -->
+    <!-- <script>var mst_width="100%";var mst_height="100%";var mst_border="0";var mst_map_style="simple";var mst_mmsi="";var mst_show_track="";var mst_show_info="";var mst_fleet="";var mst_lat="";var mst_lng="";var mst_zoom="";var mst_show_names="0";var mst_scroll_wheel="0";var mst_show_menu="0";</script><script id="myshiptrackingscript" src="//www.myshiptracking.com/js/widgetApi.js" async defer></script> -->
 
 </main><!-- End #main -->
 @endsection
@@ -629,4 +631,9 @@
     $(document).ready(function() {
         $('.select2').select2();
     });
+</script>
+
+<script
+src='//fw-cdn.com/10921532/3683145.js'
+chat='true'>
 </script>
