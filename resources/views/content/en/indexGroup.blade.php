@@ -254,7 +254,7 @@
                             {{$subs}}
                         </p>
                         @endforeach
-                        <!-- End sidebar tags-->
+                        <!-- End sidebar tagssss-->
                         <!-- <a href="default.asp" class="book" target="_blank">This is a link</a><span>test</span> -->
                         <div class="book">
                             <!-- <div class="left">Full Report</div>
