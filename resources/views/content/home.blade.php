@@ -25,8 +25,8 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
     <div class="container">
-        <h1>Global Corporate Profile Structure</h1>
-        <h2>Explore group and subsidiary profile</h2>
+        <h1>Global Corporate Profile Ownership</h1>
+        <h2>Explore thausands company ownership structure</h2>
         <!-- <a href="#about" hidden class="btn-get-started scrollto">Search</a> -->
         <!-- <section id="hero" class="d-flex align-items-center"> -->
         <!-- <div class="container"> -->
@@ -54,7 +54,7 @@
                     <div class="content">
                         <h3>Inovasi Corporate Profile</h3>
                         <p>
-                            Inovasi Corporate Profile is an information about the company’s ownership and its relationship with other possible companies. This data provides information of the man or family behind the existence of a company. Therefore, it can be used to identify its supply chain and linkage.
+                            Inovasi Corporate Profile is a platform that provides information about the ownership structure of companies. Inovasi Corporate Profile also displays a list of companies that are members of a group.
                         </p>
                     </div>
                 </div>
@@ -120,12 +120,13 @@
                         <div class="tab-pane " id="tab-1">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Group</h3>
-                                    <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the subsidiary companies. The information about Group Company can be used to identify the subsidiary under.</p>
+                                    <h3>Group of Company</h3>
+                                    <!-- <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the subsidiary companies. The information about Group Company can be used to identify the subsidiary under.</p> -->
+                                    <p class="fst-italic">A group is a collection of individual companies or subsidiaries that are controlled by a single parent company. Find share other information from group companies.</p>
                                     <div class="container">
                                         <form id="search-form" method="POST" action="{{ route('groupShow') }}" enctype="multipart/form-data">
                                             @csrf
-                                            <input type="text" id="group_name search-input" class="form-control" name="group_name" list="group_name-list" placeholder="Search company">
+                                            <input type="text" id="group_name search-input" class="form-control" name="group_name" list="group_name-list" placeholder="Search group name">
                                             <datalist id="group_name-list">
                                                 @foreach(DB::table('consolidations')->pluck('group_name')->unique() as $group_name)
                                                 @php
@@ -149,11 +150,12 @@
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
                                     <h3>Subsidiary</h3>
-                                    <p class="fst-italic">A subsidiary is a company that is controlled by another company, known as the parent company or holding company. Subsidiaries have their own assets, liabilities, and financial statements from their parent companies, but because of the controlling ownership by the parent company, the subsidiary's activities are often aligned with the overall business objectives of the parent company.</p>
+                                    <!-- <p class="fst-italic">A subsidiary is a company that is controlled by another company, known as the parent company or holding company. Subsidiaries have their own assets, liabilities, and financial statements from their parent companies, but because of the controlling ownership by the parent company, the subsidiary's activities are often aligned with the overall business objectives of the parent company.</p> -->
+                                    <p class="fst-italic">A subsidiary is a company that is controlled by another company, known as the parent company or holding company (group). Find  other information from the subsidiary/company.</p>
                                     <div class="container">
                                         <form id="search-form" method="POST" action="{{ route('subsidiaryShow') }}" enctype="multipart/form-data">
                                             @csrf
-                                            <input type="text" id="subsidiary search-input" class="form-control" name="subsidiary" list="subsidiary-list" placeholder="Search company">
+                                            <input type="text" id="subsidiary search-input" class="form-control" name="subsidiary" list="subsidiary-list" placeholder="Search subsidiary/company name">
                                             <datalist id="subsidiary-list">
                                                 @foreach(DB::table('consolidations')->pluck('subsidiary')->unique() as $subsidiary)
                                                 @php
@@ -177,7 +179,8 @@
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
                                     <h3>Shareholders</h3>
-                                    <p class="fst-italic">Shareholders are the owners of a corporation and have a financial interest in the company's performance and profitability. Shareholders can be individual or entities. The information about company’s shareholders can be used to identify the people responsible and rule the company.</p>
+                                    <!-- <p class="fst-italic">Shareholders are the owners of a corporation and have a financial interest in the company's performance and profitability. Shareholders can be individual or entities. The information about company’s shareholders can be used to identify the people responsible and rule the company.</p> -->
+                                    <p class="fst-italic">Shareholders are the owners of a corporation and have a financial interest in the company's performance and profitability. Shareholders can be individual or entities. Find people/companies who own shares in several companies.</p>
                                     <!-- <div class="container">
                                         <form id="search-form">
                                             <label for="search-input" class="visually-hidden">Search</label>
