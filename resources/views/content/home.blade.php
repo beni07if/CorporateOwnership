@@ -46,7 +46,7 @@
 @section('content')
 <main id="main">
 
-    <!-- ======= Why Us Section ======= -->
+    <!-- ======= Why Us Sectionss ======= -->
     <section id="why-us" class="why-us">
         <div class="container">
             <div class="row">
