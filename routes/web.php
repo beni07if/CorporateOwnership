@@ -40,6 +40,7 @@ Route::get('/eq-subsidiary-en', [ChatbotController::class, 'chatbotSubsidiaryEn'
 Route::post('/eq-subsidiary-en', [ChatbotController::class, 'getSubsidiaryEn'])->name('getSubsidiaryEn');
 Route::get('/eq-group-en', [ChatbotController::class, 'chatbotGroupEn'])->name('chatbotGroupEn');
 Route::post('/eq-group-en', [ChatbotController::class, 'getGroupEn'])->name('chatbotGroupEn');
+// Testinggg
 
 Route::get('/chatbot7', [ChatbotController::class, 'chatbot7'])->name('chatbot7');
 Route::post('/chatbot7', [ChatbotController::class, 'getSubsidiary7'])->name('chatbot.subsidiary7');
