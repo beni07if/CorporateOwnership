@@ -211,7 +211,7 @@
                     </div><br> -->
                     <div class="header-map">
                         <p class="description">
-                            Location of Estate of @foreach($consolidations->pluck('group_name')->unique() as $subs) {{$subs}}
+                            Location company of @foreach($consolidations->pluck('group_name')->unique() as $subs) {{$subs}}
                             @endforeach
                             group
                         </p>
