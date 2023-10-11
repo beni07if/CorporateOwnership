@@ -45,12 +45,14 @@
                                     <p class="description">{{$subs}}</p>
                                     @endforeach
                                 @else
-                                <p class="description">{{$subs}}</p>
+                                @foreach($consolidations->pluck('group_name')->unique() as $subs)
+                                    <p class="description">{{$subs}}</p>
+                                @endforeach
                                 <!-- <div class="card">
                                     <div class="card-body">
                                         <div class="form-group">
                                             <div class="alert alert-danger" role="alert">
-                                                For standard/premium subscribed users
+                                                For standard/premium subscribed userssss
                                             </div>
                                         </div>
                                     </div>
