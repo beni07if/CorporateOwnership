@@ -45,7 +45,8 @@
                                     <p class="description">{{$subs}}</p>
                                     @endforeach
                                 @else
-                                <div class="card">
+                                <p class="description">{{$subs}}</p>
+                                <!-- <div class="card">
                                     <div class="card-body">
                                         <div class="form-group">
                                             <div class="alert alert-danger" role="alert">
@@ -53,7 +54,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 @endif
                             </div>
                             <div class="icon-box">
@@ -79,7 +80,7 @@
                                     @endif
                                     @endforeach
                                 @else
-                                <div class="card">
+                                <!-- <div class="card">
                                     <div class="card-body">
                                         <div class="form-group">
                                             <div class="alert alert-danger" role="alert">
@@ -87,7 +88,25 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
+                                @foreach($consolidations->pluck('shareholder_subsidiary')->flatten()->unique() as $shareholder)
+                                    @php
+                                    $shareholders = explode(',', $shareholder);
+                                    @endphp
+
+                                    @if(count($shareholders) > 1)
+                                    @foreach($shareholders as $key => $shareholder)
+                                    @php
+                                    preg_match('/^(.*?)\s*\((.*?)\)$/', $shareholder, $matches);
+                                    $name = trim($matches[1]);
+                                    $ownership = trim($matches[2]);
+                                    @endphp
+                                    <p class="description">{{ $key + 1 }}) {{ $name }} ({{ $ownership }})</p>
+                                    @endforeach
+                                    @else
+                                    <p class="description">{{ $shareholder }}</p>
+                                    @endif
+                                @endforeach
                                     
                                 @endif
                             </div>
@@ -171,7 +190,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="card">
+                    <!-- <div class="card">
                         <div class="card-body">
                             <div class="form-group">
                                 @if(!auth()->check() || (auth()->user()->user_level === "Standard"))
@@ -181,7 +200,7 @@
                                 @endif
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <form id="search-form" method="POST" action="{{ route('subsidiaryShow') }}" enctype="multipart/form-data">
                         @csrf
                         <input type="text" id="subsidiary search-input" class="form-control" name="subsidiary" list="subsidiary-list" placeholder="Search other company...">
@@ -210,12 +229,12 @@
                         <!-- <a href="default.asp" class="book" target="_blank">This is a link</a><span>test</span> -->
                         <button type="button" class="alert alert-success d-block w-100 left" data-bs-toggle="modal" data-bs-target="#modalStandard">
                             Standard (full dataset)
-                            <span class="right">$5.000</span>
+                            <span class="right">$50</span>
                         </button>
                         <br>
                         <button type="button" class="alert alert-primary d-block w-100 left" data-bs-toggle="modal" data-bs-target="#modalPremium">
-                            Premium (Standard + etc)
-                            <span class="right">$10.000</span>
+                            Premium (Standard + mapping structure)
+                            <span class="right">$70</span>
                         </button>
                         
                     </div><!-- End sidebar -->
@@ -472,6 +491,16 @@
         // if (coord.principal_activities === "Non-Premium Activity") {
         //     marker.bindPopup(`Non-Premium Activity: ${coord.principal_activities}<br>Company Name: ${coord.subsidiary}<br>Estate Name: ${coord.estate}<br>Location: ${coord.regency} District, ${coord.province} Province, ${coord.country_operation}<br>Latitude: ${coord.latitude}<br>Longitude: ${coord.longitude}<br>`);
         // }
+        if (coord.principal_activities === "Palm Oil Mill") {
+            marker.bindPopup(`<b>${coord.principal_activities}</b><br>Company Name: ${coord.subsidiary}<br>Mill Name: ${coord.facilities}<br>Mill Capacity: ${coord.capacity}<br>Location: ${coord.regency} District, ${coord.province} Province, ${coord.country_operation}<br>Latitude: ${coord.latitude}<br>Longitude: ${coord.longitude}<br>`);
+        }else if (coord.principal_activities === "Refinery") {
+            marker.bindPopup(`<b>${coord.principal_activities}</b><br>Company Name: ${coord.subsidiary}<br>Refinery Name: ${coord.facilities}<br>Refinery Capacity: ${coord.capacity}<br>Location: ${coord.regency} District, ${coord.province} Province, ${coord.country_operation}<br>Latitude: ${coord.latitude}<br>Longitude: ${coord.longitude}<br>`);
+        }else if (coord.principal_activities === "Manufacturer") {
+            marker.bindPopup(`<b>${coord.principal_activities}</b><br>Company Name: ${coord.subsidiary}<br>Manufacturer Name: ${coord.facilities}<br>Manufacturer Capacity: ${coord.capacity}<br>Location: ${coord.regency} District, ${coord.province} Province, ${coord.country_operation}<br>Latitude: ${coord.latitude}<br>Longitude: ${coord.longitude}<br>`);
+        }else if (coord.principal_activities === "Oil Palm Plantation & Mill") {
+            marker.bindPopup(`<b>${coord.principal_activities}</b><br>Company Name: ${coord.subsidiary}<br>Mill Name: ${coord.facilities}<br>Mill Capacity: ${coord.capacity}<br>Estate Name: ${coord.estate}<br>Planted: ${formattedSize} hectare<br>Location: ${coord.regency} District, ${coord.province} Province, ${coord.country_operation}<br>Latitude: ${coord.latitude}<br>Longitude: ${coord.longitude}<br>`);
+        }else
+            marker.bindPopup(`<b>${coord.principal_activities}</b><br>Company Name: ${coord.subsidiary}<br>Estate Name: ${coord.estate}<br>Location: ${coord.regency} District, ${coord.province} Province, ${coord.country_operation}<br>Latitude: ${coord.latitude}<br>Longitude: ${coord.longitude}<br>`);
     @endif
 
     markers.push(marker);

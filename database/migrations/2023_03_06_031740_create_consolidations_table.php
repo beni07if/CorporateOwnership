@@ -25,14 +25,15 @@ return new class extends Migration
             $table->string('stock_exchange')->nullable();
             $table->string('country_registration')->nullable();
             $table->string('rspo_member')->nullable();
+            $table->string('other_memberships')->nullable();//new
             $table->string('ndpe_policy')->nullable();
             $table->string('ownership_status')->nullable();
             $table->string('subsidiary')->nullable();
             $table->string('shareholder_subsidiary')->nullable();
             $table->string('principal_activities')->nullable();
+            $table->string('status_operation')->nullable();
             $table->string('facilities')->nullable();
             $table->string('estate')->nullable();
-            $table->string('status_operation')->nullable();
             $table->string('capacity')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
@@ -43,13 +44,14 @@ return new class extends Migration
             $table->string('land_title')->nullable();
             $table->string('sizebyeq')->nullable();
             $table->string('rspo_certified')->nullable();
-            $table->string('mspo_certified')->nullable();
-            $table->string('ispo_certified')->nullable();
+            $table->string('other_certification')->nullable();//new
+            // $table->string('mspo_certified')->nullable();
+            // $table->string('ispo_certified')->nullable();
             $table->string('data_source')->nullable();
             $table->string('data_update')->nullable();
+            $table->text('note')->nullable();
             $table->string('complete_percen')->nullable();
             $table->string('akta')->nullable();
-            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

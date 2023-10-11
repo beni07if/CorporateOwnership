@@ -364,12 +364,13 @@
               <span>&nbsp;</span>
               <h3>BASIC</h3>
               <ul class="list-unstyled">
-                <li>..</li>
-                <li>..</li>
+                <li>Company Name</li>
+                <li>Activity</li>
+                <li>Location</li>
               </ul>
               <div class="price-cta">
                 <strong class="price">Free</strong>
-                <p><a href="#" class="btn btn-white">Choose Plan</a></p>
+                <!-- <p><a href="#" class="btn btn-white">Choose Plan</a></p> -->
               </div>
             </div>
           </div>
@@ -378,9 +379,17 @@
               <span class="popularity">Recomended</span>
               <h3>STANDARD</h3>
               <ul class="list-unstyled">
-                <li>..</li>
-                <li>..</li>
-                <li>..</li>
+                <li>Company Name</li>
+                <li>Company Type</li>
+                <li>Incorporation Date</li>
+                <li>Company Number</li>
+                <li>Date Company Number</li>
+                <li>Registered Address</li>
+                <li>Country of Registration</li>
+                <li>Business Address</li>
+                <li>Country of Business Address</li>
+                <li>Nature of Busiseness Address</li>
+                <li>Etc</li>
               </ul>
               <div class="price-cta">
                 <strong class="price">$5.000/years</strong>
@@ -393,9 +402,8 @@
               <span class="popularity">Full Dataset</span>
               <h3>PREMIUM</h3>
               <ul class="list-unstyled">
-                <li>..</li>
-                <li>..</li>
-                <li>..</li>
+                <li>All in Standard</li>
+                <li>Mapping structure</li>
               </ul>
               <div class="price-cta">
                 <strong class="price">$10.000/years</strong>
