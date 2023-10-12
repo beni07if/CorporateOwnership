@@ -112,6 +112,43 @@
                                     
                                 @endif
                             </div>
+                            <!-- tambahan -->
+                            <div class="icon-box">
+                            <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title">Company Type</h4>
+                                @foreach($companyOwnership->pluck('company_type')->unique() as $subs)
+                                    <p class="description">{{$subs}}</p>
+                                @endforeach
+                            </div>
+                            <div class="icon-box">
+                            <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title">Incorporation Date</h4>
+                                @foreach($companyOwnership->pluck('incorporation_date')->unique() as $subs)
+                                    <p class="description">{{$subs}}</p>
+                                @endforeach
+                            </div>
+                            <div class="icon-box">
+                            <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title">Company Number</h4>
+                                @foreach($companyOwnership->pluck('company_number')->unique() as $subs)
+                                    <p class="description">{{$subs}}</p>
+                                @endforeach
+                            </div>
+                            <div class="icon-box">
+                            <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title">Date Company Number</h4>
+                                @foreach($companyOwnership->pluck('date_company_number')->unique() as $subs)
+                                    <p class="description">{{$subs}}</p>
+                                @endforeach
+                            </div>
+                            <div class="icon-box">
+                            <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title">Shareholders</h4>
+                                @foreach($companyOwnership->unique('shareholder_name') as $ownership)
+                                    <p class="description">{{$ownership->shareholder_name}} ({{$ownership->percentage_of_shares}})</p>
+                                @endforeach
+                            </div>
+                            <!-- end tambahan -->
                         </div>
                         <div class="col-md-6">
                             <div class="icon-box">
@@ -172,6 +209,29 @@
                                 @endif
                                 @endforeach -->
                             </div>
+                            <!-- tambahan -->
+                            <div class="icon-box">
+                            <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title">Registered Address</h4>
+                                @foreach($companyOwnership->pluck('registered_address')->unique() as $subs)
+                                    <p class="description">{{$subs}}</p>
+                                @endforeach
+                            </div>
+                            <div class="icon-box">
+                            <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title">Country of Registered Address</h4>
+                                @foreach($companyOwnership->pluck('country_of_registered_address')->unique() as $subs)
+                                    <p class="description">{{$subs}}</p>
+                                @endforeach
+                            </div>
+                            <div class="icon-box">
+                            <div class="icon"><i class="bx bx-atom"></i></div>
+                                <h4 class="title">Nature of Business</h4>
+                                @foreach($companyOwnership->pluck('nature_of_business')->unique() as $subs)
+                                    <p class="description">{{$subs}}</p>
+                                @endforeach
+                            </div>
+                            <!-- end tambahan -->
                         </div>
                     </div>
                     @endif

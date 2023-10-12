@@ -40,6 +40,7 @@ class CorporateProfileController extends Controller
         if ($subsidiaryName) {
             // Fetch the coordinate data from the database based on the subsidiary
             // $coordinates = DB::table('consolidations')->select('latitude', 'longitude')->where('subsidiary', $subsidiaryName)->first();
+            $companyOwnership = DB::table('company_ownerships')->where('company_name', $subsidiaryName)->get();
             $coordinates = DB::table('consolidations')->select('latitude', 'longitude', 'subsidiary', 'country_operation', 'province', 'regency', 'facilities', 'capacity', 'sizebyeq', 'estate', 'group_name', 'principal_activities')->where('subsidiary', $subsidiaryName)->get();
         }
         // return view('maps', compact('coordinates', 'consol', 'subsidiary'));
@@ -262,7 +263,7 @@ class CorporateProfileController extends Controller
         $subsidiary = $response;
         // return $subsidiary;
         // return view('content.en.test', compact('consolidations'));
-        return view('content.en.indexSubsidiary', compact('consolidations', 'perusahaan', 'subsidiary', 'users', 'consul', 'consol', 'coordinates'));
+        return view('content.en.indexSubsidiary', compact('companyOwnership', 'consolidations', 'perusahaan', 'subsidiary', 'users', 'consul', 'consol', 'coordinates'));
         // return view('maps', compact('coordinates', 'consol', 'subsidiary'));
         // end versi chat 
     }

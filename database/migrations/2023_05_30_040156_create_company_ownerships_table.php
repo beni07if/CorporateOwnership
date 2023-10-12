@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('company_ownerships', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('idCompany')->nullable();
             $table->string('company_name')->nullable();
             $table->string('company_type')->nullable();
             $table->string('incorporation_date')->nullable();
@@ -22,7 +23,7 @@ return new class extends Migration
             $table->string('date_change_company_number')->nullable();
             $table->string('taxpayer_identification_number')->nullable();
             $table->string('registered_address')->nullable();
-            $table->string('country_of_registration')->nullable();
+            $table->string('country_of_registered_address')->nullable();
             $table->string('business_address')->nullable();
             $table->string('country_of_business_address')->nullable();
             $table->string('nature_of_business')->nullable();
