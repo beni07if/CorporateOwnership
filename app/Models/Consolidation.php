@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Consolidation extends Model
 {
     use HasFactory;
+    use Searchable;
     protected $table = 'consolidations';
     // protected $fillable = ['question', 'answer'];
     protected $fillable = [
@@ -51,4 +53,12 @@ class Consolidation extends Model
         'complete_percen', 
         'akta' 
     ];
+
+    public function toSearchableArray()
+    {
+        return [
+            'subsidiary' => $this->subsidiary,
+            // ... other searchable fields ...
+        ];
+    }
 }

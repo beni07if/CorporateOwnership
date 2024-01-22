@@ -40,7 +40,7 @@
     <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" /> -->
     <!-- Make sure you put this AFTER Leaflet's CSS -->
 
-
+    <script src="{{ asset('js/pdfjs-dist/build/pdf.js') }}"></script>
     <script
     src='//fw-cdn.com/10921532/3683145.js'
     chat='true'>
@@ -55,6 +55,108 @@
             width: 100%;
             height: 400px;
         }
+
+        .descriptions {
+        display: inline-block;
+        padding: 5px 5px;
+        font-size: 16px;
+        background-color: #f0f0f0;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.5s ease, transform 0.5s ease;
+        }
+
+        .descriptions:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .descriptions:active {
+            background-color: #d0d0d0;
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-map p {
+            padding-top: 50px;
+            display: inline-block;
+            margin: 0;
+        }
+
+
+        /* .icon-box {
+            text-align: center;
+        }
+
+        .icon {
+            margin-bottom: 10px;
+        }
+
+        .title {
+            margin-bottom: 15px;
+            font-size: 18px;
+        } */
+
+        .card {
+            width: 300px;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .descriptions {
+            display: block;
+            width: 100%;
+            background-color: #F5F5F5;
+            color: #696969;
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: left;
+        }
+
+            /* Gaya CSS untuk elemen input */
+        .description {
+            border: none;
+            font-weight: bold;
+            padding-top: -50px;
+        }
+
+        /* Efek hover: mengubah warna background menjadi abu-abu */
+        form .text-muted:hover {
+            background-color: #dcdcdc; /* Warna abu-abu pada hover */
+        }
+
+        .text-muted {
+            border: none;
+            background-color: transparent;
+            transition: background-color 0.3s; /* Efek transisi ketika hover */
+            padding-bottom: 20px;
+        }
+
+        ul {
+        list-style: none; /* Menghilangkan simbol list (bulat kecil) */
+        padding: 0; /* Menghapus padding default untuk ul */
+        margin: 0; /* Menghapus margin default untuk ul */
+    }
+
+    ul li {
+        margin-bottom: 10px; /* Memberi jarak antara setiap elemen li */
+    }
+
+    /* Tambahkan gaya lain sesuai kebutuhan Anda */
+
     </style>
 
 </head>
@@ -62,20 +164,14 @@
 <body>
 
     <!-- ======= Top Bar ======= -->
-    <div id="topbar" class="d-flex align-items-center fixed-top" style="background-color: #F0F8FF;">
+    <!-- <div id="topbar" class="d-flex align-items-center fixed-top" style="background-color: #F0F8FF;">
         <div class="container d-flex justify-content-between">
             <div class="contact-info d-flex align-items-center">
                 <i class="bi bi-english"></i><b>English</b>
                 <i class="bi bi-indonesia"></i> <a href="#">Indonesia</a>
             </div>
-            <!-- <div class="d-none d-lg-flex social-links align-items-center">
-                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-            </div> -->
         </div>
-    </div>
+    </div> -->
 
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top" style="background-color: #F0F8FF;">
@@ -83,17 +179,13 @@
 
             <!-- <h1 class="logo me-auto"><a href="{{route('corporateProfileEn')}}">ID Corporate</a></h1> -->
             <!-- Uncomment below if you prefer to use an image logo -->
-            <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/png/logo-no-background.png')}}" alt="" class="img-fluid"></a>
+            <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo1/png/logo-no-background.png')}}" alt="" class="img-fluid"></a>
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="" href="{{route('corporateProfileEn')}}">Home</a></li>
+                    <li><a class="" href="{{route('corporateProfileEn')}}#why-us">Home</a></li>
                     <li><a class="" href="#departments">Search</a></li>
                     <li><a class="" href="#about">Feature</a></li>
-                    <li><a class="" href="#pricing">Pricing</a></li>
-                    <!-- <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                    <li><a class="nav-link scrollto" href="#departments">Departments</a></li>
-                    <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li> -->
                     <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="#">Drop Down 1</a></li>
@@ -131,39 +223,31 @@
         <div class="footer-top">
             <div class="container">
                 <div class="row">
-
-                    <div class="col-lg-5 col-md-6 footer-contact">
-                        <h3>Inovasi Digital</h3>
-                        <p>
-                            Jl. Tangkuban Prahu No. 8, Babakan<br>
-                            Central Bogor District, Bogor City, West Java 16128 <br><br>
-                            <strong>Phone:</strong> +62 898 2950 531<br>
-                            <strong>Email:</strong> beni@inovasidigital.asia<br>
-                        </p>
+                    <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo1/png/logo-no-background.png')}}" alt="" class="img-fluid" style="height:30px; width: auto;"></a>
+                    <div class="col-lg-4 col-md-3 footer-newsletter">
+                        <h4></h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy and Policy</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of Service</a></li>
+                        </ul>
                     </div>
 
-                    <!-- <div class="col-lg-2 col-md-6 footer-links">
+                    <div class="col-lg-4 col-md-3 footer-newsletter">
+                        <h4>Contact Us</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Jl. Anggrek No.6, Pontianak City, West Kalimantan</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">info@corporateownership.com</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">+628982950531</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-3 footer-newsletter">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">FAQ (Frequently Asked Questions)</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">User Guides</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Blog</a></li>
                         </ul>
-                    </div> -->
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Subsidiary</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Group</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Shareholder</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 footer-newsletter">
-                        <h4>Corporate Profile</h4>
-                        <p>Find thousands of palm oil companies and their shareholdings around the world</p>
                         <!-- <form action="" method="post">
                             <input type="email" name="email"><input type="submit" value="Subscribe">
                         </form> -->
@@ -252,13 +336,13 @@
     <!-- <script src="assets/js/main.js"></script> -->
         <!-- end tambahan  -->
 
-    <script>
+    <!-- <script> ini chatbot toogle
         window.chatbaseConfig = {
             chatbotId: "VRXUJ-HRD1JcdZQIduOLV",
         }
     </script>
     <script src="https://www.chatbase.co/embed.min.js" id="VRXUJ-HRD1JcdZQIduOLV" defer>
-    </script>
+    </script> -->
 
     <!-- <script src="//code.tidio.co/carbtvyc0k1qdzokypuyityetfilftms.js" async></script> -->
 

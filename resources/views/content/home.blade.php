@@ -104,19 +104,61 @@
                 <div class="col-lg-3">
                     <ul class="nav nav-tabs flex-column">
                         <li class="nav-item">
+                            <a class="nav-link " data-bs-toggle="tab" href="#tab-search-group">Group</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-bs-toggle="tab" href="#tab-search-subsidiary">Subsidiary</a>
+                        </li>
+                        <!-- <li class="nav-item">
                             <a class="nav-link " data-bs-toggle="tab" href="#tab-1">Group</a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link active show" data-bs-toggle="tab" href="#tab-2">Subsidiary</a>
-                        </li>
+                            <a class="nav-link " data-bs-toggle="tab" href="#tab-2">Subsidiary</a>
+                        </li> -->
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Shareholders</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Shareholder</a>
                         </li>
                     </ul>
                 </div>
                 
                 <div class="col-lg-9 mt-4 mt-lg-0">
                     <div class="tab-content">
+                        <div class="tab-pane " id="tab-search-group">
+                            <div class="row">
+                                <div class="col-lg-8 details order-2 order-lg-1">
+                                    <h3>Groups</h3>
+                                    <!-- <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the subsidiary companies. The information about Group Company can be used to identify the subsidiary under.</p> -->
+                                    
+                                    <div class="container">
+                                        <form action="{{ route('searchFunctionGroup2') }}" method="GET" class="d-flex">
+                                            <input type="text" class="form-control me-2" name="group_name" placeholder="Search...">
+                                            <button type="submit" class="btn btn-primary">Search</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 text-center order-1 order-lg-2">
+                                    <img src="assets/img/departments-1.jpg" alt="" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane active show" id="tab-search-subsidiary">
+                            <div class="row">
+                                <div class="col-lg-8 details order-2 order-lg-1">
+                                    <h3>Subsidiaries</h3>
+                                    <!-- <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the subsidiary companies. The information about Group Company can be used to identify the subsidiary under.</p> -->
+                                    
+                                    <div class="container">
+                                        <form action="{{ route('searchFunctionSubsidiary') }}" method="GET" class="d-flex">
+                                            <input type="text" class="form-control me-2" name="query" placeholder="Search...">
+                                            <button type="submit" class="btn btn-primary">Search</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 text-center order-1 order-lg-2">
+                                    <img src="assets/img/departments-1.jpg" alt="" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
                         <div class="tab-pane " id="tab-1">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
@@ -146,7 +188,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane active show chatbox" id="tab-2">
+                        <div class="tab-pane chatbox" id="tab-2">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
                                     <h3>Subsidiary</h3>
@@ -180,16 +222,16 @@
                                 <div class="col-lg-8 details order-2 order-lg-1">
                                     <h3>Shareholders</h3>
                                     <!-- <p class="fst-italic">Shareholders are the owners of a corporation and have a financial interest in the company's performance and profitability. Shareholders can be individual or entities. The information about company’s shareholders can be used to identify the people responsible and rule the company.</p> -->
-                                    <p class="fst-italic">Shareholders are the owners of a corporation and have a financial interest in the company's performance and profitability. Shareholders can be individual or entities. Find people/companies who own shares in several companies.</p>
-                                    <!-- <div class="container">
-                                        <form id="search-form">
+                                    <!-- <p class="fst-italic">Shareholders are the owners of a corporation and have a financial interest in the company's performance and profitability. Shareholders can be individual or entities. Find people/companies who own shares in several companies.</p> -->
+                                    <div class="container">
+                                        <form id="search-form" action="{{ route('searchFunctionShareholder') }}" method="GET" class="d-flex">
                                             <label for="search-input" class="visually-hidden">Search</label>
                                             <div class="input-group">
-                                                <input type="text" id="search-input" class="form-control" placeholder="Find shareholder...">
+                                                <input type="text" id="search-input" name="query" class="form-control" placeholder="Find shareholder...">
                                                 <button type="submit" class="btn btn-primary">Search</button>
                                             </div>
                                         </form>
-                                    </div> -->
+                                    </div>
                                 </div>
                                 <div class="col-lg-4 text-center order-1 order-lg-2">
                                     <img src="assets/img/departments-3.jpg" alt="" class="img-fluid">
@@ -348,7 +390,7 @@
         </div>
     </section><!-- End Frequently Asked Questions Section -->
 
-    <section id="pricing" class="section">
+    <section id="pricing" class="section" hidden>
       <div class="container">
 
         <div class="row justify-content-center text-center">
@@ -379,7 +421,6 @@
               <span class="popularity">Recomended</span>
               <h3>STANDARD</h3>
               <ul class="list-unstyled">
-                <li>Company Name</li>
                 <li>Company Type</li>
                 <li>Incorporation Date</li>
                 <li>Company Number</li>
@@ -464,13 +505,13 @@
         <div class="container">
 
             <div class="section-title">
-                <h2>Contact</h2>
+                <h2>Contact Us</h2>
                 <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
             </div>
         </div>
 
         <div class="map-container">
-            <iframe style="border:0; width: 70%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.48260175541!2d106.79982471100114!3d-6.586775093379328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c5900337fbe1%3A0x41efae520676fac5!2sEarthqualizer%20Foundation!5e0!3m2!1sid!2sid!4v1682500437790!5m2!1sid!2sid" frameborder="0" allowfullscreen></iframe>
+            <iframe style="border:0; width: 70%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26982.6904899778!2d109.3165473404948!3d-0.03550739412179713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e1d59223736d773%3A0x2770035cd14138c6!2sEarthqualizer%20Foundation%20-%20Pontianak!5e0!3m2!1sen!2sid!4v1705892733701!5m2!1sen!2sid" frameborder="0" allowfullscreen></iframe>
         </div>
 
         <div class="container">
@@ -481,13 +522,13 @@
                         <div class="address">
                             <i class="bi bi-geo-alt"></i>
                             <h4>Address:</h4>
-                            <p>Jl. Tangkuban Prahu No. 8, Bogor City, West Java 16128</p>
+                            <p>Jl. Anggrek No. 6, Pontianak City, West Kalimantan.</p>
                         </div>
 
                         <div class="email">
                             <i class="bi bi-envelope"></i>
                             <h4>Email:</h4>
-                            <p>info@inovasidigital.asia</p>
+                            <p>info@corporateownership.com</p>
                         </div>
 
                         <div class="phone">

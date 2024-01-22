@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\CorporateProfileController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\Scraper;
 use App\Http\Controllers\ClientCorporateProfileController;
 use App\Http\Middleware\CheckUserLevel;
+use App\Http\Controllers\Auth\GoogleAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +70,8 @@ Route::get('/corporate-profile-en', [CorporateProfileController::class, 'index']
 Route::get('/corporate-profile-index', [CorporateProfileController::class, 'index'])->name('index');
 Route::post('/corporate-profile-subsidiary-show', [CorporateProfileController::class, 'subsidiaryShow'])->name('subsidiaryShow');
 Route::post('/corporate-profile-group-show', [CorporateProfileController::class, 'groupShow'])->name('groupShow');
+Route::post('/corporate-profile-group2-show', [GroupController::class, 'group2Show'])->name('group2Show');
+Route::post('/corporate-profile-shareholder-show', [CorporateProfileController::class, 'shareholderShow'])->name('shareholderShow');
 
 
 // Scraperss 
@@ -79,6 +83,11 @@ Route::get('/scrape', [ScraperController::class, 'index'])->name('scrape');
 
 //     return 'Scraping completed';
 // });
+Route::get('/search-groups', [CorporateProfileController::class, 'searchFunctionGroup'])->name('searchFunctionGroup');
+Route::get('/search-groups2', [CorporateProfileController::class, 'searchFunctionGroup2'])->name('searchFunctionGroup2');
+Route::get('/search-subsidiaries', [CorporateProfileController::class, 'searchFunctionSubsidiary'])->name('searchFunctionSubsidiary');
+Route::get('/search-shareholders', [CorporateProfileController::class, 'searchFunctionShareholder'])->name('searchFunctionShareholder');
+
 Route::get('/search', [CorporateProfileController::class, 'search'])->name('search');
 Route::get('/maps', [CorporateProfileController::class, 'maps'])->name('maps');
 Route::post('/maps', [CorporateProfileController::class, 'maps'])->name('maps');
@@ -153,3 +162,7 @@ Route::middleware([CheckUserLevel::class . ':Basic'])->group(function () {
         return 'Hello user with limited access!';
     });
 });
+
+Route::get('/subsidiary', [CorporateProfileController::class, 'subsidiaryList']);
+Route::get('/subsidiary/{id}', [CorporateProfileController::class, 'subsidiaryShow']);
+Route::get('/auth/google/callback', [CorporateProfileController::class, 'handleCallback']);

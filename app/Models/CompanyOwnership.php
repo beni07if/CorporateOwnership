@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CompanyOwnership extends Model
 {
     use HasFactory;
-    protected $table = 'consolidations';
+    protected $table = 'company_ownerships';
     // protected $fillable = ['question', 'answer'];
     protected $fillable = [
         'idCompany', 

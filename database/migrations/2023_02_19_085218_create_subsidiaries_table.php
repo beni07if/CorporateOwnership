@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('subsidiaries', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            // Add your ownership table columns here
+            $table->string('name');
+            $table->string('pdf_file_id'); // Assuming this field stores the file ID from Google Drive
             $table->timestamps();
         });
     }

@@ -6,11 +6,19 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Consolidation;
+use App\Models\CompanyOwnership;
+use App\Models\Subsidiary;
+use App\Models\Group;
 use App\Models\Chatbot;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
 use DOMDocument;
 use Illuminate\Support\Facades\DB;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Auth;
+use Storage;
+use Illuminate\Support\Str;
+
 
 class CorporateProfileController extends Controller
 {
@@ -24,6 +32,134 @@ class CorporateProfileController extends Controller
         $groupName = Consolidation::all();
         return view('content.home', compact('subsidiary', 'groupName'));
     }
+
+    public function searchFunctionGroup(Request $request)
+    {
+        $query = $request->input('query');
+
+        // $consolidations = Consolidation::search($query)->get();//all field search
+        $consolidations = Consolidation::select('group_name')
+        ->where('group_name', 'LIKE', '%' . $query . '%')
+        ->distinct()
+        ->paginate(10);
+
+        // Append the search query to the pagination links
+        $consolidations->appends(['query' => $query]);
+        
+        return view('content.en.searchGroup', compact('consolidations'));
+    }
+
+    public function searchFunctionGroup2(Request $request)
+    {
+        $query = $request->input('group_name');
+
+        $groups = Group::select('group_name', 'group_status', 'controller', 'country_registration', 'management_name_and_position')
+            ->where('group_name', 'LIKE', '%' . $query . '%')
+            ->distinct()
+            ->paginate(10);
+
+        // Append the search query to the pagination links
+        $groups->appends(['group_name' => $query]);
+
+        return view('content.en.searchGroup2', compact('groups'));
+    }
+
+    public function searchFunctionSubsidiary(Request $request)
+    {
+        $query = $request->input('query');
+
+        $consolidations = Consolidation::select('subsidiary')
+            ->where('subsidiary', 'LIKE', '%' . $query . '%')
+            ->distinct()
+            ->paginate(10);
+
+        // Append the search query to the pagination links
+        $consolidations->appends(['query' => $query]);
+
+        return view('content.en.searchSubsidiary', compact('consolidations'));
+    }
+
+    public function searchFunctionShareholder(Request $request)
+    {
+        $query = $request->input('query');
+
+        $shareholderNames = CompanyOwnership::select('shareholder_name', 'company_name', 'percentage_of_shares', 'position')
+            ->where('shareholder_name', 'LIKE', '%' . $query . '%')
+            ->paginate(10);
+
+        // Append the search query to the pagination links
+        $shareholderNames->appends(['query' => $query]);
+
+        return view('content.en.searchShareholder', compact('shareholderNames'));
+    }
+
+    public function group2Show(Request $request)
+    {
+        $query = $request->input('group_name');
+
+        $groups = Group::select('group_name', 'group_status', 'controller', 'country_registration', 'management_name_and_position')
+            ->where('group_name', 'LIKE', '%' . $query . '%')
+            ->distinct()
+            ->paginate(10);
+
+        // Append the search query to the pagination links
+        $groups->appends(['group_name' => $query]);
+
+        return view('content.en.indexGroup2', compact('groups'));
+    }
+
+    public function shareholderShow(Request $request)
+    {
+        $query = $request->input('shareholder_name');
+
+        $shareholderNames = CompanyOwnership::select('shareholder_name', 'company_name', 'percentage_of_shares', 'position', 'company_number', 'country_of_business_address', 'currency', 'incorporation_date', 'country_of_registered_address', 'address')
+            // ->where('shareholder_name', 'LIKE', '%' . $query . '%')
+            ->where('shareholder_name',  $query)
+            ->distinct()
+            ->paginate(10);
+
+        // Append the search query to the pagination links
+        $shareholderNames->appends(['shareholder_name' => $query]);
+
+        return view('content.en.indexShareholder', compact('shareholderNames'));
+    }
+
+    public function subsidiaryList()
+    {
+        $Subsidiaries = Subsidiary::all();
+        return view('content.en.subsidiaryList', compact('subsidiaries'));
+    }
+
+    public function subsidiaryShow0($id)
+    {
+        $subsidiary = Subsidiary::findOrFail($id);
+        $pdfUrl = $this->getGoogleDriveUrl($subsidiary->pdf_file_id);
+        return view('content.en.subsidiaryShow', compact('subsidiary', 'pdfUrl'));
+    }
+
+    private function getGoogleDriveUrl($fileId)
+    {
+        // Use the Google Drive API to get the file URL based on the file ID
+        // Implement this function based on the Google Drive API documentation
+        // You may use the google/apiclient package for this
+        return "https://drive.google.com/file/d/$fileId/view";
+    }
+
+    // public function redirectToGoogle()
+    // {
+    //     return Socialite::driver('google')->redirect();
+    // }
+
+    // public function handleCallback()
+    // {
+    //     $user = Socialite::driver('google')->user();
+
+    //     // Handle user data and token
+
+    //     return redirect('/dashboard'); // Redirect to your desired route after authentication
+    // }
+
+    //
 
     public function subsidiaryShow(Request $request)
     {
@@ -42,6 +178,9 @@ class CorporateProfileController extends Controller
             // $coordinates = DB::table('consolidations')->select('latitude', 'longitude')->where('subsidiary', $subsidiaryName)->first();
             $companyOwnership = DB::table('company_ownerships')->where('company_name', $subsidiaryName)->get();
             $coordinates = DB::table('consolidations')->select('latitude', 'longitude', 'subsidiary', 'country_operation', 'province', 'regency', 'facilities', 'capacity', 'sizebyeq', 'estate', 'group_name', 'principal_activities')->where('subsidiary', $subsidiaryName)->get();
+
+            // Pilih kolom-kolom yang diperlukan dari tabel corporate
+            // $corporateData = DB::table('corporate')->select('nama_perusahaan', 'jenis_usaha', 'tanggal_berdiri', 'alamat')->where('subsidiary', $subsidiaryName)->get();
         }
         // return view('maps', compact('coordinates', 'consol', 'subsidiary'));
 

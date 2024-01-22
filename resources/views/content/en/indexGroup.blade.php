@@ -95,21 +95,27 @@
             <div class="row" style="box-shadow: rgba(44, 73, 100, 0.08) 0px 2px 15px 0px;">
                 <div class="col-xl-8 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
 
-                    <h3>{{$perusahaan}}</h3>
+                    <h3>{{$perusahaan}}&ensp;  
+                        <!-- <a href="#" class="btn btn-info btn-sm" style="align:right;">Non-compliance historical</a> -->
+                    </h3>
+                    <div>
+                        <iframe src="{{asset('file/notarial-act-subsidiaries/TransformPlatform_Case_MON0002.pdf')}}" width="100%" height="600px"></iframe>
+                    </div>
+                    <div style="padding-top:50px;">
+                        <h3>Summary</h3>
+                    </div>
                     <p>{{$subsidiary}}</p>
                     @if(count($consolidations)>0)
 
                     <div class="row">
                         <div class="col-md-6">
                             <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
-                                <h4 class="title">Group</h4>
+                                <h4 class="title">Group Name</h4>
                                 @foreach($consolidations->pluck('group_name')->unique() as $subs)
                                 <p class="description">{{$subs}}</p>
                                 @endforeach
                             </div>
                             <div class="icon-box @if(!$consolidations->pluck('owner')->unique()->count() || in_array('Check', $consolidations->pluck('owner')->unique()->toArray())) d-none @endif">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title">Owner</h4>
                                 @foreach($consolidations->pluck('owner')->unique() as $owner)
                                 @if($owner)
@@ -124,12 +130,10 @@
                                 @endforeach
                             </div>
                             <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title">Address</h4>
                                 <p class="description">...</p>
                             </div>
                             <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title">List of Subsidiary</h4>
                                 <form action="{{ route('subsidiaryShow') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
@@ -146,7 +150,6 @@
                             </div>
 
                             <!-- <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title">Shareholders</h4>
                                 @foreach($consolidations->pluck('shareholder_subsidiary')->unique() as $shareholders)
                                 @if($shareholders)
@@ -160,7 +163,6 @@
                         </div>
                         <div class="col-md-6">
                             <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title">Sector</h4>
                                 @foreach($consolidations->pluck('principal_activities')->unique() as $activity)
                                 @if($activity)
@@ -171,7 +173,6 @@
                                 @endforeach
                             </div>
                             <div class="icon-box">
-                                <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title">Country Operation</h4>
                                 <!-- @php
                                 $uniqueLocations = $consolidations->unique(function($item) {
@@ -211,9 +212,10 @@
                     </div><br> -->
                     <div class="header-map">
                         <p class="description">
-                            Location company of @foreach($consolidations->pluck('group_name')->unique() as $subs) {{$subs}}
+                            Distribution of companies from the 
+                            @foreach($consolidations->pluck('group_name')->unique() as $subs) {{$subs}}
                             @endforeach
-                            group
+                            Group
                         </p>
                     </div>
                     <div id="map" style="height: 400px;">
@@ -229,61 +231,120 @@
                             </label>
                         </div>
                     </div>
-                    <form id="search-form" method="POST" action="{{ route('groupShow') }}" enctype="multipart/form-data">
-                        @csrf
-                        <input type="text" id="group_name search-input" class="form-control" name="group_name" list="group_name-list" placeholder="Search other company...">
-                        <datalist id="group_name-list">
-                            @foreach(DB::table('consolidations')->pluck('group_name')->unique() as $group_name)
-                            @php
-                            $shareholder = DB::table('consolidations')->where('group_name', $group_name)->value('group_name');
-                            @endphp
-                            @if(!empty($shareholder) && $shareholder != 'N/A' && $shareholder != 'check')
-                            <option value="{{ $group_name }}"></option>
-                            @endif
-                            @endforeach
-                        </datalist>
-                        <button type="submit" class="btn btn-primary">Search</button>
-                    </form>
+                    <div class="col-lg-12 details order-2 order-lg-1 mt-3">
+                        <div class="container">
+                            <h3>Search for other groups</h3>
+                            <form action="{{ route('searchFunctionGroup') }}" method="GET" class="d-flex">
+                                <input type="text" class="form-control me-2" name="query" placeholder="Group Name">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-xl-4 col-lg-6 icon-boxes d-flex flex-column align-items-stretch py-5 px-lg-5" style="background-color: #F5F5F5;">
                     <div class="blog sidebar">
 
-                        <h3>Buy Company Report</h3>
-                        <p>Official group company report of
-                            @foreach($consolidations->pluck('group_name')->unique() as $subs)
-                            {{$subs}}
-                        </p>
-                        @endforeach
-                        <!-- End sidebar tagssss-->
+                        <h3>Company Profile Access</h3>
+                        <!-- <p>Official company dataset of @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
+                            {{$subs}}.
+                            @endforeach
+                        </p> -->
+                        <!-- End sidebar tags-->
                         <!-- <a href="default.asp" class="book" target="_blank">This is a link</a><span>test</span> -->
-                        <div class="book">
-                            <!-- <div class="left">Full Report</div>
-                            <div class="right">$100</div> -->
-                            <p class="left">Report</p>
+                        <!-- <button type="button" class="alert alert-success d-block w-100 left" data-bs-toggle="modal" data-bs-target="#modalStandard">
+                            Standard (full dataset)
+                            <span class="right">$50</span>
+                        </button>
+                        <br>
+                        <button type="button" class="alert alert-primary d-block w-100 left" data-bs-toggle="modal" data-bs-target="#modalPremium">
+                            Premium (Standard + mapping structure)
                             <span class="right">$70</span>
-                        </div>
-                        <div class="book">
-                            <p class="left">Full Report</p>
-                            <span class="right">$100</span>
-                        </div>
-
+                        </button> -->
+                        
                     </div><!-- End sidebar -->
-                    <a href="#appointment" class="appointment-btn" style="justify-content: center; align-items:center; text-align:center;">Add to chart</a>
+                    <!-- <a href="#appointment" class="appointment-btn" style="justify-content: center; align-items:center; text-align:center;">Buy</a> -->
                     <div class="line"></div>
                     <div class="report-benefit">
-                        <p>What's included in the report?</p>
-                        <ul class="benefit-list">
-                            <li>Registered business classifications</li>
-                            <li>Shareholder table</li>
-                            <li>List of corporate commissioners and directors</li>
-                            <li>List of corporate commissioners and directors</li>
+                        <p>If the data You're looking for is not found, You can contact us via email at info@inovasidigital.asia.</p>
+                        <p>We will process your request within 3x24 hours.</p>
+                        <!-- <ul class="benefit-list">
+                            <li>Sector operation</li>
+                            <li>Group</li>
+                            <li>Shareholder</li>
                             <li>Etc</li>
-                        </ul>
-                        <p>Download sample report</p>
+                        </ul> -->
+                        <!-- <p>View sample data</p>
                         <ul class="sample-subsidiary">
-                            <li><a href="#">Report</a></li>
-                            <li><a href="#">Full Report</a></li>
-                        </ul>
+                            <li><a href="#">Standard member</a>
+                            </li>
+                            <li><a href="#">Premium member</a>
+                            </li>
+                        </ul> -->
+                        <div class="line"></div>
+                        <div class="col-lg-12 mt-5 mt-lg-0">
+                            <h4 class="mt-3">Contact Us</h4>
+                            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                            <div class="form-group mt-3">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group mt-3">
+                                <input type="text" class="form-control" name="institution" id="institution" placeholder="Institution" required>
+                            </div>
+                            <div class="form-group mt-3">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group mt-3">
+                                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                            </div>
+                            <div class="form-group mt-3"><button class="btn btn-info" type="submit">Send Message</button></div>
+                            </form>
+
+                        </div>
+                    </div>
+                    <!-- Modal Standard -->
+                    <div class="modal fade" id="modalStandard" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Standard member data set overview</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Tambahkan elemen gambar di bawah ini -->
+                                <div style="max-width: 100%; height: auto; text-align: center;">
+                                <img src="{{asset('img/standard.JPG')}}" alt="Image">
+                                </div>
+                                <!-- Akhiri bagian elemen gambar -->
+                                <p></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div><!-- Modal Premium-->
+                    <div class="modal fade" id="modalPremium" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Premium member data set overview</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Tambahkan elemen gambar di bawah ini -->
+                                <div style="max-width: 100%; height: auto; text-align: center;">
+                                <img src="{{asset('img/premium.JPG')}}" alt="Image">
+                                </div>
+                                <!-- Akhiri bagian elemen gambar -->
+                                <p></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
