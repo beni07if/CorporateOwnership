@@ -61,7 +61,7 @@
                                 <iframe src="{{ $filePath }}" width="100%" height="600px"></iframe>
                                 <!-- <p class="description">{{ $subsidiary }}</p> -->
                             @else
-                                <p>Data not found for {{ $subsidiary }}</p>
+                                <p>Please contact our team to get company structure and other information of {{ $subsidiary }}.</p>
                             @endif
                         @endforeach
                     </div>
@@ -287,22 +287,30 @@
                         <div class="line"></div>
                         <div class="col-lg-12 mt-5 mt-lg-0">
                             <h4 class="mt-3">Contact Us</h4>
-                            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                            <div class="form-group mt-3">
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input type="text" class="form-control" name="institution" id="institution" placeholder="Institution" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                            </div>
-                            <div class="form-group mt-3"><button class="btn btn-info" type="submit">Send Message</button></div>
+                            <form action="{{route('messages.store')}}" enctype="multipart/form-data" method="post" role="form" class="php-email-form">
+                                <div class="form-group mt-3">
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="text" class="form-control" name="institution" id="institution" placeholder="Institution" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="text" class="form-control" name="status" id="status" placeholder="Status" value="Open" hidden>
+                                </div>
+                                <div class="form-group mt-3">
+                                <input type="date" class="form-control" name="date-inbox" id="date-inbox" placeholder="date-inbox" value="<?= date('Y-m-d'); ?>" hidden>
+                                </div>
+                                <div class="form-group mt-3"><button class="btn btn-info" type="submit">Send Message</button></div>
                             </form>
-
                         </div>
                     </div>
                     <!-- Modal Standard -->

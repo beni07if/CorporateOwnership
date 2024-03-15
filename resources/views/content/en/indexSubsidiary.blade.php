@@ -23,14 +23,14 @@
 
             <div class="row" style="box-shadow: rgba(44, 73, 100, 0.08) 0px 2px 15px 0px;">
                 <div class="col-xl-8 col-lg-6 es d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-
+                @foreach($consolidations->groupBy('subsidiary') as $subsidiaryGroup)
                     <div style="display:flex;">
-                        <h3 class="description">{{$perusahaan}} &ensp;  
+                        <h3 class="description">{{$subsidiaryGroup->first()->subsidiary}} &ensp;  
                         <!-- <a href="#" class="btn btn-info btn-sm" style="align:right;">Non-compliance historical</a> -->
                         </h3>
                     </div>
                     <div>
-                        @foreach($consolidations->groupBy('subsidiary') as $subsidiaryGroup)
+                        
                             @php
                                 $subsidiary = $subsidiaryGroup->first()->subsidiary;
 
@@ -48,10 +48,14 @@
                                 }
                             @endphp
 
+                            @if(!empty($filePath))
                             <iframe src="{{ $filePath }}" width="100%" height="600px"></iframe>
+                            @else
+                            <p>Please contact our team to get notarial act and other information of {{$subsidiaryGroup->first()->subsidiary}}.</p>
+                            @endif
                             <!-- <p class="text-muted">{{ $subsidiary }}</p> -->
-                        @endforeach
-                    </div>
+                        </div>
+                @endforeach
 
                     <div style="padding-top:50px;">
                         <h3 class="description">Summary</h3>
@@ -120,6 +124,7 @@
                             </div>
 
                             <!-- tambahan -->
+                            @if(!$companyOwnership->pluck('company_type')->unique()->isEmpty())
                             <div class="">
                             
                                 <h5 class="description">Company Type</h5>
@@ -127,28 +132,7 @@
                                     <p class="text-muted">{{$subs}}</p>
                                 @endforeach
                             </div>
-                            <!-- <div class="">
-                            
-                                <h5 class="description">Incorporation Date</h5>
-                                @foreach($companyOwnership->pluck('incorporation_date')->unique() as $subs)
-                                    <p class="text-muted">{{$subs}}</p>
-                                @endforeach
-                            </div> -->
-                            <!-- <div class="">
-                            
-                                <h5 class="description">Date Company Number</h5>
-                                @foreach($companyOwnership->pluck('date_company_number')->unique() as $subs)
-                                    <p class="text-muted">{{$subs}}</p>
-                                @endforeach
-                            </div> -->
-                            <!-- <div class="">
-                            
-                                <h5 class="description">Shareholders</h5>
-                                @foreach($companyOwnership->unique('shareholder_name') as $ownership)
-                                    <p class="text-muted">{{$ownership->shareholder_name}} ({{$ownership->percentage_of_shares}})</p>
-                                @endforeach
-                            </div> -->
-                            <!-- end tambahan -->
+                            @endif
                         </div>
                         <div class="col-md-6">
                             <div class="">
@@ -196,7 +180,6 @@
                                 @endforeach
                             </div> -->
                             <div class="">
-                            
                                 <h5 class="description">Country</h5>
                                 @foreach($consolidations->pluck('country_operation')->unique() as $subs)
                                 <p class="text-muted">{{$subs}}</p>
@@ -210,27 +193,30 @@
                                 @endforeach -->
                             </div>
                             <!-- tambahan -->
-                            <div class="">
-                            
-                                <h5 class="description">Registered Address</h5>
-                                @foreach($companyOwnership->pluck('registered_address')->unique() as $subs)
-                                    <p class="text-muted">{{$subs}}</p>
-                                @endforeach
-                            </div>
-                            <div class="">
-                            
-                                <h5 class="description">Country of Registered Address</h5>
-                                @foreach($companyOwnership->pluck('country_of_registered_address')->unique() as $subs)
-                                    <p class="text-muted">{{$subs}}</p>
-                                @endforeach
-                            </div>
-                            <div class="">
-                            
-                                <h5 class="description">Nature of Business</h5>
-                                @foreach($companyOwnership->pluck('nature_of_business')->unique() as $subs)
-                                    <p class="text-muted">{{$subs}}</p>
-                                @endforeach
-                            </div>
+                            @if(!$companyOwnership->pluck('registered_address')->unique()->isEmpty())
+                                <div class="">
+                                    <h5 class="description">Registered Address</h5>
+                                    @foreach($companyOwnership->pluck('registered_address')->unique() as $subs)
+                                        <p class="text-muted">{{$subs}}</p>
+                                    @endforeach
+                                </div>
+                            @endif
+                            @if(!$companyOwnership->pluck('country_of_registered_address')->unique()->isEmpty())
+                                <div class="">
+                                    <h5 class="description">Country of Registered Address</h5>
+                                    @foreach($companyOwnership->pluck('country_of_registered_address')->unique() as $subs)
+                                        <p class="text-muted">{{$subs}}</p>
+                                    @endforeach
+                                </div>
+                            @endif
+                            @if(!$companyOwnership->pluck('nature_of_business')->unique()->isEmpty())
+                                <div class="">
+                                    <h5 class="description">Nature of Business</h5>
+                                    @foreach($companyOwnership->pluck('nature_of_business')->unique() as $subs)
+                                        <p class="text-muted">{{$subs}}</p>
+                                    @endforeach
+                                </div>
+                            @endif
                             <!-- end tambahan -->
                         </div>
                     </div>
@@ -316,22 +302,31 @@
                         <div class="line"></div>
                         <div class="col-lg-12 mt-5 mt-lg-0">
                             <p class="mt-3">Contact Us</p>
-                            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                            <div class="form-group mt-3">
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input type="text" class="form-control" name="institution" id="institution" placeholder="Institution" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                            </div>
-                            <div class="form-group mt-3"><button class="btn btn-info" type="submit">Send Message</button></div>
+                            <form action="{{route('messages.store')}}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group mt-3">
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="text" class="form-control" name="institution" id="institution" placeholder="Institution" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="text" class="form-control" name="status" id="status" placeholder="Status" value="Open" hidden>
+                                </div>
+                                <div class="form-group mt-3">
+                                <input type="date" class="form-control" name="date_message" id="date_message" placeholder="date_message" value="<?= date('Y-m-d'); ?>" hidden>
+                                </div>
+                                <div class="form-group mt-3"><button class="btn btn-info" type="submit">Send Message</button></div>
                             </form>
-
                         </div>
                     </div>
                     <!-- Modal Standard -->

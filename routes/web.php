@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\CorporateProfileController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\ConsolidationController;
+use App\Http\Controllers\ShareholderController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Scraper;
 use App\Http\Controllers\ClientCorporateProfileController;
 use App\Http\Middleware\CheckUserLevel;
@@ -166,3 +170,22 @@ Route::middleware([CheckUserLevel::class . ':Basic'])->group(function () {
 Route::get('/subsidiary', [CorporateProfileController::class, 'subsidiaryList']);
 Route::get('/subsidiary/{id}', [CorporateProfileController::class, 'subsidiaryShow']);
 Route::get('/auth/google/callback', [CorporateProfileController::class, 'handleCallback']);
+
+
+Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+Route::get('/dashboard-inbox', [AdminController::class, 'inbox'])->name('inbox');
+
+// Contoh menggunakan Controller sebagai parameter
+Route::resources([
+    'groups' => GroupController::class,
+]);
+Route::resources([
+    'consolidations' => ConsolidationController::class,
+]);
+Route::resources([
+    'shareholders' => ShareholderController::class,
+]);
+Route::resources([
+    'messages' => MessageController::class,
+]);
+Route::post('/messages', [CorporateProfileController::class, 'store'])->name('messages.store');

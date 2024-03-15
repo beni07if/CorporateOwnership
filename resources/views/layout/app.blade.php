@@ -217,6 +217,9 @@
 
     @yield('content')
 
+    @include('sweetalert::alert')
+
+
     <!-- ======= Footer ======= -->
     <footer id="footer">
 
@@ -344,9 +347,9 @@
     <script src="https://www.chatbase.co/embed.min.js" id="VRXUJ-HRD1JcdZQIduOLV" defer>
     </script> -->
 
-    <!-- <script src="//code.tidio.co/carbtvyc0k1qdzokypuyityetfilftms.js" async></script> -->
+    <!-- <script src="//code.tidio.co/carbtvyc0k1qdzokypuyityetfilftms.js" async></script>
 
-    <!-- <script src='//fw-cdn.com/7785646/3277539.js' chat='true'>
+    <script src='//fw-cdn.com/7785646/3277539.js' chat='true'>
     </script> -->
 
     @yield('mapsLeaflet')

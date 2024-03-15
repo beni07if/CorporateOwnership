@@ -8,14 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Message extends Model
 {
     use HasFactory;
-    protected $table = 'consolidations';
+    protected $table = 'messages';
     // protected $fillable = ['question', 'answer'];
     protected $fillable = [
         'id', 
-        'your_name', 
-        'institution', 
+        'name', 
+        'phone', 
         'email', 
+        'institution', 
         'message', 
-        'response'
+        'date_message', 
+        'response', 
+        'date_response',
+        'status'
     ];
 }

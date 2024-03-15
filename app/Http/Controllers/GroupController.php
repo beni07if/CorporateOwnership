@@ -9,6 +9,7 @@ use App\Models\Consolidation;
 use App\Models\CompanyOwnership;
 use App\Models\Subsidiary;
 use App\Models\Group;
+use App\Models\Message;
 use App\Models\Chatbot;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
@@ -23,9 +24,10 @@ class GroupController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
+    public function index()
     {
-        //
+        $groups = Group::all();
+        return view('admin.group.index', compact('groups'));
     }
 
     /**

@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('your_name')->nullable();
-            $table->string('institution')->nullable();
+            $table->string('name')->nullable();
+            $table->string('phone')->nullable();
             $table->string('email')->nullable();
-            $table->string('message')->nullable();
-            $table->string('response')->nullable();
+            $table->string('institution')->nullable();
+            $table->text('message')->nullable();
+            $table->string('date_message')->nullable();
+            $table->text('response')->nullable();
+            $table->string('date_response')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
