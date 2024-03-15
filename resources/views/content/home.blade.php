@@ -159,64 +159,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane " id="tab-1">
-                            <div class="row">
-                                <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Group of Company</h3>
-                                    <!-- <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the subsidiary companies. The information about Group Company can be used to identify the subsidiary under.</p> -->
-                                    <p class="fst-italic">A group is a collection of individual companies or subsidiaries that are controlled by a single parent company. Find share other information from group companies.</p>
-                                    <div class="container">
-                                        <form id="search-form" method="POST" action="{{ route('groupShow') }}" enctype="multipart/form-data">
-                                            @csrf
-                                            <input type="text" id="group_name search-input" class="form-control" name="group_name" list="group_name-list" placeholder="Search group name">
-                                            <datalist id="group_name-list">
-                                                @foreach(DB::table('consolidations')->pluck('group_name')->unique() as $group_name)
-                                                @php
-                                                $shareholder = DB::table('consolidations')->where('group_name', $group_name)->value('group_name');
-                                                @endphp
-                                                @if(!empty($shareholder) && $shareholder != 'N/A' && $shareholder != 'check')
-                                                <option value="{{ $group_name }}"></option>
-                                                @endif
-                                                @endforeach
-                                            </datalist>
-                                            <button type="submit" class="btn btn-primary">Search</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="assets/img/departments-1.jpg" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane chatbox" id="tab-2">
-                            <div class="row">
-                                <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Subsidiary</h3>
-                                    <!-- <p class="fst-italic">A subsidiary is a company that is controlled by another company, known as the parent company or holding company. Subsidiaries have their own assets, liabilities, and financial statements from their parent companies, but because of the controlling ownership by the parent company, the subsidiary's activities are often aligned with the overall business objectives of the parent company.</p> -->
-                                    <p class="fst-italic">A subsidiary is a company that is controlled by another company, known as the parent company or holding company (group). Find  other information from the subsidiary/company.</p>
-                                    <div class="container">
-                                        <form id="search-form" method="POST" action="{{ route('subsidiaryShow') }}" enctype="multipart/form-data">
-                                            @csrf
-                                            <input type="text" id="subsidiary search-input" class="form-control" name="subsidiary" list="subsidiary-list" placeholder="Search subsidiary/company name">
-                                            <datalist id="subsidiary-list">
-                                                @foreach(DB::table('consolidations')->pluck('subsidiary')->unique() as $subsidiary)
-                                                @php
-                                                $shareholder = DB::table('consolidations')->where('subsidiary', $subsidiary)->value('subsidiary');
-                                                @endphp
-                                                @if(!empty($shareholder) && $shareholder != 'N/A' && $shareholder != 'check')
-                                                <option value="{{ $subsidiary }}"></option>
-                                                @endif
-                                                @endforeach
-                                            </datalist>
-                                            <button type="submit" class="btn btn-primary">Search</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="assets/img/departments-2.jpg" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                        </div>
                         <div class="tab-pane" id="tabs-search-shareholders">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
