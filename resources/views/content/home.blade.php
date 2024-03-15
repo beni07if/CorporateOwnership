@@ -104,10 +104,10 @@
                 <div class="col-lg-3">
                     <ul class="nav nav-tabs flex-column">
                         <li class="nav-item">
-                            <a class="nav-link " data-bs-toggle="tab" href="#tab-search-group">Group</a>
+                            <a class="nav-link " data-bs-toggle="tab" href="#tab-search-groups">Group</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active show" data-bs-toggle="tab" href="#tab-search-subsidiary">Subsidiary</a>
+                            <a class="nav-link active show" data-bs-toggle="tab" href="#tab-search-subsidiaries">Subsidiary</a>
                         </li>
                         <!-- <li class="nav-item">
                             <a class="nav-link " data-bs-toggle="tab" href="#tab-1">Group</a>
@@ -116,14 +116,14 @@
                             <a class="nav-link " data-bs-toggle="tab" href="#tab-2">Subsidiary</a>
                         </li> -->
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Shareholder</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab-search-shareholders">Shareholder</a>
                         </li>
                     </ul>
                 </div>
                 
                 <div class="col-lg-9 mt-4 mt-lg-0">
                     <div class="tab-content">
-                        <div class="tab-pane " id="tab-search-group">
+                        <div class="tab-pane " id="tab-search-groups">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
                                     <h3>Groups</h3>
@@ -141,7 +141,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane active show" id="tab-search-subsidiary">
+                        <div class="tab-pane active show" id="tab-search-subsidiaries">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
                                     <h3>Subsidiaries</h3>
@@ -217,7 +217,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="tab-3">
+                        <div class="tab-pane" id="tab-search-shareholders">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
                                     <h3>Shareholders</h3>
