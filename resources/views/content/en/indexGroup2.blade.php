@@ -275,7 +275,7 @@
                             <li>Sector operation</li>
                             <li>Group</li>
                             <li>Shareholder</li>
-                            <li>Etc</li>
+                            <li>Etcss</li>
                         </ul> -->
                         <!-- <p>View sample data</p>
                         <ul class="sample-subsidiary">
