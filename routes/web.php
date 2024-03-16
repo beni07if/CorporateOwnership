@@ -75,6 +75,7 @@ Route::get('/corporate-profile-index', [CorporateProfileController::class, 'inde
 Route::post('/corporate-profile-subsidiary-show', [CorporateProfileController::class, 'subsidiaryShow'])->name('subsidiaryShow');
 Route::post('/corporate-profile-group-show', [CorporateProfileController::class, 'groupShow'])->name('groupShow');
 Route::post('/corporate-profile-group2-show', [GroupController::class, 'group2Show'])->name('group2Show');
+Route::post('/corporate-profile-sra-show', [CorporateProfileController::class, 'sraShow'])->name('sraShow');
 Route::post('/corporate-profile-shareholder-show', [CorporateProfileController::class, 'shareholderShow'])->name('shareholderShow');
 
 
@@ -91,6 +92,7 @@ Route::get('/search-groups', [CorporateProfileController::class, 'searchFunction
 Route::get('/search-groups2', [CorporateProfileController::class, 'searchFunctionGroup2'])->name('searchFunctionGroup2');
 Route::get('/search-subsidiaries', [CorporateProfileController::class, 'searchFunctionSubsidiary'])->name('searchFunctionSubsidiary');
 Route::get('/search-shareholders', [CorporateProfileController::class, 'searchFunctionShareholder'])->name('searchFunctionShareholder');
+Route::get('/search-sra', [CorporateProfileController::class, 'searchFunctionSRA'])->name('searchFunctionSRA');
 
 Route::get('/search', [CorporateProfileController::class, 'search'])->name('search');
 Route::get('/maps', [CorporateProfileController::class, 'maps'])->name('maps');

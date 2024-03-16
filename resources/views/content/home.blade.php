@@ -26,7 +26,7 @@
 <section id="hero" class="d-flex align-items-center">
     <div class="container">
         <h1>Global Corporate Profile Ownership</h1>
-        <h2>Explore thausands company ownership structure</h2>
+        <h2>Tracking Corporate Ownership Structures Worldwide through Corporate Ownership Platform.</h2>
         <!-- <a href="#about" hidden class="btn-get-started scrollto">Search</a> -->
         <!-- <section id="hero" class="d-flex align-items-center"> -->
         <!-- <div class="container"> -->
@@ -52,9 +52,9 @@
             <div class="row">
                 <div class="col-lg-4 d-flex align-items-stretch">
                     <div class="content">
-                        <h3>Inovasi Corporate Profile</h3>
+                        <h3>Corporate Ownership</h3>
                         <p>
-                            Inovasi Corporate Profile is a platform that provides information about the ownership structure of companies. Inovasi Corporate Profile also displays a list of companies that are members of a group.
+                            Corporate Ownership is a platform that provides information about the ownership structure of companies, shareholder and its network with other companies.
                         </p>
                     </div>
                 </div>
@@ -63,23 +63,30 @@
                         <div class="row">
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box mt-4 mt-xl-0">
-                                    <i class="bx bx-receipt"></i>
+                                    <i class="ri-building-fill"></i>
                                     <h4>Subsidiary</h4>
-                                    <p>There are tens of thousands of subsidiaries along with their location, shareholder, and other important information.</p>
+                                    <h2>6,700 +</h2>
+                                    <!-- <span data-purecounter-start="0" data-purecounter-end="10,000" data-purecounter-duration="1" class="purecounter"></span> -->
+                                    <p>Companies</p>
+                                    <!-- <p>There are tens of thousands of subsidiaries along with their location, shareholder, and other important information.</p> -->
                                 </div>
                             </div>
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box mt-4 mt-xl-0">
-                                    <i class="bx bx-cube-alt"></i>
+                                    <i class="ri-database-line"></i>
                                     <h4>Group</h4>
-                                    <p>There are thousands of groups along with their subsidiaries, shareholders and other important information.</p>
+                                    <h2>1,600 +</h2>
+                                    <p>Groups</p>
+                                    <!-- <p>There are thousands of groups along with their subsidiaries, shareholders and other important information.</p> -->
                                 </div>
                             </div>
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box mt-4 mt-xl-0">
-                                    <i class="bx bx-images"></i>
+                                    <i class="ri-admin-line"></i>
                                     <h4>Shareholders</h4>
-                                    <p>There are tens of thousands of shareholders and their shareholdings in several companies</p>
+                                    <h2>28,000 +</h2>
+                                    <p>Shareholders</p>
+                                    <!-- <p>There are tens of thousands of shareholders and their shareholdings in several companies</p> -->
                                 </div>
                             </div>
                         </div>
@@ -117,6 +124,9 @@
                         </li> -->
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#tabs-search-shareholders">Shareholder</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#tabs-search-sra">SRA</a>
                         </li>
                     </ul>
                 </div>
@@ -180,6 +190,27 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane" id="tabs-search-sra">
+                            <div class="row">
+                                <div class="col-lg-8 details order-2 order-lg-1">
+                                    <h3>Sustainability Risk Analysis (SRA)</h3>
+                                    <!-- <p class="fst-italic">Shareholders are the owners of a corporation and have a financial interest in the company's performance and profitability. Shareholders can be individual or entities. The information about company’s shareholders can be used to identify the people responsible and rule the company.</p> -->
+                                    <!-- <p class="fst-italic">Shareholders are the owners of a corporation and have a financial interest in the company's performance and profitability. Shareholders can be individual or entities. Find people/companies who own shares in several companies.</p> -->
+                                    <div class="container">
+                                        <form id="search-form" action="{{ route('searchFunctionSRA') }}" method="GET" class="d-flex">
+                                            <label for="search-input" class="visually-hidden">Search</label>
+                                            <div class="input-group">
+                                                <input type="text" id="search-input" name="group_name" class="form-control" placeholder="Find SRA...">
+                                                <button type="submit" class="btn btn-primary">Search</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 text-center order-1 order-lg-2">
+                                    <img src="assets/img/departments-3.jpg" alt="" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -196,8 +227,88 @@
             <button type="submit">Search</button>
         </form>
     </div> -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>CORPORATE PROFILE DATASET</h2>
+          <!-- <p>Naration</p> -->
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="icon-box">
+              <div class="icon"><i class="ri-building-fill"></i></div>
+              <h4><a href="">Company Name</a></h4>
+              <p>Company Name</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+            <div class="icon-box">
+              <div class="icon"><i class="ri-database-line"></i></div>
+              <h4><a href="">Group</a></h4>
+              <p>Group</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+            <div class="icon-box">
+              <div class="icon"><i class="ri-admin-line"></i></div>
+              <h4><a href="">Shareholder</a></h4>
+              <p>Shareholder of Companies</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+            <div class="icon-box">
+              <div class="icon"><i class="ri-font-color"></i></div>
+              <h4><a href="">Activity</a></h4>
+              <p>Main Activity</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4">
+            <div class="icon-box">
+              <div class="icon"><i class="ri-map-pin-2-line"></i></div>
+              <h4><a href="">Location</a></h4>
+              <p>Latitude & Longitude</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4">
+            <div class="icon-box">
+              <div class="icon"><i class="ri-apps-line"></i></div>
+              <h4><a href="">Company Structure</a></h4>
+              <p>Company structure ownership</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4">
+            <div class="icon-box">
+              <div class="icon"><i class="ri-file-pdf-line"></i></div>
+              <h4><a href="">Notarial Deed</a></h4>
+              <p>Notarial deed of company</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4">
+            <div class="icon-box">
+              <div class="icon"><i class="ri-phone-find-line"></i></div>
+              <h4><a href="">Etc</a></h4>
+              <p>Other dataset</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
     <!-- ======= About Sections ======= -->
-    <section id="about" class="about">
+    <section id="about" class="about" hidden>
         <div class="container">
 
             <div class="row">
@@ -377,7 +488,7 @@
     <!-- End Counts Section -->
 
     <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact" hidden>
         <div class="container">
 
             <div class="section-title">

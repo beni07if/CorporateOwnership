@@ -284,7 +284,7 @@
                     <!-- <a href="#appointment" class="appointment-btn" style="justify-content: center; align-items:center; text-align:center;">Buy</a> -->
                     <div class="line"></div>
                     <div class="report-benefit">
-                        <p>If the data You're looking for is not found, You can contact us via email at info@inovasidigital.asia.</p>
+                        <p>If the data You're looking for is not found, You can contact us via email at helpdesk@earthqualizer.org.</p>
                         <p>We will process your request within 3x24 hours.</p>
                         <!-- <ul class="benefit-list">
                             <li>Sector operation</li>
@@ -300,7 +300,7 @@
                             </li>
                         </ul> -->
                         <div class="line"></div>
-                        <div class="col-lg-12 mt-5 mt-lg-0">
+                        <!-- <div class="col-lg-12 mt-5 mt-lg-0">
                             <p class="mt-3">Contact Us</p>
                             <form action="{{route('messages.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -327,7 +327,7 @@
                                 </div>
                                 <div class="form-group mt-3"><button class="btn btn-info" type="submit">Send Message</button></div>
                             </form>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- Modal Standard -->
                     <div class="modal fade" id="modalStandard" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

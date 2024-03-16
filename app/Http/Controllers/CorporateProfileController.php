@@ -11,6 +11,7 @@ use App\Models\Subsidiary;
 use App\Models\Group;
 use App\Models\Chatbot;
 use App\Models\User;
+use App\Models\Sra;
 use Illuminate\Support\Facades\Http;
 use DOMDocument;
 use Illuminate\Support\Facades\DB;
@@ -93,6 +94,21 @@ class CorporateProfileController extends Controller
         return view('content.en.searchShareholder', compact('shareholderNames'));
     }
 
+    public function searchFunctionSRA(Request $request)
+    {
+        $query = $request->input('group_name');
+
+        $sras = Sra::select('group_name')
+        ->where('group_name', 'LIKE', '%' . $query . '%')
+        ->distinct()
+        ->paginate(10);
+
+        // Append the search query to the pagination links
+        $sras->appends(['group_name' => $query]);
+
+        return view('content.en.searchSra', compact('sras'));
+    }
+
     public function group2Show(Request $request)
     {
         $query = $request->input('group_name');
@@ -106,6 +122,35 @@ class CorporateProfileController extends Controller
         $groups->appends(['group_name' => $query]);
 
         return view('content.en.indexGroup2', compact('groups'));
+    }
+
+    public function sraShow(Request $request)
+    {
+        $query = $request->input('group_name');
+
+    $sras = Sra::select('group_name', 'transparency', 'percent_transparency', 'rspo_compliance', 'percent_rspo_compliance', 'ndpe_compliance', 'percent_ndpe_compliance', 'total', 'percent_total')
+        ->where('group_name', 'LIKE', '%' . $query . '%')
+        ->distinct()
+        ->paginate(10);
+
+    // Extracting data for chart
+    $labels = ['Transparency', 'RSPO Compliance', 'NDPE Compliance', 'Overall'];
+    $data = [];
+
+    // Iterating through each Sra instance to populate $data array
+    foreach ($sras as $sra) {
+        $data[] = [
+            $sra->percent_transparency,
+            $sra->percent_rspo_compliance,
+            $sra->percent_ndpe_compliance,
+            $sra->percent_total
+        ];
+    }
+
+    // Append the search query to the pagination links
+    $sras->appends(['group_name' => $query]);
+
+    return view('content.en.indexSra', compact('sras', 'data', 'labels'));
     }
 
     public function shareholderShow(Request $request)

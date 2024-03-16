@@ -51,6 +51,20 @@
     @yield('headstyle')
 
     <style>
+        #header {
+  background: rgba(240, 248, 255, 0); /* Transparan penuh */
+  transition: background-color 0.5s; /* Efek transisi */
+  z-index: 997;
+  padding: 15px 0;
+  box-shadow: 0px 2px 15px rgba(25, 119, 204, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+    .header-solid {
+      background: #fff !important; /* Warna putih */
+    }
+
         #map {
             width: 100%;
             height: 400px;
@@ -99,12 +113,12 @@
             font-size: 18px;
         } */
 
-        .card {
+        /* .card {
             width: 300px;
             margin: 0 auto;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+        } */
 
         .card-body {
             padding: 20px;
@@ -174,18 +188,18 @@
     </div> -->
 
     <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top" style="background-color: #F0F8FF;">
+    <header id="header" class="fixed-top" >
         <div class="container d-flex align-items-center">
 
             <!-- <h1 class="logo me-auto"><a href="{{route('corporateProfileEn')}}">ID Corporate</a></h1> -->
             <!-- Uncomment below if you prefer to use an image logo -->
-            <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo1/png/logo-no-background.png')}}" alt="" class="img-fluid"></a>
+            <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo3/png2/logo3.png')}}" alt="" class="img-fluid"></a>
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     <li><a class="" href="{{route('corporateProfileEn')}}#why-us">Home</a></li>
                     <li><a class="" href="#departments">Search</a></li>
-                    <li><a class="" href="#about">Feature</a></li>
+                    <li><a class="" href="#services">Dataset</a></li>
                     <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="#">Drop Down 1</a></li>
@@ -203,7 +217,7 @@
                             <li><a href="#">Drop Down 4</a></li>
                         </ul>
                     </li> -->
-                    <li><a class="" href="#contact">Contact</a></li>
+                    <li><a class="" href="#footer">Contact</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -226,7 +240,7 @@
         <div class="footer-top">
             <div class="container">
                 <div class="row">
-                    <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo1/png/logo-no-background.png')}}" alt="" class="img-fluid" style="height:30px; width: auto;"></a>
+                    <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo3/png2/logo3.png')}}" alt="" class="img-fluid" style="height:30px; width: auto;"></a>
                     <div class="col-lg-4 col-md-3 footer-newsletter">
                         <h4></h4>
                         <ul>
@@ -293,10 +307,28 @@
     <script src="{{ asset('template/Medilab/assets/vendor/php-email-form/validate')}}.js"></script>
     <script src="{{ asset('template/Medilab/assets/vendor/purecounter/purecounter')}}.js"></script>
     <script src="{{ asset('template/Medilab/assets/vendor/swiper/swiper-bundle.min')}}.js"></script>
+    <script src="{{ asset('template/NiceAdmin/assets/vendor/chart.js/chart.umd.js')}}"></script>
 
     <!-- Template Main JS File -->
     <!-- <script src="{{ asset('template/Medilab/assets/js/main/assets.js') }}"></script> -->
     <script src="{{ asset('template/Medilab/assets/js/main.js') }}"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var header = document.getElementById("header");
+
+      window.addEventListener("scroll", function() {
+        // Jika halaman di-scroll ke bawah, tambahkan kelas untuk mengubah latar belakang menjadi putih
+        if (window.scrollY > 0) {
+          header.classList.add("header-solid");
+        } 
+        // Jika halaman di-scroll kembali ke atas, hapus kelas untuk mengembalikan latar belakang transparan
+        else {
+          header.classList.remove("header-solid");
+        }
+      });
+    });
+  </script>
 
     <script>
         const subsidiaryBtn = document.getElementById('subsidiary-btn');
