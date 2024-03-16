@@ -447,7 +447,7 @@ class CorporateProfileController extends Controller
         $subsidiary = $response;
         // return $subsidiary;
         // return view('content.en.test', compact('consolidations'));
-        return view('content.en.indexSubsidiary', compact('companyOwnership', 'consolidations', 'perusahaan', 'subsidiary', 'users', 'consul', 'consol', 'coordinates'));
+        return view('content.en.indexSubsidiary', compact('companyOwnership', 'consolidations', 'subsidiary', 'users', 'consul', 'consol', 'coordinates'));
         // return view('maps', compact('coordinates', 'consol', 'subsidiary'));
         // end versi chat 
     }
