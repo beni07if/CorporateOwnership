@@ -71,7 +71,7 @@
 
                             <form action="{{ route('searchFunctionShareholder') }}" method="GET" class="d-flex">
                                 <input type="text" class="form-control me-2" name="query" placeholder="Search other Shareholders">
-                                <button type="submit" class="btn btn-primary">Search</button>
+                                <button type="submit" class="btn btn-info">Search</button>
                             </form>
                         </th>
                     </thead>
@@ -270,7 +270,7 @@
       </div>
       <!-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-info">Save changes</button>
       </div> -->
     </div>
   </div>

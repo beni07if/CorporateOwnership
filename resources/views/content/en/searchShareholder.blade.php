@@ -34,7 +34,7 @@
                                 @endforeach
                                 <form action="{{ route('searchFunctionShareholder') }}" method="GET" class="d-flex">
                                     <input type="text" class="form-control me-2" name="query" placeholder="Search other Shareholders">
-                                    <button type="submit" class="btn btn-primary">Search</button>
+                                    <button type="submit" class="btn btn-info">Search</button>
                                 </form>
                             </th>
                         </thead>

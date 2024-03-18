@@ -129,7 +129,7 @@
                         <!-- <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the badan_hukum companies. The information about Group Company can be used to identify the badan_hukum under.</p> -->
                         <form action="{{ route('searchFunctionSubsidiary') }}" method="GET" class="d-flex">
                             <input type="text" class="form-control me-2" name="query" placeholder="Search...">
-                            <button type="submit" class="btn btn-primary">Search</button>
+                            <button type="submit" class="btn btn-info">Search</button>
                         </form>
                     </div>
                 </div>

@@ -256,7 +256,7 @@
                         <!-- <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the subsidiary companies. The information about Group Company can be used to identify the subsidiary under.</p> -->
                         <form action="{{ route('searchFunctionSubsidiary') }}" method="GET" class="d-flex">
                             <input type="text" class="form-control me-2" name="query" placeholder="Search...">
-                            <button type="submit" class="btn btn-primary">Search</button>
+                            <button type="submit" class="btn btn-info">Search</button>
                         </form>
                     </div>
                 </div>
@@ -275,7 +275,7 @@
                             <span class="right">$50</span>
                         </button>
                         <br>
-                        <button type="button" class="alert alert-primary d-block w-100 left" data-bs-toggle="modal" data-bs-target="#modalPremium">
+                        <button type="button" class="alert alert-info d-block w-100 left" data-bs-toggle="modal" data-bs-target="#modalPremium">
                             Premium (Standard + mapping structure)
                             <span class="right">$70</span>
                         </button> -->
@@ -347,7 +347,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-info">Save changes</button>
                             </div>
                             </div>
                         </div>
@@ -369,7 +369,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-info">Save changes</button>
                             </div>
                             </div>
                         </div>
@@ -668,7 +668,7 @@
       </div>
       <!-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-info">Save changes</button>
       </div> -->
     </div>
   </div>

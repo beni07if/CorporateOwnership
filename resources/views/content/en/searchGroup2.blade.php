@@ -30,7 +30,7 @@
                                 <h4 class="title mb-0">List of Groups</h4>
                                 <form action="{{ route('searchFunctionGroup2') }}" method="GET" class="d-flex">
                                     <input type="text" class="form-control me-2" name="group_name" placeholder="Search other groups">
-                                    <button type="submit" class="btn btn-primary">Search</button>
+                                    <button type="submit" class="btn btn-info">Search</button>
                                 </form>
                             </th>
                         </thead>

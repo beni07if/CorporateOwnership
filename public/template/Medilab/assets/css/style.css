@@ -583,7 +583,8 @@ section {
 --------------------------------------------------------------*/
 .why-us .content {
   padding: 30px;
-  background: #1977cc;
+  /* background: #1977cc; */
+  background: #0AA7C4;
   border-radius: 4px;
   color: #fff;
 }
@@ -621,7 +622,8 @@ section {
 }
 .why-us .icon-boxes .icon-box i {
   font-size: 40px;
-  color: #1977cc;
+  /* color: #1977cc; */
+  color: #0AA7C4;
   margin-bottom: 30px;
 }
 .why-us .icon-boxes .icon-box h4 {
@@ -842,7 +844,8 @@ section {
   margin: 0 auto;
   width: 64px;
   height: 64px;
-  background: #1977cc;
+  /* background: #1977cc; */
+  background: #0AA7C4;
   border-radius: 5px;
   transition: all 0.3s ease-out 0s;
   display: flex;
@@ -881,17 +884,20 @@ section {
   margin-bottom: 0;
 }
 .services .icon-box:hover {
-  background: #1977cc;
+  /* background: #1977cc; */
+  background: #0AA7C4;
   border-color: #1977cc;
 }
 .services .icon-box:hover .icon {
   background: #fff;
 }
 .services .icon-box:hover .icon i {
-  color: #1977cc;
+  /* color: #1977cc; */
+  color: #0AA7C4;
 }
 .services .icon-box:hover .icon::before {
-  background: #3291e6;
+  /* background: #3291e6; */
+  background: #0AA7C4;
 }
 .services .icon-box:hover h4 a, .services .icon-box:hover p {
   color: #fff;

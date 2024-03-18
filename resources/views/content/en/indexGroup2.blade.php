@@ -207,7 +207,7 @@
                                     @endforeach
                                 </form>
                             </div>
-                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">See more</button>
+                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">See more</button>
                         </div>
                     </div>
                     @endif
@@ -242,7 +242,7 @@
                             <h6 class="text-muted">Search for other groups</h6>
                             <form action="{{ route('searchFunctionGroup2') }}" method="GET" class="d-flex">
                                 <input type="text" class="form-control me-2" name="group_name" placeholder="Group Name">
-                                <button type="submit" class="btn btn-secondary">Search</button>
+                                <button type="submit" class="btn btn-info">Search</button>
                             </form>
                         </div>
                     </div>
@@ -270,8 +270,8 @@
                                     <p></p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-info">Save changes</button>
                                 </div>
                                 </div>
                             </div>
@@ -292,8 +292,8 @@
                                 <p></p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-info">Save changes</button>
                             </div>
                             </div>
                         </div>
@@ -573,8 +573,8 @@
 
       </div>
       <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-info">Save changes</button>
       </div> -->
     </div>
   </div>
