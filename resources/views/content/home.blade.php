@@ -26,7 +26,7 @@
 <section id="hero" class="d-flex align-items-center">
     <div class="container">
         <h1>Global Corporate Profile Ownership</h1>
-        <h2>Tracking Corporate Ownership Structures Worldwide through Corporate Ownership Platform.</h2>
+        <h2>Tracking Corporate Ownership Structures Worldwide</h2>
         <!-- <a href="#about" hidden class="btn-get-started scrollto">Search</a> -->
         <!-- <section id="hero" class="d-flex align-items-center"> -->
         <!-- <div class="container"> -->

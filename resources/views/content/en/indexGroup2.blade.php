@@ -62,7 +62,7 @@
                                 <iframe src="{{ $filePath }}" width="100%" height="600px"></iframe>
                                 <!-- <p class="description">{{ $subsidiary }}</p> -->
                             @else
-                                <p>Please contact our team to get company structure and other information of {{ $subsidiary }}.</p>
+                                <p>Please contact Us to get company structure and other information of {{ $subsidiary }}.</p>
                             @endif
                         @endforeach
                     </div>
@@ -249,34 +249,39 @@
                 </div>
                 <div class="col-xl-4 col-lg-6 icon-boxes d-flex flex-column align-items-stretch py-5 px-lg-5" style="background-color: #F5F5F5;">
                     <div class="blog sidebar">
-                        <h5 class="card-title description">Company Profile Access</h5><br>
-                        <p>If the data You're looking for is not found, You can contact us via email at <i>helpdesk@earthqualizer.org</i>.</p>
+                    <h5 class="card-title-description">Company Profile Access</h5>
+                    </div><!-- End sidebar -->
+                    <!-- <a href="#appointment" class="appointment-btn" style="justify-content: center; align-items:center; text-align:center;">Buy</a> -->
+                    <div class="line"></div>
+                    <div class="report-benefit">
+                        <p>If the data You're looking for is not found, You can contact us via email at helpdesk@earthqualizer.org.</p>
                         <p>We will process your request within 3x24 hours.</p>
                         <div class="line"></div>
-                        <!-- Modal Standard -->
-                        <div class="modal fade" id="modalStandard" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Standard member data set overview</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <!-- Tambahkan elemen gambar di bawah ini -->
-                                    <div style="max-width: 100%; height: auto; text-align: center;">
-                                    <img src="{{asset('img/standard.JPG')}}" alt="Image">
-                                    </div>
-                                    <!-- Akhiri bagian elemen gambar -->
-                                    <p></p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-info">Save changes</button>
-                                </div>
-                                </div>
+                    </div>
+                    <!-- Modal Standard -->
+                    <div class="modal fade" id="modalStandard" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Standard member data set overview</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                        </div><!-- Modal Premium-->
-                        <div class="modal fade" id="modalPremium" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-body">
+                                <!-- Tambahkan elemen gambar di bawah ini -->
+                                <div style="max-width: 100%; height: auto; text-align: center;">
+                                <img src="{{asset('img/standard.JPG')}}" alt="Image">
+                                </div>
+                                <!-- Akhiri bagian elemen gambar -->
+                                <p></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-info">Save changes</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div><!-- Modal Premium-->
+                    <div class="modal fade" id="modalPremium" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl">
                             <div class="modal-content">
                             <div class="modal-header">
@@ -304,14 +309,14 @@
             <div class="row" style="box-shadow: rgba(44, 73, 100, 0.08) 0px 2px 15px 0px;">
                 <div class="col-xl-8 col-lg-6 es d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
                     <div class="container" style="padding-top:50px;">
-                        <h6 class="text-muted">To get information from this company, please contact helpdesk@earthqualizer.org</h6>
+                        <h5 class="text-muted">To get information from this company, please contact <span class="color: #0AA7C4;">helpdesk@earthqualizer.org</span> </h5>
                         <!-- <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the subsidiary companies. The information about Group Company can be used to identify the subsidiary under.</p> -->
                         
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-6 es d-flex flex-column align-items-stretch py-5 px-lg-5" style="background-color: #F5F5F5;">
                     <div class="blog sidebar">
-                        <h4>Company Profile Access</h4>
+                        <h4 class="card-title description">Company Profile Access</h4>
                     </div><!-- End sidebar -->
                     <div class="line"></div>
                     <div class="report-benefit">
@@ -492,78 +497,78 @@
                 <div class="card-body row">
                 @foreach($groups as $subs)
                     <div class="col-6">
-                        <h6 class="text-muted">Group Name</h6>
+                        <h6 class="card-title description">Group Name</h6>
                         <p class="card-text">{{ $subs->group_name }}</p>
-                        <h6 class="text-muted">Official Group Name</h6>
+                        <h6 class="card-title description">Official Group Name</h6>
                         <p class="card-text">{{ $subs->official_group_name }}</p>
-                        <h6 class="text-muted">Group Status</h6>
+                        <h6 class="card-title description">Group Status</h6>
                         <p class="card-text">{{ $subs->group_status }}</p>
-                        <h6 class="text-muted">Stock Exchange Name</h6>
+                        <h6 class="card-title description">Stock Exchange Name</h6>
                         <p class="card-text">{{ $subs->stock_exchange_name }}</p>
-                        <h6 class="text-muted">Controller</h6>
+                        <h6 class="card-title description">Controller</h6>
                         <p class="card-text">{{ $subs->controller }}</p>
-                        <h6 class="text-muted">Business Sector</h6>
+                        <h6 class="card-title description">Business Sector</h6>
                         <p class="card-text">{{ $subs->business_sector }}</p>
-                        <h6 class="text-muted">Main Product</h6>
+                        <h6 class="card-title description">Main Product</h6>
                         <p class="card-text">{{ $subs->main_product }}</p>
-                        <h6 class="text-muted">Commercial Operation Date</h6>
+                        <h6 class="card-title description">Commercial Operation Date</h6>
                         <p class="card-text">{{ $subs->commercial_operation_date }}</p>
-                        <h6 class="text-muted">Country Registration</h6>
+                        <h6 class="card-title description">Country Registration</h6>
                         <p class="card-text">{{ $subs->country_registration }}</p>
-                        <h6 class="text-muted">Business Address</h6>
+                        <h6 class="card-title description">Business Address</h6>
                         <p class="card-text">{{ $subs->business_address }}</p>
-                        <h6 class="text-muted">Country Operation</h6>
+                        <h6 class="card-title description">Country Operation</h6>
                         <p class="card-text">{{ $subs->country_operation }}</p>
-                        <h6 class="text-muted">Shareholder</h6>
+                        <h6 class="card-title description">Shareholder</h6>
                         <p class="card-text">{{ $subs->shareholder_name1 }} ({{ $subs->percent_of_share1 }})</p>
                         <p class="card-text">{{ $subs->shareholder_name2 }} ({{ $subs->percent_of_share2 }})</p>
                         <p class="card-text">{{ $subs->shareholder_name3 }} ({{ $subs->percent_of_share3 }})</p>
                         <p class="card-text">{{ $subs->shareholder_name4 }} ({{ $subs->percent_of_share4 }})</p>
                         <p class="card-text">{{ $subs->shareholder_name5 }} ({{ $subs->percent_of_share5 }})</p>
-                        <!-- <h6 class="text-muted">Group Structure</h6>
+                        <!-- <h6 class="card-title description">Group Structure</h6>
                         <p class="card-text">{{ $subs->group_structure }}</p> -->
-                        <h6 class="text-muted">Management (Name and Position)</h6>
+                        <h6 class="card-title description">Management (Name and Position)</h6>
                         <p class="card-text">{{ $subs->management_name_and_position }}</p>
-                        <h6 class="text-muted">Land Area Controlled</h6>
+                        <h6 class="card-title description">Land Area Controlled</h6>
                         <p class="card-text">{{ $subs->land_area_controlled }}</p>
                     </div>
                     <div class="col-6">
                         
-                    <h6 class="text-muted">Total Planted</h6>
+                    <h6 class="card-title description">Total Planted</h6>
                         <p class="card-text">{{ $subs->total_planted }}</p>
-                        <h6 class="text-muted">Total Smallholders</h6>
+                        <h6 class="card-title description">Total Smallholders</h6>
                         <p class="card-text">{{ $subs->total_smallholders }}</p>
-                        <h6 class="text-muted">Total Land Designed HCV</h6>
+                        <h6 class="card-title description">Total Land Designed HCV</h6>
                         <p class="card-text">{{ $subs->total_land_designated_hcv }}</p>
-                        <h6 class="text-muted">Annual FFB Productivity</h6>
+                        <h6 class="card-title description">Annual FFB Productivity</h6>
                         <p class="card-text">{{ $subs->annual_ffb_productivity }}</p>
-                        <h6 class="text-muted">Annual Productivity by RSPO certified</h6>
+                        <h6 class="card-title description">Annual Productivity by RSPO certified</h6>
                         <p class="card-text">{{ $subs->annual_productivity_by_rspo_certified }}</p>
-                        <h6 class="text-muted">Annual CPO Productivity</h6>
+                        <h6 class="card-title description">Annual CPO Productivity</h6>
                         <p class="card-text">{{ $subs->annual_cpo_productivity }}</p>
-                        <h6 class="text-muted">Annual CPK Productivity</h6>
+                        <h6 class="card-title description">Annual CPK Productivity</h6>
                         <p class="card-text">{{ $subs->annual_cpk_productivity }}</p>
-                        <h6 class="text-muted">RSPO Member</h6>
+                        <h6 class="card-title description">RSPO Member</h6>
                         <p class="card-text">{{ $subs->rspo_member }}</p>
-                        <h6 class="text-muted">CGF Member</h6>
+                        <h6 class="card-title description">CGF Member</h6>
                         <p class="card-text">{{ $subs->cgf_member }}</p>
-                        <h6 class="text-muted">ASD Member</h6>
+                        <h6 class="card-title description">ASD Member</h6>
                         <p class="card-text">{{ $subs->asd_member }}</p>
-                        <h6 class="text-muted">GPNSR Member</h6>
+                        <h6 class="card-title description">GPNSR Member</h6>
                         <p class="card-text">{{ $subs->gpnsr_member }}</p>
-                        <h6 class="text-muted">Others Mention</h6>
+                        <h6 class="card-title description">Others Mention</h6>
                         <p class="card-text">{{ $subs->others_mention }}</p>
-                        <h6 class="text-muted">NDPE Policy</h6>
+                        <h6 class="card-title description">NDPE Policy</h6>
                         <p class="card-text">{{ $subs->ndpe_policy }}</p>
-                        <h6 class="text-muted">NDPE Time Bound Plan Implementation</h6>
+                        <h6 class="card-title description">NDPE Time Bound Plan Implementation</h6>
                         <p class="card-text">{{ $subs->ndpe_time_bound_plan_implementation }}</p>
-                        <h6 class="text-muted">Sustainability Progress Report</h6>
+                        <h6 class="card-title description">Sustainability Progress Report</h6>
                         <p class="card-text">{{ $subs->sustainability_progress_report }}</p>
-                        <h6 class="text-muted">Supply Chain Traceability</h6>
+                        <h6 class="card-title description">Supply Chain Traceability</h6>
                         <p class="card-text">{{ $subs->supply_chain_traceability }}</p>
-                        <h6 class="text-muted">Grievance Mechanism</h6>
+                        <h6 class="card-title description">Grievance Mechanism</h6>
                         <p class="card-text">{{ $subs->grievance_mechanism }}</p>
-                        <h6 class="text-muted">Recovery Plan</h6>
+                        <h6 class="card-title description">Recovery Plan</h6>
                         <p class="card-text">{{ $subs->recovery_plan }}</p>
                     </div>
                     @endforeach

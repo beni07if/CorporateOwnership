@@ -35,25 +35,25 @@
                             </th>
                         </thead>
                         <form action="{{ route('subsidiaryShow') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @if($consolidations->isEmpty())
-        <p>No results found.</p>
-    @else
-        @foreach($consolidations as $subs)
-            <tr>
-                <td>
-                    <input type="submit" name="subsidiary" value="{{ $subs->subsidiary }}" class="btn btn-light">
-                </td>
-                <td>
-                    <!-- Periksa apakah $companyOwnership ada dan tidak kosong -->
-                    @if(isset($companyOwnership) && $companyOwnership->isNotEmpty())
-                        <input type="submit" name="subsidiary" value="Nama Perusahaan: {{ $companyOwnership->first()->company_name }}" class="btn btn-light">
-                    @endif
-                </td>
-            </tr>
-        @endforeach
-    @endif
-</form>
+                            @csrf
+                            @if($consolidations->isEmpty())
+                                <p>No results found.</p>
+                            @else
+                                @foreach($consolidations as $subs)
+                                    <tr>
+                                        <td>
+                                            <input type="submit" name="subsidiary" value="{{ $subs->subsidiary }}" class="btn btn-light">
+                                        </td>
+                                        <td>
+                                            <!-- Periksa apakah $companyOwnership ada dan tidak kosong -->
+                                            @if(isset($companyOwnership) && $companyOwnership->isNotEmpty())
+                                                <input type="submit" name="subsidiary" value="Nama Perusahaan: {{ $companyOwnership->first()->company_name }}" class="btn btn-light">
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </form>
 
                     </table>
 

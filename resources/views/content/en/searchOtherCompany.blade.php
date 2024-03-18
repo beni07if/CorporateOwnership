@@ -35,9 +35,7 @@
                         </thead>
                         <form action="{{ route('otherCompanyShow') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @if($otherCompanies->isEmpty())
-                                <p>No results found.</p>
-                            @else
+                            @if($otherCompanies->isNotEmpty())
                                 @foreach($otherCompanies as $subs)
                                     <tr>
                                         <td>
@@ -51,10 +49,21 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="2">
+                                    <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                                        <h4 class="alert-heading">Data Not Found</h4>
+                                        <p>Data not found, please enter the correct keywords.</p>
+                                        <hr>
+                                        <p class="mb-0">Please contact Us for more information at <i><b>helpdesk@earthqualizer.org</b></i></p>
+                                        <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+                                    </div>
+                                    </td>
+                                </tr>
                             @endif
                         </form>
                     </table>
-                    <i class="text-muted">*Note: Data source from Berita Negara</i>
 
                     <nav aria-label="Pagination Navigation">
                         <ul class="pagination justify-content-center">

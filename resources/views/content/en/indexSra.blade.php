@@ -23,63 +23,61 @@
                 </ol> -->
             </div>
             @foreach($sras->pluck('group_name')->unique() as $subs)
-            <h2 scope="col" style="color:green;">RSA Summary of {{$subs}}</h2>
+            <h4 scope="col" class="card-title description">RSA Summary of {{$subs}}</h4>
             @endforeach
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
                         @if(count($sras)>0)
-
                         <!-- Default Table -->
                         <table class="table">
-                       
                             <thead>
                             <tr>
                                 <th scope="col">*Note: The highest the score/percentage is, the best is the company</th>
                                  @foreach($sras->pluck('group_name')->unique() as $subs)
-                                 <th scope="col" style="color:green;">{{$subs}}</th>
+                                 <th scope="col" style="color:#0AA7C4;">{{$subs}}</th>
                                  @endforeach
                                 <th scope="col">Percentage</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Transparency (out of 10)</td>
-                                @foreach($sras->pluck('transparency')->unique() as $subs)
-                                 <td>{{$subs}}</td>
-                                 @endforeach
-                                @foreach($sras->pluck('percent_transparency')->unique() as $subs)
-                                 <td>{{$subs}} %</td>
-                                 @endforeach
-                            </tr>
-                            <tr>
-                                <td>RSPO Compliance (out of 10)</td>
-                                @foreach($sras->pluck('rspo_compliance')->unique() as $subs)
-                                 <td>{{$subs}}</td>
-                                 @endforeach
-                                @foreach($sras->pluck('percent_rspo_compliance')->unique() as $subs)
-                                 <td>{{$subs}} %</td>
-                                 @endforeach
-                            </tr>
-                            <tr>
-                                <td>NDPE Compliance (out of 21)</td>
-                                @foreach($sras->pluck('ndpe_compliance')->unique() as $subs)
-                                 <td>{{$subs}}</td>
-                                 @endforeach
-                                @foreach($sras->pluck('percent_ndpe_compliance')->unique() as $subs)
-                                 <td>{{$subs}} %</td>
-                                 @endforeach
-                            </tr>
-                            <tr>
-                                <th scope="col">Total (out of 41)</th>
-                                 @foreach($sras->pluck('total')->unique() as $subs)
-                                 <th scope="col">{{$subs}}</th>
-                                 @endforeach
-                                 @foreach($sras->pluck('percent_total')->unique() as $subs)
-                                 <th scope="col">{{$subs}} %</th>
-                                 @endforeach
-                            </tr>
+                                <tr>
+                                    <td>Transparency (out of 10)</td>
+                                    @foreach($sras->pluck('transparency')->unique() as $subs)
+                                    <td>{{$subs}}</td>
+                                    @endforeach
+                                    @foreach($sras->pluck('percent_transparency')->unique() as $subs)
+                                    <td>{{$subs}} %</td>
+                                    @endforeach
+                                </tr>
+                                <tr>
+                                    <td>RSPO Compliance (out of 10)</td>
+                                    @foreach($sras->pluck('rspo_compliance')->unique() as $subs)
+                                    <td>{{$subs}}</td>
+                                    @endforeach
+                                    @foreach($sras->pluck('percent_rspo_compliance')->unique() as $subs)
+                                    <td>{{$subs}} %</td>
+                                    @endforeach
+                                </tr>
+                                <tr>
+                                    <td>NDPE Compliance (out of 21)</td>
+                                    @foreach($sras->pluck('ndpe_compliance')->unique() as $subs)
+                                    <td>{{$subs}}</td>
+                                    @endforeach
+                                    @foreach($sras->pluck('percent_ndpe_compliance')->unique() as $subs)
+                                    <td>{{$subs}} %</td>
+                                    @endforeach
+                                </tr>
+                                <tr>
+                                    <th scope="col">Total (out of 41)</th>
+                                    @foreach($sras->pluck('total')->unique() as $subs)
+                                    <th scope="col">{{$subs}}</th>
+                                    @endforeach
+                                    @foreach($sras->pluck('percent_total')->unique() as $subs)
+                                    <th scope="col">{{$subs}} %</th>
+                                    @endforeach
+                                </tr>
                             </tbody>
                         </table>
                         @endif
@@ -90,9 +88,9 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                        <h5 class="card-title">Percentage of @foreach($sras->pluck('group_name')->unique() as $subs)
+                        <h6 class="card-title">Percentage of @foreach($sras->pluck('group_name')->unique() as $subs)
                             {{$subs}} %
-                            @endforeach SRA + Overall</h5>
+                            @endforeach SRA + Overall</h6>
 
                             <!-- Bar Chart -->
                             <canvas id="barChart" style="max-height: 400px;"></canvas>
@@ -263,18 +261,17 @@
 @section('mapsLeaflet')
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
 
-
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">@foreach($sras as $subs)
-                                @if($loop->first)
-                                    <h4 class="title mb-0"> {{ $subs->group_name }}</h4>
-                                @endif
-                            @endforeach</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+            @foreach($sras as $subs)
+                @if($loop->first)
+                    <h4 class="title mb-0"> {{ $subs->group_name }}</h4>
+                @endif
+            @endforeach</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

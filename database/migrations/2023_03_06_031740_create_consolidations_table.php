@@ -44,14 +44,10 @@ return new class extends Migration
             $table->string('land_title')->nullable();
             $table->string('sizebyeq')->nullable();
             $table->string('rspo_certified')->nullable();
-            $table->string('other_certification')->nullable();//new
-            // $table->string('mspo_certified')->nullable();
-            // $table->string('ispo_certified')->nullable();
+            $table->string('other_certification')->nullable();
             $table->string('data_source')->nullable();
             $table->string('data_update')->nullable();
             $table->text('note')->nullable();
-            $table->string('complete_percen')->nullable();
-            $table->string('akta')->nullable();
             $table->timestamps();
         });
     }

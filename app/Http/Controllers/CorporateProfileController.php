@@ -188,7 +188,7 @@ class CorporateProfileController extends Controller
     {
         $query = $request->input('shareholder_name');
 
-        $shareholderNames = CompanyOwnership::select('shareholder_name', 'company_name', 'percentage_of_shares', 'position', 'company_number', 'country_of_business_address', 'currency', 'incorporation_date', 'country_of_registered_address', 'address')
+        $shareholderNames = CompanyOwnership::select('shareholder_name', 'date_of_birth', 'ic_passport_comp_number', 'address', 'position', 'number_of_shares', 'total_of_shares', 'percentage_of_shares', 'currency', 'company_name', 'data_source' )
             // ->where('shareholder_name', 'LIKE', '%' . $query . '%')
             ->where('shareholder_name',  $query)
             ->distinct()

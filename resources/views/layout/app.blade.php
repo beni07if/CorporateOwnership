@@ -198,8 +198,8 @@
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     <li><a class="" href="{{route('corporateProfileEn')}}#why-us">Home</a></li>
-                    <li><a class="" href="#departments">Search</a></li>
-                    <li><a class="" href="#services">Dataset</a></li>
+                    <li><a class="" href="{{route('corporateProfileEn')}}#departments">Search</a></li>
+                    <li><a class="" href="{{route('corporateProfileEn')}}#services">Dataset</a></li>
                     <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="#">Drop Down 1</a></li>
@@ -217,7 +217,7 @@
                             <li><a href="#">Drop Down 4</a></li>
                         </ul>
                     </li> -->
-                    <li><a class="" href="#footer">Contact</a></li>
+                    <li><a class="" href="{{route('corporateProfileEn')}}#footer">Contact</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->

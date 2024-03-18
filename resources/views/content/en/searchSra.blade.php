@@ -28,7 +28,7 @@
                         <thead>
                             <th class="d-flex justify-content-between align-items-center">
                                 <h4 class="title mb-0">List of Groups</h4>
-                                <form action="{{ route('searchFunctionGroup2') }}" method="GET" class="d-flex">
+                                <form action="{{ route('searchFunctionSRA') }}" method="GET" class="d-flex">
                                     <input type="text" class="form-control me-2" name="group_name" placeholder="Search other groups">
                                     <button type="submit" class="btn btn-info">Search</button>
                                 </form>
@@ -37,9 +37,7 @@
 
                         <form action="{{ route('sraShow') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @if($sras->isEmpty())
-                            <p>No results found.</p>
-                            @else
+                            @if($sras->isNotEmpty())
                             @foreach($sras as $subs)
                             <tr>
                                 <td>
@@ -48,6 +46,18 @@
                                 </td>
                             </tr>
                             @endforeach
+                            @else
+                            <tr>
+                                <td colspan="2">
+                                <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                                    <h4 class="alert-heading">Data Not Found</h4>
+                                    <p>Data not found, please enter the correct keywords.</p>
+                                    <hr>
+                                    <p class="mb-0">Please contact Us for more information at <i><b>helpdesk@earthqualizer.org</b></i></p>
+                                    <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+                                </div>
+                                </td>
+                            </tr>
                             @endif
                         </form>
                     </table>

@@ -123,6 +123,7 @@
                                 @endforeach
                             </div>
                         </div>
+                        <i class="text-muted">*Note: Data source from Berita Negara</i>
                     </div>
                     <div class="container" style="padding-top:50px;">
                         <h5 class="description">Search other Subsidiaries</h5>

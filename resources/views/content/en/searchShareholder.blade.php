@@ -27,7 +27,7 @@
                     <table class="table table-hover">
                         <thead>
                             <th class="d-flex justify-content-between align-items-center">
-                                @foreach($shareholderNames as $subs)
+                                <!-- @foreach($shareholderNames as $subs)
                                     @if($loop->first)
                                         <h4 class="title mb-0">Ownership of shares from {{ $subs->shareholder_name }}</h4>
                                     @endif
@@ -35,13 +35,17 @@
                                 <form action="{{ route('searchFunctionShareholder') }}" method="GET" class="d-flex">
                                     <input type="text" class="form-control me-2" name="query" placeholder="Search other Shareholders">
                                     <button type="submit" class="btn btn-info">Search</button>
+                                </form> -->
+
+                                <h4 class="title mb-0">LIST OF SHAREHOLDERS</h4>
+                                <form action="{{ route('searchFunctionShareholder') }}" method="GET" class="d-flex">
+                                    <input type="text" class="form-control me-2" name="query" placeholder="Search other subsidiaries">
+                                    <button type="submit" class="btn btn-info">Search</button>
                                 </form>
                             </th>
                         </thead>
-                        @if($shareholderNames->isEmpty())
-                            <p>No results found.</p>
-                        @else
-                            <table class="table">
+                        @if($shareholderNames->isNotEmpty())
+                        <table class="table">
                                 <thead>
                                     <tr>
                                         <th>Shareholder Name</th>
@@ -69,6 +73,18 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                        @else
+                        <tr>
+                            <td colspan="2">
+                            <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                                <h4 class="alert-heading">Data Not Found</h4>
+                                <p>Data not found, please enter the correct keywords.</p>
+                                <hr>
+                                <p class="mb-0">Please contact Us for more information at <i><b>helpdesk@earthqualizer.org</b></i></p>
+                                <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+                            </div>
+                            </td>
+                        </tr>
                         @endif
 
                     </table>

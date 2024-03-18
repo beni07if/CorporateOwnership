@@ -21,7 +21,6 @@
                 <!-- <h2 style="color:#4682B4;">Subsidiary</h2> -->
             </div>
             @if(count($shareholderNames)>0)
-
             @if(!$shareholderNames->isEmpty() && $shareholderNames[0]->position && $shareholderNames[0]->position !== '-')
                 <div class="row" style="box-shadow: rgba(44, 73, 100, 0.08) 0px 2px 15px 0px; pd-top:30px;">
             @endif
@@ -56,26 +55,22 @@
             @if(!$shareholderNames->isEmpty() && $shareholderNames[0]->position && $shareholderNames[0]->position !== '-')
                 </div>
             @endif
-
             <div class="row" style="box-shadow: rgba(44, 73, 100, 0.08) 0px 2px 15px 0px;">
                 <div class="col-xl-12 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-                    
                     <table class="table table-hover">
                     <thead>
                         <th class="d-flex justify-content-between align-items-center">
                             @foreach($shareholderNames as $subs)
                                 @if($loop->first)
-                                    <h4>Ownership of shares from {{ ucwords(strtolower($shareholderNames[0]->shareholder_name)) }}</h4>
+                                    <h4>{{ ucwords(strtolower($shareholderNames[0]->shareholder_name)) }} Shares Ownership</h4>
                                 @endif
                             @endforeach
-
                             <form action="{{ route('searchFunctionShareholder') }}" method="GET" class="d-flex">
                                 <input type="text" class="form-control me-2" name="query" placeholder="Search other Shareholders">
                                 <button type="submit" class="btn btn-info">Search</button>
                             </form>
                         </th>
                     </thead>
-
                         @if($shareholderNames->isEmpty())
                             <p>No results found.</p>
                             @else
@@ -83,16 +78,13 @@
                                 <thead>
                                     <tr>
                                         <!-- <th>No</th> -->
-                                        <th>Shareholder Name</th>
-                                        <th>Identification Number</th>
-                                        <th>Nationality</th>
+                                        <th>Name</th>
+                                        <th>Position</th>
                                         <th>Number of Shares</th>
-                                        <th>Currency</th>
-                                        <th>Address Change</th>
-                                        <th>Source of Address</th>
-                                        <th>Address</th>
+                                        <th>Total of Shares</th>
+                                        <th>Percentage of Shares</th>
                                         <th>Company Name</th>
-                                        <th></th>
+                                        <th>Detail</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -101,22 +93,19 @@
                                             <tr>
                                                 <!-- <td>{{ $loop->iteration }}</td> -->
                                                 <td>{{ $subs->shareholder_name }}</td>
-                                                <td>{{ $subs->company_number }}</td>
-                                                <td>{{ $subs->country_of_business_address }}</td>
+                                                <td>{{ $subs->position }}</td>
+                                                <td>{{ $subs->number_of_shares }}</td>
+                                                <td>{{ $subs->total_of_shares }}</td>
                                                 <td>{{ $subs->percentage_of_shares }}</td>
-                                                <td>{{ $subs->currency }}</td>
-                                                <td>{{ $subs->incorporation_date }}</td>
-                                                <td>{{ $subs->country_of_registered_address }}</td>
-                                                <td>{{ $subs->address }}</td>
                                                 <td>
-                                                    <form action="{{ route('subsidiaryShow') }}" method="POST">
+                                                    <form action="{{ route('subsidiaryShow') }}" method="POST" style="text-align:left;">
                                                         @csrf
                                                         <input type="hidden" name="subsidiary" value="{{ $subs->company_name }}">
                                                         <button type="submit" class="btn btn-link">{{ $subs->company_name }}</button>
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $subs->id }}">
                                                         Details
                                                     </button>
                                                 </td>
@@ -124,12 +113,9 @@
                                         @endif
                                     @endforeach
                                 </tbody>
-
                             </table>
                             @endif
-
                     </table>
-
                     <nav aria-label="Pagination Navigation">
                         <ul class="pagination justify-content-center">
 
@@ -168,20 +154,18 @@
                     </nav>
                 </div>
             </div>
-
             @else
             <div class="row" style="box-shadow: rgba(44, 73, 100, 0.08) 0px 2px 15px 0px;">
                 <div class="col-xl-8 col-lg-6 es d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
                     <div class="container" style="padding-top:50px;">
-                        <h3 class="text-muted">To get information from this shareholder, please contact helpdesk@earthqualizer.org</h3>
+                        <h5 class="text-muted">To get information from this shareholder please contact Us at <span style="color: #0AA7C4;">helpdesk@earthqualizer.org</span></h5>
                         <!-- <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the subsidiary companies. The information about Group Company can be used to identify the subsidiary under.</p> -->
-                        
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-6 es d-flex flex-column align-items-stretch py-5 px-lg-5" style="background-color: #F5F5F5;">
                     <div class="blog sidebar">
 
-                        <h3>Company Profile Access</h3>
+                    <h5 class="card-title description">Company Profile Access</h5>
                     </div><!-- End sidebar -->
                     <!-- <a href="#appointment" class="appointment-btn" style="justify-content: center; align-items:center; text-align:center;">Buy</a> -->
                     <div class="line"></div>
@@ -193,7 +177,6 @@
                 </div>
             </div>
             @endif
-
         </div>
     </section><!-- End About Section -->
 
@@ -203,15 +186,98 @@
 </main><!-- End #main -->
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+@foreach($shareholderNames as $subs)
+<div class="modal fade" id="exampleModal{{$subs->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"> 
+                    <h4 class="title mb-0"> {{ $subs->shareholder_name }} - <i>{{ $subs->company_name }}</i></h4>
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <p class="small fst-italic">The following is share ownership information from {{ $subs->shareholder_name }} at {{ $subs->company_name }}</p>
+                    <div class="col-12">
+                        <div class="tab-content pt-2">
+                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 label ">Name</div>
+                                    <div class="col-lg-8 col-md-8">: {{ $subs->shareholder_name }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 label ">Date of Birth</div>
+                                    <div class="col-lg-8 col-md-8">: {{ $subs->date_of_birth }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 label ">IC Passport Comp Number</div>
+                                    <div class="col-lg-8 col-md-8">: {{ $subs->ic_passport_comp_number }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 label ">Address</div>
+                                    <div class="col-lg-8 col-md-8">: {{ $subs->address }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 label ">Position</div>
+                                    <div class="col-lg-8 col-md-8">: {{ $subs->position }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 label ">Number of Shares</div>
+                                    <div class="col-lg-8 col-md-8">: {{ $subs->number_of_shares }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 label ">Total of Shares</div>
+                                    <div class="col-lg-8 col-md-8">: {{ $subs->total_of_shares }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 label ">Currency</div>
+                                    <div class="col-lg-8 col-md-8">: {{ $subs->currency }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 label ">Company Name</div>
+                                    <div class="col-lg-8 col-md-8">: {{ $subs->company_name }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 label ">Data Source</div>
+                                    <div class="col-lg-8 col-md-8">: {{ $subs->data_source }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-0">
+                        <div class="tab-content pt-2">
+                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label ">Date Company Number</div>
+                                    <div class="col-lg-6 col-md-8">{{ $subs->date_company_number }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                
+                </div>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info">Save changes</button>
+            </div> -->
+        </div>
+    </div>
+</div>
+@endforeach
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalOld" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Ownership of shares from &nbsp; @foreach($shareholderNames as $subs)
-                                @if($loop->first)
-                                    <h4 class="title mb-0"> {{ $subs->shareholder_name }}</h4>
-                                @endif
-                            @endforeach</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ownership of shares from &nbsp; 
+            @foreach($shareholderNames as $subs)
+                @if($loop->first)
+                    <h4 class="title mb-0"> {{ $subs->shareholder_name }}</h4>
+                @endif
+            @endforeach</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -219,48 +285,48 @@
                 <div class="card-body row">
                 @foreach($shareholderNames as $subs)
                     <div class="col-6">
-                        <h6 class="card-title text-muted">Shareholder Name</h6>
+                        <h6 class="card-title description text-muted">Shareholder Name</h6>
                         <p class="card-text">{{ $subs->shareholder_name }}</p>
-                        <h6 class="card-title text-muted">Date of Birth</h6>
-                        <p class="card-text">...</p>
-                        <h6 class="card-title text-muted">IC Passport Comp Number</h6>
-                        <p class="card-text">...</p>
-                        <h6 class="card-title text-muted">Position</h6>
-                        <p class="card-text">...</p>
-                        <h6 class="card-title text-muted">Number of Shares</h6>
-                        <p class="card-text">...</p>
-                        <h6 class="card-title text-muted">Currency</h6>
-                        <p class="card-text">...</p>
-                        <h6 class="card-title text-muted">Company Name</h6>
-                        <p class="card-text">...</p>
-                        <h6 class="card-title text-muted">Company Type</h6>
-                        <p class="card-text">...</p>
-                        <h6 class="card-title text-muted">Company Number</h6>
-                        <p class="card-text">...</p>
-                        <h6 class="card-title text-muted">Incorporation Date</h6>
-                        <p class="card-text">...</p>
+                        <h6 class="card-title description text-muted">Date of Birth</h6>
+                        <p class="card-text">{{ $subs->date_of_birth }}</p>
+                        <h6 class="card-title description text-muted">IC Passport Comp Number</h6>
+                        <p class="card-text">{{ $subs->ic_passport_comp_number }}</p>
+                        <h6 class="card-title description text-muted">Position</h6>
+                        <p class="card-text">{{ $subs->position }}</p>
+                        <h6 class="card-title description text-muted">Number of Shares</h6>
+                        <p class="card-text">{{ $subs->number_of_shares }}</p>
+                        <h6 class="card-title description text-muted">Currency</h6>
+                        <p class="card-text">{{ $subs->currency }}</p>
+                        <h6 class="card-title description text-muted">Company Name</h6>
+                        <p class="card-text">{{ $subs->company_name }}</p>
+                        <h6 class="card-title description text-muted">Company Type</h6>
+                        <p class="card-text">{{ $subs->company_type }}</p>
+                        <h6 class="card-title description text-muted">Company Number</h6>
+                        <p class="card-text">{{ $subs->company_number }}</p>
+                        <h6 class="card-title description text-muted">Incorporation Date</h6>
+                        <p class="card-text">{{ $subs->incorporation_date }}</p>
                     </div>
                     <div class="col-6">
-                        <h6 class="card-title text-muted">Date Company Number</h6>
-                        <p class="card-text">...</p>
-                        <h6 class="card-title text-muted">Change Company Number</h6>
-                        <p class="card-text">...</p>
-                        <h6 class="card-title text-muted">Date Change Company Number</h6>
-                        <p class="card-text">...</p>
-                        <h6 class="card-title text-muted">Registered Address</h6>
-                        <p class="card-text">...</p>
-                        <h6 class="card-title text-muted">Country of Registered Address</h6>
-                        <p class="card-text">...</p>
-                        <h6 class="card-title text-muted">Business Address</h6>
-                        <p class="card-text">...</p>
-                        <h6 class="card-title text-muted">Country of Business Address</h6>
-                        <p class="card-text">...</p>
-                        <h6 class="card-title text-muted">Nature of Business</h6>
-                        <p class="card-text">...</p>
-                        <h6 class="card-title text-muted">Taxpayer Identification Number</h6>
-                        <p class="card-text">...</p>
-                        <h6 class="card-title text-muted">Data Source</h6>
-                        <p class="card-text">...</p>
+                        <h6 class="card-title description text-muted">Date Company Number</h6>
+                        <p class="card-text">{{ $subs->date_company_number }}</p>
+                        <h6 class="card-title description text-muted">Change Company Number</h6>
+                        <p class="card-text">{{ $subs->change_company_number }}</p>
+                        <h6 class="card-title description text-muted">Date Change Company Number</h6>
+                        <p class="card-text">{{ $subs->date_change_company_number }}</p>
+                        <h6 class="card-title description text-muted">Registered Address</h6>
+                        <p class="card-text">{{ $subs->registered_address }}</p>
+                        <h6 class="card-title description text-muted">Country of Registered Address</h6>
+                        <p class="card-text">{{ $subs->country_of_registered_address }}</p>
+                        <h6 class="card-title description text-muted">Business Address</h6>
+                        <p class="card-text">{{ $subs->business_address }}</p>
+                        <h6 class="card-title description text-muted">Country of Business Address</h6>
+                        <p class="card-text">{{ $subs->country_of_business_address}}</p>
+                        <h6 class="card-title description text-muted">Nature of Business</h6>
+                        <p class="card-text">{{ $subs->narute_of_business }}</p>
+                        <h6 class="card-title description text-muted">Taxpayer Identification Number</h6>
+                        <p class="card-text">{{ $subs->taxpayer_identification_number }}</p>
+                        <h6 class="card-title description text-muted">Data Source</h6>
+                        <p class="card-text">{{ $subs->data_source }}</p>
                     </div>
                     @endforeach
                 </div>
