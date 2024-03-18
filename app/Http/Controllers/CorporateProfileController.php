@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Consolidation;
 use App\Models\CompanyOwnership;
+use App\Models\OtherCompany;
 use App\Models\Subsidiary;
 use App\Models\Group;
 use App\Models\Chatbot;
@@ -65,20 +66,50 @@ class CorporateProfileController extends Controller
         return view('content.en.searchGroup2', compact('groups'));
     }
 
+    // public function searchFunctionSubsidiary(Request $request)
+    // {
+    //     $query = $request->input('query');
+
+    //     $consolidations = Consolidation::select('subsidiary')
+    //         ->where('subsidiary', 'LIKE', '%' . $query . '%')
+    //         ->distinct()
+    //         ->paginate(10);
+
+    //     // Append the search query to the pagination links
+    //     $consolidations->appends(['query' => $query]);
+
+    //     return view('content.en.searchSubsidiary', compact('consolidations'));
+    // }
+
     public function searchFunctionSubsidiary(Request $request)
     {
         $query = $request->input('query');
 
+        // Cari data di tabel Consolidation
         $consolidations = Consolidation::select('subsidiary')
             ->where('subsidiary', 'LIKE', '%' . $query . '%')
             ->distinct()
             ->paginate(10);
 
-        // Append the search query to the pagination links
-        $consolidations->appends(['query' => $query]);
+        // Jika tidak ditemukan di tabel Consolidation, cari di tabel OtherCompanies
+        if ($consolidations->isEmpty()) {
+            $otherCompanies = OtherCompany::select('badan_hukum')
+                ->where('badan_hukum', 'LIKE', '%' . $query . '%')
+                ->distinct()
+                ->paginate(10);
 
-        return view('content.en.searchSubsidiary', compact('consolidations'));
+            // Append the search query to the pagination links
+            $otherCompanies->appends(['query' => $query]);
+
+            return view('content.en.searchOtherCompany', compact('otherCompanies'));
+        } else {
+            // Append the search query to the pagination links
+            $consolidations->appends(['query' => $query]);
+
+            return view('content.en.searchSubsidiary', compact('consolidations'));
+        }
     }
+
 
     public function searchFunctionShareholder(Request $request)
     {
@@ -205,6 +236,21 @@ class CorporateProfileController extends Controller
     // }
 
     //
+
+    public function otherCompanyShow(Request $request)
+    {
+        $badanHukum = $request->input('badan_hukum');
+
+        $otherCompanies = DB::table('other_companies')
+            ->where('badan_hukum', $badanHukum)
+            ->get();
+
+        // if ($badanHukum) {
+        //     $companies = DB::table('other_companies')->where('badan_hukum', $badanHukum)->get();
+        // }
+
+        return view('content.en.indexOtherCompany', compact('otherCompanies', 'badanHukum'));
+    }
 
     public function subsidiaryShow(Request $request)
     {

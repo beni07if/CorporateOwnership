@@ -73,6 +73,7 @@ Route::get('/export', [App\Http\Controllers\ChatbotController::class, 'export'])
 Route::get('/corporate-profile-en', [CorporateProfileController::class, 'index'])->name('corporateProfileEn');
 Route::get('/corporate-profile-index', [CorporateProfileController::class, 'index'])->name('index');
 Route::post('/corporate-profile-subsidiary-show', [CorporateProfileController::class, 'subsidiaryShow'])->name('subsidiaryShow');
+Route::post('/corporate-profile-other-company-show', [CorporateProfileController::class, 'otherCompanyShow'])->name('otherCompanyShow');
 Route::post('/corporate-profile-group-show', [CorporateProfileController::class, 'groupShow'])->name('groupShow');
 Route::post('/corporate-profile-group2-show', [GroupController::class, 'group2Show'])->name('group2Show');
 Route::post('/corporate-profile-sra-show', [CorporateProfileController::class, 'sraShow'])->name('sraShow');
@@ -91,6 +92,7 @@ Route::get('/scrape', [ScraperController::class, 'index'])->name('scrape');
 Route::get('/search-groups', [CorporateProfileController::class, 'searchFunctionGroup'])->name('searchFunctionGroup');
 Route::get('/search-groups2', [CorporateProfileController::class, 'searchFunctionGroup2'])->name('searchFunctionGroup2');
 Route::get('/search-subsidiaries', [CorporateProfileController::class, 'searchFunctionSubsidiary'])->name('searchFunctionSubsidiary');
+Route::get('/search-other-companies', [CorporateProfileController::class, 'searchFunctionOtherCompany'])->name('searchFunctionOtherCompany');
 Route::get('/search-shareholders', [CorporateProfileController::class, 'searchFunctionShareholder'])->name('searchFunctionShareholder');
 Route::get('/search-sra', [CorporateProfileController::class, 'searchFunctionSRA'])->name('searchFunctionSRA');
 
