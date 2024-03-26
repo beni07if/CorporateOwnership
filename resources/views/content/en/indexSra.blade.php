@@ -147,6 +147,662 @@
                         </div>
                     </div>
                 </div>
+            </div>    
+            <div class="row mt-50" style="margin-top:50px;">
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="card-title">RSA Assessment Details</h5>
+
+                    <!-- Default Tabs -->
+                    <ul class="nav nav-tabs d-flex" id="myTabjustified" role="tablist">
+                        <li class="nav-item flex-fill" role="presentation">
+                        <button class="nav-link w-100 active" id="transparency-tab" data-bs-toggle="tab" data-bs-target="#transparency-justified" type="button" role="tab" aria-controls="transparency" aria-selected="true">Transparency</button>
+                        </li>
+                        <li class="nav-item flex-fill" role="presentation">
+                        <button class="nav-link w-100" id="rspo-tab" data-bs-toggle="tab" data-bs-target="#rspo-justified" type="button" role="tab" aria-controls="rspo" aria-selected="false">RSPO Compliance</button>
+                        </li>
+                        <li class="nav-item flex-fill" role="presentation">
+                        <button class="nav-link w-100" id="ndpe-tab" data-bs-toggle="tab" data-bs-target="#ndpe-justified" type="button" role="tab" aria-controls="ndpe" aria-selected="false">NDPE Compliance</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content pt-2" id="myTabjustifiedContent">
+                        <div class="tab-pane fade show active profile-overview" id="transparency-justified" role="tabpanel" aria-labelledby="transparency-tab">
+                            <div class="alert alert-light alert-dismissible fade show" role="alert">
+                                <h6 class="alert-heading">Upstream transparency <span style="color:#0AA7C4;">(score 0)</span></h6>
+                                <p>The subsidiaries and location of mills are available in  the SY's website, but the company does not mention its total land bank and planted area.</p>
+                                <!-- <div class="row">
+                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score</div>
+                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">0</div>
+                                    <div class="col-lg-9 col-md-8">
+                                        <p>The subsidiaries and location of mills are available in  the SY's website, but the company does not mention its total land bank and planted area.</p>
+                                    </div>
+                                </div> -->
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-transparencyUpstreamTransparency" aria-expanded="false" aria-controls="flush-collapseOne-transparencyUpstreamTransparency">
+                                                <p>Click here to details</p>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne-transparencyUpstreamTransparency" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
+                                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">2 = High</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Availability and sufficient level of detail on:</p>
+                                                        <ul>
+                                                            <li class="bi bi-check-circle"> Company subsidiaries (including mills, refineries, etc.), </li>
+                                                            <li class="bi bi-check-circle"> Total landbank and planted land</li>
+                                                            <li class="bi bi-check-circle"> Location of concessions and mills </li>
+                                                            <li class="bi bi-check-circle"> Up-to-date supplier lists (at least one quarter before research)</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">0 = Low</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <ul>
+                                                            <li class="bi bi-check-circle"> Substential parts of the above mentioned criteria are not clear, not complete, not up-to-date, or there are other reasons to doubt </li>
+                                                            <li class="bi bi-check-circle"> No or very limited information available on the above mentioned criteria</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 2px solid; border-color: black;">
+                                <h6 class="alert-heading">Sustainability and Policy Implementation report <span style="color:#0AA7C4;">(score 0)</span></h6>
+                                <p>Very limited information available</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-sustainability" aria-expanded="false" aria-controls="flush-collapseOne-sustainability">
+                                                <p>Click here to details</p>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne-sustainability" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
+                                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">2 = High</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <ul>
+                                                            <li class="bi bi-check-circle"> Company is reporting (at least) annually on implementation progress (e.g. through sustainability report, progress report, or dashboard); and/or </li>
+                                                            <li class="bi bi-check-circle"> Company is actively engaging with NGOs; and/or </li>
+                                                            <li class="bi bi-check-circle"> Company is active in working groups (e.g. POIG)  </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">0 = Low</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>There is no evidence that the company is actively implementing any commitments, and there are no signs that this will change soon </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 2px solid; border-color: black;">
+                                <h6 class="alert-heading">Refiners and grievance management <span style="color:#0AA7C4;">(score 0)</span></h6>
+                                <p>No information available</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-refiners" aria-expanded="false" aria-controls="flush-collapseOne-refiners">
+                                                <p>Click here to details</p>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne-refiners" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
+                                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">2 = High</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Availability and sufficient level of details on:</p>
+                                                        <ul>
+                                                            <li class="bi bi-check-circle"> Grievance and complaint handling </li>
+                                                            <li class="bi bi-check-circle"> Supplier mill list at refinery level  </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">1 = Medium</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Substential parts of the above mentioned criteria are not clear or not complete. </p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">0 = Low</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>No grievance information available</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 2px solid; border-color: black;">
+                                <h6 class="alert-heading">Publish Maps <span style="color:#0AA7C4;">(score 1)</span></h6>
+                                <p>No submisson and no RSPO membership</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-pubishMaps" aria-expanded="false" aria-controls="flush-collapseOne-pubishMaps">
+                                                <p>Click here to details</p>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne-pubishMaps" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
+                                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">3 = High</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Full submission</p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">2 = Medium</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Partial submission </p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">1 = Low</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>No submisson and no RSPO membership</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 2px solid; border-color: black;">
+                                <h6 class="alert-heading">Website <span style="color:#0AA7C4;">(score 1)</span></h6>
+                                <p>No submisson and no RSPO membership</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-website" aria-expanded="false" aria-controls="flush-collapseOne-website">
+                                                <p>Click here to details</p>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne-website" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
+                                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">1 = Yes</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Does the company have a website?</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">0 = No</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 2px solid; border-color: black;">
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="rspo-justified" role="tabpanel" aria-labelledby="rspo-tab">
+                            <div class="alert alert-light alert-dismissible fade show" role="alert">
+                                <h6 class="alert-heading">Registration at the group level <span style="color:#0AA7C4;">(score 0)</span></h6>
+                                <p>Not RSPO Member</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-registratioinGroup" aria-expanded="false" aria-controls="flush-collapseOne-registratioinGroup">
+                                                <p>Click here to details</p>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne-registratioinGroup" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
+                                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">2 = High</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Group and complete info on subsidiaries</p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">1 = Medium</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Group but not complete info on subsidiaries </p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">0 = Low</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>One entity registered only</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 2px solid; border-color: black;">
+                                <h6 class="alert-heading">RSPO certification progress since the first RSPO membership registration date <span style="color:#0AA7C4;">(score 0)</span></h6>
+                                <p>Not RSPO Member</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-rspoCertification" aria-expanded="false" aria-controls="flush-collapseOne-rspoCertification">
+                                                <p>Click here to details</p>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne-rspoCertification" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
+                                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">3 : > 10 years membership</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Between 70%-100% certification</p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">2 : < 5-10 years membership</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Between 30%-70% certification </p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">1 : 0-5 years membersip</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Between 0 - 30% certification</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 2px solid; border-color: black;">
+                                <h6 class="alert-heading">% of plantations RSPO audited <span style="color:#0AA7C4;">(score 0)</span></h6>
+                                <p>Not RSPO Member</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-refiners" aria-expanded="false" aria-controls="flush-collapseOne-refiners">
+                                                <p>Click here to details</p>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne-refiners" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
+                                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">2 : 70% to 100%</div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">1 : 30% to < 70%</div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">0 : less then 30%</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 2px solid; border-color: black;">
+                                <h6 class="alert-heading">RSPO Complaints <span style="color:#0AA7C4;">(score 1)</span></h6>
+                                <p>No RSPO Member</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-pubishMaps" aria-expanded="false" aria-controls="flush-collapseOne-pubishMaps">
+                                                <p>Click here to details</p>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne-pubishMaps" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
+                                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">3 = High</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>No complaints detected</p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">2 = Medium</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Cases have been detected and closed </p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">1 = Low</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Case have been detected and investigation is on progress</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 2px solid; border-color: black;">
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="ndpe-justified" role="tabpanel" aria-labelledby="ndpe-tab">
+                            <div class="alert alert-light alert-dismissible fade show" role="alert">
+                                <h6 class="alert-heading">NDPE Policy adopted <span style="color:#0AA7C4;">(score 0)</span></h6>
+                                <p>The company has some policies pertaining to sustainability and  but no explicit commitments to NDPE (bit.ly/3i8Trs9)</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-ndpePolicy" aria-expanded="false" aria-controls="flush-collapseOne-ndpePolicy">
+                                                <p>Click here to details</p>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne-ndpePolicy" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
+                                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">3 = Publicly available and adopted</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>NDPE policy is available on company website and adopted</p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">2 = Adopted but not made public </div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>NDPE policy is not available, but it is known that the company has adopted a policy  </p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">1 = NDPE policy published, but not adopted</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>The company has published a NDPE policy but not adopted it</p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">0 = No NDPE policy adopted </div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>The company has not published and not adopted a NDPE policy</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 2px solid; border-color: black;">
+                                <h6 class="alert-heading">Social issues (reported or identified by Aide) <span style="color:#0AA7C4;">(score 3)</span></h6>
+                                <p>No issues found</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-socialIssues" aria-expanded="false" aria-controls="flush-collapseOne-socialIssues">
+                                                <p>Click here to details</p>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne-socialIssues" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
+                                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">3 = No issues since January 2016</div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">2 = Issues on 30% of the subsidiaries or less since 2016</div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">1 = Issues on 30 to 70% of the subsidiaries since January 2016</div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">0 = Issues on over 70% of the subsidiaries </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 2px solid; border-color: black;">
+                                <h6 class="alert-heading">Deforestation (ha) <span style="color:#0AA7C4;">(score 1)</span></h6>
+                                <p>2016-2018=1795</p>
+                                <p>2019=1733</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-deforestation" aria-expanded="false" aria-controls="flush-collapseOne-deforestation">
+                                                <p>Click here to details</p>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne-deforestation" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
+                                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">3 = Not detected after 1 January 2016</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>No Deforestation since 2016</p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">2 = Detected between 1 January 2016 - 31 December 2018</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Deforestation was detected after 2016 and stopped</p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">1= Detected after 1 January 2019</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Deforestation has been detected in 2019 </p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 2px solid; border-color: black;">
+                                <h6 class="alert-heading">Peatland development (including peatforest) <span style="color:#0AA7C4;">(score 3)</span></h6>
+                                <p>2016-2018=0</p>
+                                <p>2019=0</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-peatland" aria-expanded="false" aria-controls="flush-collapseOne-peatland">
+                                                <p>Click here to details</p>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne-peatland" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
+                                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">3 = Not detected after 1 January 2016</div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">2= Detected between 1 January 2016 - 31 December 2018</div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">1 = Detected after 1 January 2019</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 2px solid; border-color: black;">
+                                <h6 class="alert-heading">Burnt areas (ha) <span style="color:#0AA7C4;">(score 3)</span></h6>
+                                <p>2016-2018=0</p>
+                                <p>2019=0</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-burnArea" aria-expanded="false" aria-controls="flush-collapseOne-burnArea">
+                                                <p>Click here to details</p>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne-burnArea" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
+                                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">3= Not detected after 1 January 2016</div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">2= Detected between 1 January 2016 - 31 December 2018</div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">1= Detected after 1 January 2019</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 2px solid; border-color: black;">
+                                <h6 class="alert-heading">Land protection and usage <span style="color:#0AA7C4;">(score 3)</span></h6>
+                                <p>No burning</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-landProtection" aria-expanded="false" aria-controls="flush-collapseOne-landProtection">
+                                                <p>Click here to details</p>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne-landProtection" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
+                                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">3 = High</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>No burning</p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">2 = Medium</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Burning was detected but not planted with oil palm</p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">1 = Low</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Burning and oil palm planting have been detected</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 2px solid; border-color: black;">
+                                <h6 class="alert-heading">Restoration in Peatland <span style="color:#0AA7C4;">(score 3)</span></h6>
+                                <p>No peatland conversion</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-restorationPeatland" aria-expanded="false" aria-controls="flush-collapseOne-restorationPeatland">
+                                                <p>Click here to details</p>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne-restorationPeatland" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
+                                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">3 = High</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>No peatland conversion</p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">2 = Medium</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Peatland conversion and restoration have been detected</p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">1 = Low</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <p>Peatland conversion detected but no restoration measures have been taken</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 2px solid; border-color: black;">
+                            </div>
+                        </div>
+                    </div><!-- End Default Tabs -->
+
+                    </div>
+                </div>
             </div>
         </div>
     </section><!-- End About Section -->

@@ -27,45 +27,44 @@
                 <div class="col-xl-8 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
                     <div>
                         @foreach($groups->pluck('group_name')->unique() as $subs)
-                        <h5 class="card-title description">Company Structure of {{$subs}}</h5>
+                        <h5 class="card-title description">Company Structure Ownership of {{$subs}}</h5>
                         @endforeach
                     </div>
                     <div class="line"></div>
                     <div>
-                        @foreach($groups->groupBy('group_name') as $subsidiaryGroup)
-                            @php
-                                $subsidiary = $subsidiaryGroup->first()->group_name;
+                    @foreach($groups->groupBy('group_name') as $subsidiaryGroup)
+                        @php
+                            $subsidiary = $subsidiaryGroup->first()->group_name;
 
-                                $directory = public_path('file/group-structure/');
-                                $filesInDirectory = scandir($directory);
+                            $directory = public_path('file/group-structure/');
+                            $filesInDirectory = scandir($directory);
 
-                                // Filter file yang sesuai dengan nama grup
-                                $matchingFiles = array_filter($filesInDirectory, function($file) use ($subsidiary) {
-                                    // Cocokkan dengan nama grup
-                                    return preg_match('/^\d+ \d+ ' . preg_quote($subsidiary, '/') . '\.pdf$/i', $file);
-                                });
+                            // Filter file yang sesuai dengan nama grup dan ekstensi pdf atau pptx
+                            $matchingFiles = preg_grep('/^\d+ \d+ ' . preg_quote($subsidiary, '/') . '\.(pdf|pptx)$/i', $filesInDirectory);
 
-                                if (!empty($matchingFiles)) {
-                                    $fileNameInDirectory = reset($matchingFiles);
-                                    $filePath = url('file/group-structure/' . $fileNameInDirectory);
+                            if (!empty($matchingFiles)) {
+                                $fileNameInDirectory = reset($matchingFiles);
+                                $fileExtension = pathinfo($fileNameInDirectory, PATHINFO_EXTENSION);
+                                $filePath = url('file/group-structure/' . $fileNameInDirectory);
 
-                                    // Debug: Cetak informasi selama iterasi
-                                    error_log('Group Name: ' . $subsidiary);
-                                    error_log('Matching Files: ' . print_r($matchingFiles, true));
-                                    error_log('Generated URL: ' . $filePath);
+                                // Jika file adalah pptx, konversi URL agar bisa dilihat di Google Docs Viewer
+                                if ($fileExtension == 'pptx') {
+                                    $googleDocsUrl = 'https://docs.google.com/viewer?url=' . urlencode($filePath);
                                 } else {
-                                    $filePath = ''; // Atau berikan nilai default jika file tidak ditemukan
+                                    $googleDocsUrl = $filePath;
                                 }
-                            @endphp
+                            } else {
+                                $googleDocsUrl = ''; // Atau berikan nilai default jika file tidak ditemukan
+                            }
+                        @endphp
 
-                            @if(!empty($filePath))
-                                <iframe src="{{ $filePath }}" width="100%" height="600px"></iframe>
-                                <!-- <p class="description">{{ $subsidiary }}</p> -->
-                            @else
-                                <p>Please contact Us to get company structure and other information of {{ $subsidiary }}.</p>
-                            @endif
-                        @endforeach
-                    </div>
+                        @if($googleDocsUrl)
+                            <iframe src="{{ $googleDocsUrl }}" style="width: 100%; height: 600px;"></iframe>
+                        @else
+                            <p>Please contact us to get company structure and other information of {{ $subsidiary }}.</p>
+                        @endif
+                    @endforeach
+                </div>
 
                     <div style="padding-top:50px;">
                         <h5 class="card-title description">Summary</h4>
