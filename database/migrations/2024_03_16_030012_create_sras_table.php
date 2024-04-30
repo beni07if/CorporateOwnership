@@ -23,6 +23,23 @@ return new class extends Migration
             $table->string('percent_ndpe_compliance')->nullable();
             $table->string('total')->nullable();
             $table->string('percent_total')->nullable();
+            
+            $table->string('transparency_upstream')->nullable();
+            $table->string('transparency_sustainability')->nullable();
+            $table->string('transparency_refiners')->nullable();
+            $table->string('transparency_publish')->nullable();
+            $table->string('transparency_website')->nullable();
+            $table->string('rspo_registration')->nullable();
+            $table->string('rspo_certification_progress')->nullable();
+            $table->string('rspo_percent')->nullable();
+            $table->string('rspo_complaints')->nullable();
+            $table->string('ndpe_adopted')->nullable();
+            $table->string('ndpe_social_issues')->nullable();
+            $table->string('ndpe_deforestation')->nullable();
+            $table->string('ndpe_peatland')->nullable();
+            $table->string('ndpe_burn_area')->nullable();
+            $table->string('ndpe_land_protection')->nullable();
+            $table->string('ndpe_restoration')->nullable();
             $table->timestamps();
         });
     }

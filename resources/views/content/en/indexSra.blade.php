@@ -485,7 +485,7 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">RSPO Complaints <span style="color:#0AA7C4;">(score 1)</span></h6>
+                                <h6 class="alert-heading">RSPO Complaints <span style="color:#0AA7C4;">(score 0)</span></h6>
                                 <p>No RSPO Member</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
