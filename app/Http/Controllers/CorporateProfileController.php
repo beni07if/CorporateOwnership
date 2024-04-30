@@ -28,6 +28,11 @@ class CorporateProfileController extends Controller
      * Display a listing of the resource.
      */
     // public function index(): Response
+    public function maintenanceMode()
+    {
+        return view('content.maintenanceMode');
+    }
+
     public function index()
     {
         $subsidiary = Consolidation::all();

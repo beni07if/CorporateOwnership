@@ -1,70 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Maintenance</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #222;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
+<?php
 
-        .container {
-            max-width: 500px;
-            padding: 40px;
-            background-color: rgba(0, 0, 0, 0.8);
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-        }
+use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Http\Request;
 
-        h1 {
-            color: #ff5733;
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
+define('LARAVEL_START', microtime(true));
 
-        p {
-            font-size: 18px;
-            margin-top: 20px;
-            line-height: 1.6;
-        }
+/*
+|--------------------------------------------------------------------------
+| Check If The Application Is Under Maintenance
+|--------------------------------------------------------------------------
+|
+| If the application is in maintenance / demo mode via the "down" command
+| we will load this file so that any pre-rendered content can be shown
+| instead of starting the framework, which could cause an exception.
+|
+*/
 
-        .logo {
-            max-width: 200px;
-            margin-bottom: 20px;
-        }
+if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
+    require $maintenance;
+}
 
-        .button {
-            display: inline-block;
-            background-color: #ff5733;
-            color: #fff;
-            font-size: 16px;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-top: 20px;
-            transition: background-color 0.3s;
-        }
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader for
+| this application. We just need to utilize it! We'll simply require it
+| into the script here so we don't need to manually load our classes.
+|
+*/
 
-        .button:hover {
-            background-color: #ff814a;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Under Maintenance</h1>
-        <p>We apologize for the inconvenience, but we're performing some maintenance at the moment. Please check back soon.</p>
-        <!-- <a href="#" class="button">Back to Home</a> -->
-    </div>
-</body>
-</html>
+require __DIR__.'/../vendor/autoload.php';
+
+/*
+|--------------------------------------------------------------------------
+| Run The Application
+|--------------------------------------------------------------------------
+|
+| Once we have the application, we can handle the incoming request using
+| the application's HTTP kernel. Then, we will send the response back
+| to this client's browser, allowing them to enjoy our application.
+|
+*/
+
+$app = require_once __DIR__.'/../bootstrap/app.php';
+
+$kernel = $app->make(Kernel::class);
+
+$response = $kernel->handle(
+    $request = Request::capture()
+)->send();
+
+$kernel->terminate($request, $response);

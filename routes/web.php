@@ -27,7 +27,8 @@ use App\Http\Controllers\Auth\GoogleAuthController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [CorporateProfileController::class, 'index'])->name('corporateProfileEn');
+// Route::get('/', [CorporateProfileController::class, 'index'])->name('corporateProfileEn');
+Route::get('/', [CorporateProfileController::class, 'maintenanceMode'])->name('maintenanceMode');
 
 Route::get('/chatbot', [App\Http\Controllers\ChatbotController::class, 'index']);
 Route::get('/chatbot-corporate-profile', [App\Http\Controllers\ChatbotController::class, 'chatbotCorporateProfile']);
