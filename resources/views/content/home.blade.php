@@ -25,8 +25,8 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
     <div class="container">
-        <h1>Global Corporate Profile Ownership</h1>
-        <h2>Tracking Corporate Ownership Structures Worldwide</h2>
+        <h1>Global Company Ownership</h1>
+        <h2>Discover and Analyze Global Company Ownership Structures for Strategic Insights</h2>
         <!-- <a href="#about" hidden class="btn-get-started scrollto">Search</a> -->
         <!-- <section id="hero" class="d-flex align-items-center"> -->
         <!-- <div class="container"> -->
@@ -52,9 +52,9 @@
             <div class="row">
                 <div class="col-lg-4 d-flex align-items-stretch">
                     <div class="content">
-                        <h3 style="color:#ffffff;">Corporate Ownership</h3>
+                        <h3 style="color:#ffffff;">Company Ownership</h3>
                         <p>
-                            Corporate Ownership is a platform that provides information about the ownership structure of companies, shareholder and its network with other companies.
+                            Company Ownership is a platform that provides information about the ownership structure of companies, shareholder and its network with other companies.
                         </p>
                     </div>
                 </div>
@@ -64,8 +64,8 @@
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box mt-4 mt-xl-0">
                                     <i class="ri-building-fill"></i>
-                                    <h4>Subsidiary</h4>
-                                    <h2>6,700 +</h2>
+                                    <h4>Company</h4>
+                                    <h2>7,800 +</h2>
                                     <!-- <span data-purecounter-start="0" data-purecounter-end="10,000" data-purecounter-duration="1" class="purecounter"></span> -->
                                     <p>Companies</p>
                                     <!-- <p>There are tens of thousands of subsidiaries along with their location, shareholder, and other important information.</p> -->
@@ -75,7 +75,7 @@
                                 <div class="icon-box mt-4 mt-xl-0">
                                     <i class="ri-database-line"></i>
                                     <h4>Group</h4>
-                                    <h2>1,600 +</h2>
+                                    <h2>1,700 +</h2>
                                     <p>Groups</p>
                                     <!-- <p>There are thousands of groups along with their subsidiaries, shareholders and other important information.</p> -->
                                 </div>
@@ -102,8 +102,8 @@
         <div class="container">
 
             <div class="section-title">
-                <h2>CORPORATE PROFILE</h2>
-                <p>Find data on thousands of companies and their shareholdings around the world</p>
+                <h2>COMPANY PROFILE</h2>
+                <p>Explore datasets of thousands of companies and their worldwide shareholding networks!</p>
             </div>
             <!-- <div id="mapid" style="height: 500px;"></div> -->
 
@@ -114,7 +114,7 @@
                             <a class="nav-link " data-bs-toggle="tab" href="#tabs-search-groups">Group</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active show" data-bs-toggle="tab" href="#tabs-search-subsidiaries">Subsidiary</a>
+                            <a class="nav-link active show" data-bs-toggle="tab" href="#tabs-search-subsidiaries">Company</a>
                         </li>
                         <!-- <li class="nav-item">
                             <a class="nav-link " data-bs-toggle="tab" href="#tab-1">Group</a>
@@ -136,12 +136,12 @@
                         <div class="tab-pane " id="tabs-search-groups">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Groups</h3>
+                                    <h3>Group</h3>
                                     <!-- <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the subsidiary companies. The information about Group Company can be used to identify the subsidiary under.</p> -->
                                     
                                     <div class="container">
                                         <form action="{{ route('searchFunctionGroup2') }}" method="GET" class="d-flex">
-                                            <input type="text" class="form-control me-2" name="group_name" placeholder="Search...">
+                                            <input type="text" class="form-control me-2" name="group_name" placeholder="Group name">
                                             <button type="submit" class="btn btn-info">Search</button>
                                         </form>
                                     </div>
@@ -154,12 +154,12 @@
                         <div class="tab-pane active show" id="tabs-search-subsidiaries">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Subsidiaries</h3>
+                                    <h3>Company</h3>
                                     <!-- <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the subsidiary companies. The information about Group Company can be used to identify the subsidiary under.</p> -->
                                     
                                     <div class="container">
                                         <form action="{{ route('searchFunctionSubsidiary') }}" method="GET" class="d-flex">
-                                            <input type="text" class="form-control me-2" name="query" placeholder="Search...">
+                                            <input type="text" class="form-control me-2" name="query" placeholder="Company name">
                                             <button type="submit" class="btn btn-info">Search</button>
                                         </form>
                                     </div>
@@ -172,14 +172,14 @@
                         <div class="tab-pane" id="tabs-search-shareholders">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Shareholders</h3>
+                                    <h3>Shareholder</h3>
                                     <!-- <p class="fst-italic">Shareholders are the owners of a corporation and have a financial interest in the company's performance and profitability. Shareholders can be individual or entities. The information about company’s shareholders can be used to identify the people responsible and rule the company.</p> -->
                                     <!-- <p class="fst-italic">Shareholders are the owners of a corporation and have a financial interest in the company's performance and profitability. Shareholders can be individual or entities. Find people/companies who own shares in several companies.</p> -->
                                     <div class="container">
                                         <form id="search-form" action="{{ route('searchFunctionShareholder') }}" method="GET" class="d-flex">
                                             <label for="search-input" class="visually-hidden">Search</label>
                                             <div class="input-group">
-                                                <input type="text" id="search-input" name="query" class="form-control" placeholder="Find shareholder...">
+                                                <input type="text" id="search-input" name="query" class="form-control" placeholder="Shareholder name">
                                                 <button type="submit" class="btn btn-info">Search</button>
                                             </div>
                                         </form>
@@ -188,10 +188,10 @@
                                 <div class="col-lg-4 text-center order-1 order-lg-2">
                                     <img src="assets/img/departments-3.jpg" alt="" class="img-fluid">
                                 </div>
-                            </div>
+                            </div>                                   
                         </div>
-                        <div class="tab-pane" id="tabs-search-sra">
-                            <div class="row">
+                        <div class="tab-pane" id="tabs-search-sra">                                                                         
+                            <div class="row">                                               
                                 <div class="col-lg-8 details order-2 order-lg-1">
                                     <h3>Sustainability Risk Analysis (SRA)</h3>
                                     <!-- <p class="fst-italic">Shareholders are the owners of a corporation and have a financial interest in the company's performance and profitability. Shareholders can be individual or entities. The information about company’s shareholders can be used to identify the people responsible and rule the company.</p> -->
@@ -200,7 +200,7 @@
                                         <form id="search-form" action="{{ route('searchFunctionSRA') }}" method="GET" class="d-flex">
                                             <label for="search-input" class="visually-hidden">Search</label>
                                             <div class="input-group">
-                                                <input type="text" id="search-input" name="group_name" class="form-control" placeholder="Find SRA...">
+                                                <input type="text" id="search-input" name="group_name" class="form-control" placeholder="Group name">
                                                 <button type="submit" class="btn btn-info">Search</button>
                                             </div>
                                         </form>
@@ -233,20 +233,13 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>CORPORATE PROFILE DATASET</h2>
+          <h2>COMPANY PROFILE DATASET</h2>
           <!-- <p>Naration</p> -->
         </div>
 
         <div class="row">
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="icon-box">
-              <div class="icon"><i class="ri-building-fill"></i></div>
-              <h4><a href="">Company Name</a></h4>
-              <p>Company Name</p>
-            </div>
-          </div>
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4">
             <div class="icon-box">
               <div class="icon"><i class="ri-database-line"></i></div>
               <h4><a href="">Group</a></h4>
@@ -254,27 +247,11 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4">
             <div class="icon-box">
               <div class="icon"><i class="ri-admin-line"></i></div>
               <h4><a href="">Shareholder</a></h4>
               <p>Shareholder of Companies</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-            <div class="icon-box">
-              <div class="icon"><i class="ri-font-color"></i></div>
-              <h4><a href="">Activity</a></h4>
-              <p>Main Activity</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="ri-map-pin-2-line"></i></div>
-              <h4><a href="">Location</a></h4>
-              <p>Latitude & Longitude</p>
             </div>
           </div>
 
@@ -289,19 +266,19 @@
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4">
             <div class="icon-box">
               <div class="icon"><i class="ri-file-pdf-line"></i></div>
-              <h4><a href="">Notarial Deed</a></h4>
-              <p>Notarial deed of company</p>
+              <h4><a href="">Notarial Act</a></h4>
+              <p>Notarial act of company</p>
             </div>
           </div>
+        </div>
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4">
             <div class="icon-box">
               <div class="icon"><i class="ri-phone-find-line"></i></div>
-              <h4><a href="">Etc</a></h4>
-              <p>Other dataset</p>
+              <h4><a href="">Other dataset</a></h4>
             </div>
           </div>
-
         </div>
 
       </div>
@@ -312,12 +289,8 @@
         <div class="container">
 
             <div class="row">
-                <!-- <div class="col-xl-4 col-lg-4 video-box d-flex justify-content-center align-items-stretch position-relative">
-                    <img src="{{ asset('img/bulet-list-attribute.jpg') }}" alt="" class="img-fluid" style="width: 80%; height:70%;">
-                </div> -->
-
                 <div class="col-xl-12 col-lg-12 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-                    <h3 style="text-align: center;">CORPORATE PROFILE DATASET</h3>
+                    <h3 style="text-align: center;">COMPANY PROFILE DATASET</h3>
                     <!-- <p style="text-align: center;">Company information.</p> -->
 
                     <div class="row">

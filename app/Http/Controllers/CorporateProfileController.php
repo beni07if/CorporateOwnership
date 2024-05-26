@@ -120,7 +120,7 @@ class CorporateProfileController extends Controller
     {
         $query = $request->input('query');
 
-        $shareholderNames = CompanyOwnership::select('shareholder_name', 'company_name', 'percentage_of_shares', 'position')
+        $shareholderNames = CompanyOwnership::select('shareholder_name', 'company_name', 'percentage_of_shares', 'position', 'date_of_birth')
             ->where('shareholder_name', 'LIKE', '%' . $query . '%')
             ->paginate(10);
 

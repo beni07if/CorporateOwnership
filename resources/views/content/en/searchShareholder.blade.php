@@ -49,6 +49,7 @@
                                 <thead>
                                     <tr>
                                         <th>Shareholder Name</th>
+                                        <th>Date of Birth</th>
                                         <th>Company Name</th>
                                     </tr>
                                 </thead>
@@ -60,6 +61,13 @@
                                                     @csrf
                                                     <input type="hidden" name="shareholder_name" value="{{ $subs->shareholder_name }}">
                                                     <button type="submit" class="btn btn-light">{{ $subs->shareholder_name }} </button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('shareholderShow') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="shareholder_name" value="{{ $subs->shareholder_name }}">
+                                                    <p>{{ $subs->date_of_birth }}</p>
                                                 </form>
                                             </td>
                                             <td>

@@ -195,7 +195,7 @@
 
             <!-- <h1 class="logo me-auto"><a href="{{route('corporateProfileEn')}}">ID Corporate</a></h1> -->
             <!-- Uncomment below if you prefer to use an image logo -->
-            <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo3/png2/logo3.png')}}" alt="" class="img-fluid"></a>
+            <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo-4/png/logo-company-ownership-rb.png')}}" alt="" class="img-fluid"></a>
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
