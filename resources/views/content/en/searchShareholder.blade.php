@@ -64,11 +64,7 @@
                                                 </form>
                                             </td>
                                             <td>
-                                                <form action="{{ route('shareholderShow') }}" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" name="shareholder_name" value="{{ $subs->shareholder_name }}">
-                                                    <p>{{ $subs->date_of_birth }}</p>
-                                                </form>
+                                                <p>{{ $subs->date_of_birth }}</p>
                                             </td>
                                             <td>
                                                 <form action="{{ route('subsidiaryShow') }}" method="POST">
