@@ -132,7 +132,7 @@
                 </div>
                 
                 <div class="col-lg-9 mt-4 mt-lg-0">
-                    <div class="tab-content">
+                    <div class="tab-content" hidden>
                         <div class="tab-pane " id="tabs-search-groups">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
