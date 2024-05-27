@@ -27,8 +27,8 @@ use App\Http\Controllers\Auth\GoogleAuthController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [CorporateProfileController::class, 'index'])->name('corporateProfileEn');
-// Route::get('/', [CorporateProfileController::class, 'maintenanceMode'])->name('maintenanceMode');
+// Route::get('/', [CorporateProfileController::class, 'index'])->name('corporateProfileEn');
+Route::get('/', [CorporateProfileController::class, 'maintenanceMode'])->name('maintenanceMode');
 
 Route::get('/chatbot', [App\Http\Controllers\ChatbotController::class, 'index']);
 Route::get('/chatbot-corporate-profile', [App\Http\Controllers\ChatbotController::class, 'chatbotCorporateProfile']);
@@ -43,7 +43,7 @@ Route::get('/eq-subsidiary', [ChatbotController::class, 'chatbotSubsidiaryId'])-
 Route::post('/eq-subsidiary', [ChatbotController::class, 'getSubsidiary'])->name('chatbot.subsidiary');
 Route::get('/eq-group', [ChatbotController::class, 'chatbotGroupId'])->name('chatbotGroupId');
 Route::post('/eq-group', [ChatbotController::class, 'getGroup'])->name('chatbot.group');
-Route::get('/eq-subsidiary-en', [ChatbotController::class, 'chatbotSubsidiaryEn'])->name('chatbotSubsidiaryEn');
+// Route::get('/eq-subsidiary-en', [ChatbotController::class, 'chatbotSubsidiaryEn'])->name('chatbotSubsidiaryEn');
 Route::post('/eq-subsidiary-en', [ChatbotController::class, 'getSubsidiaryEn'])->name('getSubsidiaryEn');
 Route::get('/eq-group-en', [ChatbotController::class, 'chatbotGroupEn'])->name('chatbotGroupEn');
 Route::post('/eq-group-en', [ChatbotController::class, 'getGroupEn'])->name('chatbotGroupEn');
