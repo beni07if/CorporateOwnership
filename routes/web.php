@@ -43,7 +43,7 @@ Route::get('/eq-subsidiary', [ChatbotController::class, 'chatbotSubsidiaryId'])-
 Route::post('/eq-subsidiary', [ChatbotController::class, 'getSubsidiary'])->name('chatbot.subsidiary');
 Route::get('/eq-group', [ChatbotController::class, 'chatbotGroupId'])->name('chatbotGroupId');
 Route::post('/eq-group', [ChatbotController::class, 'getGroup'])->name('chatbot.group');
-// Route::get('/eq-subsidiary-en', [ChatbotController::class, 'chatbotSubsidiaryEn'])->name('chatbotSubsidiaryEn');
+Route::get('/eq-subsidiary-en', [ChatbotController::class, 'chatbotSubsidiaryEn'])->name('chatbotSubsidiaryEn');
 Route::post('/eq-subsidiary-en', [ChatbotController::class, 'getSubsidiaryEn'])->name('getSubsidiaryEn');
 Route::get('/eq-group-en', [ChatbotController::class, 'chatbotGroupEn'])->name('chatbotGroupEn');
 Route::post('/eq-group-en', [ChatbotController::class, 'getGroupEn'])->name('chatbotGroupEn');
@@ -71,8 +71,8 @@ Route::post('/import-csv-consolidation', [ChatbotController::class, 'importCsvCo
 Route::get('/export', [App\Http\Controllers\ChatbotController::class, 'export']);
 
 // Website corporate profile
-Route::get('/corporate-profile-en', [CorporateProfileController::class, 'index'])->name('corporateProfileEn');
-Route::get('/corporate-profile-index', [CorporateProfileController::class, 'index'])->name('index');
+// Route::get('/corporate-profile-en', [CorporateProfileController::class, 'index'])->name('corporateProfileEn');
+// Route::get('/corporate-profile-index', [CorporateProfileController::class, 'index'])->name('index');
 Route::post('/corporate-profile-subsidiary-show', [CorporateProfileController::class, 'subsidiaryShow'])->name('subsidiaryShow');
 Route::post('/corporate-profile-other-company-show', [CorporateProfileController::class, 'otherCompanyShow'])->name('otherCompanyShow');
 Route::post('/corporate-profile-group-show', [CorporateProfileController::class, 'groupShow'])->name('groupShow');
