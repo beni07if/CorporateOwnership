@@ -65,7 +65,7 @@
                                 <div class="icon-box mt-4 mt-xl-0">
                                     <i class="ri-building-fill"></i>
                                     <h4>Company</h4>
-                                    <h2>7,800 +</h2>
+                                    <h2>6,000 +</h2>
                                     <!-- <span data-purecounter-start="0" data-purecounter-end="10,000" data-purecounter-duration="1" class="purecounter"></span> -->
                                     <p>Companies</p>
                                     <!-- <p>There are tens of thousands of subsidiaries along with their location, shareholder, and other important information.</p> -->
@@ -84,7 +84,7 @@
                                 <div class="icon-box mt-4 mt-xl-0">
                                     <i class="ri-admin-line"></i>
                                     <h4>Shareholders</h4>
-                                    <h2>28,000 +</h2>
+                                    <h2>28,200 +</h2>
                                     <p>Shareholders</p>
                                     <!-- <p>There are tens of thousands of shareholders and their shareholdings in several companies</p> -->
                                 </div>
