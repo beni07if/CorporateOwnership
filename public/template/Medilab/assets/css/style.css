@@ -1546,5 +1546,195 @@ section {
 
 
 /* style edit */
+/*--------------------------------------------------------------
+# Why Us
+--------------------------------------------------------------*/
+.why-us2 .content {
+  padding: 60px 100px 0 100px;
+}
+
+.why-us2 .content h3 {
+  font-weight: 400;
+  font-size: 34px;
+  color: #37517e;
+}
+
+.why-us2 .content h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+.why-us2 .content p {
+  font-size: 15px;
+  color: #848484;
+}
+
+.why-us2 .img {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.why-us2 .accordion-list {
+  padding: 0 100px 60px 100px;
+}
+
+.why-us2 .accordion-list ul {
+  padding: 0;
+  list-style: none;
+}
+
+.why-us2 .accordion-list li+li {
+  margin-top: 15px;
+}
+
+.why-us2 .accordion-list li {
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.why-us2 .accordion-list a {
+  display: block;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  padding-right: 30px;
+  outline: none;
+  cursor: pointer;
+}
+
+.why-us2 .accordion-list span {
+  color: #47b2e4;
+  font-weight: 600;
+  font-size: 18px;
+  padding-right: 10px;
+}
+
+.why-us2 .accordion-list i {
+  font-size: 24px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.why-us2 .accordion-list p {
+  margin-bottom: 0;
+  padding: 10px 0 0 0;
+}
+
+.why-us2 .accordion-list .icon-show {
+  display: none;
+}
+
+.why-us2 .accordion-list a.collapsed {
+  color: #343a40;
+}
+
+.why-us2 .accordion-list a.collapsed:hover {
+  color: #47b2e4;
+}
+
+.why-us2 .accordion-list a.collapsed .icon-show {
+  display: inline-block;
+}
+
+.why-us2 .accordion-list a.collapsed .icon-close {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+
+  .why-us2 .content,
+  .why-us2 .accordion-list {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .why-us2 .img {
+    min-height: 400px;
+  }
+
+  .why-us2 .content {
+    padding-top: 30px;
+  }
+
+  .why-us2 .accordion-list {
+    padding-bottom: 30px;
+  }
+}
+
+@media (max-width: 575px) {
+  .why-us2 .img {
+    min-height: 200px;
+  }
+}
+
+/*--------------------------------------------------------------
+# About
+--------------------------------------------------------------*/
+.about2{
+  /* background-color: #F1F7FD; */
+}
+.about2 h3 {
+  font-weight: 700;
+  font-size: 34px;
+  color: #414c64;
+}
+
+.about2 h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+.about2 i {
+  font-size: 48px;
+  margin-top: 15px;
+  color: #8b97b3;
+}
+
+.about2 p {
+  font-size: 15px;
+  color: #848484;
+}
+
+
+/*--------------------------------------------------------------
+# Details
+--------------------------------------------------------------*/
+.details .content+.content {
+  margin-top: 100px;
+}
+
+.details .content h3 {
+  font-weight: 600;
+  font-size: 26px;
+  color: #010483;
+}
+
+.details .content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.details .content ul li {
+  padding-bottom: 10px;
+}
+
+.details .content ul i {
+  font-size: 20px;
+  padding-right: 4px;
+  color: #1acc8d;
+}
+
+.details .content p:last-child {
+  margin-bottom: 0;
+}
 
 /* end style edit */

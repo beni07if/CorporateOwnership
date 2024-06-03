@@ -25,8 +25,8 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
     <div class="container">
-        <h1>Global Company Ownership</h1>
-        <h2>Discover and Analyze Global Company Ownership Structures for Strategic Insights</h2>
+        <h1 style="text-align:center;">Global Corporate Ownership</h1>
+        <!-- <h2>Discover and Analyze Global Corporate Profile Structures for Strategic Insights</h2> -->
         <!-- <a href="#about" hidden class="btn-get-started scrollto">Search</a> -->
         <!-- <section id="hero" class="d-flex align-items-center"> -->
         <!-- <div class="container"> -->
@@ -52,9 +52,9 @@
             <div class="row">
                 <div class="col-lg-4 d-flex align-items-stretch">
                     <div class="content">
-                        <h3 style="color:#ffffff;">Company Ownership</h3>
+                        <h3 style="color:#ffffff;">Corporate Profile</h3>
                         <p>
-                            Company Ownership is a platform that provides information about the ownership structure of companies, shareholder and its network with other companies.
+                            Corporate Profile is a platform that provides information about the ownership structure of companies, shareholder and its network with other companies.
                         </p>
                     </div>
                 </div>
@@ -97,12 +97,173 @@
     </section>
     <!-- End Why Us Section -->
 
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us2" class="why-us2 section-bg" hidden>
+      <div class="container" >
+
+        <div class="row">
+
+          <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
+
+            <div class="content">
+              <h3><strong>Corporate Profile</strong></h3>
+              <p>
+              Corporate Profile InovasiDigital dirancang untuk memberikan Anda akses mudah dan transparan ke data kepemilikan perusahaan kami. Temukan informasi mendalam mengenai pemegang saham utama, struktur grup, serta hubungan strategis yang membantu kami memimpin inovasi di industri digital.
+              </p>
+            </div>
+
+            <!-- <div class="accordion-list">
+              <ul>
+                <li>
+                  <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"><span>01</span> Non consectetur a erat nam at lectus urna duis? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
+                    <p>
+                      Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div> -->
+
+          </div>
+
+          <!-- <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("asset/img/perusahaan-multinasional.png");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div> -->
+          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img">
+          <img src="{{ asset('img/perusahaan-multinasional.png')}}" class="img-fluid" alt="">
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
+
+    <!-- ======= About Section ======= -->
+    <section id="counts" class="counts">
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
+            <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox play-btn mb-4"></a> -->
+            <!-- <img src="{{ asset('img/perusahaan-multinasional.png')}}" class="img-fluid shadow" alt=""> -->
+            <img src="{{ asset('img/bg/bgwl2.jpeg')}}" class="img-fluid shadow" alt="">
+          </div>
+
+          <div class="col-xl-6 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
+            <h3>Corporate Profile</h3>
+            <p>Corporate Profile is a platform that provides information about the ownership structure of companies, shareholders, and their network with other companies. Its key features include group structure, corporate profile, share ownership, and Sustainability Risk Assessment (SRA). The information within this platform is divided into two categories: public information and private information.</p>
+            <p>Key features, which include group structure, corporate profile, share ownership, and SRA, can only be accessed by users who are logged in or have an account on this platform. Thus, Corporate Profile ensures that important and detailed information is only available to registered users, maintaining the confidentiality and security of sensitive data.</p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about2" class="about2">
+      <div class="container">
+        <div class="section-title">
+          <h2>Key Features</h2>
+          <!-- <p>Naration</p> -->
+        </div>
+
+        <div class="row align-items-center">
+        <div class="col-lg-7 align-items-stretch order-1 order-lg-2 img">
+            <img src="{{ asset('img/group-structure1.png')}}" class="img-fluid shadow" alt="">
+            <p class="text-muted"><i style="font-size:10px;">*Group ownership structure figure</i></p>
+        </div>
+        <div class="col-lg-5 pt-4 pt-lg-0 d-flex flex-column justify-content-center">
+            <h4>Group Ownership Structure</h4>
+            <p>
+            Group is a business entity consisting of a holding company and a number of subsidiaries operating in various segments including the palm oil industry.
+            </p>
+        </div>
+        </div><br><br><br>
+
+        <div class="row">
+            <div class="col-lg-7">
+                <img src="{{ asset('img/corporate-profile-dataset.png')}}" class="img-fluid shadow" alt="">
+                <p class="text-muted"><i style="font-size:10px;">*Share ownership for Individual/company</i></p>
+            </div>
+            <div class="col-lg-7" hidden>
+                <div class="row">
+                    <div class="col-md-6">
+                        <i class="bx bx-receipt" style="vertical-align: middle;"></i>
+                        <p style="display: inline;">Company Name</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="bx bx-receipt" style="vertical-align: middle;"></i>
+                        <p style="display: inline;">Group</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="bx bx-receipt" style="vertical-align: middle;"></i>
+                        <p style="display: inline;">Shareholders</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="bx bx-receipt" style="vertical-align: middle;"></i>
+                        <p style="display: inline;">Activity</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="bx bx-receipt" style="vertical-align: middle;"></i>
+                        <p style="display: inline;">Status Operation</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="bx bx-receipt" style="vertical-align: middle;"></i>
+                        <p style="display: inline;">Certification</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="bx bx-receipt" style="vertical-align: middle;"></i>
+                        <p style="display: inline;">Address</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="bx bx-receipt" style="vertical-align: middle;"></i>
+                        <p style="display: inline;">Other information</p>
+                    </div>
+                    <p class="text-muted"><i style="font-size:10px;">*Corporate profile dataset</i></p>
+                </div>
+            </div>
+            <div class="col-lg-5 pt-4 pt-lg-0 d-flex flex-column justify-content-center">
+                <h4>Company</h4>
+                <p>
+                A Company is an overview of a company, including basic information that is essential to provide a thorough understanding of the business entity. 
+                </p>
+            </div>
+        </div><br><br><br>
+
+        <div class="row">
+          <div class="col-lg-7 align-items-stretch order-1 order-lg-2 img">
+            <img src="{{ asset('img/shareholder-figure.png')}}" class="img-fluid shadow" alt="">
+            <p class="text-muted"><i style="font-size:10px;">*Share ownership for Individual/company</i></p>
+          </div>
+          <div class="col-lg-5 pt-4 pt-lg-0 d-flex flex-column justify-content-center">
+            <h4>Shareholders</h4>
+            <p>
+            A shareholder is an individual, company, or institution that owns one or more shares in a company. 
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-7">
+            <img src="{{ asset('img/sra2.png')}}" class="img-fluid shadow" alt="">
+            <p class="text-muted"><i style="font-size:10px;">*Summary of sustainability risk assessment</i></p>
+          </div>
+          <div class="col-lg-5 pt-4 pt-lg-0 d-flex flex-column justify-content-center">
+            <h4>Sustainability Risk Assessment (SRA)</h4>
+            <p>
+            Group-based Sustainability Risk Assessment (SRA) is a systematic process to identify, evaluate, and manage risks that may affect the sustainability of a group of companies. 
+            </p>
+            <br>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+    
     <!-- ======= Departments Section ======= -->
     <section id="departments" class="departments">
-        <div class="container">
+        <div class="container" hidden>
 
             <div class="section-title">
-                <h2>COMPANY PROFILE</h2>
+                <h2>Corporate Profile</h2>
                 <p>Explore datasets of thousands of companies and their worldwide shareholding networks!</p>
             </div>
             <!-- <div id="mapid" style="height: 500px;"></div> -->
@@ -132,7 +293,7 @@
                 </div>
                 
                 <div class="col-lg-9 mt-4 mt-lg-0">
-                    <div class="tab-content" hidden>
+                    <div class="tab-content">
                         <div class="tab-pane " id="tabs-search-groups">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
@@ -228,12 +389,59 @@
         </form>
     </div> -->
 
+    <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts" hidden>
+      <div class="container">
+        <div class="section-title">
+          <h2>Corporate Profile DATASET</h2>
+          <!-- <p>Naration</p> -->
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="count-box">
+              <i class="fas fa-hospital"></i>
+              <h5><a href="">Group</a></h5>
+              <p>Group</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+            <div class="count-box">
+              <i class="far fa-hospital"></i>
+              <h5><a href="">Company Structure</a></h5>
+              <p>Company Structure</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="fas fa-user"></i>
+              <h5><a href="">Shareholder</a></h5>
+              <p>Shareholder</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="fas fa-award"></i>
+              <h5><a href="">Notarial Act</a></h5>
+              <p>Notarial Act</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
     <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
+    <section id="services" class="services" hidden>
       <div class="container">
 
         <div class="section-title">
-          <h2>COMPANY PROFILE DATASET</h2>
+          <h2>Corporate Profile DATASET</h2>
           <!-- <p>Naration</p> -->
         </div>
 
@@ -290,7 +498,7 @@
 
             <div class="row">
                 <div class="col-xl-12 col-lg-12 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-                    <h3 style="text-align: center;">COMPANY PROFILE DATASET</h3>
+                    <h3 style="text-align: center;">Corporate Profile DATASET</h3>
                     <!-- <p style="text-align: center;">Company information.</p> -->
 
                     <div class="row">
@@ -342,7 +550,7 @@
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-atom"></i></div>
                                 <h4 class="title"><a href="">Etc</a></h4>
-                                <p class="description">Other information</p>
+                                <p class="description">Others information</p>
                             </div>
                         </div>
 
@@ -459,80 +667,6 @@
         </div>
     </section>
     <!-- End Counts Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact" hidden>
-        <div class="container">
-
-            <div class="section-title">
-                <h2>Contact Us</h2>
-                <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
-            </div>
-        </div>
-
-        <div class="map-container">
-            <iframe style="border:0; width: 70%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26982.6904899778!2d109.3165473404948!3d-0.03550739412179713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e1d59223736d773%3A0x2770035cd14138c6!2sEarthqualizer%20Foundation%20-%20Pontianak!5e0!3m2!1sen!2sid!4v1705892733701!5m2!1sen!2sid" frameborder="0" allowfullscreen></iframe>
-        </div>
-
-        <div class="container">
-            <div class="row mt-5">
-
-                <div class="col-lg-4">
-                    <div class="info">
-                        <div class="address">
-                            <i class="bi bi-geo-alt"></i>
-                            <h4>Address:</h4>
-                            <p>Jl. Anggrek No. 6, Pontianak City, West Kalimantan.</p>
-                        </div>
-
-                        <div class="email">
-                            <i class="bi bi-envelope"></i>
-                            <h4>Email:</h4>
-                            <p>info@corporateownership.com</p>
-                        </div>
-
-                        <div class="phone">
-                            <i class="bi bi-phone"></i>
-                            <h4>Call:</h4>
-                            <p>+62 898 2950 531</p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="col-lg-8 mt-5 mt-lg-0">
-
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                        <div class="row">
-                            <div class="col-md-6 form-group">
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                            </div>
-                            <div class="col-md-6 form-group mt-3 mt-md-0">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                            </div>
-                        </div>
-                        <div class="form-group mt-3">
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group mt-3">
-                            <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                        </div>
-                        <div class="my-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
-                        </div>
-                        <div class="text-center"><button type="submit">Send Message</button></div>
-                    </form>
-
-                </div>
-
-            </div>
-
-        </div>
-    </section><!-- End Contact Section -->
-    <!-- <script>var mst_width="100%";var mst_height="100%";var mst_border="0";var mst_map_style="simple";var mst_mmsi="";var mst_show_track="";var mst_show_info="";var mst_fleet="";var mst_lat="";var mst_lng="";var mst_zoom="";var mst_show_names="0";var mst_scroll_wheel="0";var mst_show_menu="0";</script><script id="myshiptrackingscript" src="//www.myshiptracking.com/js/widgetApi.js" async defer></script> -->
 
 </main><!-- End #main -->
 @endsection

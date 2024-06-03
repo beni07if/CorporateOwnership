@@ -97,6 +97,12 @@ Route::get('/search-other-companies', [CorporateProfileController::class, 'searc
 Route::get('/search-shareholders', [CorporateProfileController::class, 'searchFunctionShareholder'])->name('searchFunctionShareholder');
 Route::get('/search-sra', [CorporateProfileController::class, 'searchFunctionSRA'])->name('searchFunctionSRA');
 
+Route::get('/features', [CorporateProfileController::class, 'feature'])->name('feature');
+Route::get('/group-feature', [CorporateProfileController::class, 'groupFeature'])->name('groupFeature');
+Route::get('/subsidiary-feature', [CorporateProfileController::class, 'subsidiaryFeature'])->name('subsidiaryFeature');
+Route::get('/shareholder-feature', [CorporateProfileController::class, 'shareholderFeature'])->name('shareholderFeature');
+Route::get('/sra-feature', [CorporateProfileController::class, 'sraFeature'])->name('sraFeature');
+
 Route::get('/search', [CorporateProfileController::class, 'search'])->name('search');
 Route::get('/maps', [CorporateProfileController::class, 'maps'])->name('maps');
 Route::post('/maps', [CorporateProfileController::class, 'maps'])->name('maps');

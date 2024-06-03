@@ -31,8 +31,8 @@
     <link href="{{ asset('template/Medilab/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('template/Medilab/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
-    <!-- <link href="{{ asset('template/Medilab/assets/vendor/aos/aos.css') }}" rel="stylesheet"> -->
-    <!-- <link href="{{ asset('template/Medilab/assets/css/style.css') }}" rel="stylesheet"> -->
+    <link href="{{ asset('template/Medilab/assets/vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('template/Medilab/assets/css/style.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('template/Medilab/assets/css/style.css') }}" rel="stylesheet">
@@ -195,13 +195,13 @@
 
             <!-- <h1 class="logo me-auto"><a href="{{route('corporateProfileEn')}}">ID Corporate</a></h1> -->
             <!-- Uncomment below if you prefer to use an image logo -->
-            <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo-4/png/logo-company-ownership-rb.png')}}" alt="" class="img-fluid"></a>
+            <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo-5/png/logo-no-background.png')}}" alt="" class="img-fluid"></a>
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     <li><a class="" href="{{route('corporateProfileEn')}}#why-us">Home</a></li>
-                    <li><a class="" href="{{route('corporateProfileEn')}}#departments">Search</a></li>
-                    <li><a class="" href="{{route('corporateProfileEn')}}#services">Dataset</a></li>
+                    <li><a class="" href="{{route('feature')}}">Feature</a></li>
+                    <!-- <li><a class="" href="{{route('corporateProfileEn')}}#counts">Dataset</a></li> -->
                     <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="#">Drop Down 1</a></li>
@@ -242,9 +242,9 @@
         <div class="footer-top">
             <div class="container">
                 <div class="row">
-                    <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo3/png2/logo3.png')}}" alt="" class="img-fluid" style="height:30px; width: auto;"></a>
+                    <!-- <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo-4/png/logo-company-ownership-rb.png')}}" alt="" class="img-fluid" style="height:30px; width: auto;"></a> -->
                     <div class="col-lg-4 col-md-3 footer-newsletter">
-                        <h4></h4>
+                        <h4>Policy</h4>
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy and Policy</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of Service</a></li>
@@ -254,9 +254,9 @@
                     <div class="col-lg-4 col-md-3 footer-newsletter">
                         <h4>Contact Us</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Jl. Anggrek No.6, Pontianak City, West Kalimantan</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">info@corporateownership.com</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">+628982950531</a></li>
+                            <li><i class="bx bx-chevron-right"></i> Jl. Anggrek No.6, Pontianak City, West Kalimantan</li>
+                            <li><i class="bx bx-chevron-right"></i> helpdesk@earthqualizer.org</li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="https://wa.me/628982950531?text=Hello%20World" target="_blank">+628982950531</a></li>
                         </ul>
                     </div>
 
@@ -265,7 +265,7 @@
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">FAQ (Frequently Asked Questions)</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">User Guides</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Blog</a></li>
+                            <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Blog</a></li> -->
                         </ul>
                         <!-- <form action="" method="post">
                             <input type="email" name="email"><input type="submit" value="Subscribe">
@@ -290,25 +290,24 @@
                     <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
                 </div>
             </div>
-            <div class="social-links text-center text-md-right pt-3 pt-md-0">
-                <!-- <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a> -->
+            <!-- <div class="social-links text-center text-md-right pt-3 pt-md-0">
                 <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
                 <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <!-- <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a> -->
                 <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-            </div>
+            </div> -->
         </div>
     </footer><!-- End Footer -->
 
-    <!-- <div id="preloader"></div> -->
+    <div id="preloader"></div>
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="{{ asset('template/Medilab/assets/vendor/bootstrap/js/bootstrap.bundle.min')}}.js"></script>
+    <script src="{{ asset('template/Medilab/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('template/Medilab/assets/vendor/aos/aos.js')}}"></script>
     <!-- <script src="{{ asset('template/Medilab/assets/vendor/glightbox/js/glightbox.min')}}.js"></script> -->
-    <script src="{{ asset('template/Medilab/assets/vendor/php-email-form/validate')}}.js"></script>
-    <script src="{{ asset('template/Medilab/assets/vendor/purecounter/purecounter')}}.js"></script>
-    <script src="{{ asset('template/Medilab/assets/vendor/swiper/swiper-bundle.min')}}.js"></script>
+    <script src="{{ asset('template/Medilab/assets/vendor/php-email-form/validate.js')}}"></script>
+    <script src="{{ asset('template/Medilab/assets/vendor/purecounter/purecounter.js')}}"></script>
+    <script src="{{ asset('template/Medilab/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
     <script src="{{ asset('template/NiceAdmin/assets/vendor/chart.js/chart.umd.js')}}"></script>
 
     <!-- Template Main JS File -->

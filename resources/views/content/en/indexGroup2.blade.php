@@ -238,7 +238,7 @@
                     
                     <div class="col-lg-12 details order-2 order-lg-1 mt-3">
                         <div class="container">
-                            <h6 class="text-muted">Search for other groups</h6>
+                            <h6 class="text-muted">Search more groups</h6>
                             <form action="{{ route('searchFunctionGroup2') }}" method="GET" class="d-flex">
                                 <input type="text" class="form-control me-2" name="group_name" placeholder="Group Name">
                                 <button type="submit" class="btn btn-info">Search</button>

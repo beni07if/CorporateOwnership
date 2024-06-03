@@ -774,4 +774,36 @@ class CorporateProfileController extends Controller
             ], 500);
         }
     }
+    
+    public function feature()
+    {
+        $subsidiary = Consolidation::all();
+        $groupName = Consolidation::all();
+        return view('content.en.feature.feature', compact('subsidiary', 'groupName'));
+    }
+
+    public function groupFeature()
+    {
+        $subsidiary = Consolidation::all();
+        $groupName = Consolidation::all();
+        return view('content.en.feature.groupFeature', compact('subsidiary', 'groupName'));
+    }
+    public function subsidiaryFeature()
+    {
+        $subsidiary = Consolidation::all();
+        $groupName = Consolidation::all();
+        return view('content.en.feature.subsidiaryFeature', compact('subsidiary', 'groupName'));
+    }
+    public function shareholderFeature()
+    {
+        $subsidiary = Consolidation::all();
+        $groupName = Consolidation::all();
+        return view('content.en.feature.shareholderFeature', compact('subsidiary', 'groupName'));
+    }
+    public function sraFeature()
+    {
+        $subsidiary = Consolidation::all();
+        $groupName = Consolidation::all();
+        return view('content.en.feature.sraFeature', compact('subsidiary', 'groupName'));
+    }
 }
