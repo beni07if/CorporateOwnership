@@ -24,6 +24,8 @@ use Illuminate\Support\Str;
 
 class CorporateProfileController extends Controller
 {
+    
+
     /**
      * Display a listing of the resource.
      */
@@ -441,6 +443,8 @@ class CorporateProfileController extends Controller
                 $group_narrative2 = ' group';
             }
 
+            $response ='';
+
             // narasi shareholder v1 with no link
             if (auth()->check() && ($user_level = auth()->user()->user_level)) {
                 if ($user_level === 'Premium') {
@@ -780,30 +784,5 @@ class CorporateProfileController extends Controller
         $subsidiary = Consolidation::all();
         $groupName = Consolidation::all();
         return view('content.en.feature.feature', compact('subsidiary', 'groupName'));
-    }
-
-    public function groupFeature()
-    {
-        $subsidiary = Consolidation::all();
-        $groupName = Consolidation::all();
-        return view('content.en.feature.groupFeature', compact('subsidiary', 'groupName'));
-    }
-    public function subsidiaryFeature()
-    {
-        $subsidiary = Consolidation::all();
-        $groupName = Consolidation::all();
-        return view('content.en.feature.subsidiaryFeature', compact('subsidiary', 'groupName'));
-    }
-    public function shareholderFeature()
-    {
-        $subsidiary = Consolidation::all();
-        $groupName = Consolidation::all();
-        return view('content.en.feature.shareholderFeature', compact('subsidiary', 'groupName'));
-    }
-    public function sraFeature()
-    {
-        $subsidiary = Consolidation::all();
-        $groupName = Consolidation::all();
-        return view('content.en.feature.sraFeature', compact('subsidiary', 'groupName'));
     }
 }
