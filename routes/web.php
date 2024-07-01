@@ -105,6 +105,11 @@ Route::get('/subsidiary-feature', [FeatureController::class, 'subsidiaryFeature'
 Route::get('/shareholder-feature', [FeatureController::class, 'shareholderFeature'])->name('shareholderFeature');
 Route::get('/sra-feature', [FeatureController::class, 'sraFeature'])->name('sraFeature');
 
+Route::get('/faq', [CorporateProfileController::class, 'faq'])->name('faq');
+Route::get('/term-of-services', [CorporateProfileController::class, 'termOfServices'])->name('termOfServices');
+Route::get('/privacy-and-policy', [CorporateProfileController::class, 'privacyPolicy'])->name('privacyPolicy');
+Route::get('/user-guide', [CorporateProfileController::class, 'userGuide'])->name('userGuide');
+
 Route::get('/search', [CorporateProfileController::class, 'search'])->name('search');
 Route::get('/maps', [CorporateProfileController::class, 'maps'])->name('maps');
 Route::post('/maps', [CorporateProfileController::class, 'maps'])->name('maps');

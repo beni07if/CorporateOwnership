@@ -785,4 +785,29 @@ class CorporateProfileController extends Controller
         $groupName = Consolidation::all();
         return view('content.en.feature.feature', compact('subsidiary', 'groupName'));
     }
+
+    public function faq()
+    {
+        $subsidiary = Consolidation::all();
+        $groupName = Consolidation::all();
+        return view('content.footer.faq', compact('subsidiary', 'groupName'));
+    }
+    public function termOfServices()
+    {
+        $subsidiary = Consolidation::all();
+        $groupName = Consolidation::all();
+        return view('content.footer.termOfServices', compact('subsidiary', 'groupName'));
+    }
+    public function privacyPolicy()
+    {
+        $subsidiary = Consolidation::all();
+        $groupName = Consolidation::all();
+        return view('content.footer.privacyPolicy', compact('subsidiary', 'groupName'));
+    }
+    public function userGuide()
+    {
+        $subsidiary = Consolidation::all();
+        $groupName = Consolidation::all();
+        return view('content.footer.userGuide', compact('subsidiary', 'groupName'));
+    }
 }

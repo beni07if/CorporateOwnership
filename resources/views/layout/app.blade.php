@@ -264,8 +264,8 @@
                     <div class="col-lg-4 col-md-3 footer-newsletter">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">FAQ (Frequently Asked Questions)</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">User Guides</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{route('faq')}}">FAQ (Frequently Asked Questions)</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{route('userGuide')}}">User Guides</a></li>
                             <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Blog</a></li> -->
                         </ul>
                         <!-- <form action="" method="post">
@@ -292,8 +292,8 @@
                 </div>
             </div>
             <div class="text-center text-md-right pt-3 pt-md-0">
-                <a href="#">Term of Services</a>&emsp;&emsp;&emsp;&emsp;
-                <a href="#">Privacy & Policy</a>
+                <a href="{{route('termOfServices')}}">Term of Services</a>&emsp;&emsp;&emsp;&emsp;
+                <a href="{{route('privacyPolicy')}}">Privacy & Policy</a>
                 <!-- <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
                 <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
                 <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> -->
