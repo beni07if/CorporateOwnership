@@ -242,13 +242,14 @@
         <div class="footer-top">
             <div class="container">
                 <div class="row">
-                    <!-- <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo-4/png/logo-company-ownership-rb.png')}}" alt="" class="img-fluid" style="height:30px; width: auto;"></a> -->
                     <div class="col-lg-4 col-md-3 footer-newsletter">
-                        <h4>Policy</h4>
+                        <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo-4/png/logo-company-ownership-rb.png')}}" alt="" class="img-fluid" style="height:30px; width: auto;"></a>
+                        <p>Global Company Profile Structure for Strategic Insights</p>
+                        <!-- <h4>Policy</h4>
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy and Policy</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of Service</a></li>
-                        </ul>
+                        </ul> -->
                     </div>
 
                     <div class="col-lg-4 col-md-3 footer-newsletter">
@@ -279,9 +280,9 @@
         <div class="container d-md-flex py-4">
 
             <div class="me-md-auto text-center text-md-start">
-                <!-- <div class="copyright">
-                    &copy; Copyright <strong><span>Medilab</span></strong>. All Rights Reserved
-                </div> -->
+                <div class="copyright">
+                    &copy; Copyright <strong><span>CorporateProfile</span></strong>. All Rights Reserved
+                </div>
                 <div class="credits">
                     <!-- All the links in the footer should remain intact. -->
                     <!-- You can delete the links only if you purchased the pro version. -->
@@ -290,11 +291,13 @@
                     <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
                 </div>
             </div>
-            <!-- <div class="social-links text-center text-md-right pt-3 pt-md-0">
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+            <div class="text-center text-md-right pt-3 pt-md-0">
+                <a href="#">Term of Services</a>&emsp;&emsp;&emsp;&emsp;
+                <a href="#">Privacy & Policy</a>
+                <!-- <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
                 <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-            </div> -->
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> -->
+            </div>
         </div>
     </footer><!-- End Footer -->
 
