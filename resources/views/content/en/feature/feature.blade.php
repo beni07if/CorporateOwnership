@@ -171,7 +171,7 @@
 
         <div class="section-title">
           <h2>CORPORATE PROFILE FEATURES</h2>
-          <!-- <p>Naration</p> -->
+          <p>You must be logged in to access the features below</p>
         </div>
 
         <div class="row">
