@@ -33,6 +33,13 @@
   </li>
   <li class="nav-item">
     <!-- <a class="nav-link collapsed" href="{{route('inbox')}}"> -->
+        <a href="#" class="nav-link collapsed {{ request()->is('inbox') ? 'active' : '' }}">
+      <i class="bi bi-inbox"></i>
+      <span>SRA</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <!-- <a class="nav-link collapsed" href="{{route('inbox')}}"> -->
         <a href="{{route('messages.index')}}" class="nav-link collapsed {{ request()->is('inbox') ? 'active' : '' }}">
       <i class="bi bi-inbox"></i>
       <span>Message</span>

@@ -2,20 +2,20 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <!-- <a href="index.html" class="logo d-flex align-items-center"> -->
-        <a href="{{route('dashboard')}}" class="logo d-flex align-items-left"><img src="{{asset('img/logo/new-logo1/png/logo-no-background.png')}}" alt="" class="img-fluid" style="height:30px; width: auto;"></a>
+        <a href="{{route('dashboard')}}" class="logo d-flex align-items-left"><img src="{{asset('img/logo/new-logo-5/png/logo-no-background.png')}}" alt="" class="img-fluid" style="height:30px; width: auto;"></a>
         
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
+    <div class="search-bar" hidden>
       <form class="search-form d-flex align-items-center" method="POST" action="#">
         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
     </div><!-- End Search Bar -->
 
-    <nav class="header-nav ms-auto">
+    <nav class="header-nav ms-auto" hidden>
       <ul class="d-flex align-items-center">
 
         <li class="nav-item d-block d-lg-none">
