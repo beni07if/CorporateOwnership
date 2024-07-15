@@ -231,6 +231,10 @@
                                     <div class="col-lg-8 col-md-8">: {{ $subs->total_of_shares }}</div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-lg-4 col-md-4 label ">Percentage of Shares</div>
+                                    <div class="col-lg-8 col-md-8">: {{ $subs->percentage_of_shares }}</div>
+                                </div>
+                                <div class="row">
                                     <div class="col-lg-4 col-md-4 label ">Currency</div>
                                     <div class="col-lg-8 col-md-8">: {{ $subs->currency }}</div>
                                 </div>
@@ -241,6 +245,10 @@
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 label ">Data Source</div>
                                     <div class="col-lg-8 col-md-8">: {{ $subs->data_source }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 label ">Data Update</div>
+                                    <div class="col-lg-8 col-md-8">: {{ $subs->data_update }}</div>
                                 </div>
                             </div>
                         </div>

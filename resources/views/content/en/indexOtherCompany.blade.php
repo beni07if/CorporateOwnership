@@ -126,7 +126,7 @@
                         <i class="text-muted">*Note: Data source from Berita Negara</i>
                     </div>
                     <div class="container" style="padding-top:50px;">
-                        <h5 class="description">Search other Subsidiaries</h5>
+                        <h5 class="description">Search other Companies</h5>
                         <!-- <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the badan_hukum companies. The information about Group Company can be used to identify the badan_hukum under.</p> -->
                         <form action="{{ route('searchFunctionSubsidiary') }}" method="GET" class="d-flex">
                             <input type="text" class="form-control me-2" name="query" placeholder="Search...">

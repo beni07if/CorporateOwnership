@@ -28,8 +28,8 @@
                         <h5 class="card-title-description">{{$subsidiaryGroup->first()->subsidiary}} &ensp;  
                         <!-- <a href="#" class="btn btn-info btn-sm" style="align:right;">Non-compliance historical</a> -->
                         </h5>
-                    </div><br>
-                    <div>
+                    </div>
+                    <div hidden>
                         @php
                             $subsidiary = $subsidiaryGroup->first()->subsidiary;
 
@@ -660,6 +660,10 @@
                             @endforeach
                             <h6 class="card-title description">Data Source</h6>
                             @foreach($consolidations->pluck('data_source')->unique() as $subs)
+                                <p class="text-muted">{{$subs}}</p>
+                            @endforeach
+                            <h6 class="card-title description">Data Update</h6>
+                            @foreach($consolidations->pluck('data_update')->unique() as $subs)
                                 <p class="text-muted">{{$subs}}</p>
                             @endforeach
                         </div>

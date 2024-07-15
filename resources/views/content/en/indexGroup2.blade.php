@@ -31,7 +31,7 @@
                         @endforeach
                     </div>
                     <div class="line"></div>
-                    <div>
+                    <div hidden>
                     @foreach($groups->groupBy('group_name') as $subsidiaryGroup)
                         @php
                             $subsidiary = $subsidiaryGroup->first()->group_name;
@@ -510,7 +510,7 @@
                         <p class="card-text">{{ $subs->business_sector }}</p>
                         <h6 class="card-title description">Main Product</h6>
                         <p class="card-text">{{ $subs->main_product }}</p>
-                        <h6 class="card-title description">Commercial Operation Date</h6>
+                        <h6 class="card-title description">Incorporation Date</h6>
                         <p class="card-text">{{ $subs->commercial_operation_date }}</p>
                         <h6 class="card-title description">Country Registration</h6>
                         <p class="card-text">{{ $subs->country_registration }}</p>
