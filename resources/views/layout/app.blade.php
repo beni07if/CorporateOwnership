@@ -54,18 +54,18 @@
 
     <style>
         #header {
-  background: rgba(240, 248, 255, 0); /* Transparan penuh */
-  transition: background-color 0.5s; /* Efek transisi */
-  z-index: 997;
-  padding: 15px 0;
-  box-shadow: 0px 2px 15px rgba(25, 119, 204, 0.1);
-  position: fixed;
-  width: 100%;
-  top: 0;
-}
-    .header-solid {
-      background: #fff !important; /* Warna putih */
-    }
+        background: rgba(240, 248, 255, 0); /* Transparan penuh */
+        transition: background-color 0.5s; /* Efek transisi */
+        z-index: 997;
+        padding: 15px 0;
+        box-shadow: 0px 2px 15px rgba(25, 119, 204, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        }
+        .header-solid {
+        background: #fff !important; /* Warna putih */
+        }
 
         #map {
             width: 100%;
@@ -100,27 +100,6 @@
             display: inline-block;
             margin: 0;
         }
-
-
-        /* .icon-box {
-            text-align: center;
-        }
-
-        .icon {
-            margin-bottom: 10px;
-        }
-
-        .title {
-            margin-bottom: 15px;
-            font-size: 18px;
-        } */
-
-        /* .card {
-            width: 300px;
-            margin: 0 auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        } */
 
         .card-body {
             padding: 20px;
@@ -165,13 +144,13 @@
         list-style: none; /* Menghilangkan simbol list (bulat kecil) */
         padding: 0; /* Menghapus padding default untuk ul */
         margin: 0; /* Menghapus margin default untuk ul */
-    }
+        }
 
-    ul li {
-        margin-bottom: 10px; /* Memberi jarak antara setiap elemen li */
-    }
+        ul li {
+            margin-bottom: 10px; /* Memberi jarak antara setiap elemen li */
+        }
 
-    /* Tambahkan gaya lain sesuai kebutuhan Anda */
+        /* Tambahkan gaya lain sesuai kebutuhan Anda */
 
     </style>
 
