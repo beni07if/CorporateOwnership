@@ -47,7 +47,7 @@
 
         <div class="section-title">
           <h2>Frequently Asked Questions</h2>
-          <!-- <p>Testing</p> -->
+          <!-- <p>Testing FAQ</p> -->
         </div>
 
         <div class="row">
