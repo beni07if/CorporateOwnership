@@ -10,6 +10,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\Scraper;
 use App\Http\Controllers\ClientCorporateProfileController;
 use App\Http\Middleware\CheckUserLevel;
@@ -105,7 +106,11 @@ Route::get('/subsidiary-feature', [FeatureController::class, 'subsidiaryFeature'
 Route::get('/shareholder-feature', [FeatureController::class, 'shareholderFeature'])->name('shareholderFeature');
 Route::get('/sra-feature', [FeatureController::class, 'sraFeature'])->name('sraFeature');
 
-Route::get('/faq', [CorporateProfileController::class, 'faq'])->name('faq');
+Route::get('/faqs', [FaqController::class, 'faq'])->name('faq');
+Route::resources([
+    'faq' => FaqController::class,
+]);
+
 Route::get('/term-of-services', [CorporateProfileController::class, 'termOfServices'])->name('termOfServices');
 Route::get('/privacy-and-policy', [CorporateProfileController::class, 'privacyPolicy'])->name('privacyPolicy');
 Route::get('/user-guide', [CorporateProfileController::class, 'userGuide'])->name('userGuide');

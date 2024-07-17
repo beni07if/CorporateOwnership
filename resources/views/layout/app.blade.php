@@ -42,11 +42,11 @@
     <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" /> -->
     <!-- Make sure you put this AFTER Leaflet's CSS -->
 
-    <script src="{{ asset('js/pdfjs-dist/build/pdf.js') }}"></script>
+    <!-- <script src="{{ asset('js/pdfjs-dist/build/pdf.js') }}"></script>
     <script
     src='//fw-cdn.com/10921532/3683145.js'
     chat='true'>
-    </script>
+    </script> -->
 
     @yield('styleMaps')
 
@@ -221,35 +221,22 @@
         <div class="footer-top">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-3 footer-newsletter">
+                    <div class="col-lg-6 col-md-3 footer-newsletter">
                         <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo-4/png/logo-company-ownership-rb.png')}}" alt="" class="img-fluid" style="height:30px; width: auto;"></a>
-                        <p>Global Company Profile Structure for Strategic Insights</p>
-                        <!-- <h4>Policy</h4>
+                        <br><br>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy and Policy</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of Service</a></li>
-                        </ul> -->
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{route('faq')}}">FAQ (Frequently Asked Questions)</a></li>
+                            <!-- <li><i class="bx bx-chevron-right"></i> <a href="{{route('userGuide')}}">User Guides</a></li> -->
+                        </ul>
                     </div>
 
-                    <div class="col-lg-4 col-md-3 footer-newsletter">
+                    <div class="col-lg-6 col-md-3 footer-newsletter">
                         <h4>Contact Us</h4>
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> Jl. Anggrek No.6, Pontianak City, West Kalimantan</li>
                             <li><i class="bx bx-chevron-right"></i> helpdesk@earthqualizer.org</li>
                             <li><i class="bx bx-chevron-right"></i> <a href="https://wa.me/628982950531?text=Hello%20World" target="_blank">+628982950531</a></li>
                         </ul>
-                    </div>
-
-                    <div class="col-lg-4 col-md-3 footer-newsletter">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="{{route('faq')}}">FAQ (Frequently Asked Questions)</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="{{route('userGuide')}}">User Guides</a></li>
-                            <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Blog</a></li> -->
-                        </ul>
-                        <!-- <form action="" method="post">
-                            <input type="email" name="email"><input type="submit" value="Subscribe">
-                        </form> -->
                     </div>
 
                 </div>

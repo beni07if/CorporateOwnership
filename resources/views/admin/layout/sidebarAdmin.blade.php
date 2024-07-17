@@ -40,11 +40,17 @@
   </li>
   <li class="nav-item">
     <!-- <a class="nav-link collapsed" href="{{route('inbox')}}"> -->
+        <a href="{{route('faq.index')}}" class="nav-link collapsed {{ request()->is('inbox') ? 'active' : '' }}">
+      <i class="bi bi-inbox"></i>
+      <span>FAQ</span>
+    </a>
+  </li>
+  <!-- <li class="nav-item">
         <a href="{{route('messages.index')}}" class="nav-link collapsed {{ request()->is('inbox') ? 'active' : '' }}">
       <i class="bi bi-inbox"></i>
       <span>Message</span>
     </a>
-  </li>
+  </li> -->
   <!-- End Profile Page Nav -->
 
 </ul>
