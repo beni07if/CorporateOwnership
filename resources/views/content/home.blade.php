@@ -144,7 +144,7 @@
           <div class="col-xl-6 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
             <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox play-btn mb-4"></a> -->
             <!-- <img src="{{ asset('img/perusahaan-multinasional.png')}}" class="img-fluid shadow" alt=""> -->
-            <img src="{{ asset('img/bg/bgwl2.jpeg')}}" class="img-fluid shadow" alt="">
+            <img src="{{ asset('img/bg/gb1.jpg')}}" class="img-fluid shadow" alt="">
           </div>
 
           <div class="col-xl-6 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
