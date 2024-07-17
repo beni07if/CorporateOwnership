@@ -53,19 +53,18 @@
             <!-- F.A.Q Group 1 -->
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Laborum dolorem quam porro</h5>
 
                 <div class="accordion accordion-flush" id="faq-group-1">
 
                   <div class="accordion-item">
                     <h2 class="accordion-header">
                       <button class="accordion-button collapsed" data-bs-target="#faqsOne-1" type="button" data-bs-toggle="collapse">
-                        Debitis adipisci eius?
+                        Apa itu Corporate Profile?
                       </button>
                     </h2>
                     <div id="faqsOne-1" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
                       <div class="accordion-body">
-                        Ut quasi odit odio totam accusamus vero eius. Nostrum asperiores voluptatem eos nulla ab dolores est asperiores iure. Quo est quis praesentium aut maiores. Corrupti sed aut expedita fugit vero dolorem. Nemo rerum sapiente. A quaerat dignissimos.
+                      Corporate Profile adalah platform digital yang dikembangkan untuk menyajikan informasi mengenai sebuah perusahaan yang meliputi profil perusahaan, struktur kepemilikan saham, individu ownership dan sustainability risk assessment dari perusahaan tersebut.
                       </div>
                     </div>
                   </div>
@@ -73,12 +72,18 @@
                   <div class="accordion-item">
                     <h2 class="accordion-header">
                       <button class="accordion-button collapsed" data-bs-target="#faqsOne-2" type="button" data-bs-toggle="collapse">
-                        Omnis fugiat quis repellendus?
+                      Apa saja kelebihan dari Corporate Profile?
                       </button>
                     </h2>
                     <div id="faqsOne-2" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
                       <div class="accordion-body">
-                        In minus quia impedit est quas deserunt deserunt et. Nulla non quo dolores minima fugiat aut saepe aut inventore. Qui nesciunt odio officia beatae iusto sed voluptatem possimus quas. Officia vitae sit voluptatem nostrum a.
+                      Corporate profil menyajikan informasi yang faktual dan komprehensif mengenai 
+                      <ul>
+                        <li>Profil perusahaan</li>
+                        <li>Struktur kepemilikan saham</li>
+                        <li>Shareholder / Individual ownership</li>
+                        <li>Sustainability Risk Assessment (SRA)</li>
+                      </ul>
                       </div>
                     </div>
                   </div>
@@ -86,12 +91,12 @@
                   <div class="accordion-item">
                     <h2 class="accordion-header">
                       <button class="accordion-button collapsed" data-bs-target="#faqsOne-3" type="button" data-bs-toggle="collapse">
-                        Et occaecati praesentium aliquam modi incidunt?
+                      Apa perbedaan antara Corporate Profile dan website perusahaan lainnya?
                       </button>
                     </h2>
                     <div id="faqsOne-3" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
                       <div class="accordion-body">
-                        Voluptates magni amet enim perspiciatis atque excepturi itaque est. Sit beatae animi incidunt eum repellat sequi ea saepe inventore. Id et vel et et. Nesciunt itaque corrupti quia ducimus. Consequatur maiores voluptatum fuga quod ut non fuga.
+                      Corporate Profile fokus pada menyajikan informasi spesifik struktur kepemilikan perusahaan, individual ownership serta penilaian SRA. Sementara website perusahaan lain tidak menampilkan informasi tersebut.
                       </div>
                     </div>
                   </div>
@@ -99,12 +104,12 @@
                   <div class="accordion-item">
                     <h2 class="accordion-header">
                       <button class="accordion-button collapsed" data-bs-target="#faqsOne-4" type="button" data-bs-toggle="collapse">
-                        Quo unde eaque vero dolor quis ipsam?
+                      Bagaimana cara mengakses Corporate Profile sebuah perusahaan?
                       </button>
                     </h2>
                     <div id="faqsOne-4" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
                       <div class="accordion-body">
-                        Numquam ut reiciendis aliquid. Quia veritatis quasi ipsam sed quo ut eligendi et non. Doloremque sed voluptatem at in voluptas aliquid dolorum.
+                      Anda dapat mengakses Corporate Profile perusahaan dengan mengunjungi website resmi perusahaan tersebut. Untuk mengakses fitur utama dari website ini anda dapat mengklik menu Feature. Untuk mengakses fitur ini anda harus login terlebih dahulu. Jika Anda belum memiliki akun, Anda dapat menghubungi tim kami di helpdesk@earthqualizer.org.
                       </div>
                     </div>
                   </div>
@@ -112,12 +117,77 @@
                   <div class="accordion-item">
                     <h2 class="accordion-header">
                       <button class="accordion-button collapsed" data-bs-target="#faqsOne-5" type="button" data-bs-toggle="collapse">
-                        Natus sunt quo atque mollitia accusamus?
+                      Apakah Corporate Profile tersedia untuk semua sektor industri?
                       </button>
                     </h2>
                     <div id="faqsOne-5" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
                       <div class="accordion-body">
-                        Aut necessitatibus maxime quis dolor et. Nihil laboriosam molestiae qui molestias placeat corrupti non quo accusamus. Nemo qui quis harum enim sed. Aliquam molestias pariatur delectus voluptas quidem qui rerum id quisquam. Perspiciatis voluptatem voluptatem eos. Vel aut minus labore at rerum eos.
+                      Untuk saat ini mayoritas perusahaan yang masuk dalam corporate profil adalah yang bergerak di industri kelapa sawit, dan sebagian yang lain dari industri ekstraksi lainnya.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" data-bs-target="#faqsOne-6" type="button" data-bs-toggle="collapse">
+                      Bagaimana cara menemukan informasi lebih lanjut tentang sebuah perusahaan melalui Corporate Profile?
+                      </button>
+                    </h2>
+                    <div id="faqsOne-6" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
+                      <div class="accordion-body">
+                      Untuk informasi lebih lanjut Anda dapat menghubungi tim kami di helpdesk@earthqualizer.org.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" data-bs-target="#faqsOne-7" type="button" data-bs-toggle="collapse">
+                      Apa itu SRA?
+                      </button>
+                    </h2>
+                    <div id="faqsOne-7" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
+                      <div class="accordion-body">
+                      Sustainability Risk Assessment (SRA) adalah penilaian sistematis berbasis grup untuk mengidentifikasi, analisis, dan mengelola risiko yang berdampak pada keberlanjutan dari perusahaan.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" data-bs-target="#faqsOne-8" type="button" data-bs-toggle="collapse">
+                      Apa Metode yang digunakan dalam SRA?
+                      </button>
+                    </h2>
+                    <div id="faqsOne-8" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
+                      <div class="accordion-body">
+                      ..
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" data-bs-target="#faqsOne-9" type="button" data-bs-toggle="collapse">
+                      Apa manfaat dari SRA?
+                      </button>
+                    </h2>
+                    <div id="faqsOne-9" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
+                      <div class="accordion-body">
+                      ..
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" data-bs-target="#faqsOne-10" type="button" data-bs-toggle="collapse">
+                      Jika berlangganan, informasi apa saja yang saya dapatkan
+                      </button>
+                    </h2>
+                    <div id="faqsOne-10" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
+                      <div class="accordion-body">
+                      ..
                       </div>
                     </div>
                   </div>
