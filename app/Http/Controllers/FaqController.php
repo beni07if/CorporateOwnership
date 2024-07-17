@@ -14,8 +14,8 @@ class FaqController extends Controller
      */
     public function faq()
     {
-        $faq = Faq::all();
-        return view('admin.faq.faq', compact('faq'));
+        // $faq = Faq::all();
+        return view('admin.faq.faq');
     }
     
     public function index()
