@@ -182,7 +182,7 @@
                   <div class="accordion-item">
                     <h2 class="accordion-header">
                       <button class="accordion-button collapsed" data-bs-target="#faqsOne-10" type="button" data-bs-toggle="collapse">
-                      Jika berlangganan, informasi apa saja yang saya dapatkan
+                      Jika berlangganan, informasi apa saja yang kami dapatkan?
                       </button>
                     </h2>
                     <div id="faqsOne-10" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
