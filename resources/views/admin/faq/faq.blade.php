@@ -77,12 +77,12 @@
                     </h2>
                     <div id="faqsOne-2" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
                       <div class="accordion-body">
-                      Corporate profil menyajikan informasi yang faktual dan komprehensif mengenai 
+                      Corporate profil menyajikan informasi yang faktual dan komprehensif mengenai:
                       <ul>
-                        <li>Profil perusahaan</li>
-                        <li>Struktur kepemilikan saham</li>
-                        <li>Shareholder / Individual ownership</li>
-                        <li>Sustainability Risk Assessment (SRA)</li>
+                        <li>- Profil perusahaan</li>
+                        <li>- Struktur kepemilikan saham</li>
+                        <li>- Shareholder / Individual ownership</li>
+                        <li>- Sustainability Risk Assessment (SRA)</li>
                       </ul>
                       </div>
                     </div>

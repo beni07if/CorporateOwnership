@@ -37,7 +37,7 @@
                                     <button type="submit" class="btn btn-info">Search</button>
                                 </form> -->
 
-                                <h4 class="title mb-0">LIST OF SHAREHOLDERS</h4>
+                                <h4 class="title mb-0">LIST OF INDIVIDUAL SHARE OWNERSHIP</h4>
                                 <form action="{{ route('searchFunctionShareholder') }}" method="GET" class="d-flex">
                                     <input type="text" class="form-control me-2" name="query" placeholder="Search other subsidiaries">
                                     <button type="submit" class="btn btn-info">Search</button>

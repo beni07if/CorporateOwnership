@@ -54,7 +54,7 @@
         <div class="container">
 
             <div class="section-title">
-                <h2>Search for Shareholders</h2>
+                <h2>Search for Individual Share Ownership</h2>
                 <!-- <p>Explore datasets of thousands of companies and their worldwide shareholding networks!</p> -->
             </div>
             <!-- <div id="mapid" style="height: 500px;"></div> -->

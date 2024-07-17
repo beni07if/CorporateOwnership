@@ -63,16 +63,6 @@
                         <div class="row">
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box mt-4 mt-xl-0">
-                                    <i class="ri-building-fill"></i>
-                                    <h4>Company</h4>
-                                    <h2>6,000 +</h2>
-                                    <!-- <span data-purecounter-start="0" data-purecounter-end="10,000" data-purecounter-duration="1" class="purecounter"></span> -->
-                                    <p>Companies</p>
-                                    <!-- <p>There are tens of thousands of subsidiaries along with their location, shareholder, and other important information.</p> -->
-                                </div>
-                            </div>
-                            <div class="col-xl-4 d-flex align-items-stretch">
-                                <div class="icon-box mt-4 mt-xl-0">
                                     <i class="ri-database-line"></i>
                                     <h4>Group</h4>
                                     <h2>1,700 +</h2>
@@ -82,9 +72,19 @@
                             </div>
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box mt-4 mt-xl-0">
+                                    <i class="ri-building-fill"></i>
+                                    <h4>Company</h4>
+                                    <h2>7,100 +</h2>
+                                    <!-- <span data-purecounter-start="0" data-purecounter-end="10,000" data-purecounter-duration="1" class="purecounter"></span> -->
+                                    <p>Companies</p>
+                                    <!-- <p>There are tens of thousands of subsidiaries along with their location, shareholder, and other important information.</p> -->
+                                </div>
+                            </div>
+                            <div class="col-xl-4 d-flex align-items-stretch">
+                                <div class="icon-box mt-4 mt-xl-0">
                                     <i class="ri-admin-line"></i>
-                                    <h4>Shareholders</h4>
-                                    <h2>28,200 +</h2>
+                                    <h6>Individual Share Ownership</h6>
+                                    <h2>30,600 +</h2>
                                     <p>Shareholders</p>
                                     <!-- <p>There are tens of thousands of shareholders and their shareholdings in several companies</p> -->
                                 </div>
@@ -149,7 +149,7 @@
 
           <div class="col-xl-6 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
             <h3>Corporate Profile</h3>
-            <p>Corporate Profile is a platform that provides information about the ownership structure of companies, shareholders, and their network with other companies. Its key features include group structure, corporate profile, share ownership, and Sustainability Risk Assessment (SRA). The information within this platform is divided into two categories: public information and private information.</p>
+            <p>Corporate Profile is a platform that provides information about the ownership structure of companies, individual share ownership, and their network with other companies. Its key features include group structure, corporate profile, share ownership, and Sustainability Risk Assessment (SRA). The information within this platform is divided into two categories: public information and private information.</p>
             <p>Key features, which include group structure, corporate profile, share ownership, and SRA, can only be accessed by users who are logged in or have an account on this platform. Thus, Corporate Profile ensures that important and detailed information is only available to registered users, maintaining the confidentiality and security of sensitive data.</p>
           </div>
         </div>
@@ -234,9 +234,9 @@
             <p class="text-muted"><i style="font-size:10px;">*Share ownership for Individual/company</i></p>
           </div>
           <div class="col-lg-5 pt-4 pt-lg-0 d-flex flex-column justify-content-center">
-            <h4>Shareholders</h4>
+            <h4>Individual Share Owneship</h4>
             <p>
-            A shareholder is an individual, company, or institution that owns one or more shares in a company. 
+            Individual Share Owneship is an individual, company, or institution that owns one or more shares in a company. 
             </p>
           </div>
         </div>
