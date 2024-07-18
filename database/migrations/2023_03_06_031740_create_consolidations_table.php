@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('id_group')->nullable();
             $table->string('id_mill')->nullable();
             $table->string('group_type')->nullable();
-            $table->string('group_name')->nullable();
-            $table->string('official_group_name')->nullable();
+            $table->text('group_name')->nullable();
+            $table->text('official_group_name')->nullable();
             $table->string('owner')->nullable();
             $table->string('group_status')->nullable();
             $table->string('stock_exchange')->nullable();
@@ -28,12 +28,12 @@ return new class extends Migration
             $table->string('other_memberships')->nullable();//new
             $table->string('ndpe_policy')->nullable();
             $table->string('ownership_status')->nullable();
-            $table->string('subsidiary')->nullable();
-            $table->string('shareholder_subsidiary')->nullable();
+            $table->text('subsidiary')->nullable();
+            $table->text('shareholder_subsidiary')->nullable();
             $table->string('principal_activities')->nullable();
             $table->string('status_operation')->nullable();
             $table->string('facilities')->nullable();
-            $table->string('estate')->nullable();
+            $table->text('estate')->nullable();
             $table->string('capacity')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
