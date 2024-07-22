@@ -555,12 +555,12 @@
                         <p class="card-text">{{ $subs->asd_member }}</p>
                         <h6 class="card-title description">GPNSR Member</h6>
                         <p class="card-text">{{ $subs->gpnsr_member }}</p>
-                        <h6 class="card-title description">Others Mention</h6>
+                        <h6 class="card-title description">Others Membership Mention</h6>
                         <p class="card-text">{{ $subs->others_mention }}</p>
                         <h6 class="card-title description">NDPE Policy</h6>
                         <p class="card-text">{{ $subs->ndpe_policy }}</p>
-                        <h6 class="card-title description">NDPE Time Bound Plan Implementation</h6>
-                        <p class="card-text">{{ $subs->ndpe_time_bound_plan_implementation }}</p>
+                        <!-- <h6 class="card-title description">NDPE Time Bound Plan Implementation</h6>
+                        <p class="card-text">{{ $subs->ndpe_time_bound_plan_implementation }}</p> -->
                         <h6 class="card-title description">Sustainability Progress Report</h6>
                         <p class="card-text">{{ $subs->sustainability_progress_report }}</p>
                         <h6 class="card-title description">Supply Chain Traceability</h6>

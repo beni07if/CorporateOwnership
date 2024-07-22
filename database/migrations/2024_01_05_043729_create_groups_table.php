@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('controller')->nullable();
             $table->string('company_overview')->nullable();
             $table->string('business_sector')->nullable();
-            $table->string('main_product')->nullable();
+            $table->text('main_product')->nullable();
             $table->string('commercial_operation_date')->nullable();
             $table->string('country_registration')->nullable();
             $table->string('business_address')->nullable();
