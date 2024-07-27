@@ -25,7 +25,7 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
     <div class="container">
-        <h1 style="text-align:center;">Global Corporate Ownership</h1>
+        <h1 style="text-align:center;">Offering insights into it's governance and operational framework</h1>
         <!-- <h2>Discover and Analyze Global Corporate Profile Structures for Strategic Insights</h2> -->
         <!-- <a href="#about" hidden class="btn-get-started scrollto">Search</a> -->
         <!-- <section id="hero" class="d-flex align-items-center"> -->
@@ -83,7 +83,7 @@
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box mt-4 mt-xl-0">
                                     <i class="ri-admin-line"></i>
-                                    <h6>Individual Share Ownership</h6>
+                                    <h6>Shareholders</h6>
                                     <h2>30,600 +</h2>
                                     <p>Shareholders</p>
                                     <!-- <p>There are tens of thousands of shareholders and their shareholdings in several companies</p> -->
@@ -149,7 +149,8 @@
 
           <div class="col-xl-6 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
             <h3>Corporate Profile</h3>
-            <p>Corporate Profile is a platform that provides information about the ownership structure of companies, individual share ownership, and their network with other companies. Its key features include group structure, corporate profile, share ownership, and Sustainability Risk Assessment (SRA). The information within this platform is divided into two categories: public information and private information.</p>
+            <p>We perform No Deforestation No Peat and No Exploitation (NDPE) due diligence at the group level with a focus on non-compliance risk to recommend whether commercial relationships should continue or hold. We also verify ownership structures to track compliance, using a robust ownership database that is continuously maintained and updated. This verification process is exclusive to palm oil operations. For entities not related to palm oil (non-palm), we address issues on an ad hoc basis, which may involve grievances or specific risks, potentially leading to additional charges.</p>
+            <p>Corporate Profile is a platform that provides information about the ownership structure of companies, shareholders, and their network with other companies. Its key features include group structure, corporate profile, share ownership, and Sustainability Risk Assessment (SRA). The information within this platform is divided into two categories: public information and private information.</p>
             <p>Key features, which include group structure, corporate profile, share ownership, and SRA, can only be accessed by users who are logged in or have an account on this platform. Thus, Corporate Profile ensures that important and detailed information is only available to registered users, maintaining the confidentiality and security of sensitive data.</p>
           </div>
         </div>
@@ -234,9 +235,9 @@
             <p class="text-muted"><i style="font-size:10px;">*Share ownership for Individual/company</i></p>
           </div>
           <div class="col-lg-5 pt-4 pt-lg-0 d-flex flex-column justify-content-center">
-            <h4>Individual Share Owneship</h4>
+            <h4>Shareholders</h4>
             <p>
-            Individual Share Owneship is an individual, company, or institution that owns one or more shares in a company. 
+            Shareholders is an individual, company, or institution that owns one or more shares in a company. 
             </p>
           </div>
         </div>
