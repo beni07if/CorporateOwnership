@@ -28,7 +28,7 @@
                         <thead hidden>
                             <th class="d-flex justify-content-between align-items-center">
                                 <h4 class="title mb-0">List of Groups</h4>
-                                <form action="{{ route('searchFunctionGroup2') }}" method="GET" class="d-flex">
+                                <form action="{{ route('searchFunctionGroup') }}" method="GET" class="d-flex">
                                     <input type="text" class="form-control me-2" name="group_name" placeholder="Search other groups">
                                     <button type="submit" class="btn btn-info">Search</button>
                                 </form>
