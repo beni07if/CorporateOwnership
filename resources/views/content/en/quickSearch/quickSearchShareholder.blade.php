@@ -16,36 +16,33 @@
                     <li><a href="#" style="color:#4682B4;">Home</a></li>
                     <li><a href="#" style="color:#4682B4;">Indonesia</a></li>
                     <li><a href="#" style="color:#4682B4;">Corporate Profile</a></li>
-                    <li><a href="#" style="color:#4682B4;">Group</a></li>
+                    <li><a href="#" style="color:#4682B4;">Subsidiary</a></li>
                 </ol> -->
                 <!-- <h2 style="color:#4682B4;">Subsidiary</h2> -->
             </div>
 
             <div class="row" style="box-shadow: rgba(44, 73, 100, 0.08) 0px 2px 15px 0px;">
                 <div class="col-xl-12 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-
+                    
                     <table class="table">
-                        <thead hidden>
+                        <thead>
                             <th class="d-flex justify-content-between align-items-center">
-                                <h4 class="title mb-0">List of Groups</h4>
-                                <form action="{{ route('searchFunctionGroup2') }}" method="GET" class="d-flex">
-                                    <input type="text" class="form-control me-2" name="group_name" placeholder="Search other groups">
+                                <h4 class="title mb-0">List of Shareholder</h4>
+                                <form action="{{ route('searchFunctionQuickShareholder') }}" method="GET" class="d-flex">
+                                    <input type="text" class="form-control me-2" name="shareholder_name" placeholder="Search other shareholder">
                                     <button type="submit" class="btn btn-info">Search</button>
                                 </form>
                             </th>
                         </thead>
-                        <h4>Search Result</h4>
-
-                        <form action="{{ route('group2Show') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('shareholderShow') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                                @if($groups->isNotEmpty())
-                                    @foreach($groups->chunk(2) as $pair)  <!-- Chunk the groups into pairs -->
+                                @if($shareholder->isNotEmpty())
+                                    @foreach($shareholder->chunk(2) as $pair)  <!-- Chunk the groups into pairs -->
                                         <tr>
                                             @foreach($pair as $subs)
                                                 <td>
-                                                    <h4><input type="submit" name="group_name" value="{{ $subs->group_name }}" style="background-color: transparent; border: none; color: inherit; ursor: pointer;"></h4>
-                                                    <span class="pl-2">{{ $subs->country_registration }}</span>
-                                                    <p class="pl-2">{{ $subs->business_address }}</p>
+                                                    <h4><input type="submit" name="shareholder" value="{{ $subs->shareholder_name}}" style="background-color: transparent; border: none; color: inherit; ursor: pointer;"></h4>
+                                                    <span class="pl-2">{{ $subs->company_name }}</span>
                                                 </td>
                                             @endforeach
                                             <!-- Fill in empty cells if there is an odd number of entries -->
@@ -73,9 +70,9 @@
                         <ul class="pagination justify-content-center">
 
                             {{-- Previous Page Link --}}
-                            @unless($groups->onFirstPage())
+                            @unless($shareholder->onFirstPage())
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ $groups->previousPageUrl() }}" rel="prev" aria-label="Previous">@lang('pagination.previous')</a>
+                                    <a class="page-link" href="{{ $shareholder->previousPageUrl() }}" rel="prev" aria-label="Previous">@lang('pagination.previous')</a>
                                 </li>
                             @else
                                 <li class="page-item disabled" aria-disabled="true" aria-label="Previous">
@@ -84,28 +81,28 @@
                             @endunless
 
                             {{-- Pagination Elements --}}
-                            @for ($page = max(1, $groups->currentPage() - 5); $page <= min($groups->lastPage(), $groups->currentPage() + 5); $page++)
-                                @if ($page == $groups->currentPage())
+                            @for ($page = max(1, $shareholder->currentPage() - 5); $page <= min($shareholder->lastPage(), $shareholder->currentPage() + 5); $page++)
+                                @if ($page == $shareholder->currentPage())
                                     <li class="page-item active" aria-current="page"><span class="page-link">{{ $page }}</span></li>
                                 @else
-                                    <li class="page-item"><a class="page-link" href="{{ $groups->url($page) }}">{{ $page }}</a></li>
+                                    <li class="page-item"><a class="page-link" href="{{ $shareholder->url($page) }}">{{ $page }}</a></li>
                                 @endif
                             @endfor
 
                             {{-- Next Page Link --}}
-                            @unless($groups->hasMorePages())
+                            @unless($shareholder->hasMorePages())
                                 <li class="page-item disabled" aria-disabled="true" aria-label="Next">
                                     <span class="page-link" aria-hidden="true">@lang('pagination.next')</span>
                                 </li>
                             @else
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ $groups->nextPageUrl() }}" rel="next" aria-label="Next">@lang('pagination.next')</a>
+                                    <a class="page-link" href="{{ $shareholder->nextPageUrl() }}" rel="next" aria-label="Next">@lang('pagination.next')</a>
                                 </li>
                             @endunless
 
                         </ul>
                     </nav>
-                        
+
                 </div>
             </div>
 

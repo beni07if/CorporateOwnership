@@ -10,9 +10,9 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\Scraper;
-use App\Http\Controllers\ClientCorporateProfileController;
 use App\Http\Middleware\CheckUserLevel;
 use App\Http\Controllers\Auth\GoogleAuthController;
 
@@ -30,7 +30,7 @@ use App\Http\Controllers\Auth\GoogleAuthController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [CorporateProfileController::class, 'index'])->name('corporateProfileEn');
+Route::get('/', [ProfileController::class, 'index'])->name('corporateProfileEn');
 // Route::get('/', [CorporateProfileController::class, 'maintenanceMode'])->name('maintenanceMode');
 
 Route::get('/chatbot', [App\Http\Controllers\ChatbotController::class, 'index']);
@@ -93,14 +93,18 @@ Route::get('/scrape', [ScraperController::class, 'index'])->name('scrape');
 
 //     return 'Scraping completed';
 // });
-Route::get('/search-groups', [CorporateProfileController::class, 'searchFunctionGroup'])->name('searchFunctionGroup');
-Route::get('/search-groups2', [CorporateProfileController::class, 'searchFunctionGroup2'])->name('searchFunctionGroup2');
-Route::get('/search-subsidiaries', [CorporateProfileController::class, 'searchFunctionSubsidiary'])->name('searchFunctionSubsidiary');
-Route::get('/search-other-companies', [CorporateProfileController::class, 'searchFunctionOtherCompany'])->name('searchFunctionOtherCompany');
-Route::get('/search-shareholders', [CorporateProfileController::class, 'searchFunctionShareholder'])->name('searchFunctionShareholder');
-Route::get('/search-sra', [CorporateProfileController::class, 'searchFunctionSRA'])->name('searchFunctionSRA');
 
-Route::get('/features', [CorporateProfileController::class, 'feature'])->name('feature');
+Route::get('/search-groups', [ProfileController::class, 'searchFunctionGroup'])->name('searchFunctionGroup');
+Route::get('/search-quick-group', [FeatureController::class, 'searchFunctionQuickGroup'])->name('searchFunctionQuickGroup');
+Route::get('/search-quick-subsidiary', [FeatureController::class, 'searchFunctionQuickSubsidiary'])->name('searchFunctionQuickSubsidiary');
+Route::get('/search-quick-shareholder', [FeatureController::class, 'searchFunctionQuickShareholder'])->name('searchFunctionQuickShareholder');
+
+Route::get('/search-subsidiaries', [ProfileController::class, 'searchFunctionSubsidiary'])->name('searchFunctionSubsidiary');
+Route::get('/search-other-companies', [ProfileController::class, 'searchFunctionOtherCompany'])->name('searchFunctionOtherCompany');
+Route::get('/search-shareholders', [ProfileController::class, 'searchFunctionShareholder'])->name('searchFunctionShareholder');
+Route::get('/search-sra', [ProfileController::class, 'searchFunctionSRA'])->name('searchFunctionSRA');
+
+Route::get('/features', [ProfileController::class, 'feature'])->name('feature');
 Route::get('/group-feature', [FeatureController::class, 'groupFeature'])->name('groupFeature');
 Route::get('/subsidiary-feature', [FeatureController::class, 'subsidiaryFeature'])->name('subsidiaryFeature');
 Route::get('/shareholder-feature', [FeatureController::class, 'shareholderFeature'])->name('shareholderFeature');
@@ -112,7 +116,7 @@ Route::resources([
 ]);
 
 Route::get('/term-of-services', [CorporateProfileController::class, 'termOfServices'])->name('termOfServices');
-Route::get('/privacy-and-policy', [CorporateProfileController::class, 'privacyPolicy'])->name('privacyPolicy');
+Route::get('/privacy-and-policy', [ProfileController::class, 'privacyPolicy'])->name('privacyPolicy');
 Route::get('/user-guide', [CorporateProfileController::class, 'userGuide'])->name('userGuide');
 
 Route::get('/search', [CorporateProfileController::class, 'search'])->name('search');
@@ -126,14 +130,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// // Route for client
-// Route::prefix('client')->group(function () {
-//     // Rute-rute yang memiliki prefix 'client'
-//     Route::get('/corporate-profile-en', [ClientCorporateProfileController::class, 'index'])->name('index');
-//     Route::get('/subsidiary', [ClientCorporateProfileController::class, 'subsidiaryShow'])->name('subsidiaryShow');
-//     Route::get('/group', [ClientCorporateProfileController::class, 'groupShow'])->name('groupShow');
-// });
-// // End route for client 
 
 // Role 
 // Route untuk user 1 (admin) yang harus login untuk mengakses dashboard

@@ -16,59 +16,54 @@
                     <li><a href="#" style="color:#4682B4;">Home</a></li>
                     <li><a href="#" style="color:#4682B4;">Indonesia</a></li>
                     <li><a href="#" style="color:#4682B4;">Corporate Profile</a></li>
-                    <li><a href="#" style="color:#4682B4;">Group</a></li>
+                    <li><a href="#" style="color:#4682B4;">Subsidiary</a></li>
                 </ol> -->
                 <!-- <h2 style="color:#4682B4;">Subsidiary</h2> -->
             </div>
 
             <div class="row" style="box-shadow: rgba(44, 73, 100, 0.08) 0px 2px 15px 0px;">
                 <div class="col-xl-12 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-
+                    
                     <table class="table table-hover">
                         <thead>
                             <th class="d-flex justify-content-between align-items-center">
-                                <h4 class="title mb-0">List of Groups</h4>
-                                <form action="{{ route('searchFunctionGroup2') }}" method="GET" class="d-flex">
-                                    <input type="text" class="form-control me-2" name="group_name" placeholder="Search other groups">
+                                <h4 class="title mb-0">List of Subsidiaries</h4>
+                                <form action="{{ route('searchFunctionSubsidiary') }}" method="GET" class="d-flex">
+                                    <input type="text" class="form-control me-2" name="query" placeholder="Search other subsidiaries">
                                     <button type="submit" class="btn btn-info">Search</button>
                                 </form>
                             </th>
                         </thead>
-
-                        <form action="{{ route('group2Show') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('subsidiaryShow') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @if($groups->isNotEmpty())
-                            @foreach($groups as $subs)
-                            <tr>
-                                <td>
-                                    <input type="submit" name="group_name" value="{{ $subs->group_name }}" class="btn btn-light">
-                                    <!-- <a href="subsidiaryShow" name="subsidiary" >{{ $subs->subsidiary }}</a> -->
-                                </td>
-                            </tr>
-                            @endforeach
+                            @if($consolidations->isEmpty())
+                                <p>No results found.</p>
                             @else
-                            <tr>
-                                <td colspan="2">
-                                <div class="alert alert-secondary alert-dismissible fade show" role="alert">
-                                    <h4 class="alert-heading">Data Not Found</h4>
-                                    <p>Data not found, please enter the correct keywords.</p>
-                                    <hr>
-                                    <p class="mb-0">Please contact Us for more information at <i><b>helpdesk@earthqualizer.org</b></i></p>
-                                    <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
-                                </div>
-                                </td>
-                            </tr>
+                                @foreach($consolidations as $subs)
+                                    <tr>
+                                        <td>
+                                            <input type="submit" name="subsidiary" value="{{ $subs->subsidiary }}" class="btn btn-light">
+                                        </td>
+                                        <td>
+                                            <!-- Periksa apakah $companyOwnership ada dan tidak kosong -->
+                                            @if(isset($companyOwnership) && $companyOwnership->isNotEmpty())
+                                                <input type="submit" name="subsidiary" value="Nama Perusahaan: {{ $companyOwnership->first()->company_name }}" class="btn btn-light">
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
                             @endif
                         </form>
+
                     </table>
 
                     <nav aria-label="Pagination Navigation">
                         <ul class="pagination justify-content-center">
 
                             {{-- Previous Page Link --}}
-                            @unless($groups->onFirstPage())
+                            @unless($consolidations->onFirstPage())
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ $groups->previousPageUrl() }}" rel="prev" aria-label="Previous">@lang('pagination.previous')</a>
+                                    <a class="page-link" href="{{ $consolidations->previousPageUrl() }}" rel="prev" aria-label="Previous">@lang('pagination.previous')</a>
                                 </li>
                             @else
                                 <li class="page-item disabled" aria-disabled="true" aria-label="Previous">
@@ -77,27 +72,28 @@
                             @endunless
 
                             {{-- Pagination Elements --}}
-                            @for ($page = max(1, $groups->currentPage() - 5); $page <= min($groups->lastPage(), $groups->currentPage() + 5); $page++)
-                                @if ($page == $groups->currentPage())
+                            @for ($page = max(1, $consolidations->currentPage() - 5); $page <= min($consolidations->lastPage(), $consolidations->currentPage() + 5); $page++)
+                                @if ($page == $consolidations->currentPage())
                                     <li class="page-item active" aria-current="page"><span class="page-link">{{ $page }}</span></li>
                                 @else
-                                    <li class="page-item"><a class="page-link" href="{{ $groups->url($page) }}">{{ $page }}</a></li>
+                                    <li class="page-item"><a class="page-link" href="{{ $consolidations->url($page) }}">{{ $page }}</a></li>
                                 @endif
                             @endfor
 
                             {{-- Next Page Link --}}
-                            @unless($groups->hasMorePages())
+                            @unless($consolidations->hasMorePages())
                                 <li class="page-item disabled" aria-disabled="true" aria-label="Next">
                                     <span class="page-link" aria-hidden="true">@lang('pagination.next')</span>
                                 </li>
                             @else
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ $groups->nextPageUrl() }}" rel="next" aria-label="Next">@lang('pagination.next')</a>
+                                    <a class="page-link" href="{{ $consolidations->nextPageUrl() }}" rel="next" aria-label="Next">@lang('pagination.next')</a>
                                 </li>
                             @endunless
 
                         </ul>
                     </nav>
+
                         
                 </div>
             </div>

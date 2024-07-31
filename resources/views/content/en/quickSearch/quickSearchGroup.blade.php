@@ -39,11 +39,11 @@
                         <form action="{{ route('group2Show') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                                 @if($groups->isNotEmpty())
-                                    @foreach($groups->chunk(2) as $pair)  <!-- Chunk the groups into pairs -->
+                                @foreach($groups->chunk(2) as $pair)  <!-- Chunk the groups into pairs -->
                                         <tr>
                                             @foreach($pair as $subs)
                                                 <td>
-                                                    <h4><input type="submit" name="group_name" value="{{ $subs->group_name }}" style="background-color: transparent; border: none; color: inherit; ursor: pointer;"></h4>
+                                            <h4><input type="submit" name="group_name" value="{{ $subs->group_name }}" style="background-color: transparent; border: none; color: inherit; ursor: pointer;"></h4>
                                                     <span class="pl-2">{{ $subs->country_registration }}</span>
                                                     <p class="pl-2">{{ $subs->business_address }}</p>
                                                 </td>
@@ -67,6 +67,7 @@
                                     </tr>
                                 @endif
                         </form>
+                        
                     </table>
 
                     <nav aria-label="Pagination Navigation">
