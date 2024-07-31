@@ -42,7 +42,7 @@ class ProfileController extends Controller
         // Append the search query to the pagination links
         $groups->appends(['group_name' => $query]);
 
-        return view('content.en.searchGroup2', compact('groups'));
+        return view('content.en.searchGroup', compact('groups'));
     }
 
     // public function searchFunctionSubsidiary(Request $request)
