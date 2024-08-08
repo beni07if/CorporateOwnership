@@ -195,7 +195,7 @@
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4">
             <div class="icon-box">
               <div class="icon"><i class="ri-admin-line"></i></div>
-              <h4><a href="{{route('shareholderFeature')}}">Individual Share Ownership</a></h4>
+              <h4><a href="{{route('shareholderFeature')}}">Shareholders</a></h4>
               <p>Shareholder of Companies/Groups</p>
             </div>
           </div>
