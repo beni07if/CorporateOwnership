@@ -12,6 +12,8 @@ use App\Models\Group;
 use App\Models\Consolidation;
 use App\Models\CompanyOwnership;
 use App\Models\OtherCompany;
+use App\Models\Policy;
+use App\Models\Termcondition;
 use App\Models\Sra;
 
 class ProfileController extends Controller
@@ -65,7 +67,7 @@ class ProfileController extends Controller
         $query = $request->input('query');
 
         // Cari data di tabel Consolidation
-        $consolidations = Consolidation::select('subsidiary')
+        $consolidations = Consolidation::select('subsidiary', 'status_operation', 'country_operation', 'province', 'regency')
             ->where('subsidiary', 'LIKE', '%' . $query . '%')
             ->distinct()
             ->paginate(10);
@@ -121,9 +123,14 @@ class ProfileController extends Controller
     
     public function privacyPolicy()
     {
-        $subsidiary = Consolidation::all();
-        $groupName = Consolidation::all();
-        return view('content.footer.privacyPolicy', compact('subsidiary', 'groupName'));
+        $policies = Policy::all();
+        return view('content.footer.privacyPolicy', compact('policies'));
+    }
+
+    public function termOfCondition()
+    {
+        $termOfCondition = Termcondition::all();
+        return view('content.footer.termOfCondition', compact('termOfCondition'));
     }
     
     /**

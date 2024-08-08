@@ -33,8 +33,8 @@
         <div class="container">
           <div class="row d-flex justify-content-center text-center">
             <div class="col-lg-8">
-              <h1>Blog</h1>
-              <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
+              <h1>Term of Condition</h1>
+              <p class="mb-0">Term of Condition</p>
             </div>
           </div>
         </div>
@@ -46,14 +46,16 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Term of Services</h2>
-          <!-- <p>Naration</p> -->
+          @foreach($termOfCondition as $term)
+            <h2>{!!$term->title!!}</h2>
+          @endforeach
         </div>
-
-        <div class="row">
-
-          
-
+        <div class="text-justify">
+          @foreach($termOfCondition as $term)
+            {!!$term->description!!}
+            {!!$term->agreement!!} <br>
+            {!!$term->description2!!}
+          @endforeach
         </div>
 
       </div>

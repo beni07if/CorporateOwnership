@@ -15,6 +15,8 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\Scraper;
 use App\Http\Middleware\CheckUserLevel;
 use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\PrivacyPolicyController;
+use App\Http\Controllers\TermConditionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +32,8 @@ use App\Http\Controllers\Auth\GoogleAuthController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [ProfileController::class, 'index'])->name('corporateProfileEn');
-// Route::get('/', [CorporateProfileController::class, 'maintenanceMode'])->name('maintenanceMode');
 
+// Route::get('/', [CorporateProfileController::class, 'maintenanceMode'])->name('maintenanceMode');
 Route::get('/chatbot', [App\Http\Controllers\ChatbotController::class, 'index']);
 Route::get('/chatbot-corporate-profile', [App\Http\Controllers\ChatbotController::class, 'chatbotCorporateProfile']);
 Route::post('chatbot', [App\Http\Controllers\ChatbotController::class, 'store'])->name('chatbot.store');
@@ -50,23 +51,15 @@ Route::get('/eq-subsidiary-en', [ChatbotController::class, 'chatbotSubsidiaryEn'
 Route::post('/eq-subsidiary-en', [ChatbotController::class, 'getSubsidiaryEn'])->name('getSubsidiaryEn');
 Route::get('/eq-group-en', [ChatbotController::class, 'chatbotGroupEn'])->name('chatbotGroupEn');
 Route::post('/eq-group-en', [ChatbotController::class, 'getGroupEn'])->name('chatbotGroupEn');
-// Testinggg
-
 Route::get('/chatbot7', [ChatbotController::class, 'chatbot7'])->name('chatbot7');
 Route::post('/chatbot7', [ChatbotController::class, 'getSubsidiary7'])->name('chatbot.subsidiary7');
 Route::get('/chatbot6', [ChatbotController::class, 'chatbot6'])->name('chatbot6');
 Route::post('/chatbot6', [ChatbotController::class, 'getResponse6'])->name('chatbot.process');
-
 Route::get('/shareholder/{name}', [ChatbotController::class, 'showShareholder'])->name('shareholder');
 Route::get('/company/{subsidiary}', [ChatbotController::class, 'company'])->name('company');
 // Route::get('/shareholder/{name}', 'ShareholderController@show')->name('shareholder');
-
 // Route::get('/shareholder/{name}', 'ShareholderController@show')
-// Route::get('/shareholder/{name}', 'ShareholderController@show');
-
-
 // Route::post('/chatbot', 'ChatbotController@chat');
-
 Route::get('/import-csv', [ChatbotController::class, 'importCsvForm'])->name('importCsvForm');
 Route::post('/import-csv', [ChatbotController::class, 'importCsv'])->name('importCsv');
 Route::get('/import-csv-consolidation', [ChatbotController::class, 'importCsvFormConsolidation'])->name('importCsvFormConsolidation');
@@ -74,6 +67,7 @@ Route::post('/import-csv-consolidation', [ChatbotController::class, 'importCsvCo
 Route::get('/export', [App\Http\Controllers\ChatbotController::class, 'export']);
 
 // Website corporate profile
+Route::get('/', [ProfileController::class, 'index'])->name('corporateProfileEn');
 // Route::get('/corporate-profile-en', [CorporateProfileController::class, 'index'])->name('corporateProfileEn');
 // Route::get('/corporate-profile-index', [CorporateProfileController::class, 'index'])->name('index');
 Route::post('/corporate-profile-subsidiary-show', [CorporateProfileController::class, 'subsidiaryShow'])->name('subsidiaryShow');
@@ -82,17 +76,6 @@ Route::post('/corporate-profile-group-show', [CorporateProfileController::class,
 Route::post('/corporate-profile-group2-show', [GroupController::class, 'group2Show'])->name('group2Show');
 Route::post('/corporate-profile-sra-show', [CorporateProfileController::class, 'sraShow'])->name('sraShow');
 Route::post('/corporate-profile-shareholder-show', [CorporateProfileController::class, 'shareholderShow'])->name('shareholderShow');
-
-
-// Scraperss 
-// Route::get('/scrape', 'ScraperController@scrape');
-Route::get('/scrape', [ScraperController::class, 'index'])->name('scrape');
-// Route::get('/scrape', function () {
-//     $scraper = new Scraper();
-//     $scraper->scrape();
-
-//     return 'Scraping completed';
-// });
 
 Route::get('/search-groups', [ProfileController::class, 'searchFunctionGroup'])->name('searchFunctionGroup');
 Route::get('/search-quick-group', [FeatureController::class, 'searchFunctionQuickGroup'])->name('searchFunctionQuickGroup');
@@ -110,26 +93,29 @@ Route::get('/subsidiary-feature', [FeatureController::class, 'subsidiaryFeature'
 Route::get('/shareholder-feature', [FeatureController::class, 'shareholderFeature'])->name('shareholderFeature');
 Route::get('/sra-feature', [FeatureController::class, 'sraFeature'])->name('sraFeature');
 
+Route::get('/term-of-conditions', [ProfileController::class, 'termOfCondition'])->name('termOfCondition');
+Route::get('/privacy-and-policy', [ProfileController::class, 'privacyPolicy'])->name('privacyPolicy');
+Route::get('/user-guide', [CorporateProfileController::class, 'userGuide'])->name('userGuide');
 Route::get('/faqs', [FaqController::class, 'faq'])->name('faq');
+Route::resources([
+    'policy' => PrivacyPolicyController::class,
+]);
+Route::resources([
+    'term-of-condition' => TermConditionController::class,
+]);
 Route::resources([
     'faq' => FaqController::class,
 ]);
-
-Route::get('/term-of-services', [CorporateProfileController::class, 'termOfServices'])->name('termOfServices');
-Route::get('/privacy-and-policy', [ProfileController::class, 'privacyPolicy'])->name('privacyPolicy');
-Route::get('/user-guide', [CorporateProfileController::class, 'userGuide'])->name('userGuide');
+// End website corporate profile
 
 Route::get('/search', [CorporateProfileController::class, 'search'])->name('search');
 Route::get('/maps', [CorporateProfileController::class, 'maps'])->name('maps');
 Route::post('/maps', [CorporateProfileController::class, 'maps'])->name('maps');
-
 Route::get('/scraping', [CorporateProfileController::class, 'scrapingLatLong'])->name('scrapingLatLong');
 Route::get('/wef', [CorporateProfileController::class, 'wef'])->name('wef');
 
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 
 // Role 
 // Route untuk user 1 (admin) yang harus login untuk mengakses dashboard
@@ -190,7 +176,6 @@ Route::get('/subsidiary', [CorporateProfileController::class, 'subsidiaryList'])
 Route::get('/subsidiary/{id}', [CorporateProfileController::class, 'subsidiaryShow']);
 Route::get('/auth/google/callback', [CorporateProfileController::class, 'handleCallback']);
 
-
 Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 Route::get('/dashboard-inbox', [AdminController::class, 'inbox'])->name('inbox');
 
@@ -208,3 +193,12 @@ Route::resources([
     'messages' => MessageController::class,
 ]);
 Route::post('/messages', [CorporateProfileController::class, 'store'])->name('messages.store');
+
+// Scraperss 
+// Route::get('/scrape', 'ScraperController@scrape');
+Route::get('/scrape', [ScraperController::class, 'index'])->name('scrape');
+// Route::get('/scrape', function () {
+//     $scraper = new Scraper();
+//     $scraper->scrape();
+//     return 'Scraping completed';
+// });

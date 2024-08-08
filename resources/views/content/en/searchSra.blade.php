@@ -24,10 +24,10 @@
             <div class="row" style="box-shadow: rgba(44, 73, 100, 0.08) 0px 2px 15px 0px;">
                 <div class="col-xl-12 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
 
-                    <table class="table table-hover">
+                    <table class="table">
                         <thead>
                             <th class="d-flex justify-content-between align-items-center">
-                                <h4 class="title mb-0">List of Groups</h4>
+                                <h4 class="title mb-0">Search Result for Groups</h4>
                                 <form action="{{ route('searchFunctionSRA') }}" method="GET" class="d-flex">
                                     <input type="text" class="form-control me-2" name="group_name" placeholder="Search other groups">
                                     <button type="submit" class="btn btn-info">Search</button>
@@ -38,29 +38,33 @@
                         <form action="{{ route('sraShow') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @if($sras->isNotEmpty())
-                            @foreach($sras as $subs)
-                            <tr>
-                                <td>
-                                    <input type="submit" name="group_name" value="{{ $subs->group_name }}" class="btn btn-light">
-                                    <!-- <a href="subsidiaryShow" name="subsidiary" >{{ $subs->subsidiary }}</a> -->
-                                </td>
-                            </tr>
-                            @endforeach
+                                <tr>
+                                    @foreach($sras as $subs)
+                                        <td>
+                                            <input type="submit" name="group_name" value="{{ $subs->group_name }}" style="background-color: transparent; border: none; color: inherit; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='#007BFF'" onmouseout="this.style.color='inherit'">
+                                            <!-- You can add another data item here, e.g., $subs->other_field -->
+                                        </td>
+                                    @endforeach
+                                </tr>
                             @else
-                            <tr>
-                                <td colspan="2">
-                                <div class="alert alert-secondary alert-dismissible fade show" role="alert">
-                                    <h4 class="alert-heading">Data Not Found</h4>
-                                    <p>Data not found, please enter the correct keywords.</p>
-                                    <hr>
-                                    <p class="mb-0">Please contact Us for more information at <i><b>helpdesk@earthqualizer.org</b></i></p>
-                                    <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
-                                </div>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                                            <h4 class="alert-heading">Data Not Found</h4>
+                                            <p>Data not found, please enter the correct keywords.</p>
+                                            <hr>
+                                            <p class="mb-0">Please contact us for more information at <i><b>helpdesk@earthqualizer.org</b></i></p>
+                                            <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+                                        </div>
+                                    </td>
+                                </tr>
                             @endif
                         </form>
+                        
                     </table>
+                    <a href="{{ url()->previous() }}">
+                        <span>Back</span>
+                    </a>
 
                     <nav aria-label="Pagination Navigation">
                         <ul class="pagination justify-content-center">

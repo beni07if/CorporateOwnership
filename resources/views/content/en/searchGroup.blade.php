@@ -25,16 +25,15 @@
                 <div class="col-xl-12 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
 
                     <table class="table">
-                        <thead hidden>
+                        <thead>
                             <th class="d-flex justify-content-between align-items-center">
-                                <h4 class="title mb-0">List of Groups</h4>
+                                <h4 class="title mb-0">Search Result for Groups</h4>
                                 <form action="{{ route('searchFunctionGroup') }}" method="GET" class="d-flex">
                                     <input type="text" class="form-control me-2" name="group_name" placeholder="Search other groups">
                                     <button type="submit" class="btn btn-info">Search</button>
                                 </form>
                             </th>
                         </thead>
-                        <h4>Search Result</h4>
 
                         <form action="{{ route('group2Show') }}" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -43,7 +42,7 @@
                                         <tr>
                                             @foreach($pair as $subs)
                                                 <td>
-                                                    <h4><input type="submit" name="group_name" value="{{ $subs->group_name }}" style="background-color: transparent; border: none; color: inherit; ursor: pointer;"></h4>
+                                                    <h4><input type="submit" name="group_name" value="{{ $subs->group_name }}" style="background-color: transparent; border: none; color: inherit; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='#007BFF'" onmouseout="this.style.color='inherit'"></h4>
                                                     <span class="pl-2">{{ $subs->country_registration }}</span>
                                                     <p class="pl-2">{{ $subs->business_address }}</p>
                                                 </td>
@@ -68,6 +67,9 @@
                                 @endif
                         </form>
                     </table>
+                    <a href="{{ url()->previous() }}">
+                        <span>Back</span>
+                    </a>
 
                     <nav aria-label="Pagination Navigation">
                         <ul class="pagination justify-content-center">

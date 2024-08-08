@@ -37,6 +37,7 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('template/Medilab/assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('template/Medilab/assets/css/styleFlexstate.css') }}" rel="stylesheet">
+    <link rel="icon" href="{!! asset('img/logo/new-logo-5/png/logo-icon.png') !!}"/>
     <!-- <link href="{{ asset('css/style.css') }}" rel="stylesheet"> -->
 
     <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" /> -->
@@ -258,7 +259,7 @@
                 </div>
             </div>
             <div class="text-center text-md-right pt-3 pt-md-0">
-                <!-- <a href="{{route('termOfServices')}}">Term of Services</a>&emsp;&emsp;&emsp;&emsp; -->
+                <!-- <a href="{{route('termOfCondition')}}">Term of Services</a>&emsp;&emsp;&emsp;&emsp; -->
                 <a href="{{route('privacyPolicy')}}">Privacy & Policy</a>
                 <!-- <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
                 <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>

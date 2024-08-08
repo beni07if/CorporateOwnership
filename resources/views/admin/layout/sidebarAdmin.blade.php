@@ -45,6 +45,20 @@
       <span>FAQ</span>
     </a>
   </li>
+  <li class="nav-item">
+    <!-- <a class="nav-link collapsed" href="{{route('inbox')}}"> -->
+        <a href="{{route('policy.index')}}" class="nav-link collapsed {{ request()->is('inbox') ? 'active' : '' }}">
+      <i class="bi bi-inbox"></i>
+      <span>Public Policy</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <!-- <a class="nav-link collapsed" href="{{route('inbox')}}"> -->
+        <a href="{{route('term-of-condition.index')}}" class="nav-link collapsed {{ request()->is('inbox') ? 'active' : '' }}">
+      <i class="bi bi-inbox"></i>
+      <span>Term of Condition</span>
+    </a>
+  </li>
   <!-- <li class="nav-item">
         <a href="{{route('messages.index')}}" class="nav-link collapsed {{ request()->is('inbox') ? 'active' : '' }}">
       <i class="bi bi-inbox"></i>

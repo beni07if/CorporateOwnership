@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
   <!-- Design by foolishdeveloper.com -->
-    <title>Glassmorphism login Form Tutorial in html css</title>
+    <title>Login to Corporate Profile</title>
  
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="{!! asset('img/logo/new-logo-5/png/logo-icon.png') !!}"/>
+
     <!--Stylesheet-->
     <style media="screen">
       *,
@@ -35,8 +37,8 @@ body{
 }
 .shape:first-child{
     background: linear-gradient(
-        #1845ad,
-        #23a2f6
+        #235142,
+        #45b2b2
     );
     left: -80px;
     top: -80px;
@@ -44,8 +46,8 @@ body{
 .shape:last-child{
     background: linear-gradient(
         to right,
-        #ff512f,
-        #f09819
+        #c23f24,
+        #E37B1C
     );
     right: -30px;
     bottom: -80px;
@@ -132,6 +134,9 @@ button{
   margin-right: 4px;
 }
 
+p i{
+    font-size: 10px;
+}
     </style>
 </head>
 <body>
@@ -140,20 +145,25 @@ button{
         <div class="shape"></div>
     </div>
     <form method="POST" action="{{ route('login') }}">
-                        @csrf
-                        <h3>Login Here</h3>
-                <div class="input-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <button type="submit">Login</button>
-                <!-- <a href="/"><i>back to landing page</i></a> -->
-                <!-- <p class="forgot-password"><a href="#">Forgot Password?</a></p> -->
-            </form>
+        @csrf
+        <h3>Login Here</h3>
+        <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">Login</button>
+        <!-- <a href="/"><i>back to landing page</i></a> -->
+        <!-- <p class="forgot-password"><a href="#">Forgot Password?</a></p> -->
+        <p class="font"><i>*please login to see more details of the information</i></p><br>
+        <a href="{{ url()->previous() }}">
+            <span>Back</span>
+        </a>
+        
+    </form>
 </body>
 </html>
 

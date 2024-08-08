@@ -24,7 +24,7 @@
             <div class="row" style="box-shadow: rgba(44, 73, 100, 0.08) 0px 2px 15px 0px;">
                 <div class="col-xl-12 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
                     
-                    <table class="table table-hover">
+                    <table class="table">
                         <thead>
                             <th class="d-flex justify-content-between align-items-center">
                                 <!-- @foreach($shareholderNames as $subs)
@@ -37,7 +37,7 @@
                                     <button type="submit" class="btn btn-info">Search</button>
                                 </form> -->
 
-                                <h4 class="title mb-0">LIST OF INDIVIDUAL SHARE OWNERSHIP</h4>
+                                <h4 class="title mb-0">Search Result for Shareholders</h4>
                                 <form action="{{ route('searchFunctionShareholder') }}" method="GET" class="d-flex">
                                     <input type="text" class="form-control me-2" name="query" placeholder="Search other subsidiaries">
                                     <button type="submit" class="btn btn-info">Search</button>
@@ -46,37 +46,37 @@
                         </thead>
                         @if($shareholderNames->isNotEmpty())
                         <table class="table">
-                                <thead>
+                            <thead>
+                                <tr>
+                                    <th>Shareholder Name</th>
+                                    <th>Date of Birth</th>
+                                    <th>Company Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($shareholderNames as $subs)
                                     <tr>
-                                        <th>Shareholder Name</th>
-                                        <th>Date of Birth</th>
-                                        <th>Company Name</th>
+                                        <td>
+                                            <form action="{{ route('shareholderShow') }}" method="POST">
+                                                @csrf
+                                                {{-- <input type="hidden" name="shareholder_name" value="{{ $subs->shareholder_name }}"> --}}
+                                                <button type="submit" style="background-color: transparent; border: none; color: inherit; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='#007BFF'" onmouseout="this.style.color='inherit'">{{ $subs->shareholder_name }} </button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <p>{{ $subs->date_of_birth }}</p>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('subsidiaryShow') }}" method="POST">
+                                                @csrf
+                                                {{-- <input type="hidden" name="subsidiary" value="{{ $subs->company_name }}"> --}}
+                                                <button type="submit" style="background-color: transparent; border: none; color: inherit; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='#007BFF'" onmouseout="this.style.color='inherit'">{{ $subs->company_name }}</button>
+                                            </form>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($shareholderNames as $subs)
-                                        <tr>
-                                            <td>
-                                                <form action="{{ route('shareholderShow') }}" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" name="shareholder_name" value="{{ $subs->shareholder_name }}">
-                                                    <button type="submit" class="btn btn-light">{{ $subs->shareholder_name }} </button>
-                                                </form>
-                                            </td>
-                                            <td>
-                                                <p>{{ $subs->date_of_birth }}</p>
-                                            </td>
-                                            <td>
-                                                <form action="{{ route('subsidiaryShow') }}" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" name="subsidiary" value="{{ $subs->company_name }}">
-                                                    <button type="submit" class="btn btn-light">{{ $subs->company_name }}</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                @endforeach
+                            </tbody>
+                        </table>
                         @else
                         <tr>
                             <td colspan="2">
@@ -90,8 +90,10 @@
                             </td>
                         </tr>
                         @endif
-
                     </table>
+                    <a href="{{ url()->previous() }}">
+                        <span>Back</span>
+                    </a>
 
                     <nav aria-label="Pagination Navigation">
                         <ul class="pagination justify-content-center">
