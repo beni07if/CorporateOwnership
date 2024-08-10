@@ -42,7 +42,7 @@
                                         <tr>
                                             @foreach($pair as $subs)
                                                 <td>
-                                                    <h4><input type="submit" name="subsisdiary" value="{{ $subs->subsidiary }}" style="background-color: transparent; border: none; color: inherit; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='#007BFF'" onmouseout="this.style.color='inherit'"></h4>
+                                                    <h4><input type="submit" name="subsidiary" value="{{ $subs->subsidiary }}" style="background-color: transparent; border: none; color: inherit; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='#007BFF'" onmouseout="this.style.color='inherit'"></h4>
                                                     <p class="pl-2">{{ $subs->country_operation }}, {{$subs->province}}, {{$subs->regency}}.</p>
                                                 </td>
                                             @endforeach
