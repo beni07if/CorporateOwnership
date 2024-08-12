@@ -19,12 +19,12 @@ return new class extends Migration
             $table->string('group_status')->nullable();
             $table->string('stock_exchange_name')->nullable();
             $table->string('controller')->nullable();
-            $table->string('company_overview')->nullable();
-            $table->string('business_sector')->nullable();
+            $table->text('company_overview')->nullable();
+            $table->text('business_sector')->nullable();
             $table->text('main_product')->nullable();
             $table->string('commercial_operation_date')->nullable();
             $table->string('country_registration')->nullable();
-            $table->string('business_address')->nullable();
+            $table->text('business_address')->nullable();
             $table->string('country_operation')->nullable();
             $table->string('shareholder_name1')->nullable();
             $table->string('percent_of_share1')->nullable();
@@ -37,7 +37,7 @@ return new class extends Migration
             $table->string('shareholder_name5')->nullable();
             $table->string('percent_of_share5')->nullable();
             $table->string('group_structure')->nullable();
-            $table->string('management_name_and_position')->nullable();
+            $table->text('management_name_and_position')->nullable();
             $table->string('subsidiary_affiliation')->nullable();
             $table->string('land_area_controlled')->nullable();
             $table->string('total_planted')->nullable();
