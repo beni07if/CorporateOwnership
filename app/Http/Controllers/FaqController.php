@@ -14,14 +14,14 @@ class FaqController extends Controller
      */
     public function faq()
     {
-        // $faq = Faq::all();
-        return view('admin.faq.faq');
+        $faqs = Faq::all();
+        return view('content.footer.faq', compact('faqs'));
     }
     
     public function index()
     {
-        $faq = Faq::all();
-        return view('admin.faq.index', compact('faq'));
+        $faqs = Faq::all();
+        return view('admin.faq.index', compact('faqs'));
     }
 
     /**
@@ -37,7 +37,15 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category' => 'required|string|max:255',
+            'question' => 'required|string|max:255',
+            'answer' => 'required|string',
+        ]);
+
+        Faq::create($request->all());
+
+        return redirect()->route('faq.index')->with('success', 'FAQ added successfully.');
     }
 
     /**
@@ -59,16 +67,26 @@ class FaqController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(Request $request, Faq $faq)
     {
-        //
+        $request->validate([
+            'category' => 'required|string|max:255',
+            'question' => 'required|string|max:255',
+            'answer' => 'required|string',
+        ]);
+
+        $faq->update($request->all());
+
+        return redirect()->route('faq.index')->with('success', 'FAQ updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): RedirectResponse
+    public function destroy(Faq $faq)
     {
-        //
+        $faq->delete();
+
+        return redirect()->route('faq.index')->with('success', 'FAQ deleted successfully.');
     }
 }

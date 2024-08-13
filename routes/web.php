@@ -12,11 +12,13 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\SraController;
 use App\Http\Controllers\Scraper;
 use App\Http\Middleware\CheckUserLevel;
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\TermConditionController;
+use App\Http\Controllers\LandingPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,15 +99,7 @@ Route::get('/term-of-conditions', [ProfileController::class, 'termOfCondition'])
 Route::get('/privacy-and-policy', [ProfileController::class, 'privacyPolicy'])->name('privacyPolicy');
 Route::get('/user-guide', [CorporateProfileController::class, 'userGuide'])->name('userGuide');
 Route::get('/faqs', [FaqController::class, 'faq'])->name('faq');
-Route::resources([
-    'policy' => PrivacyPolicyController::class,
-]);
-Route::resources([
-    'term-of-condition' => TermConditionController::class,
-]);
-Route::resources([
-    'faq' => FaqController::class,
-]);
+
 // End website corporate profile
 
 Route::get('/search', [CorporateProfileController::class, 'search'])->name('search');
@@ -176,6 +170,9 @@ Route::get('/subsidiary', [CorporateProfileController::class, 'subsidiaryList'])
 Route::get('/subsidiary/{id}', [CorporateProfileController::class, 'subsidiaryShow']);
 Route::get('/auth/google/callback', [CorporateProfileController::class, 'handleCallback']);
 
+Route::middleware('auth:admin')->group(function () {
+    // Your admin routes here
+});
 Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 Route::get('/dashboard-inbox', [AdminController::class, 'inbox'])->name('inbox');
 
@@ -188,6 +185,21 @@ Route::resources([
 ]);
 Route::resources([
     'shareholders' => ShareholderController::class,
+]);
+Route::resources([
+    'sras' => SraController::class,
+]);
+Route::resources([
+    'faq' => FaqController::class,
+]);
+Route::resources([
+    'policy' => PrivacyPolicyController::class,
+]);
+Route::resources([
+    'term-of-condition' => TermConditionController::class,
+]);
+Route::resources([
+    'landing-page' => LandingPageController::class,
 ]);
 Route::resources([
     'messages' => MessageController::class,

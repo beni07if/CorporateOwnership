@@ -8,7 +8,7 @@
           <div class="row">
 
             <!-- Sales Card -->
-            <div class="col-xxl-4 col-md-6">
+            <div class="col-xxl-3 col-md-6">
               <div class="card info-card sales-card">
 
                 <div class="card-body">
@@ -16,7 +16,7 @@
                     <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                         <li class="dropdown-header text-start">
-                        <h6>Note</h6>
+                        <p>{{ number_format($groupCounts) }} rows data</p>
                         </li>
                     </ul>
                     </div>
@@ -37,7 +37,7 @@
             </div><!-- End Sales Card -->
 
             <!-- Revenue Card -->
-            <div class="col-xxl-4 col-md-6">
+            <div class="col-xxl-3 col-md-6">
               <div class="card info-card revenue-card">
 
                 <div class="card-body">
@@ -45,18 +45,18 @@
                     <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                         <li class="dropdown-header text-start">
-                        <h6>Note</h6>
+                        <p>{{ number_format($consolidationCounts) }} rows data</p>
                         </li>
                     </ul>
                     </div>
-                  <h5 class="card-title">Subsidiary<span></span></h5>
+                  <h5 class="card-title">Company/Subsidiary<span></span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="ri-door-open-line"></i>
                     </div>
                     <div class="ps-3">
-                        <h6>{{ number_format($consolidationCounts) }}</h6>
+                        <h6>{{ number_format($consolidationCountsDistinct) }}</h6>
                         <span class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1">subsidiaries</span>
                     </div>
                   </div>
@@ -66,7 +66,7 @@
             </div><!-- End Revenue Card -->
 
             <!-- Customers Card -->
-            <div class="col-xxl-4 col-xl-12">
+            <div class="col-xxl-3 col-xl-12">
 
               <div class="card info-card customers-card">
 
@@ -75,7 +75,7 @@
                     <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                         <li class="dropdown-header text-start">
-                        <h6>Note</h6>
+                        <p>{{ number_format($shareholderCounts) }} rows data</p>
                         </li>
                     </ul>
                     </div>
@@ -86,8 +86,39 @@
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                        <h6>{{ number_format($shareholderCounts) }}</h6>
+                        <h6>{{ number_format($shareholderCountsDistinct) }}</h6>
                         <span class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1">shareholders</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div><!-- End Customers Card -->
+
+            <!-- Customers Card -->
+            <div class="col-xxl-3 col-xl-12">
+
+              <div class="card info-card customers-card">
+
+                <div class="card-body">
+                    <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                        <p>{{ number_format($sraCounts) }} rows data</p>
+                        </li>
+                    </ul>
+                    </div>
+                  <h5 class="card-title">SRA<span></span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-pencil"></i>
+                    </div>
+                    <div class="ps-3">
+                        <h6>{{ number_format($sraCountsDistinct) }}</h6>
+                        <span class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1">groups</span>
                     </div>
                   </div>
 
@@ -105,7 +136,7 @@
                     <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                         <li class="dropdown-header text-start">
-                        <h6>Note</h6>
+                        <p>Number of group by country</p>
                         </li>
                     </ul>
                     </div>
@@ -179,7 +210,7 @@
                         <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                             <li class="dropdown-header text-start">
-                            <h6>Note</h6>
+                            <p>Number of group by country</p>
                             </li>
                         </ul>
                         </div>
@@ -250,13 +281,13 @@
                         <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                             <li class="dropdown-header text-start">
-                            <h6>Note</h6>
+                            <p>Number of companies by Country</p>
                             </li>
                         </ul>
                         </div>
 
                         <div class="card-body pb-0">
-                        <h5 class="card-title">Subsidiary by Country <span></span></h5>
+                        <h5 class="card-title">Company by Country <span></span></h5>
                         <div id="trafficChart2" style="min-height: 400px;" class="echart"></div>
 
                         <script>
@@ -321,13 +352,13 @@
                         <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                             <li class="dropdown-header text-start">
-                            <h6>Note</h6>
+                            <p>Number of Shareholder by Company</p>
                             </li>
                         </ul>
                         </div>
 
                         <div class="card-body pb-0">
-                        <h5 class="card-title">Shareholder by Company <span></span></h5>
+                        <h5 class="card-title">Shareholders by Company <span></span></h5>
                         <div id="trafficChart3" style="min-height: 400px;" class="echart"></div>
 
                         <script>
@@ -339,11 +370,11 @@
                                 // Susun data untuk chart pie (semua data)
                                 var pieData = allShareholderCountes.map(item => ({
                                     value: item.count,
-                                    name: item.shareholder_name
+                                    name: item.company_name
                                 }));
 
                                 // Susun data untuk legenda (5 terbanyak)
-                                var legendData = top5ShareholderCountes.map(item => item.shareholder_name);
+                                var legendData = top5ShareholderCountes.map(item => item.company_name);
 
                                 // Inisialisasi chart pie
                                 var chart = echarts.init(document.querySelector("#trafficChart3"));
@@ -357,7 +388,7 @@
                                         data: legendData // Menampilkan hanya 5 terbanyak di legenda
                                     },
                                     series: [{
-                                        name: 'Number of Companies',
+                                        name: 'Number of Shareholder',
                                         type: 'pie',
                                         radius: ['40%', '70%'],
                                         avoidLabelOverlap: false,

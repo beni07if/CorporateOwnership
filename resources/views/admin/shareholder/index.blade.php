@@ -1,11 +1,11 @@
 @extends('admin.layout.appAdmin')
 @section('brudcump')
 <div class="pagetitle">
-  <h1>Dashboard</h1>
+  <h1>Shareholder</h1>
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-      <li class="breadcrumb-item active">Inbox</li>
+      <li class="breadcrumb-item active">Shareholder</li>
     </ol>
   </nav>
 </div>
@@ -16,18 +16,21 @@
     <div class="col-lg-12">
 
       <div class="card">
+        
         <div class="card-body">
-          <h5 class="card-title">Inbox</h5>
-          <!-- <p>Inbox</p> -->
+          <h5 class="card-title"></h5>
+          <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addShareholderModal">
+            Add Shareholder
+          </button>
 
           <!-- Table with stripped rows -->
           <table class="table datatable">
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Institution</th>
-                <th scope="col">Email</th>
+                <th scope="col">Shareholder Name</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Company Shareholding</th>
                 <th scope="col">Details</th>
               </tr>
             </thead>
@@ -35,13 +38,57 @@
               @foreach($shareholders as $shareholder)
               <tr>
                 <th scope="row">{{$loop->iteration}}</th>
-                <td>{{$shareholder->name}}</td>
-                <td>{{$shareholder->institution}}</td>
-                <td>{{$shareholder->email}}</td>
+                <td>{{$shareholder->shareholder_name}}</td>
+                <td>{!!$shareholder->date_of_birth!!}</td>
+                <td>{!!$shareholder->company_name!!}</td>
                 <td><!-- Large Modal -->
-                  <button type="button" class="badge btn btn-dark text-white" data-bs-toggle="modal" data-bs-target="#largeModal{{$shareholder->id}}">
-                    Details
+                  <!-- Edit Modal Trigger -->
+                <button type="button" class="badge btn btn-dark text-white" data-bs-toggle="modal" data-bs-target="#editModal{{$shareholder->id}}">
+                  Edit
+              </button>
+
+              <!-- Delete Form -->
+              <form action="{{ route('shareholders.destroy', $shareholder->id) }}" method="POST" style="display:inline;">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="badge btn btn-danger text-white" onclick="return confirm('Are you sure you want to delete this shareholder?');">
+                      Delete
                   </button>
+              </form>
+
+              <!-- Edit shareholder Modal -->
+              <div class="modal fade" id="editModal{{$shareholder->id}}" tabindex="-1" aria-labelledby="editModalLabel{{$shareholder->id}}" aria-hidden="true">
+                  <div class="modal-dialog">
+                      <form action="{{ route('shareholders.update', $shareholder->id) }}" method="POST">
+                          @csrf
+                          @method('PUT')
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h5 class="modal-title" id="editModalLabel{{$shareholder->id}}">Edit Data shareholder</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                  <div class="mb-3">
+                                      <label for="shareholder_name{{$shareholder->id}}" class="form-label">Shareholder Name</label>
+                                      <input type="text" class="form-control" id="shareholder_name{{$shareholder->id}}" name="shareholder_name" value="{{$shareholder->shareholder_name}}" required>
+                                  </div>
+                                  <div class="mb-3">
+                                      <label for="date_of_birth{{$shareholder->id}}" class="form-label">Date of Birth</label>
+                                      <input type="text" class="form-control" id="date_of_birth{{$shareholder->id}}" name="date_of_birth" value="{{$shareholder->date_of_birth}}" required>
+                                  </div>
+                                  <div class="mb-3">
+                                      <label for="company_name{{$shareholder->id}}" class="form-label">Shareholding Company</label>
+                                      <input type="text" class="form-control" id="company_name{{$shareholder->id}}" name="company_name" value="{{$shareholder->company_name}}" required>
+                                  </div>
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-primary">Save changes</button>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
                 </td>
               </tr>
               @endforeach
@@ -56,100 +103,37 @@
   </div>
 </section>
 
-@foreach($shareholders as $shareholder)
-<div class="modal fade" id="largeModal{{$shareholder->id}}" tabindex="-1">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Message Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="tab-content pt-2" id="profile-edit">
-
-          <!-- Profile Edit Form -->
-          
-          <form action="{{route('shareholders.update', $shareholder->id)}}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="row mb-3">
-              <label for="name" class="col-md-4 col-lg-3 col-form-label">Name</label>
-              <div class="col-md-8 col-lg-9">
-                <input name="name" type="text" class="form-control" id="name" value="{{$shareholder->name}}">
+<!-- Add shareholder Modal -->
+<div class="modal fade" id="addShareholderModal" tabindex="-1" aria-labelledby="addShareholderModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <form action="{{ route('shareholders.store') }}" method="POST">
+          @csrf
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="addshareholderModalLabel">Add Data shareholder</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-            </div>
-
-            <div class="row mb-3">
-              <label for="phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
-              <div class="col-md-8 col-lg-9">
-                <input name="phone" type="text" class="form-control" id="phone" value="{{$shareholder->phone}}">
+              <div class="modal-body">
+                  <div class="mb-3">
+                      <label for="shareholder_name" class="form-label">Shareholder Name</label>
+                      <input type="text" class="form-control" id="shareholder_name" name="shareholder_name" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="date_of_birth" class="form-label">Date of Birth</label>
+                      <input type="text" class="form-control" id="date_of_birth" name="date_of_birth" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="company_name" class="form-label">Company Name</label>
+                      <textarea class="form-control" id="company_name" name="company_name" rows="3" required></textarea>
+                  </div>
               </div>
-            </div>
-
-            <div class="row mb-3">
-              <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-              <div class="col-md-8 col-lg-9">
-                <input name="email" type="email" class="form-control" id="email" value="{{$shareholder->email}}">
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
               </div>
-            </div>
-
-            <div class="row mb-3">
-              <label for="institution" class="col-md-4 col-lg-3 col-form-label">Institution</label>
-              <div class="col-md-8 col-lg-9">
-                <input name="institution" type="text" class="form-control" id="institution" value="{{$shareholder->institution}}">
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <label for="message" class="col-md-4 col-lg-3 col-form-label">Message</label>
-              <div class="col-md-8 col-lg-9">
-                <textarea name="message" class="form-control" id="message">{{$shareholder->message}}</textarea>
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <label for="date_message" class="col-md-4 col-lg-3 col-form-label">Message Date</label>
-              <div class="col-md-8 col-lg-9">
-                <input name="date_message" type="date" class="form-control" id="date_message" value="{{$shareholder->date_message}}">
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <label for="response" class="col-md-4 col-lg-3 col-form-label">Response</label>
-              <div class="col-md-8 col-lg-9">
-                <textarea name="response" class="form-control" id="response">{{$shareholder->response}}</textarea>
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <label for="date_response" class="col-md-4 col-lg-3 col-form-label">Response Date</label>
-              <div class="col-md-8 col-lg-9">
-                <input name="date_response" type="date" class="form-control" id="date_response" value="{{$shareholder->date_response}}">
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <label class="col-md-4 col-lg-3 col-form-label">Status</label>
-              <div class="col-md-8 col-lg-9">
-                <select name="status" class="form-select" aria-label="Default select example">
-                  <option value="{{$shareholder->status}}" selected>{{$shareholder->status}}</option>
-                  <option value="Open">Open</option>
-                  <option value="Pending">Pending</option>
-                  <option value="In Progess/Assigned">In Progess/Assigned</option>
-                  <option value="Resolved">Resolved</option>
-                </select>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-          </form><!-- End Profile Edit Form -->
-
-        </div>
-      </div>
-    </div>
+          </div>
+      </form>
   </div>
-</div><!-- End Large Modal-->
-@endforeach
+</div>
+
 @endsection

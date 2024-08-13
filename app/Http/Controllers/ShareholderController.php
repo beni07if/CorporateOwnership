@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CompanyOwnership;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -14,7 +15,7 @@ class ShareholderController extends Controller
      */
     public function index()
     {
-        $shareholders = Message::all();
+        $shareholders = CompanyOwnership::all();
         return view('admin.shareholder.index', compact('shareholders'));
     }
 
@@ -29,9 +30,17 @@ class ShareholderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'shareholder_name' => 'required|string|max:255',
+            'date_of_birth' => 'required|string|max:255',
+            'company_name' => 'required|string',
+        ]);
+
+        CompanyOwnership::create($request->all());
+
+        return redirect()->route('shareholders.index')->with('success', 'Data shareholder added successfully.');
     }
 
     /**
@@ -53,16 +62,26 @@ class ShareholderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(Request $request, CompanyOwnership $shareholder)
     {
-        //
+        $request->validate([
+            'shareholder_name' => 'required|string|max:255',
+            'date_of_birth' => 'required|string|max:255',
+            'company_name' => 'required|string',
+        ]);
+
+        $shareholder->update($request->all());
+
+        return redirect()->route('shareholders.index')->with('success', 'Data shareholder updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): RedirectResponse
+    public function destroy(CompanyOwnership $shareholder)
     {
-        //
+        $shareholder->delete();
+
+        return redirect()->route('shareholders.index')->with('success', 'Data shareholder deleted successfully.');
     }
 }

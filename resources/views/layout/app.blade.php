@@ -40,6 +40,15 @@
     <link rel="icon" href="{!! asset('img/logo/new-logo-5/png/logo-icon.png') !!}"/>
     <!-- <link href="{{ asset('css/style.css') }}" rel="stylesheet"> -->
 
+    
+
+
+  <!-- Vendor CSS Files -->
+
+  <!-- Template Main CSS File -->
+  {{-- <link href="assets/css/style.css" rel="stylesheet"> --}}
+  <link href="{{ asset('template/Medilab/assets/css/style.css') }}" rel="stylesheet">
+
     <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" /> -->
     <!-- Make sure you put this AFTER Leaflet's CSS -->
 
@@ -200,6 +209,34 @@
                         </ul>
                     </li> -->
                     <li><a class="" href="{{route('corporateProfileEn')}}#footer">Contact</a></li>
+                    <li class="nav-item dropdown">
+                        <!-- User icon and dropdown toggle -->
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i> <!-- Font Awesome User Icon -->
+                        </a>
+                    
+                        <!-- Dropdown menu -->
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            @auth <!-- Check if the user is authenticated -->
+                            <li><span class="dropdown-item-text">{{ Auth::user()->name }}</span></li>
+                            <li><span class="dropdown-item-text">{{ Auth::user()->email }}</span></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                            </li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                            @else <!-- If the user is not authenticated, show the contact link -->
+                            <li><a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
+                            @endauth
+                        </ul>
+                    </li>
+                    
+                    
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -274,11 +311,16 @@
     <!-- Vendor JS Files -->
     <script src="{{ asset('template/Medilab/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{ asset('template/Medilab/assets/vendor/aos/aos.js')}}"></script>
-    <!-- <script src="{{ asset('template/Medilab/assets/vendor/glightbox/js/glightbox.min')}}.js"></script> -->
+    <script src="{{ asset('template/Medilab/assets/vendor/glightbox/js/glightbox.min')}}.js"></script>
     <script src="{{ asset('template/Medilab/assets/vendor/php-email-form/validate.js')}}"></script>
     <script src="{{ asset('template/Medilab/assets/vendor/purecounter/purecounter.js')}}"></script>
     <script src="{{ asset('template/Medilab/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
     <script src="{{ asset('template/NiceAdmin/assets/vendor/chart.js/chart.umd.js')}}"></script>
+    <script src="{{ asset('template/Medilab/assets/vendor/purecounter/purecounter_vanilla.js')}}"></script>
+
+  <!-- Template Main JS File -->
+  {{-- <script src="assets/js/main.js"></script> --}}
+  <script src="{{ asset('template/Medilab/assets/js/main.js')}}"></script>
 
     <!-- Template Main JS File -->
     <!-- <script src="{{ asset('template/Medilab/assets/js/main/assets.js') }}"></script> -->
@@ -336,6 +378,18 @@
             });
         });
     </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<script>
+    $(document).ready(function() {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
+
+
 
         <!-- tambahan -->
     <!-- Template Main JS File -->

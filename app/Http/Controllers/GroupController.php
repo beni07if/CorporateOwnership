@@ -46,9 +46,17 @@ class GroupController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'group_name' => 'required|string|max:255',
+            'country_registration' => 'required|string|max:255',
+            'controller' => 'required|string|max:255',
+        ]);
+
+        Group::create($request->all());
+
+        return redirect()->route('groups.index')->with('success', 'Data group added successfully.');
     }
 
     /**
@@ -70,17 +78,27 @@ class GroupController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(Request $request, Group $group)
     {
-        //
+        $request->validate([
+            'group_name' => 'required|string|max:255',
+            'country_registration' => 'required|string|max:255',
+            'controller' => 'required|string|max:255',
+        ]);
+
+        $group->update($request->all());
+
+        return redirect()->route('groups.index')->with('success', 'Data group updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): RedirectResponse
+    public function destroy(Group $group)
     {
-        //
+        $group->delete();
+
+        return redirect()->route('groups.index')->with('success', 'Data group deleted successfully.');
     }
 
     public function group2Show(Request $request)

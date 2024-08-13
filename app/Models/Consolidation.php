@@ -31,9 +31,9 @@ class Consolidation extends Model
         'subsidiary', 
         'shareholder_subsidiary', 
         'principal_activities', 
+        'status_operation', 
         'facilities', 
         'estate', 
-        'status_operation', 
         'capacity', 
         'latitude', 
         'longitude', 
@@ -48,10 +48,10 @@ class Consolidation extends Model
         // 'mspo_certified', 
         // 'ispo_certified', 
         'data_source', 
-        'data_update', 
-        'note',
-        'complete_percen', 
-        'akta' 
+        'data_update' 
+        // 'note',
+        // 'complete_percent', 
+        // 'akta' 
     ];
 
     public function toSearchableArray()

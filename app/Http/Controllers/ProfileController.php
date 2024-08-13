@@ -11,6 +11,7 @@ use Illuminate\View\View;
 use App\Models\Group;
 use App\Models\Consolidation;
 use App\Models\CompanyOwnership;
+use App\Models\Landingpage;
 use App\Models\OtherCompany;
 use App\Models\Policy;
 use App\Models\Termcondition;
@@ -20,9 +21,10 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $subsidiary = Consolidation::all();
-        $groupName = Consolidation::all();
-        return view('content.home', compact('subsidiary', 'groupName'));
+        // $subsidiary = Consolidation::all();
+        // $groupName = Consolidation::all();
+        $landingPages = Landingpage::all();
+        return view('content.home', compact('landingPages'));
     }
     
     public function feature()

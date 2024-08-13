@@ -9,15 +9,38 @@ use App\Models\Group;
 use App\Models\Consolidation;
 use App\Models\CompanyOwnership;
 use App\Models\Message;
+use App\Models\Sra;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $groupCounts = Group::select('group_name')
+        ->distinct()
+        ->count('group_name');
+
+        $consolidationCounts = Consolidation::select('subsidiary')
+        ->count('subsidiary');
+        $consolidationCountsDistinct = Consolidation::select('subsidiary')
+        ->distinct()
+        ->count('subsidiary');
+
+        $shareholderCounts = CompanyOwnership::select('shareholder_name')
+        ->count('shareholder_name');
+        $shareholderCountsDistinct = CompanyOwnership::select('shareholder_name')
+        ->distinct()
+        ->count('shareholder_name');
+
+        $sraCounts = Sra::select('group_name')
+        ->count('group_name');
+        $sraCountsDistinct = Sra::select('group_name')
         ->distinct()
         ->count('group_name');
 
@@ -34,7 +57,7 @@ class AdminController extends Controller
         ->take(5)
         ->get();
 
-        // Ambil semua data jumlah country_of_registered_address dari tabel group
+        // Ambil semua data jumlah country_of_registered_address dari tabel consolidation
         $allSubsidiaryCountes = Consolidation::select('country_registration', \DB::raw('COUNT(DISTINCT subsidiary) as count'))
         ->groupBy('country_registration')
         ->orderBy('count', 'desc') // Urutkan berdasarkan count secara descending
@@ -47,28 +70,27 @@ class AdminController extends Controller
         ->take(5)
         ->get();
 
-        // Ambil semua data jumlah country_of_registered_address dari tabel group
-        $allShareholderCountes = CompanyOwnership::select('shareholder_name', \DB::raw('COUNT(*) as count'))
-        ->groupBy('shareholder_name')
+        // Ambil semua data jumlah country_of_registered_address dari tabel company ownership
+        $allShareholderCountes = CompanyOwnership::select('company_name', \DB::raw('COUNT(DISTINCT shareholder_name) as count'))
+        ->groupBy('company_name')
         ->orderBy('count', 'desc') // Urutkan berdasarkan count secara descending
         ->get();
 
         // Ambil 5 terbanyak untuk legenda
-        $top5ShareholderCountes = CompanyOwnership::select('shareholder_name', \DB::raw('COUNT(*) as count'))
-        ->groupBy('shareholder_name')
+        $top5ShareholderCountes = CompanyOwnership::select('company_name', \DB::raw('COUNT(DISTINCT shareholder_name) as count'))
+        ->groupBy('company_name')
         ->orderBy('count', 'desc')
         ->take(3)
         ->get();
 
-        $consolidationCounts = Consolidation::select('subsidiary')
-        ->distinct()
-        ->count('subsidiary');
-        $shareholderCounts = CompanyOwnership::select('shareholder_name')
-        ->distinct()
-        ->count('shareholder_name');
         $messages = Message::all();
         $groups = Message::all();
-        return view('admin.dashboard', compact('groupCounts', 'allGroupCountes', 'top5GroupCountes', 'allSubsidiaryCountes', 'top5SubsidiaryCountes', 'allShareholderCountes', 'top5ShareholderCountes', 'consolidationCounts', 'shareholderCounts', 'messages', 'groups'));
+
+        if (auth()->user()->email === 'admin@gmail.com') {
+            // Logic for admin dashboard
+            return view('admin.dashboard', compact('groupCounts', 'sraCounts', 'sraCountsDistinct', 'allGroupCountes', 'top5GroupCountes', 'allSubsidiaryCountes', 'top5SubsidiaryCountes', 'allShareholderCountes', 'top5ShareholderCountes', 'consolidationCounts', 'consolidationCountsDistinct', 'shareholderCounts', 'shareholderCountsDistinct', 'messages', 'groups'));
+        }
+        return redirect('/');
     }
 
     public function inbox()

@@ -1,11 +1,11 @@
 @extends('admin.layout.appAdmin')
 @section('brudcump')
 <div class="pagetitle">
-  <h1>Dashboard</h1>
+  <h1>Privacy & Policy</h1>
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-      <li class="breadcrumb-item active">Policy</li>
+      <li class="breadcrumb-item active">Privacy & Policy</li>
     </ol>
   </nav>
 </div>
@@ -17,8 +17,7 @@
 
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Policy</h5>
-          <!-- <p>Policy</p> -->
+          <h5 class="card-title">Privacy & Policy</h5>
 
           <!-- Table with stripped rows -->
           <table class="table datatable">
@@ -93,7 +92,7 @@
               });
             </script>
             
-            <button class="button button-info" type="submit">Save</button>
+            <button class="btn btn-info" type="submit">Save</button>
           </form>
         </div>
       </div>

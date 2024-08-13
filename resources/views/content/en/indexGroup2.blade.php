@@ -160,11 +160,11 @@
                             <div class="">
                                 <h6 class="text-muted">Management</h6>
                                 @foreach($groups->pluck('management_name_and_position')->unique() as $management_name_and_position)
-                                @if($management_name_and_position)
-                                <p class="text-muted">{{ $management_name_and_position }}</p>
-                                @else
-                                <p class="text-muted">-</p>
-                                @endif
+                                    @if($management_name_and_position)
+                                        <p class="text-muted">{!! nl2br(e($management_name_and_position)) !!}</p>
+                                    @else
+                                        <p class="text-muted">-</p>
+                                    @endif
                                 @endforeach
                             </div>
                             <!-- <div class="">
@@ -484,11 +484,12 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">@foreach($groups as $subs)
-                                @if($loop->first)
-                                    <h4 class="title mb-0"> {{ $subs->group_name }}</h4>
-                                @endif
-                            @endforeach</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+        @foreach($groups as $subs)
+            @if($loop->first)
+                <h4 class="title mb-0"> {{ $subs->group_name }}</h4>
+            @endif
+        @endforeach</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -519,15 +520,38 @@
                         <h6 class="card-title description">Country Operation</h6>
                         <p class="card-text">{{ $subs->country_operation }}</p>
                         <h6 class="card-title description">Shareholder</h6>
-                        <p class="card-text">{{ $subs->shareholder_name1 }} ({{ $subs->percent_of_share1 }})</p>
-                        <p class="card-text">{{ $subs->shareholder_name2 }} ({{ $subs->percent_of_share2 }})</p>
-                        <p class="card-text">{{ $subs->shareholder_name3 }} ({{ $subs->percent_of_share3 }})</p>
-                        <p class="card-text">{{ $subs->shareholder_name4 }} ({{ $subs->percent_of_share4 }})</p>
-                        <p class="card-text">{{ $subs->shareholder_name5 }} ({{ $subs->percent_of_share5 }})</p>
+                        @foreach($groups as $subs)
+                            <div>
+                                @if($subs->shareholder_name1 !== 'Nil')
+                                    <p class="card-text">{{ $subs->shareholder_name1 }} ({{ $subs->percent_of_share1 }}) </p>
+                                @endif
+
+                                @if($subs->shareholder_name2 !== 'Nil')
+                                    <p class="card-text">{{ $subs->shareholder_name2 }} ({{ $subs->percent_of_share2 }}) </p>
+                                @endif
+
+                                @if($subs->shareholder_name3 !== 'Nil')
+                                    <p class="card-text">{{ $subs->shareholder_name3 }} ({{ $subs->percent_of_share3 }}) </p>
+                                @endif
+
+                                @if($subs->shareholder_name4 !== 'Nil')
+                                    <p class="card-text">{{ $subs->shareholder_name4 }} ({{ $subs->percent_of_share4 }}) </p>
+                                @endif
+
+                                @if($subs->shareholder_name5 !== 'Nil')
+                                    <p class="card-text">{{ $subs->shareholder_name5 }} ({{ $subs->percent_of_share5 }})
+                                @endif
+                            </div>
+                        @endforeach
                         <!-- <h6 class="card-title description">Group Structure</h6>
                         <p class="card-text">{{ $subs->group_structure }}</p> -->
                         <h6 class="card-title description">Management (Name and Position)</h6>
-                        <p class="card-text">{{ $subs->management_name_and_position }}</p>
+                        <p class="card-text">
+                            <?php
+                            $management = $subs->management_name_and_position;
+                            echo nl2br(preg_replace('/\)/', ")\n", $management));
+                            ?>
+                        </p>
                         <h6 class="card-title description">Land Area Controlled</h6>
                         <p class="card-text">{{ $subs->land_area_controlled }}</p>
                     </div>

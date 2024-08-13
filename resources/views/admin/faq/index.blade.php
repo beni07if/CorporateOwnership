@@ -1,137 +1,137 @@
-@extends('layout.app')
-
-@section('headstyle')
-<!-- Favicons -->
-<link href="{{asset('template/Flexstart/assets/img/favicon.png') }}" rel="icon">
-<link href="{{asset('template/Flexstart/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
-
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-<!-- Vendor CSS Files -->
-<link href="{{asset('template/Flexstart/assets/vendor/aos/aos.css')}}" rel="stylesheet">
-
-<!-- Template Main CSS File -->
-<!-- <link href="{{asset('template/Flexstart/assets/css/style.css')}}" rel="stylesheet"> -->
-
- <!-- Favicons -->
-  <!-- Template Main CSS File -->
-  <link href="{{ asset('template/SoftLand/assets/css/style.css') }}" rel="stylesheet">
-  <!-- end SoftLand -->
-
+@extends('admin.layout.appAdmin')
+@section('brudcump')
+<div class="pagetitle">
+  <h1>Frequently and Questions</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+      <li class="breadcrumb-item active">FAQ</li>
+    </ol>
+  </nav>
+</div>
 @endsection
-
-@section('carousel')
-
-@endsection
-
 @section('content')
-<main id="main">
-    <!-- Blog Page Title & Breadcrumbs -->
-    <div data-aos="fade" class="page-title">
-      <div class="heading">
-        <div class="container">
-          <div class="row d-flex justify-content-center text-center">
-            <div class="col-lg-8">
-              <h1>Blog</h1>
-              <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div><!-- End Page Title -->
+<section class="section dashboard">
+  <div class="row">
+    <div class="col-lg-12">
 
-    <section class="section faq">
-      <div class="container">
-        <div class="section-title">
-          <h2>Frequently Asked Questions</h2>
-        </div>
+      <div class="card">
+        
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+          <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addFaqModal">
+            Add FAQ
+        </button>
 
-        <div class="row">
-          <div class="col-lg-12">
+          <!-- Table with stripped rows -->
+          <table class="table datatable">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Question</th>
+                <th scope="col">Answer</th>
+                <th scope="col">Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($faqs as $faq)
+              <tr>
+                <th scope="row">{{$loop->iteration}}</th>
+                <td>{{$faq->question}}</td>
+                <td>{!!$faq->answer!!}</td>
+                <td><!-- Large Modal -->
+                  <!-- Edit Modal Trigger -->
+                <button type="button" class="badge btn btn-dark text-white" data-bs-toggle="modal" data-bs-target="#editModal{{$faq->id}}">
+                  Edit
+              </button>
 
-            <!-- F.A.Q Group 1 -->
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Laborum dolorem quam porro</h5>
+              <!-- Delete Form -->
+              <form action="{{ route('faq.destroy', $faq->id) }}" method="POST" style="display:inline;">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="badge btn btn-danger text-white" onclick="return confirm('Are you sure you want to delete this FAQ?');">
+                      Delete
+                  </button>
+              </form>
 
-                <div class="accordion accordion-flush" id="faq-group-1">
-
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button class="accordion-button collapsed" data-bs-target="#faqsOne-1" type="button" data-bs-toggle="collapse">
-                        Debitis adipisci eius?
-                      </button>
-                    </h2>
-                    <div id="faqsOne-1" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
-                      <div class="accordion-body">
-                        Ut quasi odit odio totam accusamus vero eius. Nostrum asperiores voluptatem eos nulla ab dolores est asperiores iure. Quo est quis praesentium aut maiores. Corrupti sed aut expedita fugit vero dolorem. Nemo rerum sapiente. A quaerat dignissimos.
-                      </div>
-                    </div>
+              <!-- Edit FAQ Modal -->
+              <div class="modal fade" id="editModal{{$faq->id}}" tabindex="-1" aria-labelledby="editModalLabel{{$faq->id}}" aria-hidden="true">
+                  <div class="modal-dialog">
+                      <form action="{{ route('faq.update', $faq->id) }}" method="POST">
+                          @csrf
+                          @method('PUT')
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h5 class="modal-title" id="editModalLabel{{$faq->id}}">Edit FAQ</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                  <div class="mb-3">
+                                      <label for="category{{$faq->id}}" class="form-label">Category</label>
+                                      <input type="text" class="form-control" id="category{{$faq->id}}" name="category" value="{{$faq->category}}" required>
+                                  </div>
+                                  <div class="mb-3">
+                                      <label for="question{{$faq->id}}" class="form-label">Question</label>
+                                      <input type="text" class="form-control" id="question{{$faq->id}}" name="question" value="{{$faq->question}}" required>
+                                  </div>
+                                  <div class="mb-3">
+                                      <label for="answer{{$faq->id}}" class="form-label">Answer</label>
+                                      <textarea class="form-control" id="answer{{$faq->id}}" name="answer" rows="3" required>{!! $faq->answer !!}</textarea>
+                                  </div>
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-primary">Save changes</button>
+                              </div>
+                          </div>
+                      </form>
                   </div>
-
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button class="accordion-button collapsed" data-bs-target="#faqsOne-2" type="button" data-bs-toggle="collapse">
-                        Omnis fugiat quis repellendus?
-                      </button>
-                    </h2>
-                    <div id="faqsOne-2" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
-                      <div class="accordion-body">
-                        In minus quia impedit est quas deserunt deserunt et. Nulla non quo dolores minima fugiat aut saepe aut inventore. Qui nesciunt odio officia beatae iusto sed voluptatem possimus quas. Officia vitae sit voluptatem nostrum a.
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button class="accordion-button collapsed" data-bs-target="#faqsOne-3" type="button" data-bs-toggle="collapse">
-                        Et occaecati praesentium aliquam modi incidunt?
-                      </button>
-                    </h2>
-                    <div id="faqsOne-3" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
-                      <div class="accordion-body">
-                        Voluptates magni amet enim perspiciatis atque excepturi itaque est. Sit beatae animi incidunt eum repellat sequi ea saepe inventore. Id et vel et et. Nesciunt itaque corrupti quia ducimus. Consequatur maiores voluptatum fuga quod ut non fuga.
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button class="accordion-button collapsed" data-bs-target="#faqsOne-4" type="button" data-bs-toggle="collapse">
-                        Quo unde eaque vero dolor quis ipsam?
-                      </button>
-                    </h2>
-                    <div id="faqsOne-4" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
-                      <div class="accordion-body">
-                        Numquam ut reiciendis aliquid. Quia veritatis quasi ipsam sed quo ut eligendi et non. Doloremque sed voluptatem at in voluptas aliquid dolorum.
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button class="accordion-button collapsed" data-bs-target="#faqsOne-5" type="button" data-bs-toggle="collapse">
-                        Natus sunt quo atque mollitia accusamus?
-                      </button>
-                    </h2>
-                    <div id="faqsOne-5" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
-                      <div class="accordion-body">
-                        Aut necessitatibus maxime quis dolor et. Nihil laboriosam molestiae qui molestias placeat corrupti non quo accusamus. Nemo qui quis harum enim sed. Aliquam molestias pariatur delectus voluptas quidem qui rerum id quisquam. Perspiciatis voluptatem voluptatem eos. Vel aut minus labore at rerum eos.
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-
               </div>
-            </div><!-- End F.A.Q Group 1 -->
-
-          </div>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+          <!-- End Table with stripped rows -->
 
         </div>
       </div>
-    </section>
 
-</main><!-- End #main -->
+    </div>
+  </div>
+</section>
+
+<!-- Add FAQ Modal -->
+<div class="modal fade" id="addFaqModal" tabindex="-1" aria-labelledby="addFaqModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <form action="{{ route('faq.store') }}" method="POST">
+          @csrf
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="addFaqModalLabel">Add FAQ</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <div class="mb-3">
+                      <label for="category" class="form-label">Category</label>
+                      <input type="text" class="form-control" id="category" name="category" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="question" class="form-label">Question</label>
+                      <input type="text" class="form-control" id="question" name="question" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="answer" class="form-label">Answer</label>
+                      <textarea class="form-control" id="answer" name="answer" rows="3" required></textarea>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>
+
 @endsection
