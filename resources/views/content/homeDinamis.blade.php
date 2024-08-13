@@ -26,7 +26,9 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
     <div class="container">
-        <h1 style="text-align:center;">Offering insights into it's governance and operational framework</h1>
+        @foreach($landingPages as $landingPage)
+        <h1 style="text-align:center;">{!!$landingPage->tagline!!}</h1>
+        @endforeach
         <!-- <h2>Discover and Analyze Global Corporate Profile Structures for Strategic Insights</h2> -->
         <!-- <a href="#about" hidden class="btn-get-started scrollto">Search</a> -->
         <!-- <section id="hero" class="d-flex align-items-center"> -->
@@ -51,11 +53,12 @@
     <section id="why-us" class="why-us">
         <div class="container">
             <div class="row">
+                @foreach($landingPages as $landingPage)
                 <div class="col-lg-4 d-flex align-items-stretch">
                     <div class="content">
-                        <h3 style="color:#ffffff;">Corporate Profile</h3>
+                        <h3 style="color:#ffffff;">{!!$landingPage->title_short_definition!!}</h3>
                         <p>
-                            Corporate Profile is a platform that provides information about the ownership structure of companies, shareholder and its network with other companies.
+                            {!!$landingPage->short_definition!!}
                         </p>
                     </div>
                 </div>
@@ -65,34 +68,34 @@
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box mt-4 mt-xl-0">
                                     <i class="ri-database-line"></i>
-                                    <h4>Group</h4>
-                                    <h2>1,700 +</h2>
-                                    <p>Groups</p>
+                                    <h4>{!!$landingPage->title_of_data1!!}</h4>
+                                    <h2>{!!$landingPage->number_of_data1!!} +</h2>
+                                    <p>{!!$landingPage->tag_of_data1!!}</p>
                                     <!-- <p>There are thousands of groups along with their subsidiaries, shareholders and other important information.</p> -->
                                 </div>
                             </div>
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box mt-4 mt-xl-0">
                                     <i class="ri-building-fill"></i>
-                                    <h4>Company</h4>
-                                    <h2>7,100 +</h2>
-                                    <!-- <span data-purecounter-start="0" data-purecounter-end="10,000" data-purecounter-duration="1" class="purecounter"></span> -->
-                                    <p>Companies</p>
+                                    <h4>{!!$landingPage->title_of_data2!!}</h4>
+                                    <h2>{!!$landingPage->number_of_data2!!} +</h2>
+                                    <p>{!!$landingPage->tag_of_data2!!}</p>
                                     <!-- <p>There are tens of thousands of subsidiaries along with their location, shareholder, and other important information.</p> -->
                                 </div>
                             </div>
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box mt-4 mt-xl-0">
                                     <i class="ri-admin-line"></i>
-                                    <h6>Shareholders</h6>
-                                    <h2>30,600 +</h2>
-                                    <p>Shareholders</p>
+                                    <h4>{!!$landingPage->title_of_data3!!}</h4>
+                                    <h2>{!!$landingPage->number_of_data3!!} +</h2>
+                                    <p>{!!$landingPage->tag_of_data3!!}</p>
                                     <!-- <p>There are tens of thousands of shareholders and their shareholdings in several companies</p> -->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -253,54 +256,54 @@
             </div>
             <iframe src="https://www.chatbase.co/chatbot-iframe/VRXUJ-HRD1JcdZQIduOLV" width="100%" height="700" frameborder="0"></iframe> -->
         </div>
-    </section><!-- End Departments Section -->
+    </section><!-- End Departments Sections -->
 
     <!-- ======= About Section ======= -->
     <section id="counts" class="counts">
-      <div class="container-fluid">
-
-        <div class="row">
-          <div class="col-xl-6 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
-            <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox play-btn mb-4"></a> -->
-            <!-- <img src="{{ asset('img/perusahaan-multinasional.png')}}" class="img-fluid shadow" alt=""> -->
-            <img src="{{ asset('img/bg/gb1.jpg')}}" class="img-fluid shadow" alt="">
-          </div>
-
-          <div class="col-xl-6 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-            <h3>Corporate Profile</h3>
-            <p>We perform No Deforestation No Peat and No Exploitation (NDPE) due diligence at the group level with a focus on non-compliance risk to recommend whether commercial relationships should continue or hold. We also verify ownership structures to track compliance, using a robust ownership database that is continuously maintained and updated. This verification process is exclusive to palm oil operations. For entities not related to palm oil (non-palm), we address issues on an ad hoc basis, which may involve grievances or specific risks, potentially leading to additional charges.</p>
-            <p>Corporate Profile is a platform that provides information about the ownership structure of companies, shareholders, and their network with other companies. Its key features include group structure, corporate profile, share ownership, and Sustainability Risk Assessment (SRA). The information within this platform is divided into two categories: public information and private information.</p>
-            <p>Key features, which include group structure, corporate profile, share ownership, and SRA, can only be accessed by users who are logged in or have an account on this platform. Thus, Corporate Profile ensures that important and detailed information is only available to registered users, maintaining the confidentiality and security of sensitive data.</p>
-          </div>
+        <div class="container-fluid">
+            <div class="row">
+                @foreach($landingPages as $landingPage)
+                <div class="col-xl-6 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
+                    <!-- Correct the path using the storage helper -->
+                    <img src="{{ asset('storage/app/public/' . $landingPage->image_corporate_profile) }}" class="img-fluid shadow" alt="Corporate Profile Image">
+                </div>
+    
+                <div class="col-xl-6 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
+                    <h3>{!! $landingPage->title_corporate_profile !!}</h3>
+                    <p>{!! $landingPage->definition_corporate_profile !!}</p>
+                </div>
+                @endforeach
+            </div>
         </div>
-
-      </div>
-    </section><!-- End About Section -->
+    </section>
+    
+    <!-- End About Section -->
 
     <!-- ======= About Section ======= -->
     <section id="about2" class="about2">
       <div class="container">
+        @foreach($landingPages as $landingPage)
         <div class="section-title">
-          <h2>Key Features</h2>
-          <!-- <p>Naration</p> -->
+            <h2>Key Features</h2>
+            <!-- <p>Naration</p> -->
         </div>
 
         <div class="row align-items-center">
         <div class="col-lg-7 align-items-stretch order-1 order-lg-2 img">
-            <img src="{{ asset('img/group-structure1.png')}}" class="img-fluid shadow" alt="">
+            <img src="{{ asset('storage/' . $landingPage->key_feature_image1) }}" class="img-fluid shadow" alt="">
             <p class="text-muted"><i style="font-size:10px;">*Group ownership structure figure</i></p>
         </div>
         <div class="col-lg-5 pt-4 pt-lg-0 d-flex flex-column justify-content-center">
-            <h4>Group Ownership Structure</h4>
+            <h4>{!!$landingPage->key_feature_title1!!}</h4>
             <p>
-            Group is a business entity consisting of a holding company and a number of subsidiaries operating in various segments including the palm oil industry.
+                {!!$landingPage->key_feature_desc1!!}
             </p>
         </div>
         </div><br><br><br>
 
         <div class="row">
             <div class="col-lg-7">
-                <img src="{{ asset('img/corporate-profile-dataset.png')}}" class="img-fluid shadow" alt="">
+                <img src="{{ asset('storage/' . $landingPage->key_feature_image2) }}" class="img-fluid shadow" alt="">
                 <p class="text-muted"><i style="font-size:10px;">*Corporate profile dataset</i></p>
             </div>
             <div class="col-lg-7" hidden>
@@ -341,40 +344,40 @@
                 </div>
             </div>
             <div class="col-lg-5 pt-4 pt-lg-0 d-flex flex-column justify-content-center">
-                <h4>Company</h4>
+                <h4>{!!$landingPage->key_feature_title2!!}</h4>
                 <p>
-                A Company is an overview of a company, including basic information that is essential to provide a thorough understanding of the business entity. 
+                    {!!$landingPage->key_feature_desc2!!}
                 </p>
             </div>
         </div><br><br><br>
 
         <div class="row">
           <div class="col-lg-7 align-items-stretch order-1 order-lg-2 img">
-            <img src="{{ asset('img/shareholder-figure.png')}}" class="img-fluid shadow" alt="">
+            <img src="{{ asset('storage/' . $landingPage->key_feature_image3) }}" class="img-fluid shadow" alt="">
             <p class="text-muted"><i style="font-size:10px;">*Share ownership for Individual/company</i></p>
           </div>
           <div class="col-lg-5 pt-4 pt-lg-0 d-flex flex-column justify-content-center">
-            <h4>Shareholders / Share Ownership</h4>
+            <h4>{!!$landingPage->key_feature_title3!!}</h4>
             <p>
-            Shareholders is an individual, company, or institution that owns one or more shares in a company. 
+                {!!$landingPage->key_feature_desc3!!}
             </p>
           </div>
         </div>
 
         <div class="row">
           <div class="col-lg-7">
-            <img src="{{ asset('img/sra2.png')}}" class="img-fluid shadow" alt="">
+            <img src="{{ asset('storage/' . $landingPage->key_feature_image4) }}" class="img-fluid shadow" alt="">
             <p class="text-muted"><i style="font-size:10px;">*Summary of sustainability risk assessment</i></p>
           </div>
           <div class="col-lg-5 pt-4 pt-lg-0 d-flex flex-column justify-content-center">
-            <h4>Sustainability Risk Assessment (SRA)</h4>
+            <h4>{!!$landingPage->key_feature_title4!!}</h4>
             <p>
-            Group-based Sustainability Risk Assessment (SRA) is a systematic process to identify, evaluate, and manage risks that may affect the sustainability of a group of companies. 
+                {!!$landingPage->key_feature_desc4!!}
             </p>
             <br>
           </div>
         </div>
-
+        @endforeach
       </div>
     </section><!-- End About Section -->
 
