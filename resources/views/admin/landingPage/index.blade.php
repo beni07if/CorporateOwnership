@@ -19,7 +19,7 @@
         
         <div class="card-body">
           <h5 class="card-title"></h5>
-          <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addLandingPageModal">
+          <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addLandingPageModal" disabled>
             Add Landing Page
         </button>
 
@@ -53,7 +53,7 @@
               <form action="{{ route('landing-page.destroy', $landingPage->id) }}" method="POST" style="display:inline;">
                   @csrf
                   @method('DELETE')
-                    <button type="button" class="badge btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
+                    <button type="button" class="badge btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" disabled>
                     Delete
                     </button>
                 

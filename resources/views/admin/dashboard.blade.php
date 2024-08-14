@@ -220,55 +220,62 @@
                         <div id="trafficChart1" style="min-height: 400px;" class="echart"></div>
 
                         <script>
-                            document.addEventListener("DOMContentLoaded", () => {
-                                // Ambil data dari controller
-                                var allGroupCountes = @json($allGroupCountes);
-                                var top5GroupCountes = @json($top5GroupCountes);
-
-                                // Susun data untuk chart pie (semua data)
-                                var pieData = allGroupCountes.map(item => ({
-                                    value: item.count,
-                                    name: item.country_registration
-                                }));
-
-                                // Susun data untuk legenda (5 terbanyak)
-                                var legendData = top5GroupCountes.map(item => item.country_registration);
-
-                                // Inisialisasi chart pie
-                                var chart = echarts.init(document.querySelector("#trafficChart1"));
-                                chart.setOption({
-                                    tooltip: {
-                                        trigger: 'item'
-                                    },
-                                    legend: {
-                                        top: '5%',
-                                        left: 'center',
-                                        data: legendData // Menampilkan hanya 5 terbanyak di legenda
-                                    },
-                                    series: [{
-                                        name: 'Number of Groups',
-                                        type: 'pie',
-                                        radius: ['40%', '70%'],
-                                        avoidLabelOverlap: false,
-                                        label: {
-                                            show: false,
-                                            position: 'center'
-                                        },
-                                        emphasis: {
-                                            label: {
-                                                show: true,
-                                                fontSize: '18',
-                                                fontWeight: 'bold'
-                                            }
-                                        },
-                                        labelLine: {
-                                            show: false
-                                        },
-                                        data: pieData
-                                    }]
-                                });
-                            });
-                        </script>
+                          document.addEventListener("DOMContentLoaded", () => {
+                              // Ambil data dari controller
+                              var allGroupCountes = @json($allGroupCountes);
+                              var top5GroupCountes = @json($top5GroupCountes);
+                          
+                              // Susun data untuk chart pie (semua data) dengan gradasi warna
+                              var pieData = allGroupCountes.map((item, index) => {
+                                  // Buat gradasi dari oranye tua ke oranye muda mendekati putih
+                                  var color = `rgba(255, ${140 + index * 10}, ${0}, ${1 - index * 0.1})`; // Mulai dari oranye tua ke oranye muda
+                                  return {
+                                      value: item.count,
+                                      name: item.country_registration,
+                                      itemStyle: {
+                                          color: color
+                                      }
+                                  };
+                              });
+                          
+                              // Susun data untuk legenda (5 terbanyak)
+                              var legendData = top5GroupCountes.map(item => item.country_registration);
+                          
+                              // Inisialisasi chart pie
+                              var chart = echarts.init(document.querySelector("#trafficChart1"));
+                              chart.setOption({
+                                  tooltip: {
+                                      trigger: 'item'
+                                  },
+                                  legend: {
+                                      top: '5%',
+                                      left: 'center',
+                                      data: legendData // Menampilkan hanya 5 terbanyak di legenda
+                                  },
+                                  series: [{
+                                      name: 'Number of Groups',
+                                      type: 'pie',
+                                      radius: ['40%', '70%'],
+                                      avoidLabelOverlap: false,
+                                      label: {
+                                          show: false,
+                                          position: 'center'
+                                      },
+                                      emphasis: {
+                                          label: {
+                                              show: true,
+                                              fontSize: '18',
+                                              fontWeight: 'bold'
+                                          }
+                                      },
+                                      labelLine: {
+                                          show: false
+                                      },
+                                      data: pieData
+                                  }]
+                              });
+                          });
+                          </script>                          
 
                         </div>
                     </div>
@@ -281,7 +288,7 @@
                         <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                             <li class="dropdown-header text-start">
-                            <p>Number of companies by Country</p>
+                            <p>Number of companies by country</p>
                             </li>
                         </ul>
                         </div>
@@ -291,55 +298,63 @@
                         <div id="trafficChart2" style="min-height: 400px;" class="echart"></div>
 
                         <script>
-                            document.addEventListener("DOMContentLoaded", () => {
-                                // Ambil data dari controller
-                                var allSubsidiaryCountes = @json($allSubsidiaryCountes);
-                                var top5SubsidiaryCountes = @json($top5SubsidiaryCountes);
-
-                                // Susun data untuk chart pie (semua data)
-                                var pieData = allSubsidiaryCountes.map(item => ({
-                                    value: item.count,
-                                    name: item.country_registration
-                                }));
-
-                                // Susun data untuk legenda (5 terbanyak)
-                                var legendData = top5SubsidiaryCountes.map(item => item.country_registration);
-
-                                // Inisialisasi chart pie
-                                var chart = echarts.init(document.querySelector("#trafficChart2"));
-                                chart.setOption({
-                                    tooltip: {
-                                        trigger: 'item'
-                                    },
-                                    legend: {
-                                        top: '5%',
-                                        left: 'center',
-                                        data: legendData // Menampilkan hanya 5 terbanyak di legenda
-                                    },
-                                    series: [{
-                                        name: 'Number of Subsidiaries',
-                                        type: 'pie',
-                                        radius: ['40%', '70%'],
-                                        avoidLabelOverlap: false,
-                                        label: {
-                                            show: false,
-                                            position: 'center'
-                                        },
-                                        emphasis: {
-                                            label: {
-                                                show: true,
-                                                fontSize: '18',
-                                                fontWeight: 'bold'
-                                            }
-                                        },
-                                        labelLine: {
-                                            show: false
-                                        },
-                                        data: pieData
-                                    }]
-                                });
-                            });
-                        </script>
+                          document.addEventListener("DOMContentLoaded", () => {
+                              // Ambil data dari controller
+                              var allSubsidiaryCountes = @json($allSubsidiaryCountes);
+                              var top5SubsidiaryCountes = @json($top5SubsidiaryCountes);
+                          
+                              // Susun data untuk chart pie (semua data) dengan gradasi warna abu-abu
+                              var pieData = allSubsidiaryCountes.map((item, index) => {
+                                  // Buat gradasi dari abu-abu tua ke abu-abu muda
+                                  var grayValue = 200 - index * (200 / allSubsidiaryCountes.length); // Mulai dari abu-abu tua ke abu-abu muda
+                                  var color = `rgba(${grayValue}, ${grayValue}, ${grayValue}, 1)`; // Warna abu-abu
+                                  return {
+                                      value: item.count,
+                                      name: item.country_registration,
+                                      itemStyle: {
+                                          color: color
+                                      }
+                                  };
+                              });
+                          
+                              // Susun data untuk legenda (5 terbanyak)
+                              var legendData = top5SubsidiaryCountes.map(item => item.country_registration);
+                          
+                              // Inisialisasi chart pie
+                              var chart = echarts.init(document.querySelector("#trafficChart2"));
+                              chart.setOption({
+                                  tooltip: {
+                                      trigger: 'item'
+                                  },
+                                  legend: {
+                                      top: '5%',
+                                      left: 'center',
+                                      data: legendData // Menampilkan hanya 5 terbanyak di legenda
+                                  },
+                                  series: [{
+                                      name: 'Number of Subsidiaries',
+                                      type: 'pie',
+                                      radius: ['40%', '70%'],
+                                      avoidLabelOverlap: false,
+                                      label: {
+                                          show: false,
+                                          position: 'center'
+                                      },
+                                      emphasis: {
+                                          label: {
+                                              show: true,
+                                              fontSize: '18',
+                                              fontWeight: 'bold'
+                                          }
+                                      },
+                                      labelLine: {
+                                          show: false
+                                      },
+                                      data: pieData
+                                  }]
+                              });
+                          });
+                          </script>                          
 
                         </div>
                     </div>
@@ -352,7 +367,7 @@
                         <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                             <li class="dropdown-header text-start">
-                            <p>Number of Shareholder by Company</p>
+                            <p>Number of shareholder by company based on company ownership data</p>
                             </li>
                         </ul>
                         </div>
@@ -360,58 +375,60 @@
                         <div class="card-body pb-0">
                         <h5 class="card-title">Shareholders by Company <span></span></h5>
                         <div id="trafficChart3" style="min-height: 400px;" class="echart"></div>
-
                         <script>
-                            document.addEventListener("DOMContentLoaded", () => {
-                                // Ambil data dari controller
-                                var allShareholderCountes = @json($allShareholderCountes);
-                                var top5ShareholderCountes = @json($top5ShareholderCountes);
-
-                                // Susun data untuk chart pie (semua data)
-                                var pieData = allShareholderCountes.map(item => ({
-                                    value: item.count,
-                                    name: item.company_name
-                                }));
-
-                                // Susun data untuk legenda (5 terbanyak)
-                                var legendData = top5ShareholderCountes.map(item => item.company_name);
-
-                                // Inisialisasi chart pie
-                                var chart = echarts.init(document.querySelector("#trafficChart3"));
-                                chart.setOption({
-                                    tooltip: {
-                                        trigger: 'item'
-                                    },
-                                    legend: {
-                                        top: '5%',
-                                        left: 'center',
-                                        data: legendData // Menampilkan hanya 5 terbanyak di legenda
-                                    },
-                                    series: [{
-                                        name: 'Number of Shareholder',
-                                        type: 'pie',
-                                        radius: ['40%', '70%'],
-                                        avoidLabelOverlap: false,
-                                        label: {
-                                            show: false,
-                                            position: 'center'
-                                        },
-                                        emphasis: {
-                                            label: {
-                                                show: true,
-                                                fontSize: '18',
-                                                fontWeight: 'bold'
-                                            }
-                                        },
-                                        labelLine: {
-                                            show: false
-                                        },
-                                        data: pieData
-                                    }]
-                                });
-                            });
-                        </script>
-
+                          document.addEventListener("DOMContentLoaded", () => {
+                              // Ambil data dari controller
+                              var allShareholderCountes = @json($allShareholderCountes);
+                              var top5ShareholderCountes = @json($top5ShareholderCountes);
+                      
+                              // Susun data untuk chart pie (semua data)
+                              var pieData = allShareholderCountes.map((item, index) => ({
+                                  value: item.count,
+                                  name: item.company_name,
+                                  itemStyle: {
+                                      color: `rgba(0, ${128 + index * 20}, 0, 1)`
+                                  }
+                              }));
+                      
+                              // Susun data untuk legenda (5 terbanyak)
+                              var legendData = top5ShareholderCountes.map(item => item.company_name);
+                      
+                              // Inisialisasi chart pie
+                              var chart = echarts.init(document.querySelector("#trafficChart3"));
+                              chart.setOption({
+                                  tooltip: {
+                                      trigger: 'item'
+                                  },
+                                  legend: {
+                                      top: '5%',
+                                      left: 'center',
+                                      data: legendData // Menampilkan hanya 5 terbanyak di legenda
+                                  },
+                                  series: [{
+                                      name: 'Number of Shareholder',
+                                      type: 'pie',
+                                      radius: ['40%', '70%'],
+                                      avoidLabelOverlap: false,
+                                      label: {
+                                          show: false,
+                                          position: 'center'
+                                      },
+                                      emphasis: {
+                                          label: {
+                                              show: true,
+                                              fontSize: '18',
+                                              fontWeight: 'bold'
+                                          }
+                                      },
+                                      labelLine: {
+                                          show: false
+                                      },
+                                      data: pieData
+                                  }]
+                              });
+                          });
+                      </script>
+                      
                         </div>
                     </div>
                 </div>
