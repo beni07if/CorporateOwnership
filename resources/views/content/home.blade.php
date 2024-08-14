@@ -190,7 +190,6 @@
                                 <div class="col-lg-8 details order-2 order-lg-1">
                                     <h3>Company</h3>
                                     <!-- <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the subsidiary companies. The information about Group Company can be used to identify the subsidiary under.</p> -->
-                                    
                                     <div class="container">
                                         <form action="{{ route('searchFunctionSubsidiary') }}" method="GET" class="d-flex">
                                             <input type="text" class="form-control me-2" name="query" placeholder="Company name">

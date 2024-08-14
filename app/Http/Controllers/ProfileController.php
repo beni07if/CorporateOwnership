@@ -26,6 +26,11 @@ class ProfileController extends Controller
         $landingPages = Landingpage::all();
         return view('content.home', compact('landingPages'));
     }
+    public function lpd()
+    {
+        $landingPages = Landingpage::all();
+        return view('content.homeDinamis', compact('landingPages'));
+    }
     
     public function feature()
     {

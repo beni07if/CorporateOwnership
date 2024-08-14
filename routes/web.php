@@ -70,6 +70,7 @@ Route::get('/export', [App\Http\Controllers\ChatbotController::class, 'export'])
 
 // Website corporate profile
 Route::get('/', [ProfileController::class, 'index'])->name('corporateProfileEn');
+Route::get('/lpd', [ProfileController::class, 'lpd'])->name('lpd');
 // Route::get('/corporate-profile-en', [CorporateProfileController::class, 'index'])->name('corporateProfileEn');
 // Route::get('/corporate-profile-index', [CorporateProfileController::class, 'index'])->name('index');
 Route::post('/corporate-profile-subsidiary-show', [CorporateProfileController::class, 'subsidiaryShow'])->name('subsidiaryShow');

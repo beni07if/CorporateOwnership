@@ -265,7 +265,7 @@
                 @foreach($landingPages as $landingPage)
                 <div class="col-xl-6 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
                     <!-- Correct the path using the storage helper -->
-                    <img src="{{ asset('storage/app/public/' . $landingPage->image_corporate_profile) }}" class="img-fluid shadow" alt="Corporate Profile Image">
+                    <img src="{{ asset('storage/' . $landingPage->image_corporate_profile) }}" class="img-fluid shadow" alt="Corporate Profile Image">
                 </div>
     
                 <div class="col-xl-6 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
