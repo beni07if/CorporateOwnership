@@ -224,15 +224,17 @@
               </div>
                 </td>
               </tr>
-              <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+              <script src="https://cdn.ckeditor.com/4.22.0/standard/ckeditor.js"></script>
                 <script>
                     // Initialize CKEditor for all the text areas
-                    CKEDITOR.replace('short_definition', { height: 300 });
-                    CKEDITOR.replace('definition_corporate_profile', { height: 300 });
-                    CKEDITOR.replace('key_feature_desc1', { height: 300 });
-                    CKEDITOR.replace('key_feature_desc2', { height: 300 });
-                    CKEDITOR.replace('key_feature_desc3', { height: 300 });
-                    CKEDITOR.replace('key_feature_desc4', { height: 300 });
+                    window.onload = function() {
+                        CKEDITOR.replace('short_definition', { height: 300 });
+                        CKEDITOR.replace('definition_corporate_profile', { height: 300 });
+                        CKEDITOR.replace('key_feature_desc1', { height: 300 });
+                        CKEDITOR.replace('key_feature_desc2', { height: 300 });
+                        CKEDITOR.replace('key_feature_desc3', { height: 300 });
+                        CKEDITOR.replace('key_feature_desc4', { height: 300 });
+                    };
                 </script>
               @endforeach
             </tbody>
