@@ -227,7 +227,7 @@
                         
                                 // Fungsi untuk menghasilkan warna gradasi orange
                                 function getGradientColor(index) {
-                                    const startColor = [251, 140, 1]; // RGB untuk orange tua gelap
+                                    const startColor = [244, 164, 95]; // RGB untuk orange tua gelap
                                     const endColor = [255, 204, 0]; // RGB untuk orange muda
                                     const ratio = index / 4; // 5 warna (0 hingga 4)
                                     const color = startColor.map((start, i) => Math.round(start + (endColor[i] - start) * ratio));
@@ -322,7 +322,7 @@
                               // Fungsi untuk menghasilkan warna gradasi orange
                               function getGradientColor(index) {
                                     const startColor = [105, 105, 105]; // RGB untuk orange tua gelap
-                                    const endColor = [255, 204, 0]; // RGB untuk orange muda
+                                    const endColor = [192,192, 192]; // RGB untuk orange muda
                                     const ratio = index / 4; // 5 warna (0 hingga 4)
                                     const color = startColor.map((start, i) => Math.round(start + (endColor[i] - start) * ratio));
                                     return `rgb(${color.join(',')})`;
