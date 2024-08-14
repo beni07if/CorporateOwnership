@@ -205,7 +205,6 @@ Route::resources([
 Route::resources([
     'messages' => MessageController::class,
 ]);
-Route::post('/messages', [CorporateProfileController::class, 'store'])->name('messages.store');
 
 // Scraperss 
 // Route::get('/scrape', 'ScraperController@scrape');
