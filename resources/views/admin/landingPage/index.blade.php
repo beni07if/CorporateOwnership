@@ -87,26 +87,26 @@
               <div class="modal fade" id="editModal{{$landingPage->id}}" tabindex="-1" aria-labelledby="editModalLabel{{$landingPage->id}}" aria-hidden="true">
                   <div class="modal-dialog modal-xl">
                       
-                      <form action="{{ route('landing-page.update', $landingPage->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('landing-page.update', $landingPage->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="editModalLabel{{$landingPage->id}}">Edit Landing Page</h5>
+                                <h5 class="modal-title" id="editModalLabel{{ $landingPage->id }}">Edit Landing Page</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="tagline" class="form-label">Tagline</label>
-                                    <input type="text" class="form-control" id="tagline" name="tagline" value="{{ $landingPage->tagline }}" required>
+                                    <input type="text" class="form-control" id="tagline" name="tagline" value="{{ old('tagline', $landingPage->tagline) }}" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="title_short_definition" class="form-label">Title Short Definition</label>
-                                    <input type="text" class="form-control" id="title_short_definition" name="title_short_definition" value="{{ $landingPage->title_short_definition }}" required>
+                                    <input type="text" class="form-control" id="title_short_definition" name="title_short_definition" value="{{ old('title_short_definition', $landingPage->title_short_definition) }}" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="short_definition" class="form-label">Short Definition</label>
-                                    <textarea class="form-control" id="short_definition" name="short_definition" rows="3" required>{{ $landingPage->short_definition }}</textarea>
+                                    <textarea class="form-control" id="short_definition" name="short_definition" rows="3" required>{{ old('short_definition', $landingPage->short_definition) }}</textarea>
                                 </div>
                                 
                                 <div class="mb-3">
@@ -214,6 +214,16 @@
                                     <input type="file" class="form-control" id="key_feature_image4" name="key_feature_image4" accept="image/*">
                                     <small>Current Image: {{ $landingPage->key_feature_image4 }}</small>
                                 </div>
+                                <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+                                <script>
+                                    // Initialize CKEditor for all the text areas
+                                    CKEDITOR.replace('short_definition', { height: 300 });
+                                    CKEDITOR.replace('definition_corporate_profile', { height: 300 });
+                                    CKEDITOR.replace('key_feature_desc1', { height: 300 });
+                                    CKEDITOR.replace('key_feature_desc2', { height: 300 });
+                                    CKEDITOR.replace('key_feature_desc3', { height: 300 });
+                                    CKEDITOR.replace('key_feature_desc4', { height: 300 });
+                                </script>
                                 <button type="submit" class="btn btn-primary">Update</button>
                                 <a href="{{ route('landing-page.index') }}" class="btn btn-secondary">Cancel</a>
                             </div>
@@ -358,35 +368,13 @@
                     <input type="file" class="form-control" id="key_feature_image4" name="key_feature_image4" accept="image/*" required>
                 </div>
             </div>
-            <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
-                <script>
-                // Initialize CKEditor
-                CKEDITOR.replace('short_definition', {
-                    height: 300 // You can adjust the height as needed
-                });
-                CKEDITOR.replace('definition_corporate_profile', {
-                    height: 300 // You can adjust the height as needed
-                });
-                CKEDITOR.replace('key_feature_desc1', {
-                    height: 300 // You can adjust the height as needed
-                });
-                CKEDITOR.replace('key_feature_desc2', {
-                    height: 300 // You can adjust the height as needed
-                });
-                CKEDITOR.replace('key_feature_desc3', {
-                    height: 300 // You can adjust the height as needed
-                });
-                CKEDITOR.replace('key_feature_desc4', {
-                    height: 300 // You can adjust the height as needed
-                });
-            </script>
+            
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </div>
     </form>
-    
     
   </div>
 </div>
