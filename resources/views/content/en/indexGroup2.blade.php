@@ -245,6 +245,9 @@
                             </form>
                         </div>
                     </div>
+                    <a href="{{ url()->previous() }}">
+                        <span>Return to previous page</span>
+                    </a>
                 </div>
                 <div class="col-xl-4 col-lg-6 icon-boxes d-flex flex-column align-items-stretch py-5 px-lg-5" style="background-color: #F5F5F5;">
                     <div class="blog sidebar">

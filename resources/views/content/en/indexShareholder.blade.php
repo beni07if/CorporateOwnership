@@ -152,6 +152,9 @@
 
                         </ul>
                     </nav>
+                    <a href="{{ url()->previous() }}">
+                        <span>Return to previous page</span>
+                    </a>
                 </div>
             </div>
             @else

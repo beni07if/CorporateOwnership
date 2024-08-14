@@ -59,7 +59,7 @@
                                         <td>
                                             <form action="{{ route('shareholderShow') }}" method="POST">
                                                 @csrf
-                                                {{-- <input type="hidden" name="shareholder_name" value="{{ $subs->shareholder_name }}"> --}}
+                                                <input type="hidden" name="shareholder_name" value="{{ $subs->shareholder_name }}">
                                                 <button type="submit" style="background-color: transparent; border: none; color: inherit; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='#007BFF'" onmouseout="this.style.color='inherit'">{{ $subs->shareholder_name }} </button>
                                             </form>
                                         </td>
@@ -92,7 +92,7 @@
                         @endif
                     </table>
                     <a href="{{ url()->previous() }}">
-                        <span>Back</span>
+                        <span>Return to previous page</span>
                     </a>
 
                     <nav aria-label="Pagination Navigation">

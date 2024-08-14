@@ -212,7 +212,7 @@
                                         <form id="search-form" action="{{ route('searchFunctionShareholder') }}" method="GET" class="d-flex">
                                             <label for="search-input" class="visually-hidden">Search</label>
                                             <div class="input-group">
-                                                <input type="text" id="search-input" name="shareholder_name" class="form-control" placeholder="Shareholder name">
+                                                <input type="text" id="search-input" name="query" class="form-control" placeholder="Shareholder name">
                                                 <button type="submit" class="btn btn-info">Search</button>
                                             </div>
                                         </form>

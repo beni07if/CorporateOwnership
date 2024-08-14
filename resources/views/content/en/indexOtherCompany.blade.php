@@ -133,6 +133,7 @@
                             <button type="submit" class="btn btn-info">Search</button>
                         </form>
                     </div>
+                    
                 </div>
                 <div class="col-xl-4 col-lg-6 es d-flex flex-column align-items-stretch py-5 px-lg-5" style="background-color: #F5F5F5;">
                     <div class="blog sidebar">
@@ -146,7 +147,9 @@
                             <div class="line"></div>
                         </div>
                 </div>
-
+                <a href="{{ url()->previous() }}">
+                    <span>Return to previous page</span>
+                </a>
             </div>
         </div>
     </section><!-- End About Section -->

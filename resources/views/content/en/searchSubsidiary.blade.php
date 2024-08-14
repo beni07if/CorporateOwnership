@@ -67,7 +67,7 @@
                         </form>
                     </table>
                     <a href="{{ url()->previous() }}">
-                        <span>Back</span>
+                        <span>Return to previous page</span>
                     </a>
 
                     <nav aria-label="Pagination Navigation">

@@ -230,6 +230,9 @@
                             <button type="submit" class="btn btn-info">Search</button>
                         </form>
                     </div>
+                    <a href="{{ url()->previous() }}">
+                        <span>Return to previous page</span>
+                    </a>
                 </div>
                 <div class="col-xl-4 col-lg-6 es d-flex flex-column align-items-stretch py-5 px-lg-5" style="background-color: #F5F5F5;">
                     <div class="blog sidebar">
@@ -396,6 +399,7 @@
             </ul> -->
 
         </div>
+        
     </section><!-- End About Section -->
 
     <!-- Leaflet JavaScript -->
