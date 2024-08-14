@@ -69,7 +69,7 @@
                                         <td>
                                             <form action="{{ route('subsidiaryShow') }}" method="POST">
                                                 @csrf
-                                                {{-- <input type="hidden" name="subsidiary" value="{{ $subs->company_name }}"> --}}
+                                                <input type="hidden" name="subsidiary" value="{{ $subs->company_name }}">
                                                 <button type="submit" style="background-color: transparent; border: none; color: inherit; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='#007BFF'" onmouseout="this.style.color='inherit'">{{ $subs->company_name }}</button>
                                             </form>
                                         </td>
