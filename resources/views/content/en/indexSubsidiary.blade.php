@@ -102,7 +102,7 @@
                                         @php
                                             $shareholders = explode(',', $shareholder);
                                         @endphp
-
+                            
                                         @if(count($shareholders) > 1)
                                             @foreach($shareholders as $key => $shareholder)
                                                 @php
@@ -110,14 +110,18 @@
                                                     $name = trim($matches[1]);
                                                     $ownership = trim($matches[2]);
                                                 @endphp
-                                                <button type="submit" name="shareholder_name" value="{{ $name }}" class="text-muted">
-                                                    <p>{{ $key + 1 }}) {{ $name }} ({{ $ownership }})</p>
-                                                </button>
+                                                <div>
+                                                    <button type="submit" name="shareholder_name" value="{{ $name }}" class="text-muted">
+                                                        <p>{{ $key + 1 }}) {{ $name }} ({{ $ownership }})</p>
+                                                    </button>
+                                                </div>
                                             @endforeach
                                         @else
-                                            <button type="submit" name="shareholder_name" value="{{ $shareholder }}" class="text-muted">
-                                                <p>{{ $shareholder }}</p>
-                                            </button>
+                                            <div>
+                                                <button type="submit" name="shareholder_name" value="{{ $shareholder }}" class="text-muted">
+                                                    <p>{{ $shareholder }}</p>
+                                                </button>
+                                            </div>
                                         @endif
                                     @endforeach
                                 </form>
@@ -231,9 +235,9 @@
                             <button type="submit" class="btn btn-info">Search</button>
                         </form>
                     </div>
-                    <a href="{{ url()->previous() }}">
+                    {{-- <a href="{{ url()->previous() }}">
                         <span>Return to previous page</span>
-                    </a>
+                    </a> --}}
                 </div>
                 <div class="col-xl-4 col-lg-6 es d-flex flex-column align-items-stretch py-5 px-lg-5" style="background-color: #F5F5F5;">
                     <div class="blog sidebar">
