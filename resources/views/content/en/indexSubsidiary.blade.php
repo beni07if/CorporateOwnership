@@ -29,6 +29,7 @@
                         <!-- <a href="#" class="btn btn-info btn-sm" style="align:right;">Non-compliance historical</a> -->
                         </h5>
                     </div>
+                    <p><i>Please contact helpdesk@earthqualizer.org to get notary act data.</i></p>
                     <div hidden>
                         @php
                             $subsidiary = $subsidiaryGroup->first()->subsidiary;
@@ -59,7 +60,7 @@
                     <div style="padding-top:50px;">
                         <h5 class="card-title-description">Summary</h5>
                     </div>
-                    <!-- <p>{{$subsidiary}}</p> -->
+                     <p>{{$subsidiari}}</p>
                     @if(count($consolidations)>0)
 
                     <div class="row pt-4 pl-15">

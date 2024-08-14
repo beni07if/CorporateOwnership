@@ -346,7 +346,7 @@ class CorporateProfileController extends Controller
 
             // narasi shareholder v1 with no link
             if (auth()->check() && ($user_level = auth()->user()->user_level)) {
-                if ($user_level === 'Premium') {
+                if ($user_level === '1') {
                     if (count($shareholder_data) > 1) {
 
                         if ($total_share > 50) {
@@ -398,10 +398,9 @@ class CorporateProfileController extends Controller
         }
 
         // $subsidiary = response()->json(['message' => $response]);
-        $subsidiary = $response;
-        // return $subsidiary;
+        $subsidiari = $response;
         // return view('content.en.test', compact('consolidations'));
-        return view('content.en.indexSubsidiary', compact('companyOwnership', 'consolidations', 'subsidiary', 'users', 'consul', 'consol', 'coordinates'));
+        return view('content.en.indexSubsidiary', compact('companyOwnership', 'consolidations', 'subsidiari', 'users', 'consul', 'consol', 'coordinates'));
         // return view('maps', compact('coordinates', 'consol', 'subsidiary'));
         // end versi chat 
     }
@@ -542,8 +541,6 @@ class CorporateProfileController extends Controller
 
         // $subsidiary = response()->json(['message' => $response]);
         $subsidiary = $response;
-        // return $subsidiary;
-        // return view('content.en.test', compact('consolidations'));
         return view('content.en.indexGroup', compact('consolidations', 'perusahaan', 'subsidiary', 'users', 'consul', 'consol', 'coordinates'));
         // return view('maps', compact('coordinates', 'consol', 'subsidiary'));
         // end versi chat 
