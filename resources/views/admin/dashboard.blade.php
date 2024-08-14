@@ -218,64 +218,80 @@
                         <div class="card-body pb-0">
                         <h5 class="card-title">Group by Country<span></span></h5>
                         <div id="trafficChart1" style="min-height: 400px;" class="echart"></div>
-
-                        <script>
-                          document.addEventListener("DOMContentLoaded", () => {
-                              // Ambil data dari controller
-                              var allGroupCountes = @json($allGroupCountes);
-                              var top5GroupCountes = @json($top5GroupCountes);
                           
-                              // Susun data untuk chart pie (semua data) dengan gradasi warna
-                              var pieData = allGroupCountes.map((item, index) => {
-                                  // Buat gradasi dari oranye tua ke oranye muda mendekati putih
-                                  var color = `rgba(255, ${140 + index * 10}, ${0}, ${1 - index * 0.1})`; // Mulai dari oranye tua ke oranye muda
-                                  return {
-                                      value: item.count,
-                                      name: item.country_registration,
-                                      itemStyle: {
-                                          color: color
-                                      }
-                                  };
-                              });
-                          
-                              // Susun data untuk legenda (5 terbanyak)
-                              var legendData = top5GroupCountes.map(item => item.country_registration);
-                          
-                              // Inisialisasi chart pie
-                              var chart = echarts.init(document.querySelector("#trafficChart1"));
-                              chart.setOption({
-                                  tooltip: {
-                                      trigger: 'item'
-                                  },
-                                  legend: {
-                                      top: '5%',
-                                      left: 'center',
-                                      data: legendData // Menampilkan hanya 5 terbanyak di legenda
-                                  },
-                                  series: [{
-                                      name: 'Number of Groups',
-                                      type: 'pie',
-                                      radius: ['40%', '70%'],
-                                      avoidLabelOverlap: false,
-                                      label: {
-                                          show: false,
-                                          position: 'center'
-                                      },
-                                      emphasis: {
-                                          label: {
-                                              show: true,
-                                              fontSize: '18',
-                                              fontWeight: 'bold'
-                                          }
-                                      },
-                                      labelLine: {
-                                          show: false
-                                      },
-                                      data: pieData
-                                  }]
-                              });
-                          });
-                          </script>                          
+                          <script>
+                            document.addEventListener("DOMContentLoaded", () => {
+                                // Ambil data dari controller
+                                var allGroupCountes = @json($allGroupCountes);
+                                var top5GroupCountes = @json($top5GroupCountes);
+                        
+                                // Fungsi untuk menghasilkan warna gradasi orange
+                                function getGradientColor(index) {
+                                    const startColor = [251, 140, 1]; // RGB untuk orange tua gelap
+                                    const endColor = [255, 204, 0]; // RGB untuk orange muda
+                                    const ratio = index / 4; // 5 warna (0 hingga 4)
+                                    const color = startColor.map((start, i) => Math.round(start + (endColor[i] - start) * ratio));
+                                    return `rgb(${color.join(',')})`;
+                                }
+                        
+                                // Susun data untuk chart pie (semua data)
+                                var pieData = allGroupCountes.map((item, index) => {
+                                    let color;
+                                    if (index < 5) {
+                                        // Gunakan gradasi warna orange untuk 5 teratas
+                                        color = getGradientColor(index);
+                                    } else {
+                                        // Warna acak untuk sisanya
+                                        color = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.8)`;
+                                    }
+                                    return {
+                                        value: item.count,
+                                        name: item.country_registration,
+                                        itemStyle: {
+                                            color: color
+                                        }
+                                    };
+                                });
+                        
+                                // Susun data untuk legenda (5 terbanyak)
+                                var legendData = top5GroupCountes.map(item => item.country_registration);
+                        
+                                // Inisialisasi chart pie
+                                var chart = echarts.init(document.querySelector("#trafficChart1"));
+                                chart.setOption({
+                                    tooltip: {
+                                        trigger: 'item'
+                                    },
+                                    legend: {
+                                        top: '5%',
+                                        left: 'center',
+                                        data: legendData // Menampilkan hanya 5 terbanyak di legenda
+                                    },
+                                    series: [{
+                                        name: 'Number of Group',
+                                        type: 'pie',
+                                        radius: ['40%', '70%'],
+                                        avoidLabelOverlap: false,
+                                        label: {
+                                            show: false,
+                                            position: 'center'
+                                        },
+                                        emphasis: {
+                                            label: {
+                                                show: true,
+                                                fontSize: '18',
+                                                fontWeight: 'bold'
+                                            }
+                                        },
+                                        labelLine: {
+                                            show: false
+                                        },
+                                        data: pieData
+                                    }]
+                                });
+                            });
+                          </script>
+                        
 
                         </div>
                     </div>
@@ -302,20 +318,34 @@
                               // Ambil data dari controller
                               var allSubsidiaryCountes = @json($allSubsidiaryCountes);
                               var top5SubsidiaryCountes = @json($top5SubsidiaryCountes);
+
+                              // Fungsi untuk menghasilkan warna gradasi orange
+                              function getGradientColor(index) {
+                                    const startColor = [105, 105, 105]; // RGB untuk orange tua gelap
+                                    const endColor = [255, 204, 0]; // RGB untuk orange muda
+                                    const ratio = index / 4; // 5 warna (0 hingga 4)
+                                    const color = startColor.map((start, i) => Math.round(start + (endColor[i] - start) * ratio));
+                                    return `rgb(${color.join(',')})`;
+                                }
                           
-                              // Susun data untuk chart pie (semua data) dengan gradasi warna abu-abu
+                              // Susun data untuk chart pie (semua data)
                               var pieData = allSubsidiaryCountes.map((item, index) => {
-                                  // Buat gradasi dari abu-abu tua ke abu-abu muda
-                                  var grayValue = 200 - index * (200 / allSubsidiaryCountes.length); // Mulai dari abu-abu tua ke abu-abu muda
-                                  var color = `rgba(${grayValue}, ${grayValue}, ${grayValue}, 1)`; // Warna abu-abu
-                                  return {
-                                      value: item.count,
-                                      name: item.country_registration,
-                                      itemStyle: {
-                                          color: color
-                                      }
-                                  };
-                              });
+                                    let color;
+                                    if (index < 5) {
+                                        // Gunakan gradasi warna orange untuk 5 teratas
+                                        color = getGradientColor(index);
+                                    } else {
+                                        // Warna acak untuk sisanya
+                                        color = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.8)`;
+                                    }
+                                    return {
+                                        value: item.count,
+                                        name: item.country_registration,
+                                        itemStyle: {
+                                            color: color
+                                        }
+                                    };
+                                });
                           
                               // Susun data untuk legenda (5 terbanyak)
                               var legendData = top5SubsidiaryCountes.map(item => item.country_registration);
@@ -381,14 +411,33 @@
                               var allShareholderCountes = @json($allShareholderCountes);
                               var top5ShareholderCountes = @json($top5ShareholderCountes);
                       
+                              // Fungsi untuk menghasilkan warna gradasi hijau
+                              function getGradientColor(index) {
+                                  const startColor = [26, 128, 127]; // RGB untuk hijau tua
+                                  const endColor = [144, 238, 144]; // RGB untuk hijau muda
+                                  const ratio = index / 4; // 5 warna (0 hingga 4)
+                                  const color = startColor.map((start, i) => Math.round(start + (endColor[i] - start) * ratio));
+                                  return `rgb(${color.join(',')})`;
+                              }
+                      
                               // Susun data untuk chart pie (semua data)
-                              var pieData = allShareholderCountes.map((item, index) => ({
-                                  value: item.count,
-                                  name: item.company_name,
-                                  itemStyle: {
-                                      color: `rgba(0, ${128 + index * 20}, 0, 1)`
+                              var pieData = allShareholderCountes.map((item, index) => {
+                                  let color;
+                                  if (index < 10) {
+                                      // Gunakan gradasi warna hijau untuk 5 teratas
+                                      color = getGradientColor(index);
+                                  } else {
+                                      // Warna acak untuk sisanya
+                                      color = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.8)`;
                                   }
-                              }));
+                                  return {
+                                      value: item.count,
+                                      name: item.company_name,
+                                      itemStyle: {
+                                          color: color
+                                      }
+                                  };
+                              });
                       
                               // Susun data untuk legenda (5 terbanyak)
                               var legendData = top5ShareholderCountes.map(item => item.company_name);
@@ -427,7 +476,7 @@
                                   }]
                               });
                           });
-                      </script>
+                      </script>                  
                       
                         </div>
                     </div>
