@@ -30,6 +30,7 @@
                         <h5 class="card-title description">Company Structure Ownership of {{$subs}}</h5>
                         @endforeach
                     </div>
+                    <p><i>Please contact helpdesk@earthqualizer.org to get ownership structure data.</i></p>
                     <div class="line"></div>
                     <div hidden>
                     @foreach($groups->groupBy('group_name') as $subsidiaryGroup)
