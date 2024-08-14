@@ -47,15 +47,40 @@
                   <!-- Edit Modal Trigger -->
                 <button type="button" class="badge btn btn-dark text-white" data-bs-toggle="modal" data-bs-target="#editModal{{$landingPage->id}}">
                   Edit
-              </button>
+                </button>
 
               <!-- Delete Form -->
               <form action="{{ route('landing-page.destroy', $landingPage->id) }}" method="POST" style="display:inline;">
                   @csrf
                   @method('DELETE')
-                  <button type="submit" class="badge btn btn-danger text-white" onclick="return confirm('Are you sure you want to delete this FAQ?');">
-                      Delete
-                  </button>
+                    <button type="button" class="badge btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
+                    Delete
+                    </button>
+                
+                    <!-- Delete Confirmation Modal -->
+                    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Delete</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete the information on landing page?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        document.getElementById('confirmDeleteBtn').addEventListener('click', function () {
+                            // Submit the form when the delete button in the modal is clicked
+                            document.getElementById('deleteForm').submit();
+                        });
+                    </script>
               </form>
 
               <!-- Edit Landing Page Modal -->
@@ -189,7 +214,6 @@
                                     <input type="file" class="form-control" id="key_feature_image4" name="key_feature_image4" accept="image/*">
                                     <small>Current Image: {{ $landingPage->key_feature_image4 }}</small>
                                 </div>
-                        
                                 <button type="submit" class="btn btn-primary">Update</button>
                                 <a href="{{ route('landing-page.index') }}" class="btn btn-secondary">Cancel</a>
                             </div>
@@ -334,6 +358,28 @@
                     <input type="file" class="form-control" id="key_feature_image4" name="key_feature_image4" accept="image/*" required>
                 </div>
             </div>
+            <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+                <script>
+                // Initialize CKEditor
+                CKEDITOR.replace('short_definition', {
+                    height: 300 // You can adjust the height as needed
+                });
+                CKEDITOR.replace('definition_corporate_profile', {
+                    height: 300 // You can adjust the height as needed
+                });
+                CKEDITOR.replace('key_feature_desc1', {
+                    height: 300 // You can adjust the height as needed
+                });
+                CKEDITOR.replace('key_feature_desc2', {
+                    height: 300 // You can adjust the height as needed
+                });
+                CKEDITOR.replace('key_feature_desc3', {
+                    height: 300 // You can adjust the height as needed
+                });
+                CKEDITOR.replace('key_feature_desc4', {
+                    height: 300 // You can adjust the height as needed
+                });
+            </script>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Save</button>
