@@ -214,16 +214,7 @@
                                     <input type="file" class="form-control" id="key_feature_image4" name="key_feature_image4" accept="image/*">
                                     <small>Current Image: {{ $landingPage->key_feature_image4 }}</small>
                                 </div>
-                                <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
-                                <script>
-                                    // Initialize CKEditor for all the text areas
-                                    CKEDITOR.replace('short_definition', { height: 300 });
-                                    CKEDITOR.replace('definition_corporate_profile', { height: 300 });
-                                    CKEDITOR.replace('key_feature_desc1', { height: 300 });
-                                    CKEDITOR.replace('key_feature_desc2', { height: 300 });
-                                    CKEDITOR.replace('key_feature_desc3', { height: 300 });
-                                    CKEDITOR.replace('key_feature_desc4', { height: 300 });
-                                </script>
+                                
                                 <button type="submit" class="btn btn-primary">Update</button>
                                 <a href="{{ route('landing-page.index') }}" class="btn btn-secondary">Cancel</a>
                             </div>
@@ -233,8 +224,19 @@
               </div>
                 </td>
               </tr>
+              <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+                <script>
+                    // Initialize CKEditor for all the text areas
+                    CKEDITOR.replace('short_definition', { height: 300 });
+                    CKEDITOR.replace('definition_corporate_profile', { height: 300 });
+                    CKEDITOR.replace('key_feature_desc1', { height: 300 });
+                    CKEDITOR.replace('key_feature_desc2', { height: 300 });
+                    CKEDITOR.replace('key_feature_desc3', { height: 300 });
+                    CKEDITOR.replace('key_feature_desc4', { height: 300 });
+                </script>
               @endforeach
             </tbody>
+            
           </table>
           <!-- End Table with stripped rows -->
 
