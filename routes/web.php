@@ -205,6 +205,9 @@ Route::resources([
 Route::resources([
     'messages' => MessageController::class,
 ]);
+Route::post('/toggle-maintenance', [CorporateProfileController::class, 'toggleMaintenance']);
+Route::get('/maintenance-mode', [CorporateProfileController::class, 'showMaintenanceMode'])->name('maintenance.mode');
+Route::get('/test', [CorporateProfileController::class, 'showIndex'])->name('showIndex');
 
 // Scraperss 
 // Route::get('/scrape', 'ScraperController@scrape');

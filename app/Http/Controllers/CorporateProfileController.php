@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Some\Other\Namespace\Request as OtherRequest;
 use Illuminate\Http\Response;
 use App\Models\Consolidation;
 use App\Models\CompanyOwnership;
@@ -37,14 +40,39 @@ class CorporateProfileController extends Controller
         return view('content.maintenanceMode');
     }
 
+    public function toggleMaintenance(OtherRequest $request)
+    {
+        if ($request->maintenance) {
+            Artisan::call('down'); // Enable maintenance mode
+            return response()->json(['maintenance' => true, 'message' => 'Maintenance mode enabled']);
+        } else {
+            Artisan::call('up'); // Disable maintenance mode
+            return response()->json(['maintenance' => false, 'message' => 'Maintenance mode disabled']);
+        }
+    }
+
+    public function showMaintenanceMode()
+    {
+        if (app()->isDownForMaintenance()) {  // Check if the app is in maintenance mode
+            return view('content.en.maintenanceMode'); // Show maintenance mode page
+        }
+        return redirect()->route('showIndex'); // Redirect to index if not in maintenance mode
+    }
+
+    public function showIndex()
+    {
+        if (!app()->isDownForMaintenance()) {  // Check if the app is live
+            return view('content.home'); // Show index page
+        }
+        return redirect()->route('maintenance.mode'); // Redirect to maintenance if in maintenance mode
+    }
+
     public function index()
     {
         $subsidiary = Consolidation::all();
         $groupName = Consolidation::all();
         return view('content.home', compact('subsidiary', 'groupName'));
     }
-
-    
 
     public function group2Show(Request $request)
     {

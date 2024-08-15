@@ -63,7 +63,38 @@
         </a>
       </li>
     </ul>
-  </li><!-- End Components Nav -->
+  </li>
+  
+  <li class="nav-item nav-link">
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onchange="toggleMaintenanceMode(this.checked)">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Maintenance Mode</label>
+    </div>
+  </li>
+
+  <script>
+      function toggleMaintenanceMode(isChecked) {
+          fetch('/toggle-maintenance', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRF-TOKEN': '{{ csrf_token() }}' // Ensure CSRF token is included
+              },
+              body: JSON.stringify({ maintenance: isChecked })
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.maintenance) {
+                  window.location.href = '/maintenance-mode'; // Redirect to maintenance mode page
+              } else {
+                  window.location.href = '/'; // Redirect to index page
+              }
+          })
+          .catch(error => console.error('Error:', error));
+      }
+  </script>
+
+  <!-- End Components Nav -->
   <!-- <li class="nav-item">
     <a href="{{route('messages.index')}}" class="nav-link collapsed {{ request()->is('inbox') ? 'active' : '' }}">
       <i class="bi bi-inbox"></i>

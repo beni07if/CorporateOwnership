@@ -62,9 +62,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>Under Maintenance</h1>
-        <p>We apologize for the inconvenience, but we're performing some maintenance at the moment. Please check back soon. </p>
-        
+        <h1>Coming Soon</h1>
+        <p>We apologize for the inconvenience, but we're performing some maintenance at the moment. </p> 
+        <p>For detailed information, please contact us at communication@inovasidigital.asia</p> 
+        <p>Please check back soon. </p> 
     </div>
 </body>
 </html>
