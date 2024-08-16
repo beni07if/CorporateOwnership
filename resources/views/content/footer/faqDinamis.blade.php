@@ -67,7 +67,7 @@
                         </h2>
                         <div id="faq-{{ $loop->index }}" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
                             <div class="accordion-body">
-                                {{ $faq->answer }}
+                                {!!$faq->answer!!}
                             </div>
                         </div>
                     </div>
