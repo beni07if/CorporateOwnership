@@ -22,7 +22,7 @@ class ProfileController extends Controller
     public function index()
     {
         // $subsidiary = Consolidation::all();
-        // $groupName = Consolidation::all();
+        // $groupNamee = Consolidation::all();
         $landingPages = Landingpage::all();
         return view('content.maintenanceMode', compact('landingPages'));
     }
