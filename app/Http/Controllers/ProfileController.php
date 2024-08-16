@@ -24,7 +24,7 @@ class ProfileController extends Controller
         // $subsidiary = Consolidation::all();
         // $groupNameeee = Consolidation::all();
         $landingPages = Landingpage::all();
-        return view('content.maintenanceMode', compact('landingPages'));
+        return view('content.modeMaintenance', compact('landingPages'));
     }
     public function lpd()
     {
