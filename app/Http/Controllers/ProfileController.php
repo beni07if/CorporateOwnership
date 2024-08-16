@@ -22,9 +22,9 @@ class ProfileController extends Controller
     public function index()
     {
         // $subsidiary = Consolidation::all();
-        // $groupNameee = Consolidation::all();
+        // $groupNameeee = Consolidation::all();
         $landingPages = Landingpage::all();
-        return view('content.maintenanceMode', compact('landingPages'));
+        return view('content.homeDinamis', compact('landingPages'));
     }
     public function lpd()
     {
