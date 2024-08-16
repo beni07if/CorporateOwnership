@@ -1,0 +1,301 @@
+[33mcommit 3a038357092b956f8f4730e76e0cddee9271fd96[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Thu Aug 15 14:50:20 2024 +0700
+
+    set to maintenance page
+
+[33mcommit e24c00735d5a8e8219c5f1d41f9d49332b300d4c[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Thu Aug 15 01:41:21 2024 +0700
+
+    update group pages
+
+[33mcommit 809147a49a5558591483d6464e6243a922a27dc4[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Thu Aug 15 01:18:08 2024 +0700
+
+    update subsidiary pages
+
+[33mcommit 79b1a38b39c10468fe4b0cd968382da96e434e86[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Thu Aug 15 00:52:13 2024 +0700
+
+    update subsidiary page
+
+[33mcommit 9d743e323861be95d354ede7618cb346c0a2a9e1[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Aug 14 22:44:45 2024 +0700
+
+    update subsidiary page
+
+[33mcommit 9e0070bca9e8cb03a2810c6bcbbbb4de179df9fa[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Aug 14 22:40:23 2024 +0700
+
+    fix sharholder features
+
+[33mcommit b6015dd337f0a772b6084dd4907a2fb767476650[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Aug 14 16:06:01 2024 +0700
+
+    edit color pie chart admins
+
+[33mcommit d7d7edf6302c46a1ed68db34b7fc8850109fedac[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Aug 14 16:01:27 2024 +0700
+
+    edit color pie chart adminn
+
+[33mcommit 6bf6f206c27a4113367311148fdc8d4a74cf0ff6[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Aug 14 15:06:52 2024 +0700
+
+    edit color pie chart admin
+
+[33mcommit 07448403374d7d2bbb32635add07507c13d047e4[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Aug 14 14:35:38 2024 +0700
+
+    edit sidebar admin
+
+[33mcommit b2b6244b922cd66dedb1cdfd9fb2dc15c34d9e5d[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Aug 14 14:28:57 2024 +0700
+
+    update ckeditors
+
+[33mcommit 4e5628c555bf81a0f58875839b1425d660c931f1[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Aug 14 13:59:23 2024 +0700
+
+    update ckeditor
+
+[33mcommit 2f4ccb24730b3df7d5eb1d884dcca67c75da6d06[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Aug 14 12:39:35 2024 +0700
+
+    update admin dashboards
+
+[33mcommit f2f9410497723860ff9fe821f568f9964fb5b950[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Aug 14 12:03:19 2024 +0700
+
+    update admin dashboard
+
+[33mcommit ce2f4de98e51bbc0f3e3271b09bdce022e1aff01[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Aug 14 09:30:10 2024 +0700
+
+    update route web
+
+[33mcommit c8431353157d44b93517768680193eb30afbe349[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Aug 14 09:12:04 2024 +0700
+
+    update landing page
+
+[33mcommit 50b844d388b26e2a8ea5ebe11a16a26771165d22[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Aug 14 02:47:05 2024 +0700
+
+    set static faq
+
+[33mcommit d4d323b4881ea72fc998a2531c338329a6a009ab[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Aug 14 02:38:36 2024 +0700
+
+    set static home
+
+[33mcommit eda47e12b87d5c870fdd934dcbac7bc31df8d577[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Aug 14 02:34:33 2024 +0700
+
+    fixing path image
+
+[33mcommit 673e273614c37d69a9d3a2c851d308d5dc6a289c[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Aug 14 02:15:55 2024 +0700
+
+    create crud admin page
+
+[33mcommit e4e33478d7c314a41e007e17b7b33c644cf26853[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Mon Aug 12 11:29:12 2024 +0700
+
+    Update migration
+
+[33mcommit fd4beca14b85646e534a4578833dfae6e597eb7e[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Sat Aug 10 17:20:26 2024 +0700
+
+    fix typo
+
+[33mcommit 0d46d8ae78419230ceaea78fef16c0fd7b1c4328[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Thu Aug 8 15:19:47 2024 +0700
+
+    edit shareholder
+
+[33mcommit 97a61f9422480aa99fc30e7b13fd5fc7677b8a69[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Thu Aug 8 14:26:15 2024 +0700
+
+    add policy and term
+
+[33mcommit fd11328089bb36693a726f297b0a70c7b09706fe[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Jul 31 17:45:00 2024 +0700
+
+    change route name
+
+[33mcommit a32c4b4e05cf5006819d0f4549acd615150757b8[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Jul 31 17:02:09 2024 +0700
+
+    change route nam
+
+[33mcommit f915d07f9b227c9fb73177009e515e80490b02db[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Jul 31 16:00:22 2024 +0700
+
+    change route names
+
+[33mcommit 9b59cc8db267bce0b1d80fc2825733f76b2199b9[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Jul 31 15:58:20 2024 +0700
+
+    change route name
+
+[33mcommit 47d6fe7d4cd25dd7a93705469e69580e70efc2d7[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Wed Jul 31 15:46:31 2024 +0700
+
+    add general information
+
+[33mcommit ca09204fce6b9ee0f324c09d80bc4be439472e92[m
+Author: beni07if <beni07elrel@gmail.com>
+Date:   Sat Jul 27 17:37:01 2024 +0700
+
+    change shareholders name
+
+[33mcommit 2b00917c0b169a3d5c9b7709f83092aed2afc5f3[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Mon Jul 22 14:57:09 2024 +0700
+
+    update footer
+
+[33mcommit 6b533c25a8dafa033458bf7e8b75448dd83845f6[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Thu Jul 18 09:36:18 2024 +0700
+
+    set migration of consolidation
+
+[33mcommit 5bd248c7a97691537fee0a0a4019dedd26fc50f2[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Wed Jul 17 15:10:00 2024 +0700
+
+    edit fags
+
+[33mcommit 157c91f0688726d07ab8cca0cb99d049eee198b8[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Wed Jul 17 15:06:44 2024 +0700
+
+    edit controller faq
+
+[33mcommit 699fe1d73080e47f11f6d276c462215d50dbbad2[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Wed Jul 17 15:03:06 2024 +0700
+
+    change background image
+
+[33mcommit a74fc6706e5804a09705e0b37682e12efede8733[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Wed Jul 17 14:38:00 2024 +0700
+
+    change shareholder
+
+[33mcommit 03651339a1d9db9f95386d98c2fa326a04a43090[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Wed Jul 17 13:49:19 2024 +0700
+
+    edit faq
+
+[33mcommit c32a76e4748194e20883ed55bce7c3bbe352b1dd[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Wed Jul 17 13:47:07 2024 +0700
+
+    add faq information
+
+[33mcommit 0ede65b8dd73f97af39cfb03545f2d1b9bac2f47[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Wed Jul 17 13:35:33 2024 +0700
+
+    set footer
+
+[33mcommit c75a90f7b17830af2cd74686ce4ab8b9068eadcb[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Tue Jul 16 16:00:18 2024 +0700
+
+    edit faq page
+
+[33mcommit 1a2179a2cfaff5cf6f4de9b0cea706ca749e61c7[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Tue Jul 16 15:21:48 2024 +0700
+
+    Add .gitattributes to handle line endings
+
+[33mcommit b86b0acf0be269ed66de718bd5c14b5288328e4c[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Tue Jul 16 15:12:53 2024 +0700
+
+    edit app
+
+[33mcommit 1dce6e310672636810a84cbf2bf12120521c0ccf[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Mon Jul 15 15:34:00 2024 +0700
+
+    hide document
+
+[33mcommit 87305be6610a1ccc67979d1f65348037aaad41e4[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Wed Jul 3 15:15:31 2024 +0700
+
+    edit header admin
+
+[33mcommit d82407e9b6af323fc58126358abe480ab94bc65c[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Tue Jul 2 00:42:20 2024 +0700
+
+    add desc in features page
+
+[33mcommit 9711a63e28840bf9c350bd1f4566b01f0f48ffa7[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Tue Jul 2 00:36:20 2024 +0700
+
+    update footers
+
+[33mcommit 1b49263f0eef72dca62852af70fe03cf773e05b5[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Tue Jul 2 00:12:02 2024 +0700
+
+    update footer
+
+[33mcommit e907ca1ded8e24031495dbbeebec652122924ec0[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Sat Jun 29 22:06:25 2024 +0700
+
+    add auth
+
+[33mcommit f5fba7463d3a6c6d23bae7dba257ff730e217cdf[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Tue Jun 4 00:56:35 2024 +0700
+
+    hold login page
+
+[33mcommit 4cb3c32d618f4bb679dc88944acfdd7af47f3b8b[m
+Author: beni07if <beni07elreal@gmail.com>
+Date:   Tue Jun 4 00:54:13 2024 +0700
+
+    create login page
+
+[33mcommit 8b1a58fd7
