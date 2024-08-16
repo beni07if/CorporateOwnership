@@ -15,7 +15,7 @@ class FaqController extends Controller
     public function faq()
     {
         $faqs = Faq::all();
-        return view('content.footer.faq', compact('faqs'));
+        return view('content.footer.faqDinamis', compact('faqs'));
     }
     
     public function index()
