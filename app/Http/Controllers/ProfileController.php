@@ -22,7 +22,7 @@ class ProfileController extends Controller
     public function index()
     {
         // $subsidiary = Consolidation::all();
-        // $groupName = Consolidation::all();
+        // $groupNameeee = Consolidation::all();
         $landingPages = Landingpage::all();
         return view('content.homeDinamic', compact('landingPages'));
     }
