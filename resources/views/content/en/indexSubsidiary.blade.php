@@ -80,35 +80,18 @@
                                 @endforeach
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-4 label">Principal Activity</div>
-                                    @foreach($consolidations->pluck('principal_activities')->unique() as $principal_activities)
-                                        @if($principal_activities)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($principal_activities)) !!}</div>
+                                    <div class="col-lg-6 col-md-4 label">Nature of Business</div>
+                                    @foreach($companyOwnership->pluck('nature_of_business')->unique() as $nature_of_business)
+                                        @if($nature_of_business)
+                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($nature_of_business)) !!}</div>
                                         @else
                                         <div class="col-lg-6 col-md-8">: -</div>
                                         @endif
                                     @endforeach
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-4 label">Country of Registered Address</div>
-                                    @foreach($companyOwnership->pluck('country_of_registered_address')->unique() as $country_of_registered_address)
-                                        @if($country_of_registered_address)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($country_of_registered_address)) !!}</div>
-                                        @else
-                                        <div class="col-lg-6 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-4 label">Registered Address</div>
-                                    @foreach($companyOwnership->pluck('registered_address')->unique() as $registered_address)
-                                        @if($registered_address)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($registered_address)) !!}</div>
-                                        @else
-                                        <div class="col-lg-6 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
+                            </div>
+                        
+                            <div class="col-lg-6 col-md-6">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Country of Business Address</div>
                                     @foreach($companyOwnership->pluck('country_of_business_address')->unique() as $country_of_business_address)
@@ -130,6 +113,16 @@
                                     @endforeach
                                 </div>
                                 <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Principal Activity</div>
+                                    @foreach($consolidations->pluck('principal_activities')->unique() as $principal_activities)
+                                        @if($principal_activities)
+                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($principal_activities)) !!}</div>
+                                        @else
+                                        <div class="col-lg-6 col-md-8">: -</div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Country Operation</div>
                                     @foreach($consolidations->pluck('country_operation')->unique() as $country_operation)
                                         @if($country_operation)
@@ -140,14 +133,27 @@
                                     @endforeach
                                 </div>
                             </div>
-                        
+                        </div>
+
+                        <h5 class="card-title">Registration Details</h5>
+    
+                        <div class="row">
                             <div class="col-lg-6 col-md-6">
-                                
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Incorporation Date</div>
                                     @foreach($companyOwnership->pluck('incorporation_date')->unique() as $incorporation_date)
                                         @if($incorporation_date)
                                         <div class="col-lg-6 col-md-8">: {!! nl2br(e($incorporation_date)) !!}</div>
+                                        @else
+                                        <div class="col-lg-6 col-md-8">: -</div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Taxpayer Identification Number</div>
+                                    @foreach($companyOwnership->pluck('taxpayer_identification_number')->unique() as $taxpayer_identification_number)
+                                        @if($taxpayer_identification_number)
+                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($taxpayer_identification_number)) !!}</div>
                                         @else
                                         <div class="col-lg-6 col-md-8">: -</div>
                                         @endif
@@ -173,6 +179,9 @@
                                         @endif
                                     @endforeach
                                 </div>
+                            </div>
+                        
+                            <div class="col-lg-6 col-md-6">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Change Company Number</div>
                                     @foreach($companyOwnership->pluck('change_company_number')->unique() as $change_company_number)
@@ -194,20 +203,20 @@
                                     @endforeach
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-4 label">Taxpayer Identification Number</div>
-                                    @foreach($companyOwnership->pluck('taxpayer_identification_number')->unique() as $taxpayer_identification_number)
-                                        @if($taxpayer_identification_number)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($taxpayer_identification_number)) !!}</div>
+                                    <div class="col-lg-6 col-md-4 label">Country of Registered Address</div>
+                                    @foreach($companyOwnership->pluck('country_of_registered_address')->unique() as $country_of_registered_address)
+                                        @if($country_of_registered_address)
+                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($country_of_registered_address)) !!}</div>
                                         @else
                                         <div class="col-lg-6 col-md-8">: -</div>
                                         @endif
                                     @endforeach
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-4 label">Nature of Business</div>
-                                    @foreach($companyOwnership->pluck('nature_of_business')->unique() as $nature_of_business)
-                                        @if($nature_of_business)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($nature_of_business)) !!}</div>
+                                    <div class="col-lg-6 col-md-4 label">Registered Address</div>
+                                    @foreach($companyOwnership->pluck('registered_address')->unique() as $registered_address)
+                                        @if($registered_address)
+                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($registered_address)) !!}</div>
                                         @else
                                         <div class="col-lg-6 col-md-8">: -</div>
                                         @endif
@@ -296,7 +305,7 @@
                             </div>
                             <div class="col-lg-3 col-md-6">
                                 <div class="row">
-                                    <div class="col-lg-12 col-md-4 label">Total of Shares</div>
+                                    <div class="col-lg-12 col-md-4 label">Number of Shares</div>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-6">
@@ -313,7 +322,7 @@
                                                 @php
                                                     $shareholderNames = explode("\n", e($ownership->shareholder_name));
                                                     $percentage = $ownership->percentage_of_shares;
-                                                    $totalShares = $ownership->total_of_shares;
+                                                    $numberShare = $ownership->number_of_shares;
                                                     $currency = $ownership->currency; // Ensure currency is set correctly
                                                 @endphp
                                                 @foreach($shareholderNames as $shareholder)
@@ -334,7 +343,7 @@
                                                         </div>
                                                         <!-- Total of Shares -->
                                                         <div class="col-lg-3 col-md-4">
-                                                            {{ $totalShares }}
+                                                            {{ $numberShare }}
                                                         </div>
                                                         <!-- Currency -->
                                                         <div class="col-lg-2 col-md-4">
