@@ -78,7 +78,10 @@ Route::post('/corporate-profile-other-company-show', [CorporateProfileController
 Route::post('/corporate-profile-group-show', [CorporateProfileController::class, 'groupShow'])->name('groupShow');
 Route::post('/corporate-profile-group2-show', [GroupController::class, 'group2Show'])->name('group2Show');
 Route::post('/corporate-profile-sra-show', [CorporateProfileController::class, 'sraShow'])->name('sraShow');
-Route::post('/corporate-profile-shareholder-show', [CorporateProfileController::class, 'shareholderShow'])->name('shareholderShow');
+// Route::post('/corporate-profile-shareholder-show', [CorporateProfileController::class, 'shareholderShow'])->name('shareholderShow');
+// routes/web.php
+Route::match(['get', 'post'], '/corporate-profile-shareholder-show', [CorporateProfileController::class, 'shareholderShow'])->name('shareholderShow');
+
 
 Route::get('/search-groups', [ProfileController::class, 'searchFunctionGroup'])->name('searchFunctionGroup');
 Route::get('/search-quick-group', [FeatureController::class, 'searchFunctionQuickGroup'])->name('searchFunctionQuickGroup');
@@ -95,6 +98,8 @@ Route::get('/group-feature', [FeatureController::class, 'groupFeature'])->name('
 Route::get('/subsidiary-feature', [FeatureController::class, 'subsidiaryFeature'])->name('subsidiaryFeature');
 Route::get('/shareholder-feature', [FeatureController::class, 'shareholderFeature'])->name('shareholderFeature');
 Route::get('/sra-feature', [FeatureController::class, 'sraFeature'])->name('sraFeature');
+Route::get('/serve-pdf/{filename}', [CorporateProfileController::class, 'servePDF'])->name('serve.pdf');
+
 
 Route::get('/term-of-conditions', [ProfileController::class, 'termOfCondition'])->name('termOfCondition');
 Route::get('/privacy-and-policy', [ProfileController::class, 'privacyPolicy'])->name('privacyPolicy');

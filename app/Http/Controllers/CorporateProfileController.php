@@ -23,6 +23,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 
 class CorporateProfileController extends Controller
@@ -72,6 +73,24 @@ class CorporateProfileController extends Controller
         $subsidiary = Consolidation::all();
         $groupName = Consolidation::all();
         return view('content.home', compact('subsidiary', 'groupName'));
+    }
+    public function servePDF($filename)
+    {
+        $filePath = public_path('file/group-structure/' . $filename);
+
+        if (!File::exists($filePath)) {
+            abort(404, 'File not found');
+        }
+
+        $fileContent = File::get($filePath);
+        $headers = [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . $filename . '"',
+            'Cache-Control' => 'public, max-age=0',
+            'Pragma' => 'public',
+        ];
+
+        return response($fileContent, 200, $headers);
     }
 
     public function group2Show(Request $request)
