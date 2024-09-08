@@ -56,7 +56,7 @@
                                     
                                     <div class="container">
                                         <form action="{{ route('searchFunctionSubsidiary') }}" method="GET" class="d-flex">
-                                            <input type="text" class="form-control me-2" name="query" placeholder="Company name">
+                                            <input type="text" class="form-control me-2" name="subsidiary" placeholder="Company name">
                                             <button type="submit" class="btn btn-info">Search</button>
                                         </form>
                                     </div>

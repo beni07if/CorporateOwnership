@@ -278,7 +278,7 @@
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> Jl. Anggrek No.6, Pontianak City, West Kalimantan</li>
                             <li><i class="bx bx-chevron-right"></i> helpdesk@earthqualizer.org</li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="https://wa.me/628982950531?text=Hello%20World" target="_blank">+628982950531</a></li>
+                            {{-- <li><i class="bx bx-chevron-right"></i> <a href="https://wa.me/628982950531?text=Hello%20World" target="_blank">+628982950531</a></li> --}}
                         </ul>
                     </div>
 

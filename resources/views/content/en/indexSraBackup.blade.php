@@ -23,10 +23,7 @@
                 </ol> -->
             </div>
             @foreach($sras->pluck('group_name')->unique() as $subs)
-            <div class="section-title">
-                <h2>SRA Summary of {{$subs}}</h2>
-            </div>
-            {{-- <h4 scope="col" class="card-title description">SRA Summary of {{$subs}}</h4> --}}
+            <h4 scope="col" class="card-title description">SRA Summary of {{$subs}}</h4>
             @endforeach
             <div class="row">
                 <div class="col-lg-6">
@@ -173,7 +170,16 @@
                             <div class="alert alert-light alert-dismissible fade show" role="alert">
                                 <h6 class="alert-heading">Upstream transparency <span style="color:#0AA7C4;">(score 0)</span></h6>
                                 <p>The subsidiaries and location of mills are available in  the SY's website, but the company does not mention its total land bank and planted area.</p>
-                                
+                                <!-- <div class="row">
+                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score</div>
+                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">0</div>
+                                    <div class="col-lg-9 col-md-8">
+                                        <p>The subsidiaries and location of mills are available in  the SY's website, but the company does not mention its total land bank and planted area.</p>
+                                    </div>
+                                </div> -->
                                 <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -216,14 +222,14 @@
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">Sustainability and Policy Implementation report <span style="color:#0AA7C4;">(score 0)</span></h6>
                                 <p>Very limited information available</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample2">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-sustainability" aria-expanded="false" aria-controls="flush-collapseOne-sustainability">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-sustainability" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample2">
+                                        <div id="flush-collapseOne-sustainability" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -253,14 +259,14 @@
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">Refiners and grievance management <span style="color:#0AA7C4;">(score 0)</span></h6>
                                 <p>No information available</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample3">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-refiners" aria-expanded="false" aria-controls="flush-collapseOne-refiners">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-refiners" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample3">
+                                        <div id="flush-collapseOne-refiners" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -297,14 +303,14 @@
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">Publish Maps <span style="color:#0AA7C4;">(score 1)</span></h6>
                                 <p>No submisson and no RSPO membership</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample4">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-pubishMaps" aria-expanded="false" aria-controls="flush-collapseOne-pubishMaps">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-pubishMaps" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample4">
+                                        <div id="flush-collapseOne-pubishMaps" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -337,14 +343,14 @@
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading" style="color:red;">% of concessions that obtain legal status (HGU, SHM, MPOB) <span style="color:#0AA7C4;">(score 1)</span></h6>
                                 <p>No submisson and no RSPO membership</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample5">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#percent_of_concessions" aria-expanded="false" aria-controls="percent_of_concessions">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="percent_of_concessions" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample5">
+                                        <div id="percent_of_concessions" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -377,14 +383,14 @@
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">Website <span style="color:#0AA7C4;">(score 1)</span></h6>
                                 <p>No submisson and no RSPO membership</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample6">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-website" aria-expanded="false" aria-controls="flush-collapseOne-website">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-website" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample6">
+                                        <div id="flush-collapseOne-website" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -410,14 +416,14 @@
                             <div class="alert alert-light alert-dismissible fade show" role="alert">
                                 <h6 class="alert-heading">Registration at the group level <span style="color:#0AA7C4;">(score 0)</span></h6>
                                 <p>Not RSPO Member</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample7">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-registratioinGroup" aria-expanded="false" aria-controls="flush-collapseOne-registratioinGroup">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-registratioinGroup" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample7">
+                                        <div id="flush-collapseOne-registratioinGroup" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -450,14 +456,14 @@
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">RSPO certification progress since the first RSPO membership registration date <span style="color:#0AA7C4;">(score 0)</span></h6>
                                 <p>Not RSPO Member</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample11">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-rspoCertification" aria-expanded="false" aria-controls="flush-collapseOne-rspoCertification">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-rspoCertification" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample11">
+                                        <div id="flush-collapseOne-rspoCertification" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -490,14 +496,14 @@
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">% of plantations RSPO audited <span style="color:#0AA7C4;">(score 0)</span></h6>
                                 <p>Not RSPO Member</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample12">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-refiners" aria-expanded="false" aria-controls="flush-collapseOne-refiners">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-refiners" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample12">
+                                        <div id="flush-collapseOne-refiners" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -521,14 +527,14 @@
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">RSPO Complaints <span style="color:#0AA7C4;">(score 0)</span></h6>
                                 <p>No RSPO Member</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample13">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-pubishMaps" aria-expanded="false" aria-controls="flush-collapseOne-pubishMaps">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-pubishMaps" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample13">
+                                        <div id="flush-collapseOne-pubishMaps" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -565,14 +571,14 @@
                             <div class="alert alert-light alert-dismissible fade show" role="alert">
                                 <h6 class="alert-heading">NDPE Policy adopted <span style="color:#0AA7C4;">(score 0)</span></h6>
                                 <p>The company has some policies pertaining to sustainability and  but no explicit commitments to NDPE (bit.ly/3i8Trs9)</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample14">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-ndpePolicy" aria-expanded="false" aria-controls="flush-collapseOne-ndpePolicy">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-ndpePolicy" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample14">
+                                        <div id="flush-collapseOne-ndpePolicy" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -612,14 +618,14 @@
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">Social issues (reported or identified by EQ) <span style="color:#0AA7C4;">(score 3)</span></h6>
                                 <p>No issues found</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample15">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-socialIssues" aria-expanded="false" aria-controls="flush-collapseOne-socialIssues">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-socialIssues" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample15">
+                                        <div id="flush-collapseOne-socialIssues" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -648,14 +654,14 @@
                                 <h6 class="alert-heading">Deforestation (ha) <span style="color:#0AA7C4;">(score 1)</span></h6>
                                 <p>2016-2018=1795</p>
                                 <p>2019=1733</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample16">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-deforestation" aria-expanded="false" aria-controls="flush-collapseOne-deforestation">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-deforestation" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample16">
+                                        <div id="flush-collapseOne-deforestation" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -690,14 +696,14 @@
                                 <h6 class="alert-heading">Peatland development (including peatforest) <span style="color:#0AA7C4;">(score 3)</span></h6>
                                 <p>2016-2018=0</p>
                                 <p>2019=0</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample17">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-peatland" aria-expanded="false" aria-controls="flush-collapseOne-peatland">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-peatland" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample17">
+                                        <div id="flush-collapseOne-peatland" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -722,14 +728,14 @@
                                 <h6 class="alert-heading">Burn areas (ha) <span style="color:#0AA7C4;">(score 3)</span></h6>
                                 <p>2016-2018=0</p>
                                 <p>2019=0</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample18">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-burnArea" aria-expanded="false" aria-controls="flush-collapseOne-burnArea">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-burnArea" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample18">
+                                        <div id="flush-collapseOne-burnArea" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -753,14 +759,14 @@
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">Land protection and usage <span style="color:#0AA7C4;">(score 3)</span></h6>
                                 <p>No burning</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample19">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-landProtection" aria-expanded="false" aria-controls="flush-collapseOne-landProtection">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-landProtection" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample19">
+                                        <div id="flush-collapseOne-landProtection" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -793,14 +799,14 @@
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">Restoration in Peatland <span style="color:#0AA7C4;">(score 3)</span></h6>
                                 <p>No peatland conversion</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample20">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-restorationPeatland" aria-expanded="false" aria-controls="flush-collapseOne-restorationPeatland">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-restorationPeatland" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample20">
+                                        <div id="flush-collapseOne-restorationPeatland" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -833,14 +839,14 @@
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading" style="color:red;">HCV/HCS Assessment <span style="color:#0AA7C4;">(score 3)</span></h6>
                                 <p>No peatland conversion</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample21">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-hcv-hcs-assessment" aria-expanded="false" aria-controls="flush-collapseOne-hcv-hcs-assessment">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-hcv-hcs-assessment" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample21">
+                                        <div id="flush-collapseOne-hcv-hcs-assessment" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -878,9 +884,9 @@
                     </div>
                 </div>
             </div>
-            {{--<a href="{{ url()->previous() }}">
+            <a href="{{ url()->previous() }}">
                 <span>Return to previous page</span>
-            </a>--}}
+            </a>
         </div>
     </section><!-- End About Section -->
 

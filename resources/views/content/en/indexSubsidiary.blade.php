@@ -16,7 +16,7 @@
             </div>
           <div class="col-xl-12">
   
-            <form action="{{ route('searchFunctionGroup') }}" method="GET" class="d-flex ms-auto" style="width: 33%;">
+            <form action="{{ route('searchFunctionSubsidiary') }}" method="GET" class="d-flex ms-auto" style="width: 33%;">
                 <input type="text" class="form-control me-2" name="subsidiary" placeholder="Search for other company">
                 <button type="submit" class="btn btn-info">Search</button>
             </form>
@@ -24,12 +24,12 @@
             <div class="card">
               <div class="card-body pt-3">
                 <div class="tab-content pt-2">
-                    @if (count($consolidations) > 0)
-                    @if (count($companyOwnership) > 0)
+                    @if($companyOwnership->isNotEmpty())
+                    {{-- @if ($consolidations->isNotEmpty()) --}}
                     <div class="tab-pane fade show active profile-overview" id="profile-overview">
                         <div class="d-flex justify-content-between flex-wrap">
                             <div class="d-flex flex-wrap">
-                                @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
+                                @foreach($companyOwnership->pluck('company_name')->unique() as $subs)
                                     <h5 class="card-title me-3">{{ $subs }}</h5>
                                 @endforeach
                             </div>
@@ -42,9 +42,9 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Company Name</div>
-                                    @foreach($consolidations->pluck('subsidiary')->unique() as $subsidiary)
-                                        @if($subsidiary)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($subsidiary)) !!}</div>
+                                    @foreach($companyOwnership->pluck('company_name')->unique() as $company_name)
+                                        @if($company_name)
+                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($company_name)) !!}</div>
                                         @else
                                         <div class="col-lg-6 col-md-8">: -</div>
                                         @endif
@@ -114,14 +114,22 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Principal Activity</div>
-                                    @foreach($consolidations->pluck('principal_activities')->unique() as $principal_activities)
-                                        @if($principal_activities)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($principal_activities)) !!}</div>
+                                    <div class="col-lg-6 col-md-8">
+                                        @if($consolidations->pluck('principal_activities')->unique()->isNotEmpty())
+                                            @foreach($consolidations->pluck('principal_activities')->unique() as $principal_activity)
+                                                <div>
+                                                    @if($principal_activity)
+                                                        : {!! nl2br(e($principal_activity)) !!}
+                                                    @else
+                                                        -
+                                                    @endif
+                                                </div>
+                                            @endforeach
                                         @else
-                                        <div class="col-lg-6 col-md-8">: -</div>
+                                            <div>-</div>
                                         @endif
-                                    @endforeach
-                                </div>
+                                    </div>
+                                </div>                                
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Country Operation</div>
                                     @foreach($consolidations->pluck('country_operation')->unique() as $country_operation)
@@ -254,13 +262,13 @@
                             </div>
                         </div>              
 
-                        <h5 class="card-title">Shareholders</h5>
+                        <h5 class="card-title">Shareholders/Management</h5>
 
                         <div class="row" hidden>
                             <div class="col-lg-3 col-md-4 label">Shareholder</div>
                             <div class="col-lg-9 col-md-8">
                                 
-                                <form action="{{ route('shareholderShow') }}" method="POST">
+                                <form action="{{ route('shareholderShowByCompany') }}" method="POST">
                                     @csrf
                                     @foreach($consolidations->pluck('shareholder_subsidiary')->flatten()->unique() as $shareholder)
                                         @php
@@ -293,17 +301,22 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-3 col-md-6">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-4 label">Shareholder Name</div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6">
                                 <div class="row">
+                                    <div class="col-lg-12 col-md-4 label">Position</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6">
+                                <div class="row">
                                     <div class="col-lg-12 col-md-4 label">Percentage of Shares</div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-6">
+                            <div class="col-lg-2 col-md-6">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-4 label">Number of Shares</div>
                                 </div>
@@ -321,6 +334,7 @@
                                             @foreach($companyOwnership as $ownership)
                                                 @php
                                                     $shareholderNames = explode("\n", e($ownership->shareholder_name));
+                                                    $position = $ownership->position;
                                                     $percentage = $ownership->percentage_of_shares;
                                                     $numberShare = $ownership->number_of_shares;
                                                     $currency = $ownership->currency; // Ensure currency is set correctly
@@ -328,25 +342,30 @@
                                                 @foreach($shareholderNames as $shareholder)
                                                     <div class="row">
                                                         <!-- Shareholder Name -->
-                                                        <div class="col-lg-4 col-md-4">
-                                                            <form action="{{ route('shareholderShow') }}" method="POST" style="display:inline;">
+                                                        <div class="col-lg-3 col-md-4 pl-lg-4">
+                                                            <form action="{{ route('searchFunctionShareholder') }}" method="GET" style="display:inline;">
                                                                 @csrf
                                                                 <input type="hidden" name="shareholder_name" value="{{ $shareholder }}">
+                                                                <input type="hidden" name="date_of_birth" value="{{ $ownership->date_of_birth }}">
                                                                 <button type="submit" class="shareholder-button">
                                                                     {{ $shareholder }}
                                                                 </button>
                                                             </form>
                                                         </div>
+                                                        <!-- Position -->
+                                                        <div class="col-lg-3 col-md-4 pl-lg-4">
+                                                            {{ $position }}
+                                                        </div>
                                                         <!-- Percentage of Shares -->
-                                                        <div class="col-lg-3 col-md-4">
-                                                            {{ $percentage }}%
+                                                        <div class="col-lg-2 col-md-4 pl-lg-4">
+                                                            {{ $percentage }}
                                                         </div>
                                                         <!-- Total of Shares -->
-                                                        <div class="col-lg-3 col-md-4">
+                                                        <div class="col-lg-2 col-md-4 pl-lg-4">
                                                             {{ $numberShare }}
                                                         </div>
                                                         <!-- Currency -->
-                                                        <div class="col-lg-2 col-md-4">
+                                                        <div class="col-lg-2 col-md-4 pl-lg-4">
                                                             {{ $currency }}
                                                         </div>
                                                     </div>
@@ -406,8 +425,8 @@
                                                     @endif
                                                 @endforeach
                                             @else
-                                                <div class="col-lg-6 col-md-4 label">-</div>
-                                                <div class="col-lg-6 col-md-8">-</div>
+                                                {{-- <div class="col-lg-6 col-md-4 label">-</div>
+                                                <div class="col-lg-6 col-md-8">-</div> --}}
                                             @endif
                                         @endforeach
                                     @endif
@@ -419,116 +438,7 @@
                                 <div class="row">
                                     @if(count($consolidations) > 0)
                                         @foreach($consolidations as $consolidation)
-                                            @if($consolidation->latitude && $consolidation->longitude)
-                                                @foreach(explode("\n", e($consolidation->facilities)) as $facility)
-                                                    <div class="col-lg-6 col-md-4 label">
-                                                        <div>Latitude/Longitude </div>
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-8">
-                                                        <div>: {{ $consolidation->latitude }}, {{ $consolidation->longitude }}</div>
-                                                    </div>
-                                                @endforeach
-                                            @else
-                                                <div class="col-lg-6 col-md-4 label">
-                                                    <div>Latitude/Longitude </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-8">
-                                                    <div>: No location data</div>
-                                                </div>
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-6">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Operating Status</div>
-                                    @foreach($consolidations->pluck('status_operation')->unique() as $status_operation)
-                                        @if($status_operation)
-                                        <div class="col-lg-3 col-md-8">: {!! nl2br(e($status_operation)) !!}</div>
-                                        @else
-                                        <div class="col-lg-12 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-6">
-                                <div class="row">
-                                    <!-- Address Column -->
-                                    <div class="col-lg-3 col-md-4 label">
-                                        Operating Address
-                                    </div>
-                                    <div class="col-lg-9 col-md-8">
-                                        @if($consolidation->country_operation || $consolidation->province || $consolidation->regency)
-                                            <div>
-                                                @if($consolidation->country_operation)
-                                                     : {{ $consolidation->country_operation }}, 
-                                                @endif
-                                                @if($consolidation->province)
-                                                     {{ $consolidation->province }}, 
-                                                @endif
-                                                @if($consolidation->regency)
-                                                     {{ $consolidation->regency }}
-                                                @endif
-                                            </div>
-                                        @else
-                                            <div>No address data</div>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <h5 class="card-title">Estate</h5>
-    
-                        <div class="row">
-                            <!-- Estate Column -->
-                            <div class="col-lg-6 col-md-6">
-                                <div class="row">
-                                    @if(count($consolidations) > 0)
-                                        @php
-                                            // Simpan estate yang telah ditampilkan
-                                            $displayedEstates = [];
-                                        @endphp
-                                        @foreach($consolidations as $consolidation)
-                                            @if($consolidation->estate && !in_array($consolidation->estate, $displayedEstates))
-                                                <div class="col-lg-6 col-md-4 label">
-                                                    <!-- Cek nilai activity dan atur labelnya -->
-                                                    @if($consolidation->principal_activities == 'Oil Palm Plantation & Mill' || $consolidation->principal_activities == 'Oil Palm Plantation')
-                                                        Estate
-                                                    @else
-                                                        Other Activity
-                                                    @endif
-                                                </div>
-                                                <div class="col-lg-6 col-md-8">
-                                                    @foreach(explode("\n", e($consolidation->estate)) as $estates)
-                                                        <div>
-                                                            : {{ $estates }}
-                                                            @if($consolidation->sizebyeq)
-                                                                ({{ $consolidation->sizebyeq }} ha)
-                                                            @else
-                                                                (No area data)
-                                                            @endif
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                        
-                                                @php
-                                                    // Tandai estate sebagai telah ditampilkan
-                                                    $displayedEstates[] = $consolidation->estate;
-                                                @endphp
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                </div>
-                            </div>
-                        
-                            <!-- Latitude/Longitude Column -->
-                            <div class="col-lg-6 col-md-6">
-                                <div class="row">
-                                    @if(count($consolidations) > 0)
-                                        @foreach($consolidations as $consolidation)
-                                            @if($consolidation->principal_activities == 'Oil Palm Plantation & Mill' || $consolidation->principal_activities == 'Oil Palm Plantation')
+                                            @if($consolidation->principal_activities == 'Oil Palm Plantation & Mill' || $consolidation->principal_activities == 'Palm Oil Mill')
                                                 @php
                                                     // Tandai sudah menampilkan lat/long untuk aktivitas ini
                                                     $displayedLatLong = true;
@@ -550,9 +460,30 @@
                                             @endif
                                         @endforeach
                                     @endif
+                                    
+                                    {{-- @if(count($consolidations) > 0)
+                                        @foreach($consolidations as $consolidation)
+                                            @if($consolidation->latitude && $consolidation->longitude)
+                                                @foreach(explode("\n", e($consolidation->facilities)) as $facility)
+                                                    <div class="col-lg-6 col-md-4 label">
+                                                        <div>Latitude/Longitude </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-8">
+                                                        <div>: {{ $consolidation->latitude }}, {{ $consolidation->longitude }}</div>
+                                                    </div>
+                                                @endforeach
+                                            @else
+                                                <div class="col-lg-6 col-md-4 label">
+                                                    <div>Latitude/Longitude </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-8">
+                                                    <div>: No location data</div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endif --}}
                                 </div>
                             </div>
-                        
                             <div class="col-lg-12 col-md-6">
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Operating Status</div>
@@ -565,8 +496,8 @@
                                     @endforeach
                                 </div>
                             </div>
-                        
                             <div class="col-lg-12 col-md-6">
+                                @if(count($consolidations) > 0)
                                 <div class="row">
                                     <!-- Address Column -->
                                     <div class="col-lg-3 col-md-4 label">
@@ -590,6 +521,160 @@
                                         @endif
                                     </div>
                                 </div>
+                                @endif
+                            </div>
+                        </div>
+                        
+                        <h5 class="card-title">Estate</h5>
+    
+                        <div class="row">
+                            <!-- Estate Column -->
+                            <div class="col-lg-6 col-md-6">
+                                <div class="row">
+                                    @if(count($consolidations) > 0)
+                                        @php
+                                            // Simpan estate yang telah ditampilkan
+                                            $displayedEstates = [];
+                                        @endphp
+                                        @foreach($consolidations as $consolidation)
+                                            @php
+                                                // Cek nilai estate
+                                                $estateList = explode("\n", e($consolidation->estate));
+                                                // Tentukan nama estate default
+                                                $hasEstate = false;
+                                            @endphp
+
+                                            @foreach($estateList as $estate)
+                                                @php
+                                                    // Tentukan nama estate untuk ditampilkan
+                                                    $estateDisplay = !empty(trim($estate)) ? trim($estate) : 'Unknown Estate Name';
+                                                    // Tandai jika ada estate yang valid
+                                                    if ($estateDisplay !== 'Unknown Estate Name') {
+                                                        $hasEstate = true;
+                                                    }
+                                                @endphp
+                                                
+                                                @if(!in_array($estateDisplay, $displayedEstates))
+                                                    <!-- Tampilkan hanya jika estate belum ditampilkan -->
+                                                    @if($consolidation->principal_activities == 'Oil Palm Plantation & Mill' ||
+                                                        $consolidation->principal_activities == 'Oil Palm Plantation')
+                                                        <div class="col-lg-6 col-md-4 label">
+                                                            <!-- Cek nilai activity dan atur labelnya -->
+                                                            @if($consolidation->principal_activities == 'Oil Palm Plantation & Mill')
+                                                                Estate
+                                                            @elseif($consolidation->principal_activities == 'Oil Palm Plantation')
+                                                                Estate
+                                                            @else
+                                                                Other Activity
+                                                            @endif
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-8">
+                                                            <div>: {{ $estateDisplay }} ({{ $consolidation->sizebyeq }})
+                                                            </div>
+                                                        </div>
+                                                        @php
+                                                            // Tandai estate sebagai telah ditampilkan
+                                                            $displayedEstates[] = $estateDisplay;
+                                                        @endphp
+                                                    @endif
+                                                @endif
+                                            @endforeach
+
+                                            @if(!$hasEstate && !in_array('Unknown Estate Name', $displayedEstates))
+                                                <!-- Jika tidak ada estate yang valid, tampilkan Unknown Estate Name -->
+                                                @if($consolidation->principal_activities == 'Oil Palm Plantation & Mill' ||
+                                                    $consolidation->principal_activities == 'Oil Palm Plantation')
+                                                    <div class="col-lg-6 col-md-4 label">
+                                                        <!-- Cek nilai activity dan atur labelnya -->
+                                                        @if($consolidation->principal_activities == 'Oil Palm Plantation & Mill')
+                                                            Estate
+                                                        @elseif($consolidation->principal_activities == 'Oil Palm Plantation')
+                                                            Estate
+                                                        @else
+                                                            Other Activity
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-8">
+                                                        <div>: Unknown Estate Name ({{ $consolidation->sizebyeq }})
+                                                        </div>
+                                                    </div>
+                                                    @php
+                                                        // Tandai Unknown Estate Name sebagai telah ditampilkan
+                                                        $displayedEstates[] = 'Unknown Estate Name';
+                                                    @endphp
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </div>
+                            </div>
+
+                            <!-- Latitude/Longitude Column -->
+                            <div class="col-lg-6 col-md-6">
+                                <div class="row">
+                                    @if(count($consolidations) > 0)
+                                        @foreach($consolidations as $consolidation)
+                                            @if($consolidation->latitude && $consolidation->longitude)
+                                                @foreach(explode("\n", e($consolidation->estate)) as $facility)
+                                                    <div class="col-lg-6 col-md-4 label">
+                                                        <div>Latitude/Longitude </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-8">
+                                                        <div>: {{ $consolidation->latitude }}, {{ $consolidation->longitude }}</div>
+                                                    </div>
+                                                @endforeach
+                                            @else
+                                                <div class="col-lg-6 col-md-4 label">
+                                                    <div>Latitude/Longitude </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-8">
+                                                    <div>: No location data</div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-6">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Operating Status</div>
+                                    @foreach($consolidations->pluck('status_operation')->unique() as $status_operation)
+                                        @if($status_operation)
+                                        <div class="col-lg-3 col-md-8">: {!! nl2br(e($status_operation)) !!}</div>
+                                        @else
+                                        <div class="col-lg-12 col-md-8">: -</div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        
+                            <div class="col-lg-12 col-md-6">
+                                @if(count($consolidations) > 0)
+                                <div class="row">
+                                    <!-- Address Column -->
+                                    <div class="col-lg-3 col-md-4 label">
+                                        Operating Address
+                                    </div>
+                                    <div class="col-lg-9 col-md-8">
+                                        @if($consolidation->country_operation || $consolidation->province || $consolidation->regency)
+                                            <div>
+                                                @if($consolidation->country_operation)
+                                                     : {{ $consolidation->country_operation }}, 
+                                                @endif
+                                                @if($consolidation->province)
+                                                     {{ $consolidation->province }}, 
+                                                @endif
+                                                @if($consolidation->regency)
+                                                     {{ $consolidation->regency }}
+                                                @endif
+                                            </div>
+                                        @else
+                                            <div>No address data</div>
+                                        @endif
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                         
                             <div class="col-lg-12 col-md-6" hidden>
@@ -607,11 +692,40 @@
                                 </div>
                             </div>
                         </div>
-                           
                         
-                        <h5 class="card-title">Sources</h5>
+                        <h5 class="card-title">Notarial Act</h5>
+
+                        <div>
+                            @foreach($consolidations->groupBy('subsidiary') as $subsidiaryGroup)
+                            @php
+                                $subsidiary = $subsidiaryGroup->first()->subsidiary;
     
-                        <div class="row">
+                                $directory = public_path('file/notarial-act-subsidiaries/');
+                                $matchingFiles = preg_grep('/^\d+ ' . preg_quote($subsidiary, '/') . '\.pdf$/', scandir($directory));
+    
+                                if (!empty($matchingFiles)) {
+                                    $fileNameInDirectory = reset($matchingFiles);
+                                    $filePath = url('file/notarial-act-subsidiaries/' . $fileNameInDirectory);
+    
+                                    // Debug: Cetak URL yang dihasilkan ke konsol atau log
+                                    error_log('Generated URL: ' . $filePath);
+                                } else {
+                                    $filePath = ''; // Atau berikan nilai default jika file tidak ditemukan
+                                }
+                            @endphp
+    
+                            @if(!empty($filePath))
+                            <iframe src="{{ $filePath }}" width="100%" height="600px"></iframe>
+                            @else
+                            <p>Please contact Us to get notarial deed and other information of {{$subsidiaryGroup->first()->subsidiary}}.</p>
+                            @endif
+                            <!-- <p class="text-muted">{{ $subsidiary }}</p> -->
+                            @endforeach
+                        </div>
+
+                        <h6 class="card-title"><i>*Data source by Inovasi Digital</i></h6>
+    
+                        <div class="row" hidden>
                             <div class="col-lg-6 col-md-6">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Data Source</div>
@@ -624,7 +738,7 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6" hidden>
+                            <div class="col-lg-6 col-md-6">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Data Update</div>
                                     @foreach($consolidations->pluck('data_update')->unique() as $data_update)
@@ -638,17 +752,28 @@
                             </div>
                         </div>        
                             
-                    </div> 
-                    @endif
+                    </div>
+                    @else
+                        <tr>
+                            <td colspan="2">
+                                <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                                    <h4 class="alert-heading">Data Not Found</h4>
+                                    <p>Data not found, please enter the correct keywords.</p>
+                                    <hr>
+                                    <p class="mb-0">Please contact Us for more information at <i><b>helpdesk@earthqualizer.org</b></i></p>
+                                </div>
+                            </td>
+                        </tr>
+                    {{-- @endif --}}
                     @endif
                 </div><!-- End Bordered Tabs -->
               </div>
             </div>
           </div>
         </div>
-        <a href="{{ url()->previous() }}">
+        {{-- <a href="{{ url()->previous() }}">
             <span>Return to previous page</span>
-        </a>
+        </a> --}}
     </section>
 
     <!-- Leaflet JavaScript -->

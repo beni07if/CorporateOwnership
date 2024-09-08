@@ -27,19 +27,6 @@
 
 @section('content')
 <main id="main">
-    <!-- Blog Page Title & Breadcrumbs -->
-    <div data-aos="fade" class="page-title">
-      <div class="heading">
-        <div class="container">
-          <div class="row d-flex justify-content-center text-center">
-            <div class="col-lg-8">
-              <h1>Privacy Policy</h1>
-              <p class="mb-0">Privacy Poliy</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div><!-- End Page Title -->
 
     <!-- ======= Services Section ======= -->
     <section id="services" class="services">

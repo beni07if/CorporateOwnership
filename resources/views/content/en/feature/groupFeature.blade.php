@@ -76,66 +76,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="tabs-search-subsidiaries">
-                            <div class="row">
-                                <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Company</h3>
-                                    <!-- <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the subsidiary companies. The information about Group Company can be used to identify the subsidiary under.</p> -->
-                                    
-                                    <div class="container">
-                                        <form action="{{ route('searchFunctionSubsidiary') }}" method="GET" class="d-flex">
-                                            <input type="text" class="form-control me-2" name="query" placeholder="Company name">
-                                            <button type="submit" class="btn btn-info">Search</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="assets/img/departments-1.jpg" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tabs-search-shareholders">
-                            <div class="row">
-                                <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Shareholder</h3>
-                                    <!-- <p class="fst-italic">Shareholders are the owners of a corporation and have a financial interest in the company's performance and profitability. Shareholders can be individual or entities. The information about company’s shareholders can be used to identify the people responsible and rule the company.</p> -->
-                                    <!-- <p class="fst-italic">Shareholders are the owners of a corporation and have a financial interest in the company's performance and profitability. Shareholders can be individual or entities. Find people/companies who own shares in several companies.</p> -->
-                                    <div class="container">
-                                        <form id="search-form" action="{{ route('searchFunctionShareholder') }}" method="GET" class="d-flex">
-                                            <label for="search-input" class="visually-hidden">Search</label>
-                                            <div class="input-group">
-                                                <input type="text" id="search-input" name="query" class="form-control" placeholder="Shareholder name">
-                                                <button type="submit" class="btn btn-info">Search</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="assets/img/departments-3.jpg" alt="" class="img-fluid">
-                                </div>
-                            </div>                                   
-                        </div>
-                        <div class="tab-pane" id="tabs-search-sra">                                                                         
-                            <div class="row">                                               
-                                <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Sustainability Risk Analysis (SRA)</h3>
-                                    <!-- <p class="fst-italic">Shareholders are the owners of a corporation and have a financial interest in the company's performance and profitability. Shareholders can be individual or entities. The information about company’s shareholders can be used to identify the people responsible and rule the company.</p> -->
-                                    <!-- <p class="fst-italic">Shareholders are the owners of a corporation and have a financial interest in the company's performance and profitability. Shareholders can be individual or entities. Find people/companies who own shares in several companies.</p> -->
-                                    <div class="container">
-                                        <form id="search-form" action="{{ route('searchFunctionSRA') }}" method="GET" class="d-flex">
-                                            <label for="search-input" class="visually-hidden">Search</label>
-                                            <div class="input-group">
-                                                <input type="text" id="search-input" name="group_name" class="form-control" placeholder="Group name">
-                                                <button type="submit" class="btn btn-info">Search</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="assets/img/departments-3.jpg" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

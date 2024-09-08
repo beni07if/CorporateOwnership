@@ -23,6 +23,7 @@
 
             <div class="row" style="box-shadow: rgba(44, 73, 100, 0.08) 0px 2px 15px 0px;">
                 <div class="col-xl-12 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
+                    
                     <table class="table">
                         <thead>
                             <th class="d-flex justify-content-between align-items-center">
@@ -33,48 +34,50 @@
                                 </form>
                             </th>
                         </thead>
-                        <form action="{{ route('otherCompanyShow') }}" method="POST" enctype="multipart/form-data">
+
+                        <form action="{{ route('subsidiaryShow') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @if($otherCompanies->isNotEmpty())
-                                @foreach($otherCompanies as $subs)
-                                    <tr>
-                                        <td>
-                                            <input type="submit" name="badan_hukum" value="{{ $subs->badan_hukum }}" class="btn btn-light">
-                                        </td>
-                                        <td>
-                                            <!-- Periksa apakah $companyOwnership ada dan tidak kosong -->
-                                            @if(isset($companyOwnership) && $companyOwnership->isNotEmpty())
-                                                <input type="submit" name="badan_hukum" value="Nama Perusahaan: {{ $companyOwnership->first()->badan_hukum }}" style="background-color: transparent; border: none; color: inherit; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='#007BFF'" onmouseout="this.style.color='inherit'">
+                                @if($companyOwnerships->isNotEmpty())
+                                    @foreach($companyOwnerships->chunk(2) as $pair)  <!-- Chunk the companyOwnerships into pairs -->
+                                        <tr>
+                                            @foreach($pair as $subs)
+                                                <td>
+                                                    <h4><input type="submit" name="subsidiary" value="{{ $subs->company_name }}" style="background-color: transparent; border: none; color: inherit; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='#007BFF'" onmouseout="this.style.color='inherit'"></h4>
+                                                    <span class="pl-2">{{ $subs->country_of_registered_address }}</span>
+                                                    <p class="pl-2">{{ $subs->registered_address }}</p>
+                                                </td>
+                                            @endforeach
+                                            <!-- Fill in empty cells if there is an odd number of entries -->
+                                            @if(count($pair) == 1)
+                                                <td></td>
                                             @endif
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                                                <h4 class="alert-heading">Data Not Found</h4>
+                                                <p>Data not found, please enter the correct keywords.</p>
+                                                <hr>
+                                                <p class="mb-0">Please contact Us for more information at <i><b>helpdesk@earthqualizer.org</b></i></p>
+                                            </div>
                                         </td>
                                     </tr>
-                                @endforeach
-                            @else
-                                <tr>
-                                    <td colspan="2">
-                                    <div class="alert alert-secondary alert-dismissible fade show" role="alert">
-                                        <h4 class="alert-heading">Data Not Found</h4>
-                                        <p>Data not found, please enter the correct keywords.</p>
-                                        <hr>
-                                        <p class="mb-0">Please contact Us for more information at <i><b>helpdesk@earthqualizer.org</b></i></p>
-                                        <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
-                                    </div>
-                                    </td>
-                                </tr>
-                            @endif
+                                @endif
                         </form>
                     </table>
-                    <a href="{{ url()->previous() }}">
-                        <span>Back</span>
-                    </a>
+                    {{-- <a href="{{ url()->previous() }}">
+                        <span>Return to previous page</span>
+                    </a> --}}
 
                     <nav aria-label="Pagination Navigation">
                         <ul class="pagination justify-content-center">
 
                             {{-- Previous Page Link --}}
-                            @unless($otherCompanies->onFirstPage())
+                            @unless($companyOwnerships->onFirstPage())
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ $otherCompanies->previousPageUrl() }}" rel="prev" aria-label="Previous">@lang('pagination.previous')</a>
+                                    <a class="page-link" href="{{ $companyOwnerships->previousPageUrl() }}" rel="prev" aria-label="Previous">@lang('pagination.previous')</a>
                                 </li>
                             @else
                                 <li class="page-item disabled" aria-disabled="true" aria-label="Previous">
@@ -83,34 +86,31 @@
                             @endunless
 
                             {{-- Pagination Elements --}}
-                            @for ($page = max(1, $otherCompanies->currentPage() - 5); $page <= min($otherCompanies->lastPage(), $otherCompanies->currentPage() + 5); $page++)
-                                @if ($page == $otherCompanies->currentPage())
+                            @for ($page = max(1, $companyOwnerships->currentPage() - 5); $page <= min($companyOwnerships->lastPage(), $companyOwnerships->currentPage() + 5); $page++)
+                                @if ($page == $companyOwnerships->currentPage())
                                     <li class="page-item active" aria-current="page"><span class="page-link">{{ $page }}</span></li>
                                 @else
-                                    <li class="page-item"><a class="page-link" href="{{ $otherCompanies->url($page) }}">{{ $page }}</a></li>
+                                    <li class="page-item"><a class="page-link" href="{{ $companyOwnerships->url($page) }}">{{ $page }}</a></li>
                                 @endif
                             @endfor
 
                             {{-- Next Page Link --}}
-                            @unless($otherCompanies->hasMorePages())
+                            @unless($companyOwnerships->hasMorePages())
                                 <li class="page-item disabled" aria-disabled="true" aria-label="Next">
                                     <span class="page-link" aria-hidden="true">@lang('pagination.next')</span>
                                 </li>
                             @else
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ $otherCompanies->nextPageUrl() }}" rel="next" aria-label="Next">@lang('pagination.next')</a>
+                                    <a class="page-link" href="{{ $companyOwnerships->nextPageUrl() }}" rel="next" aria-label="Next">@lang('pagination.next')</a>
                                 </li>
                             @endunless
 
                         </ul>
                     </nav>
-
                         
                 </div>
             </div>
-            {{-- <a href="{{ url()->previous() }}">
-                <span>Return to previous page</span>
-            </a> --}}
+
         </div>
     </section><!-- End About Section -->
 

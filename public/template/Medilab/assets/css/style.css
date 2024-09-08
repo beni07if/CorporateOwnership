@@ -788,6 +788,7 @@ section {
     opacity: 0;
   }
 }
+
 /*--------------------------------------------------------------
 # Counts
 --------------------------------------------------------------*/
@@ -1046,11 +1047,12 @@ section {
 --------------------------------------------------------------*/
 .doctors {
   background: #fff;
+  padding-top: 10%;
 }
 .doctors .member {
   position: relative;
   box-shadow: 0px 2px 15px rgba(44, 73, 100, 0.08);
-  padding: 30px;
+  padding: 1px 10px 30px 10px;
   border-radius: 10px;
 }
 .doctors .member .pic {
@@ -1125,6 +1127,9 @@ section {
 /*--------------------------------------------------------------
 # Frequently Asked Questions
 --------------------------------------------------------------*/
+.faq{
+  padding-top: 10%;
+}
 .faq .faq-list {
   padding: 0 100px;
 }
@@ -1887,7 +1892,7 @@ section {
 }
 
 .profile .profile-overview .row {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-size: 15px;
 }
 
@@ -1909,7 +1914,8 @@ section {
   max-width: 120px;
 }
 
-.profile {
+.profile .label {
+  padding-left: 20px;
   /* text-transform: capitalize; */
 }
 
@@ -1930,5 +1936,36 @@ section {
   transition: color 0.3s, text-decoration 0.3s; /* Tambahkan transisi halus */
 }
 
+.pagination-wrapper nav ul.pagination {
+  list-style: none;
+  padding: 0;
+}
+
+.pagination-wrapper .pagination .page-item .page-link {
+  color: #007BFF;
+  border: 1px solid #007BFF;
+  padding: 8px 12px;
+  margin: 0 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination-wrapper .pagination .page-item.active .page-link {
+  background-color: #007BFF;
+  color: #fff;
+  border-color: #007BFF;
+}
+
+.pagination-wrapper .pagination .page-item .page-link:hover {
+  background-color: #0056b3;
+  color: #fff;
+  border-color: #0056b3;
+}
+
+.pagination-wrapper .pagination .page-item.disabled .page-link {
+  color: #6c757d;
+  pointer-events: none;
+  background-color: #fff;
+  border-color: #dee2e6;
+}
 
 /* end style edit */

@@ -138,18 +138,65 @@ class CorporateProfileController extends Controller
     }
 
     public function shareholderShow(Request $request)
+{
+    // Get the 'shareholder_name' and 'date_of_birth' from the request
+    $name = $request->input('shareholder_name');
+    $dob = $request->input('date_of_birth');
+
+    // Retrieve shareholder details based on 'shareholder_name' and 'date_of_birth'
+    $shareholderNames = CompanyOwnership::select(
+            'shareholder_name', 
+            'date_of_birth', 
+            'ic_passport_comp_number', 
+            'address', 
+            'position', 
+            'number_of_shares', 
+            'total_of_shares', 
+            'percentage_of_shares', 
+            'currency', 
+            'company_name', 
+            'data_source',
+            'data_update'
+        )
+        ->where('shareholder_name', $name) // Match the shareholder name
+        ->where('date_of_birth', $dob) // Match the date of birth
+        ->paginate(10); // Paginate results
+
+    // Append the 'shareholder_name' and 'date_of_birth' to the pagination links
+    $shareholderNames->appends(['shareholder_name' => $name, 'date_of_birth' => $dob]);
+
+    // Return the view with the results
+    return view('content.en.indexShareholder', compact('shareholderNames'));
+}
+
+
+    public function shareholderShowByCompany(Request $request)
     {
-        $query = $request->input('shareholder_name');
+        // Get the 'shareholder_name' and 'date_of_birth' from the request
+        $name = $request->input('shareholder_name');
 
-        $shareholderNames = CompanyOwnership::select('shareholder_name', 'date_of_birth', 'ic_passport_comp_number', 'address', 'position', 'number_of_shares', 'total_of_shares', 'percentage_of_shares', 'currency', 'company_name', 'data_source' )
-            // ->where('shareholder_name', 'LIKE', '%' . $query . '%')
-            ->where('shareholder_name',  $query)
-            ->distinct()
-            ->paginate(10);
+        // Retrieve shareholder details based on 'shareholder_name' and 'date_of_birth'
+        $shareholderNames = CompanyOwnership::select(
+                'shareholder_name', 
+                'date_of_birth', 
+                'ic_passport_comp_number', 
+                'address', 
+                'position', 
+                'number_of_shares', 
+                'total_of_shares', 
+                'percentage_of_shares', 
+                'currency', 
+                'company_name', 
+                'data_source',
+                'data_update'
+            )
+            ->where('shareholder_name', $name) // Match the shareholder name
+            ->paginate(10); // Paginate results
 
-        // Append the search query to the pagination links
-        $shareholderNames->appends(['shareholder_name' => $query]);
+        // Append the 'shareholder_name' and 'date_of_birth' to the pagination links
+        $shareholderNames->appends(['shareholder_name' => $name]);
 
+        // Return the view with the results
         return view('content.en.indexShareholder', compact('shareholderNames'));
     }
 
@@ -220,7 +267,7 @@ class CorporateProfileController extends Controller
         if ($subsidiaryName) {
             // Fetch the coordinate data from the database based on the subsidiary
             // $coordinates = DB::table('consolidations')->select('latitude', 'longitude')->where('subsidiary', $subsidiaryName)->first();
-            $companyOwnership = DB::table('company_ownerships')->where('company_name', $subsidiaryName)->get();
+            // $companyOwnership = DB::table('company_ownerships')->where('company_name', $subsidiaryName)->get();
             $coordinates = DB::table('consolidations')->select('latitude', 'longitude', 'subsidiary', 'country_operation', 'province', 'regency', 'facilities', 'capacity', 'sizebyeq', 'estate', 'group_name', 'principal_activities')->where('subsidiary', $subsidiaryName)->get();
 
             // Pilih kolom-kolom yang diperlukan dari tabel corporate
@@ -228,9 +275,8 @@ class CorporateProfileController extends Controller
         }
         // return view('maps', compact('coordinates', 'consol', 'subsidiary'));
 
-        $consolidations = DB::table('consolidations')
-            ->where('subsidiary', $subsidiaryName)
-            ->get();
+        $consolidations = DB::table('consolidations')->where('subsidiary', $subsidiaryName)->get();
+        $companyOwnership = DB::table('company_ownerships')->where('company_name', $subsidiaryName)->get();
 
         foreach ($consolidations as $subs) {
             $number = intval($subs->sizebyeq);
@@ -441,13 +487,13 @@ class CorporateProfileController extends Controller
 
             // end narasi shareholder v1 with no link
         } else {
-            $response = 'Subsidiary not found..';
+            $response = '';
         }
 
         // $subsidiary = response()->json(['message' => $response]);
         $subsidiari = $response;
         // return view('content.en.test', compact('consolidations'));
-        return view('content.en.indexSubsidiary', compact('companyOwnership', 'consolidations', 'subsidiari', 'users', 'consul', 'consol', 'coordinates'));
+        return view('content.en.indexSubsidiary', compact('companyOwnership', 'subsidiaryName', 'consolidations', 'subsidiari', 'users', 'consul', 'consol', 'coordinates'));
         // return view('maps', compact('coordinates', 'consol', 'subsidiary'));
         // end versi chat 
     }

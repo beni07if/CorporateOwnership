@@ -81,6 +81,7 @@ Route::post('/corporate-profile-sra-show', [CorporateProfileController::class, '
 // Route::post('/corporate-profile-shareholder-show', [CorporateProfileController::class, 'shareholderShow'])->name('shareholderShow');
 // routes/web.php
 Route::match(['get', 'post'], '/corporate-profile-shareholder-show', [CorporateProfileController::class, 'shareholderShow'])->name('shareholderShow');
+Route::match(['get', 'post'], '/corporate-profile-shareholder-shows', [CorporateProfileController::class, 'shareholderShowByCompany'])->name('shareholderShowByCompany');
 
 
 Route::get('/search-groups', [ProfileController::class, 'searchFunctionGroup'])->name('searchFunctionGroup');
