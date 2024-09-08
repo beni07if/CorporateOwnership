@@ -787,7 +787,7 @@
                         <h6 class="card-title description">Main Product</h6>
                         <p class="card-text">{{ $subs->main_product }}</p>
                         <h6 class="card-title description">Incorporation Date</h6>
-                        <p class="card-text">{{ $subs->commercial_operation_date }}</p>
+                        <p class="card-text">{{ $subs->incorporation_date }}</p>
                         <h6 class="card-title description">Country Registration</h6>
                         <p class="card-text">{{ $subs->country_registration }}</p>
                         <h6 class="card-title description">Business Address</h6>

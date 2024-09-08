@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('official_group_name')->nullable();
             $table->string('group_status')->nullable();
             $table->string('stock_exchange_name')->nullable();
-            $table->string('controller')->nullable();
+            $table->text('controller')->nullable();
             $table->text('company_overview')->nullable();
             $table->text('business_sector')->nullable();
             $table->text('main_product')->nullable();
-            $table->string('commercial_operation_date')->nullable();
+            $table->string('incorporation_date')->nullable();
             $table->string('country_registration')->nullable();
             $table->text('business_address')->nullable();
             $table->string('country_operation')->nullable();
@@ -51,7 +51,9 @@ return new class extends Migration
             $table->string('cgf_member')->nullable();
             $table->string('asd_member')->nullable();
             $table->string('gpnsr_member')->nullable();
-            $table->string('others_mention')->nullable();
+            $table->text('others_mention')->nullable();
+            $table->string('certification')->nullable();
+            $table->text('link_certification')->nullable();
             $table->string('ndpe_policy')->nullable();
             $table->string('ndpe_time_bound_plan_implementation')->nullable();
             $table->string('sustainability_progress_report')->nullable();

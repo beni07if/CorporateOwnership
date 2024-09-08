@@ -264,7 +264,7 @@
 
                         <h5 class="card-title">Shareholders/Management</h5>
 
-                        <div class="row" hidden>
+                        {{-- <div class="row" hidden>
                             <div class="col-lg-3 col-md-4 label">Shareholder</div>
                             <div class="col-lg-9 col-md-8">
                                 
@@ -298,7 +298,7 @@
                                     @endforeach
                                 </form>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="row">
                             <div class="col-lg-3 col-md-6">
