@@ -466,9 +466,9 @@
                             
                         </div>
                         
-                        <h5 class="card-title">Facility</h5>
+                        <h5 class="card-title" hidden>Facility</h5>
     
-                        <div class="row">
+                        <div class="row" hidden>
                             <!-- Facilities and Capacity Column -->
                             <div class="col-lg-6 col-md-6">
                                 <div class="row">
