@@ -222,14 +222,22 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Registered Address</div>
-                                    @foreach($companyOwnership->pluck('registered_address')->unique() as $registered_address)
-                                        @if($registered_address)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($registered_address)) !!}</div>
+                                    <div class="col-lg-6 col-md-8">
+                                        @php
+                                            $addresses = $companyOwnership->pluck('registered_address')->unique()->filter(); // Hanya ambil yang unik dan tidak null
+                                        @endphp
+                                
+                                        @if($addresses->isEmpty())
+                                            : -
                                         @else
-                                        <div class="col-lg-6 col-md-8">: -</div>
+                                            : 
+                                            @foreach($addresses as $registered_address)
+                                                {!! nl2br(e($registered_address)) !!} <br>
+                                            @endforeach
                                         @endif
-                                    @endforeach
+                                    </div>
                                 </div>
+                                
                             </div>
                         </div>
 

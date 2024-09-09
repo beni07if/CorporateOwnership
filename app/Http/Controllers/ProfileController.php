@@ -18,6 +18,7 @@ use App\Models\Policy;
 use App\Models\Termcondition;
 use App\Models\Sra;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator; 
 
 class ProfileController extends Controller
 {
@@ -168,93 +169,66 @@ class ProfileController extends Controller
     // }
 
     public function searchFunctionSubsidiary(Request $request)
-    {
-        // Ambil input dari request
-        $query = $request->input('subsidiary');
+{
+    // Ambil input dari request
+    $query = $request->input('subsidiary');
 
-        // Subquery untuk mendapatkan nama perusahaan unik dari CompanyOwnership
-        $uniqueCompanyNames = CompanyOwnership::select('company_name')
-            ->distinct()
-            ->when($query, function ($q) use ($query) {
-                return $q->where('company_name', 'LIKE', '%' . $query . '%');
-            })
-            ->pluck('company_name');
+    // Ambil data dari tabel CompanyOwnership
+    $companyOwnerships = DB::table('company_ownerships')
+        ->select(
+            'company_ownerships.company_name',
+            'consolidations.subsidiary',
+            'consolidations.country_operation',
+            'consolidations.province',
+            'consolidations.regency',
+            'company_ownerships.country_of_business_address',
+            'company_ownerships.business_address',
+            'company_ownerships.registered_address'
+        )
+        ->leftJoin('consolidations', 'company_ownerships.company_name', '=', 'consolidations.subsidiary')
+        ->when($query, function ($q) use ($query) {
+            return $q->where('company_ownerships.company_name', 'LIKE', '%' . $query . '%');
+        });
 
-        // Jika tidak ada hasil dari CompanyOwnership, cek di CompanyOwnershipSecond
-        if ($uniqueCompanyNames->isEmpty()) {
-            $uniqueCompanyNames = CompanyOwnershipSecond::select('company_name')
-                ->distinct()
-                ->when($query, function ($q) use ($query) {
-                    return $q->where('company_name', 'LIKE', '%' . $query . '%');
-                })
-                ->pluck('company_name');
-        }
+    // Ambil data dari tabel CompanyOwnershipSecond
+    $companyOwnershipsSecond = DB::table('company_ownership_seconds')
+        ->select(
+            'company_ownership_seconds.company_name',
+            'consolidations.subsidiary',
+            'consolidations.country_operation',
+            'consolidations.province',
+            'consolidations.regency',
+            'company_ownership_seconds.country_of_business_address',
+            'company_ownership_seconds.business_address',
+            'company_ownership_seconds.registered_address'
+        )
+        ->leftJoin('consolidations', 'company_ownership_seconds.company_name', '=', 'consolidations.subsidiary')
+        ->when($query, function ($q) use ($query) {
+            return $q->where('company_ownership_seconds.company_name', 'LIKE', '%' . $query . '%');
+        });
 
-        // Ambil data dari tabel CompanyOwnership
-        $companyOwnerships = DB::table('company_ownerships')
-            ->select(
-                'company_ownerships.company_name',
-                'consolidations.subsidiary',
-                'consolidations.country_operation',
-                'consolidations.province',
-                'consolidations.regency',
-                'company_ownerships.country_of_business_address',
-                'company_ownerships.business_address',
-                'company_ownerships.registered_address'
-            )
-            ->leftJoin('consolidations', 'company_ownerships.company_name', '=', 'consolidations.subsidiary')
-            ->whereIn('company_ownerships.company_name', $uniqueCompanyNames)
-            ->groupBy(
-                'company_ownerships.company_name',
-                'consolidations.subsidiary',
-                'consolidations.country_operation',
-                'consolidations.province',
-                'consolidations.regency',
-                'company_ownerships.country_of_business_address',
-                'company_ownerships.business_address',
-                'company_ownerships.registered_address'
-            );
+    // Gabungkan kedua query dengan UNION dan pastikan company_name unik
+    $allCompanyOwnerships = $companyOwnerships
+        ->union($companyOwnershipsSecond)
+        ->distinct() // Menghilangkan duplikat berdasarkan semua kolom
+        ->get()
+        ->unique('company_name'); // Hapus duplikat berdasarkan company_name
 
-        // Ambil data dari tabel CompanyOwnershipSecond
-        $companyOwnershipsSecond = DB::table('company_ownership_seconds')
-            ->select(
-                'company_ownership_seconds.company_name',
-                'consolidations.subsidiary',
-                'consolidations.country_operation',
-                'consolidations.province',
-                'consolidations.regency',
-                'company_ownership_seconds.country_of_business_address',
-                'company_ownership_seconds.business_address',
-                'company_ownership_seconds.registered_address'
-            )
-            ->leftJoin('consolidations', 'company_ownership_seconds.company_name', '=', 'consolidations.subsidiary')
-            ->whereIn('company_ownership_seconds.company_name', $uniqueCompanyNames)
-            ->groupBy(
-                'company_ownership_seconds.company_name',
-                'consolidations.subsidiary',
-                'consolidations.country_operation',
-                'consolidations.province',
-                'consolidations.regency',
-                'company_ownership_seconds.country_of_business_address',
-                'company_ownership_seconds.business_address',
-                'company_ownership_seconds.registered_address'
-            );
+    // Lakukan pagination manual
+    $currentPage = LengthAwarePaginator::resolveCurrentPage();
+    $perPage = 10; // Set jumlah item per halaman
+    $currentItems = $allCompanyOwnerships->slice(($currentPage - 1) * $perPage, $perPage)->all();
+    $paginatedCompanyOwnerships = new LengthAwarePaginator($currentItems, $allCompanyOwnerships->count(), $perPage);
+    $paginatedCompanyOwnerships->setPath($request->url());
+    $paginatedCompanyOwnerships->appends(['subsidiary' => $query]);
 
-        // Gabungkan kedua query dengan UNION
-        $allCompanyOwnerships = $companyOwnerships
-            ->union($companyOwnershipsSecond)
-            ->orderBy('company_name')
-            ->paginate(10);
+    // Kembalikan ke view dengan data yang digabungkan
+    return view('content.en.searchSubsidiary', [
+        'companyOwnerships' => $paginatedCompanyOwnerships,
+        'query' => $query
+    ]);
+}
 
-        // Append parameter pencarian ke link pagination
-        $allCompanyOwnerships->appends(['subsidiary' => $query]);
-
-        // Kembalikan ke view dengan data yang digabungkan
-        return view('content.en.searchSubsidiary', [
-            'companyOwnerships' => $allCompanyOwnerships,
-            'query' => $query
-        ]);
-    }
 
     // public function searchFunctionShareholder(Request $request)
     // {
