@@ -168,12 +168,13 @@
                         <button class="nav-link w-100" id="ndpe-tab" data-bs-toggle="tab" data-bs-target="#ndpe-justified" type="button" role="tab" aria-controls="ndpe" aria-selected="false">NDPE Compliance</button>
                         </li>
                     </ul>
+                    @if(count($sras)>0)
+                    @foreach($sras as $sra)
                     <div class="tab-content pt-2" id="myTabjustifiedContent">
                         <div class="tab-pane fade show active profile-overview" id="transparency-justified" role="tabpanel" aria-labelledby="transparency-tab">
                             <div class="alert alert-light alert-dismissible fade show" role="alert">
                                 <h6 class="alert-heading">Upstream transparency <span style="color:#0AA7C4;">(score 0)</span></h6>
-                                <p>The subsidiaries and location of mills are available in  the SY's website, but the company does not mention its total land bank and planted area.</p>
-                                
+                                <p>{{$sra->desc_transparency_upstream}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -215,7 +216,7 @@
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">Sustainability and Policy Implementation report <span style="color:#0AA7C4;">(score 0)</span></h6>
-                                <p>Very limited information available</p>
+                                <p>{{$sra->desc_transparency_sustainability}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample2">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -252,7 +253,7 @@
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">Refiners and grievance management <span style="color:#0AA7C4;">(score 0)</span></h6>
-                                <p>No information available</p>
+                                <p>{{$sra->desc_transparency_refiners}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample3">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -296,7 +297,7 @@
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">Publish Maps <span style="color:#0AA7C4;">(score 1)</span></h6>
-                                <p>No submisson and no RSPO membership</p>
+                                <p>{{$sra->desc_transparency_publish_maps}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample4">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -336,7 +337,7 @@
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading" style="color:red;">% of concessions that obtain legal status (HGU, SHM, MPOB) <span style="color:#0AA7C4;">(score 1)</span></h6>
-                                <p>No submisson and no RSPO membership</p>
+                                <p>{{$sra->desc_transparency_concessions}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample5">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -376,7 +377,7 @@
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">Website <span style="color:#0AA7C4;">(score 1)</span></h6>
-                                <p>No submisson and no RSPO membership</p>
+                                <p>{{$sra->desc_transparency_website}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample6">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -409,7 +410,7 @@
                         <div class="tab-pane fade" id="rspo-justified" role="tabpanel" aria-labelledby="rspo-tab">
                             <div class="alert alert-light alert-dismissible fade show" role="alert">
                                 <h6 class="alert-heading">Registration at the group level <span style="color:#0AA7C4;">(score 0)</span></h6>
-                                <p>Not RSPO Member</p>
+                                <p>{{$sra->desc_rspo_registration}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample7">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -449,7 +450,7 @@
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">RSPO certification progress since the first RSPO membership registration date <span style="color:#0AA7C4;">(score 0)</span></h6>
-                                <p>Not RSPO Member</p>
+                                <p>{{$sra->desc_rspo_certification_progress}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample11">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -489,7 +490,7 @@
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">% of plantations RSPO audited <span style="color:#0AA7C4;">(score 0)</span></h6>
-                                <p>Not RSPO Member</p>
+                                <p>{{$sra->desc_rspo_percent_plantations}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample12">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -520,7 +521,7 @@
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">RSPO Complaints <span style="color:#0AA7C4;">(score 0)</span></h6>
-                                <p>No RSPO Member</p>
+                                <p>{{$sra->desc_rspo_complaints}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample13">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -564,7 +565,7 @@
                         <div class="tab-pane fade" id="ndpe-justified" role="tabpanel" aria-labelledby="ndpe-tab">
                             <div class="alert alert-light alert-dismissible fade show" role="alert">
                                 <h6 class="alert-heading">NDPE Policy adopted <span style="color:#0AA7C4;">(score 0)</span></h6>
-                                <p>The company has some policies pertaining to sustainability and  but no explicit commitments to NDPE (bit.ly/3i8Trs9)</p>
+                                <p>{{$sra->desc_ndpe_policy_adopted}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample14">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -611,7 +612,7 @@
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">Social issues (reported or identified by EQ) <span style="color:#0AA7C4;">(score 3)</span></h6>
-                                <p>No issues found</p>
+                                <p>{{$sra->desc_ndpe_social_issues}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample15">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -646,8 +647,7 @@
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">Deforestation (ha) <span style="color:#0AA7C4;">(score 1)</span></h6>
-                                <p>2016-2018=1795</p>
-                                <p>2019=1733</p>
+                                <p>{{$sra->desc_ndpe_deforestation}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample16">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -688,8 +688,7 @@
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">Peatland development (including peatforest) <span style="color:#0AA7C4;">(score 3)</span></h6>
-                                <p>2016-2018=0</p>
-                                <p>2019=0</p>
+                                <<p>{{$sra->desc_ndpe_peatland_development}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample17">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -720,8 +719,7 @@
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">Burn areas (ha) <span style="color:#0AA7C4;">(score 3)</span></h6>
-                                <p>2016-2018=0</p>
-                                <p>2019=0</p>
+                                <p>{{$sra->desc_ndpe_burn_areas}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample18">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -752,7 +750,7 @@
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">Land protection and usage <span style="color:#0AA7C4;">(score 3)</span></h6>
-                                <p>No burning</p>
+                                <p>{{$sra->desc_ndpe_land_protection}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample19">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -792,7 +790,7 @@
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">Restoration in Peatland <span style="color:#0AA7C4;">(score 3)</span></h6>
-                                <p>No peatland conversion</p>
+                                <p>{{$sra->desc_ndpe_restoration_in_peatland}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample20">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -832,7 +830,7 @@
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading" style="color:red;">HCV/HCS Assessment <span style="color:#0AA7C4;">(score 3)</span></h6>
-                                <p>No peatland conversion</p>
+                                <p>{{$sra->desc_ndpe_hcvhcs_assessment}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample21">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -874,7 +872,8 @@
                             </div>
                         </div>
                     </div><!-- End Default Tabs -->
-
+                    @endforeach
+                    @endif
                     </div>
                 </div>
             </div>
@@ -990,139 +989,4 @@
 
     // end nav 
 </script>
-
-@section('mapsLeaflet')
-<script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">
-            @foreach($sras as $subs)
-                @if($loop->first)
-                    <h4 class="title mb-0"> {{ $subs->group_name }}</h4>
-                @endif
-            @endforeach</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-            <div class="card" style="width: 100%;">
-                <div class="card-body row">
-                @foreach($sras as $subs)
-                    <div class="col-6">
-                        <h6 class="card-title description">Group Name</h6>
-                        <p class="card-text">{{ $subs->group_name }}</p>
-                        <h6 class="card-title description">Official Group Name</h6>
-                        <p class="card-text">{{ $subs->official_group_name }}</p>
-                        <h6 class="card-title description">Group Status</h6>
-                        <p class="card-text">{{ $subs->group_status }}</p>
-                        <h6 class="card-title description">Stock Exchange Name</h6>
-                        <p class="card-text">{{ $subs->stock_exchange_name }}</p>
-                        <h6 class="card-title description">Controller</h6>
-                        <p class="card-text">{{ $subs->controller }}</p>
-                        <h6 class="card-title description">Business Sector</h6>
-                        <p class="card-text">{{ $subs->business_sector }}</p>
-                        <h6 class="card-title description">Main Product</h6>
-                        <p class="card-text">{{ $subs->main_product }}</p>
-                        <h6 class="card-title description">Commercial Operation Date</h6>
-                        <p class="card-text">{{ $subs->commercial_operation_date }}</p>
-                        <h6 class="card-title description">Country Registration</h6>
-                        <p class="card-text">{{ $subs->country_registration }}</p>
-                        <h6 class="card-title description">Business Address</h6>
-                        <p class="card-text">{{ $subs->business_address }}</p>
-                        <h6 class="card-title description">Country Operation</h6>
-                        <p class="card-text">{{ $subs->country_operation }}</p>
-                        <h6 class="card-title description">Shareholder</h6>
-                        <p class="card-text">{{ $subs->shareholder_name1 }} ({{ $subs->percent_of_share1 }})</p>
-                        <p class="card-text">{{ $subs->shareholder_name2 }} ({{ $subs->percent_of_share2 }})</p>
-                        <p class="card-text">{{ $subs->shareholder_name3 }} ({{ $subs->percent_of_share3 }})</p>
-                        <p class="card-text">{{ $subs->shareholder_name4 }} ({{ $subs->percent_of_share4 }})</p>
-                        <p class="card-text">{{ $subs->shareholder_name5 }} ({{ $subs->percent_of_share5 }})</p>
-                        <!-- <h6 class="card-title description">Group Structure</h6>
-                        <p class="card-text">{{ $subs->group_structure }}</p> -->
-                        <h6 class="card-title description">Management (Name and Position)</h6>
-                        <p class="card-text">{{ $subs->management_name_and_position }}</p>
-                        <h6 class="card-title description">Land Area Controlled</h6>
-                        <p class="card-text">{{ $subs->land_area_controlled }}</p>
-                    </div>
-                    <div class="col-6">
-                        
-                    <h6 class="card-title description">Total Planted</h6>
-                        <p class="card-text">{{ $subs->total_planted }}</p>
-                        <h6 class="card-title description">Total Smallholders</h6>
-                        <p class="card-text">{{ $subs->total_smallholders }}</p>
-                        <h6 class="card-title description">Total Land Designed HCV</h6>
-                        <p class="card-text">{{ $subs->total_land_designated_hcv }}</p>
-                        <h6 class="card-title description">Annual FFB Productivity</h6>
-                        <p class="card-text">{{ $subs->annual_ffb_productivity }}</p>
-                        <h6 class="card-title description">Annual Productivity by RSPO certified</h6>
-                        <p class="card-text">{{ $subs->annual_productivity_by_rspo_certified }}</p>
-                        <h6 class="card-title description">Annual CPO Productivity</h6>
-                        <p class="card-text">{{ $subs->annual_cpo_productivity }}</p>
-                        <h6 class="card-title description">Annual CPK Productivity</h6>
-                        <p class="card-text">{{ $subs->annual_cpk_productivity }}</p>
-                        <h6 class="card-title description">RSPO Member</h6>
-                        <p class="card-text">{{ $subs->rspo_member }}</p>
-                        <h6 class="card-title description">CGF Member</h6>
-                        <p class="card-text">{{ $subs->cgf_member }}</p>
-                        <h6 class="card-title description">ASD Member</h6>
-                        <p class="card-text">{{ $subs->asd_member }}</p>
-                        <h6 class="card-title description">GPNSR Member</h6>
-                        <p class="card-text">{{ $subs->gpnsr_member }}</p>
-                        <h6 class="card-title description">Others Mention</h6>
-                        <p class="card-text">{{ $subs->others_mention }}</p>
-                        <h6 class="card-title description">NDPE Policy</h6>
-                        <p class="card-text">{{ $subs->ndpe_policy }}</p>
-                        <h6 class="card-title description">NDPE Time Bound Plan Implementation</h6>
-                        <p class="card-text">{{ $subs->ndpe_time_bound_plan_implementation }}</p>
-                        <h6 class="card-title description">Sustainability Progress Report</h6>
-                        <p class="card-text">{{ $subs->sustainability_progress_report }}</p>
-                        <h6 class="card-title description">Supply Chain Traceability</h6>
-                        <p class="card-text">{{ $subs->supply_chain_traceability }}</p>
-                        <h6 class="card-title description">Grievance Mechanism</h6>
-                        <p class="card-text">{{ $subs->grievance_mechanism }}</p>
-                        <h6 class="card-title description">Recovery Plan</h6>
-                        <p class="card-text">{{ $subs->recovery_plan }}</p>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-
-      </div>
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-info">Save changes</button>
-      </div> -->
-    </div>
-  </div>
-</div>
-
-<script>
-        var pdfUrl = "{{ asset('file/notarial-act-sras/2021 07 Abdi Budi Mulia.pptx.pdf') }}";
-
-        function loadPdfViewer() {
-            var container = document.getElementById('pdf-viewer-container');
-            var canvas = document.getElementById('pdf-viewer');
-            var params = {
-                pdfUrl: pdfUrl
-            };
-
-            var pdfViewer = new PDFJS.PDFViewer({
-                container: container,
-                viewer: {
-                    container: container,
-                    canvas: canvas,
-                },
-            });
-            pdfViewer.init(params);
-        }
-
-        window.onload = function () {
-            loadPdfViewer();
-        };
-</script>
-
-@endsection
+<script src="{{asset('template/Medilab/assets/js/main.js')}}"></script>

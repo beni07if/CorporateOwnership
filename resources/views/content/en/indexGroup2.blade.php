@@ -100,7 +100,7 @@
                         </div>                        
                         
                         @foreach($groups->pluck('group_name')->unique() as $subs)
-                        <p class="small fst-italic">Company structure of {{$subs}}</p>
+                        {{-- <p class="small fst-italic">Company structure of {{$subs}}</p> --}}
                         @endforeach
 
                         <h5 class="card-title">Basic Information</h5>

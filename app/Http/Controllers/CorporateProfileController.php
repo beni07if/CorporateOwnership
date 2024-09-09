@@ -113,10 +113,10 @@ class CorporateProfileController extends Controller
     {
         $query = $request->input('group_name');
 
-    $sras = Sra::select('group_name', 'transparency', 'percent_transparency', 'rspo_compliance', 'percent_rspo_compliance', 'ndpe_compliance', 'percent_ndpe_compliance', 'total', 'percent_total')
+    $sras = Sra::distinct()
         ->where('group_name', 'LIKE', '%' . $query . '%')
-        ->distinct()
         ->paginate(10);
+
 
     // Extracting data for chart
     $labels = ['Transparency', 'RSPO Compliance', 'NDPE Compliance', 'Overall'];
@@ -139,59 +139,58 @@ class CorporateProfileController extends Controller
     }
 
     public function shareholderShow(Request $request)
-{
-    // Get the 'shareholder_name' and 'date_of_birth' from the request
-    $name = $request->input('shareholder_name');
-    $dob = $request->input('date_of_birth');
+    {
+        // Get the 'shareholder_name' and 'date_of_birth' from the request
+        $name = $request->input('shareholder_name');
+        $dob = $request->input('date_of_birth');
 
-    // Retrieve shareholder details from CompanyOwnership
-    $shareholderNames = CompanyOwnership::select(
-            'shareholder_name', 
-            'date_of_birth', 
-            'ic_passport_comp_number', 
-            'address', 
-            'position', 
-            'number_of_shares', 
-            'total_of_shares', 
-            'percentage_of_shares', 
-            'currency', 
-            'company_name', 
-            'data_source',
-            'data_update'
-        )
-        ->where('shareholder_name', $name) // Match the shareholder name
-        ->where('date_of_birth', $dob); // Match the date of birth
+        // Retrieve shareholder details from CompanyOwnership
+        $shareholderNames = CompanyOwnership::select(
+                'shareholder_name', 
+                'date_of_birth', 
+                'ic_passport_comp_number', 
+                'address', 
+                'position', 
+                'number_of_shares', 
+                'total_of_shares', 
+                'percentage_of_shares', 
+                'currency', 
+                'company_name', 
+                'data_source',
+                'data_update'
+            )
+            ->where('shareholder_name', $name) // Match the shareholder name
+            ->where('date_of_birth', $dob); // Match the date of birth
 
-    // Retrieve shareholder details from CompanyOwnershipSecond
-    $shareholderNamesSecond = CompanyOwnershipSecond::select(
-            'shareholder_name', 
-            'date_of_birth', 
-            'ic_passport_comp_number', 
-            'address', 
-            'position', 
-            'number_of_shares', 
-            'total_of_shares', 
-            'percentage_of_shares', 
-            'currency', 
-            'company_name', 
-            'data_source',
-            'data_update'
-        )
-        ->where('shareholder_name', $name) // Match the shareholder name
-        ->where('date_of_birth', $dob); // Match the date of birth
+        // Retrieve shareholder details from CompanyOwnershipSecond
+        $shareholderNamesSecond = CompanyOwnershipSecond::select(
+                'shareholder_name', 
+                'date_of_birth', 
+                'ic_passport_comp_number', 
+                'address', 
+                'position', 
+                'number_of_shares', 
+                'total_of_shares', 
+                'percentage_of_shares', 
+                'currency', 
+                'company_name', 
+                'data_source',
+                'data_update'
+            )
+            ->where('shareholder_name', $name) // Match the shareholder name
+            ->where('date_of_birth', $dob); // Match the date of birth
 
-    // Combine both queries using UNION and paginate the results
-    $allShareholderNames = $shareholderNames
-        ->union($shareholderNamesSecond)
-        ->paginate(10); // Paginate the combined results
+        // Combine both queries using UNION and paginate the results
+        $allShareholderNames = $shareholderNames
+            ->union($shareholderNamesSecond)
+            ->paginate(10); // Paginate the combined results
 
-    // Append the 'shareholder_name' and 'date_of_birth' to the pagination links
-    $allShareholderNames->appends(['shareholder_name' => $name, 'date_of_birth' => $dob]);
+        // Append the 'shareholder_name' and 'date_of_birth' to the pagination links
+        $allShareholderNames->appends(['shareholder_name' => $name, 'date_of_birth' => $dob]);
 
-    // Return the view with the paginated results
-    return view('content.en.indexShareholder', compact('allShareholderNames'));
-}
-
+        // Return the view with the paginated results
+        return view('content.en.indexShareholder', compact('allShareholderNames'));
+    }
 
     public function shareholderShowByCompany(Request $request)
     {
@@ -273,6 +272,7 @@ class CorporateProfileController extends Controller
         // }
 
         return view('content.en.indexOtherCompany', compact('otherCompanies', 'badanHukum'));
+        
     }
 
     public function subsidiaryShow(Request $request)
@@ -298,8 +298,10 @@ class CorporateProfileController extends Controller
         }
         // return view('maps', compact('coordinates', 'consol', 'subsidiary'));
 
-        $consolidations = DB::table('consolidations')->where('subsidiary', $subsidiaryName)->get();
-        // $companyOwnership = DB::table('company_ownerships')->where('company_name', $subsidiaryName)->get();
+        $consolidations = DB::table('consolidations')
+            ->where('subsidiary', $subsidiaryName)
+            ->get();
+
         $companyOwnership = DB::table('company_ownerships')
         ->where('company_name', $subsidiaryName)
         ->union(
@@ -308,17 +310,16 @@ class CorporateProfileController extends Controller
         )
         ->get();
 
+        foreach ($consolidations as $subs) {
+            $number = intval($subs->sizebyeq);
+            $formattedNumber = number_format($number);
 
-            foreach ($consolidations as $subs) {
-                $number = intval($subs->sizebyeq);
-                $formattedNumber = number_format($number);
-
-                if ($number) {
-                    $subs->sizebyeq = $formattedNumber;
-                } else {
-                    $subs->sizebyeq = '-';
-                }
+            if ($number) {
+                $subs->sizebyeq = $formattedNumber;
+            } else {
+                $subs->sizebyeq = '-';
             }
+        }
 
         // return view('content.en.indexSubsidiary', compact('consolidations', 'users', 'consul'));
 
@@ -466,11 +467,11 @@ class CorporateProfileController extends Controller
                 $group_narrative2 = ' group';
             }
 
-            $response ='';
+            $response = '';
 
             // narasi shareholder v1 with no link
             if (auth()->check() && ($user_level = auth()->user()->user_level)) {
-                if ($user_level === '1') {
+                if ($user_level === 'Premium') {
                     if (count($shareholder_data) > 1) {
 
                         if ($total_share > 50) {
@@ -518,13 +519,14 @@ class CorporateProfileController extends Controller
 
             // end narasi shareholder v1 with no link
         } else {
-            $response = '';
+            $response = 'Subsidiary not found..';
         }
 
         // $subsidiary = response()->json(['message' => $response]);
         $subsidiari = $response;
+        // return $subsidiary;
         // return view('content.en.test', compact('consolidations'));
-        return view('content.en.indexSubsidiary', compact('companyOwnership', 'subsidiaryName', 'consolidations', 'subsidiari', 'users', 'consul', 'consol', 'coordinates'));
+        return view('content.en.indexSubsidiary', compact('companyOwnership', 'consolidations', 'perusahaan', 'subsidiari', 'users', 'consul', 'consol', 'coordinates'));
         // return view('maps', compact('coordinates', 'consol', 'subsidiary'));
         // end versi chat 
     }

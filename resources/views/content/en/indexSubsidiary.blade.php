@@ -35,7 +35,7 @@
                             </div>
                         </div>                        
                         
-                        <p>{{$subsidiari}}</p>
+                        {{-- <p>{{$subsidiari}}</p> --}}
                         <h5 class="card-title">General Information</h5>
     
                         <div class="row">
@@ -52,13 +52,20 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Company Type</div>
-                                    @foreach($companyOwnership->pluck('company_type')->unique() as $company_type)
-                                        @if($company_type)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($company_type)) !!}</div>
+                                    <div class="col-lg-6 col-md-8">
+                                        @php
+                                            $addresses = $companyOwnership->pluck('company_type')->unique()->filter(); // Hanya ambil yang unik dan tidak null
+                                        @endphp
+                                
+                                        @if($addresses->isEmpty())
+                                            : -
                                         @else
-                                        <div class="col-lg-6 col-md-8">: -</div>
+                                            : 
+                                            @foreach($addresses as $company_type)
+                                                {!! nl2br(e($company_type)) !!} <br>
+                                            @endforeach
                                         @endif
-                                    @endforeach
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Group</div>
@@ -81,36 +88,57 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Nature of Business</div>
-                                    @foreach($companyOwnership->pluck('nature_of_business')->unique() as $nature_of_business)
-                                        @if($nature_of_business)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($nature_of_business)) !!}</div>
+                                    <div class="col-lg-6 col-md-8">
+                                        @php
+                                            $addresses = $companyOwnership->pluck('nature_of_business')->unique()->filter(); // Hanya ambil yang unik dan tidak null
+                                        @endphp
+                                
+                                        @if($addresses->isEmpty())
+                                            : -
                                         @else
-                                        <div class="col-lg-6 col-md-8">: -</div>
+                                            : 
+                                            @foreach($addresses as $nature_of_business)
+                                                {!! nl2br(e($nature_of_business)) !!} <br>
+                                            @endforeach
                                         @endif
-                                    @endforeach
+                                    </div>
                                 </div>
                             </div>
                         
                             <div class="col-lg-6 col-md-6">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Country of Business Address</div>
-                                    @foreach($companyOwnership->pluck('country_of_business_address')->unique() as $country_of_business_address)
-                                        @if($country_of_business_address)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($country_of_business_address)) !!}</div>
+                                    <div class="col-lg-6 col-md-8">
+                                        @php
+                                            $addresses = $companyOwnership->pluck('country_of_business_address')->unique()->filter(); // Hanya ambil yang unik dan tidak null
+                                        @endphp
+                                
+                                        @if($addresses->isEmpty())
+                                            : -
                                         @else
-                                        <div class="col-lg-6 col-md-8">: -</div>
+                                            : 
+                                            @foreach($addresses as $country_of_business_address)
+                                                {!! nl2br(e($country_of_business_address)) !!} <br>
+                                            @endforeach
                                         @endif
-                                    @endforeach
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Business Address</div>
-                                    @foreach($companyOwnership->pluck('business_address')->unique() as $business_address)
-                                        @if($business_address)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($business_address)) !!}</div>
+                                    <div class="col-lg-6 col-md-8">
+                                        @php
+                                            $addresses = $companyOwnership->pluck('business_address')->unique()->filter(); // Hanya ambil yang unik dan tidak null
+                                        @endphp
+                                
+                                        @if($addresses->isEmpty())
+                                            : -
                                         @else
-                                        <div class="col-lg-6 col-md-8">: -</div>
+                                            : 
+                                            @foreach($addresses as $business_address)
+                                                {!! nl2br(e($business_address)) !!} <br>
+                                            @endforeach
                                         @endif
-                                    @endforeach
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Principal Activity</div>
@@ -149,76 +177,125 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Incorporation Date</div>
-                                    @foreach($companyOwnership->pluck('incorporation_date')->unique() as $incorporation_date)
-                                        @if($incorporation_date)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($incorporation_date)) !!}</div>
+                                    <div class="col-lg-6 col-md-8">
+                                        @php
+                                            $addresses = $companyOwnership->pluck('incorporation_date')->unique()->filter(); // Hanya ambil yang unik dan tidak null
+                                        @endphp
+                                
+                                        @if($addresses->isEmpty())
+                                            : -
                                         @else
-                                        <div class="col-lg-6 col-md-8">: -</div>
+                                            : 
+                                            @foreach($addresses as $incorporation_date)
+                                                {!! nl2br(e($incorporation_date)) !!} <br>
+                                            @endforeach
                                         @endif
-                                    @endforeach
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Taxpayer Identification Number</div>
-                                    @foreach($companyOwnership->pluck('taxpayer_identification_number')->unique() as $taxpayer_identification_number)
-                                        @if($taxpayer_identification_number)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($taxpayer_identification_number)) !!}</div>
+                                    <div class="col-lg-6 col-md-8">
+                                        @php
+                                            $addresses = $companyOwnership->pluck('taxpayer_identification_number')->unique()->filter(); // Hanya ambil yang unik dan tidak null
+                                        @endphp
+                                
+                                        @if($addresses->isEmpty())
+                                            : -
                                         @else
-                                        <div class="col-lg-6 col-md-8">: -</div>
+                                            : 
+                                            @foreach($addresses as $taxpayer_identification_number)
+                                                {!! nl2br(e($taxpayer_identification_number)) !!} <br>
+                                            @endforeach
                                         @endif
-                                    @endforeach
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Company Number</div>
-                                    @foreach($companyOwnership->pluck('company_number')->unique() as $company_number)
-                                        @if($company_number)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($company_number)) !!}</div>
+                                    <div class="col-lg-6 col-md-8">
+                                        @php
+                                            $addresses = $companyOwnership->pluck('company_number')->unique()->filter(); // Hanya ambil yang unik dan tidak null
+                                        @endphp
+                                
+                                        @if($addresses->isEmpty())
+                                            : -
                                         @else
-                                        <div class="col-lg-6 col-md-8">: -</div>
+                                            : 
+                                            @foreach($addresses as $company_number)
+                                                {!! nl2br(e($company_number)) !!} <br>
+                                            @endforeach
                                         @endif
-                                    @endforeach
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Date Company Number</div>
-                                    @foreach($companyOwnership->pluck('date_company_number')->unique() as $date_company_number)
-                                        @if($date_company_number)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($date_company_number)) !!}</div>
+                                    <div class="col-lg-6 col-md-8">
+                                        @php
+                                            $addresses = $companyOwnership->pluck('date_company_number')->unique()->filter(); // Hanya ambil yang unik dan tidak null
+                                        @endphp
+                                
+                                        @if($addresses->isEmpty())
+                                            : -
                                         @else
-                                        <div class="col-lg-6 col-md-8">: -</div>
+                                            : 
+                                            @foreach($addresses as $date_company_number)
+                                                {!! nl2br(e($date_company_number)) !!} <br>
+                                            @endforeach
                                         @endif
-                                    @endforeach
+                                    </div>
                                 </div>
                             </div>
                         
                             <div class="col-lg-6 col-md-6">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Change Company Number</div>
-                                    @foreach($companyOwnership->pluck('change_company_number')->unique() as $change_company_number)
-                                        @if($change_company_number)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($change_company_number)) !!}</div>
+                                    <div class="col-lg-6 col-md-8">
+                                        @php
+                                            $addresses = $companyOwnership->pluck('change_company_number')->unique()->filter(); // Hanya ambil yang unik dan tidak null
+                                        @endphp
+                                
+                                        @if($addresses->isEmpty())
+                                            : -
                                         @else
-                                        <div class="col-lg-6 col-md-8">: -</div>
+                                            : 
+                                            @foreach($addresses as $change_company_number)
+                                                {!! nl2br(e($change_company_number)) !!} <br>
+                                            @endforeach
                                         @endif
-                                    @endforeach
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Date Change Company Number</div>
-                                    @foreach($companyOwnership->pluck('date_change_company_number')->unique() as $date_change_company_number)
-                                        @if($date_change_company_number)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($date_change_company_number)) !!}</div>
+                                    <div class="col-lg-6 col-md-8">
+                                        @php
+                                            $addresses = $companyOwnership->pluck('date_change_company_number')->unique()->filter(); // Hanya ambil yang unik dan tidak null
+                                        @endphp
+                                
+                                        @if($addresses->isEmpty())
+                                            : -
                                         @else
-                                        <div class="col-lg-6 col-md-8">: -</div>
+                                            : 
+                                            @foreach($addresses as $date_change_company_number)
+                                                {!! nl2br(e($date_change_company_number)) !!} <br>
+                                            @endforeach
                                         @endif
-                                    @endforeach
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Country of Registered Address</div>
-                                    @foreach($companyOwnership->pluck('country_of_registered_address')->unique() as $country_of_registered_address)
-                                        @if($country_of_registered_address)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($country_of_registered_address)) !!}</div>
+                                    <div class="col-lg-6 col-md-8">
+                                        @php
+                                            $addresses = $companyOwnership->pluck('country_of_registered_address')->unique()->filter(); // Hanya ambil yang unik dan tidak null
+                                        @endphp
+                                
+                                        @if($addresses->isEmpty())
+                                            : -
                                         @else
-                                        <div class="col-lg-6 col-md-8">: -</div>
+                                            : 
+                                            @foreach($addresses as $country_of_registered_address)
+                                                {!! nl2br(e($country_of_registered_address)) !!} <br>
+                                            @endforeach
                                         @endif
-                                    @endforeach
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Registered Address</div>
@@ -577,7 +654,7 @@
                                                             @endif
                                                         </div>
                                                         <div class="col-lg-6 col-md-8">
-                                                            <div>: {{ $estateDisplay }} ({{ $consolidation->sizebyeq }})
+                                                            <div>: {{ $estateDisplay }} ({{ $consolidation->sizebyeq }} ha)
                                                             </div>
                                                         </div>
                                                         @php

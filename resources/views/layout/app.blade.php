@@ -323,9 +323,9 @@
     <script src="{{ asset('template/NiceAdmin/assets/vendor/chart.js/chart.umd.js')}}"></script>
     <script src="{{ asset('template/Medilab/assets/vendor/purecounter/purecounter_vanilla.js')}}"></script>
 
-  <!-- Template Main JS File -->
-  {{-- <script src="assets/js/main.js"></script> --}}
-  <script src="{{ asset('template/Medilab/assets/js/main.js')}}"></script>
+    <!-- Template Main JS File -->
+    {{-- <script src="assets/js/main.js"></script> --}}
+    {{-- <script src="{{ asset('template/Medilab/assets/js/main.js')}}"></script> --}}
 
     <!-- Template Main JS File -->
     <!-- <script src="{{ asset('template/Medilab/assets/js/main/assets.js') }}"></script> -->
@@ -384,7 +384,7 @@
         });
     </script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/aos@next/dist/aos.js"></script>
@@ -400,9 +400,7 @@
     $(document).ready(function() {
         $('.dropdown-toggle').dropdown();
     });
-</script>
-
-
+</script> --}}
 
         <!-- tambahan -->
     <!-- Template Main JS File -->
