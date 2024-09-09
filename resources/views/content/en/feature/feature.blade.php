@@ -170,7 +170,7 @@
 
         <div class="section-title">
           <h2>CORPORATE PROFILE FEATURES</h2>
-          <p>You must be logged in to access the detail information of below features</p>
+          <p>This is a feature that displays detailed information from group, company, shareholder and SRA data.</p>
         </div>
 
         <div class="row">
