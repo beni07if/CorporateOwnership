@@ -60,52 +60,64 @@
     
         <!-- Pagination -->
         @if($companyOwnerships->hasPages())
-        <div class="pagination-wrapper d-flex flex-column align-items-center mt-4">
-            <nav aria-label="Page navigation" class="mt-3">
-                <ul class="pagination justify-content-center">
+        <div class="pagination-wrapper d-flex justify-content-center mt-4">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
                     <!-- Previous Page Link -->
                     @if ($companyOwnerships->onFirstPage())
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&laquo; Previous</a>
-                        </li>
+                        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
                     @else
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $companyOwnerships->previousPageUrl() }}" rel="prev">&laquo; Previous</a>
-                        </li>
+                        <li class="page-item"><a class="page-link" href="{{ $companyOwnerships->previousPageUrl() }}" rel="prev">&laquo;</a></li>
                     @endif
-    
+
                     <!-- Pagination Elements -->
-                    @for ($page = 1; $page <= $companyOwnerships->lastPage(); $page++)
-                        @if ($page == $companyOwnerships->currentPage())
-                            <li class="page-item active" aria-current="page">
-                                <span class="page-link">{{ $page }}</span>
-                            </li>
+                    @php
+                        $currentPage = $companyOwnerships->currentPage();
+                        $lastPage = $companyOwnerships->lastPage();
+                        $startPage = max(1, $currentPage - 2); // Start 2 pages before the current
+                        $endPage = min($lastPage, $currentPage + 2); // End 2 pages after the current
+                    @endphp
+
+                    <!-- First Page Link if current page is greater than 3 -->
+                    @if($startPage > 1)
+                        <li class="page-item"><a class="page-link" href="{{ $companyOwnerships->url(1) }}">1</a></li>
+                        @if($startPage > 2)
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                        @endif
+                    @endif
+
+                    <!-- Page Links -->
+                    @for ($page = $startPage; $page <= $endPage; $page++)
+                        @if ($page == $currentPage)
+                            <li class="page-item active"><span class="page-link">{{ $page }}</span></li>
                         @else
-                            <li class="page-item">
-                                <a class="page-link" href="{{ $companyOwnerships->url($page) }}">{{ $page }}</a>
-                            </li>
+                            <li class="page-item"><a class="page-link" href="{{ $companyOwnerships->url($page) }}">{{ $page }}</a></li>
                         @endif
                     @endfor
-    
+
+                    <!-- Last Page Link if current page is not close to the last -->
+                    @if($endPage < $lastPage)
+                        @if($endPage < $lastPage - 1)
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                        @endif
+                        <li class="page-item"><a class="page-link" href="{{ $companyOwnerships->url($lastPage) }}">{{ $lastPage }}</a></li>
+                    @endif
+
                     <!-- Next Page Link -->
                     @if ($companyOwnerships->hasMorePages())
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $companyOwnerships->nextPageUrl() }}" rel="next">Next &raquo;</a>
-                        </li>
+                        <li class="page-item"><a class="page-link" href="{{ $companyOwnerships->nextPageUrl() }}" rel="next">&raquo;</a></li>
                     @else
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next &raquo;</a>
-                        </li>
+                        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
                     @endif
                 </ul>
+                <!-- Information about the total results -->
+                {{-- <p class="mt-3">Showing {{ $companyOwnerships->firstItem() }} to {{ $companyOwnerships->lastItem() }} 
+                    of {{ $companyOwnerships->total() }} results
+                </p> --}}
             </nav>
-    
-            <!-- Information about the total results -->
-            <p class="mt-3">Showing {{ $companyOwnerships->firstItem() }} to {{ $companyOwnerships->lastItem() }} 
-                of {{ $companyOwnerships->total() }} results
-            </p>
         </div>
         @endif
+        
     </div>
     
 </section><!-- End Doctors Section -->
