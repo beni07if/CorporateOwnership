@@ -276,18 +276,26 @@ class CorporateProfileController extends Controller
         // return view('maps', compact('coordinates', 'consol', 'subsidiary'));
 
         $consolidations = DB::table('consolidations')->where('subsidiary', $subsidiaryName)->get();
-        $companyOwnership = DB::table('company_ownerships')->where('company_name', $subsidiaryName)->get();
+        // $companyOwnership = DB::table('company_ownerships')->where('company_name', $subsidiaryName)->get();
+        $companyOwnership = DB::table('company_ownerships')
+        ->where('company_name', $subsidiaryName)
+        ->union(
+            DB::table('company_ownership_seconds')
+                ->where('company_name', $subsidiaryName)
+        )
+        ->get();
 
-        foreach ($consolidations as $subs) {
-            $number = intval($subs->sizebyeq);
-            $formattedNumber = number_format($number);
 
-            if ($number) {
-                $subs->sizebyeq = $formattedNumber;
-            } else {
-                $subs->sizebyeq = '-';
+            foreach ($consolidations as $subs) {
+                $number = intval($subs->sizebyeq);
+                $formattedNumber = number_format($number);
+
+                if ($number) {
+                    $subs->sizebyeq = $formattedNumber;
+                } else {
+                    $subs->sizebyeq = '-';
+                }
             }
-        }
 
         // return view('content.en.indexSubsidiary', compact('consolidations', 'users', 'consul'));
 
