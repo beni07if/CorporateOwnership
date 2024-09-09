@@ -521,10 +521,23 @@
                                     @endforeach
                                 </div>
                             </div>
-                        </div>                      
+                        </div>        
                         
-                        <h5 class="card-title">Company Group Structure</h5>
-
+                        @if($groups->isNotEmpty())
+                        @foreach($groups as $subs)
+                        <form action="{{ route('group2ShowStructure') }}" target="_blank" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <h5 class="card-title">Group structure of 
+                                <input type="submit" name="group_name" value="{{ $subs->group_name }}" 
+                                    style="background-color: transparent; border: none; font-weight:bold; color: #106587; cursor: pointer; 
+                                            transition: color 0.3s;" 
+                                    onmouseover="this.style.color='#007BFF'" onmouseout="this.style.color='inherit'">
+                            </h5>
+                        </form>
+                        @endforeach
+                        @endif
+                        
+                        {{-- <h5 class="card-title">Company Group Structure</h5>
                         <div>
                             @foreach($groups->groupBy('group_name') as $subsidiaryGroup)
                                 @php
@@ -558,7 +571,7 @@
                                     <p>Please contact us to get company structure and other information of {{ $subsidiary }}.</p>
                                 @endif
                             @endforeach
-                        </div><br>
+                        </div><br> --}}
 
                         <h6 class="card-title"><i>*Data source by Inovasi Digital</i></h6>
     
