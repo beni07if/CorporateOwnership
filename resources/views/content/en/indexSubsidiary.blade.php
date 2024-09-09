@@ -778,9 +778,9 @@
                             </div>
                         </div>
                         
-                        <h5 class="card-title">Notarial Act</h5>
+                        <h5 class="card-title" hidden>Notarial Deed</h5>
 
-                        <div>
+                        <div hidden>
                             @foreach($consolidations->groupBy('subsidiary') as $subsidiaryGroup)
                             @php
                                 $subsidiary = $subsidiaryGroup->first()->subsidiary;
@@ -802,7 +802,7 @@
                             @if(!empty($filePath))
                             <iframe src="{{ $filePath }}" width="100%" height="600px"></iframe>
                             @else
-                            <p>Please contact Us to get notarial deed and other information of {{$subsidiaryGroup->first()->subsidiary}}.</p>
+                            <p>Please contact us to get notarial deed and other information of {{$subsidiaryGroup->first()->subsidiary}}.</p>
                             @endif
                             <!-- <p class="text-muted">{{ $subsidiary }}</p> -->
                             @endforeach
