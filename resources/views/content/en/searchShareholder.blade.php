@@ -49,7 +49,7 @@
                                     </h4>
                                 </form>
                             </div>
-                            <p class="mb-1 pl-2">Date of birth: {{ $subs->date_of_birth ?? '' }}</p> <!-- Add mb-1 to reduce the gap between lines -->
+                            {{-- <p class="mb-1 pl-2">Date of birth: {{ $subs->date_of_birth ?? '' }}</p> <!-- Add mb-1 to reduce the gap between lines --> --}}
                             <p class="mb-1 pl-2">Address: {{ $subs->address ?? '' }}</p> <!-- Add mb-1 to reduce the gap between lines -->
                             
                             <div style="display: inline;">
