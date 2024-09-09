@@ -85,7 +85,7 @@
     <section class="section profile">
         <div class="row">
             <div class="section-title">
-                @foreach($shareholderNames->pluck('shareholder_name')->unique() as $subs)
+                @foreach($allShareholderNames->pluck('shareholder_name')->unique() as $subs)
                 <h2 class="card-title">{{$subs}} Share Ownership</h2>
                 @endforeach
             </div>
@@ -99,11 +99,11 @@
             <div class="card">
               <div class="card-body pt-3">
                 <div class="tab-content pt-2">
-                    @if(count($shareholderNames)>0)
+                    @if(count($allShareholderNames)>0)
                     <div class="tab-pane fade show active profile-overview" id="profile-overview">
                         <div class="d-flex justify-content-between flex-wrap">
                             <div class="d-flex flex-wrap">
-                                @foreach($shareholderNames->pluck('shareholder_name')->unique() as $subs)
+                                @foreach($allShareholderNames->pluck('shareholder_name')->unique() as $subs)
                                     <h5 class="card-title me-3">{{ $subs }}</h5>
                                 @endforeach
                             </div>
@@ -111,7 +111,7 @@
                         
                         @php
                             // Get unique companies and their positions
-                            $positions = $shareholderNames->unique('company_name');
+                            $positions = $allShareholderNames->unique('company_name');
                             $positionCount = $positions->count();
                         @endphp
 
@@ -120,11 +120,11 @@
                               @php
                                   $displayedPositions = $positions->take(2); // Get up to two positions
                                   $remainingCount = $positionCount - $displayedPositions->count();
-                                  $isCompany = Str::startsWith($shareholderNames[0]->shareholder_name, 'PT'); // Check if shareholder_name starts with "PT"
+                                  $isCompany = Str::startsWith($allShareholderNames[0]->shareholder_name, 'PT'); // Check if shareholder_name starts with "PT"
                                   $hasPosition = $positions->pluck('position')->unique()->filter(fn($pos) => $pos !== '-')->isNotEmpty(); // Check if there are any valid positions
                               @endphp
 
-                              {{$shareholderNames[0]->shareholder_name }} 
+                              {{$allShareholderNames[0]->shareholder_name }} 
                               @if($isCompany)
                                   @if($hasPosition)
                                       is a company that owns shares in
@@ -188,7 +188,7 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="row">
                                     <div class="col-lg-5 col-md-4 label">Shareholder Name</div>
-                                    @foreach($shareholderNames->pluck('shareholder_name')->unique() as $shareholder_name)
+                                    @foreach($allShareholderNames->pluck('shareholder_name')->unique() as $shareholder_name)
                                         @if($shareholder_name)
                                         <div class="col-lg-7 col-md-8">: {!! nl2br(e($shareholder_name)) !!}</div>
                                         @else
@@ -201,7 +201,7 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="row">
                                     <div class="col-lg-5 col-md-4 label ">IC/Passport/Kitas/Company No./Indentification No.</div>
-                                    @foreach($shareholderNames->pluck('ic_pasport_comp_number')->unique() as $ic_pasport_comp_number)
+                                    @foreach($allShareholderNames->pluck('ic_pasport_comp_number')->unique() as $ic_pasport_comp_number)
                                         @if($ic_pasport_comp_number)
                                         <div class="col-lg-7 col-md-8">: {!! nl2br(e($ic_pasport_comp_number)) !!}</div>
                                         @else
@@ -214,7 +214,7 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="row">
                                     <div class="col-lg-5 col-md-4 label">Date Of Birth</div>
-                                    @foreach($shareholderNames->pluck('date_of_birth')->unique() as $date_of_birth)
+                                    @foreach($allShareholderNames->pluck('date_of_birth')->unique() as $date_of_birth)
                                         @if($date_of_birth)
                                         <div class="col-lg-7 col-md-8">: {!! nl2br(e($date_of_birth)) !!}</div>
                                         @else
@@ -228,7 +228,7 @@
                               <div class="row">
                                   <div class="col-lg-5 col-md-4 label">Address</div>
                                   <div class="col-lg-7 col-md-8">
-                                      @foreach($shareholderNames->pluck('address')->unique() as $address)
+                                      @foreach($allShareholderNames->pluck('address')->unique() as $address)
                                           @if($address)
                                           <div>: {!! nl2br(e($address)) !!}</div>
                                           @else
@@ -241,7 +241,7 @@
                           
                         </div> 
 
-                        @foreach($shareholderNames->pluck('shareholder_name')->unique() as $shareholder_name)
+                        @foreach($allShareholderNames->pluck('shareholder_name')->unique() as $shareholder_name)
                             @if($shareholder_name)
                             <h5 class="card-title">{!! nl2br(e($shareholder_name)) !!}'s share ownership in the Company</h5>
                             @else
@@ -252,7 +252,7 @@
                         {{-- <div class="row">
                             <form action="{{ route('subsidiaryShow') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                @foreach($shareholderNames->pluck('company_name')->unique() as $subs)
+                                @foreach($allShareholderNames->pluck('company_name')->unique() as $subs)
                                 <div>
                                     <input type="submit" name="subsidiary" value="{{ $subs }}" class="text-muted" style=" border: none;">
                                 </div>
@@ -261,7 +261,7 @@
                         </div>       --}}
                         
                         <div class="row">
-                          @foreach($shareholderNames->unique('company_name') as $shareholder)
+                          @foreach($allShareholderNames->unique('company_name') as $shareholder)
                               @if($shareholder->company_name)
                               <div class="col-lg-12 col-md-6 mb-4">
                                   <h5 class="card-title">
@@ -322,7 +322,7 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="row">
                                     <div class="col-lg-5 col-md-4 label ">Data Source</div>
-                                    @foreach($shareholderNames->pluck('data_source')->unique() as $data_sources)
+                                    @foreach($allShareholderNames->pluck('data_source')->unique() as $data_sources)
                                         @if($data_sources)
                                         <div class="col-lg-7 col-md-8">: {!! nl2br(e($data_sources)) !!}</div>
                                         @else
@@ -335,7 +335,7 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="row">
                                     <div class="col-lg-5 col-md-4 label ">Data Update</div>
-                                    @foreach($shareholderNames->pluck('data_update')->unique() as $data_update)
+                                    @foreach($allShareholderNames->pluck('data_update')->unique() as $data_update)
                                         @if($data_update)
                                         <div class="col-lg-7 col-md-8">: {!! nl2br(e($data_update)) !!}</div>
                                         @else
@@ -477,7 +477,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">
-        @foreach($shareholderNames as $subs)
+        @foreach($allShareholderNames as $subs)
             @if($loop->first)
                 <h4 class="title mb-0"> {{ $subs->group_name }}</h4>
             @endif
@@ -487,13 +487,13 @@
       <div class="modal-body">
             <div class="card" style="width: 100%;">
                 <div class="card-body row">
-                @foreach($shareholderNames as $subs)
+                @foreach($allShareholderNames as $subs)
                     <div class="col-6">
                         <h6 class="card-title description">Shareholder Name</h6>
                         <p class="card-text">{{ $subs->shareholder_name }}</p>
                         <h6 class="card-title description">Position</h6>
                         <p class="card-text">{{ $subs->position }}</p>
-                        // @foreach($shareholderNames as $subs)
+                        // @foreach($allShareholderNames as $subs)
                         //     <div>
                         //         @if($subs->shareholder_name1 !== 'Nil')
                         //             <p class="card-text">{{ $subs->shareholder_name1 }} ({{ $subs->percent_of_share1 }}) </p>

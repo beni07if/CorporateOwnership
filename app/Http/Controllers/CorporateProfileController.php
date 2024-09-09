@@ -10,6 +10,7 @@ use Some\Other\Namespace\Request as OtherRequest;
 use Illuminate\Http\Response;
 use App\Models\Consolidation;
 use App\Models\CompanyOwnership;
+use App\Models\CompanyOwnershipSecond;
 use App\Models\OtherCompany;
 use App\Models\Subsidiary;
 use App\Models\Group;
@@ -143,7 +144,7 @@ class CorporateProfileController extends Controller
     $name = $request->input('shareholder_name');
     $dob = $request->input('date_of_birth');
 
-    // Retrieve shareholder details based on 'shareholder_name' and 'date_of_birth'
+    // Retrieve shareholder details from CompanyOwnership
     $shareholderNames = CompanyOwnership::select(
             'shareholder_name', 
             'date_of_birth', 
@@ -159,14 +160,36 @@ class CorporateProfileController extends Controller
             'data_update'
         )
         ->where('shareholder_name', $name) // Match the shareholder name
-        ->where('date_of_birth', $dob) // Match the date of birth
-        ->paginate(10); // Paginate results
+        ->where('date_of_birth', $dob); // Match the date of birth
+
+    // Retrieve shareholder details from CompanyOwnershipSecond
+    $shareholderNamesSecond = CompanyOwnershipSecond::select(
+            'shareholder_name', 
+            'date_of_birth', 
+            'ic_passport_comp_number', 
+            'address', 
+            'position', 
+            'number_of_shares', 
+            'total_of_shares', 
+            'percentage_of_shares', 
+            'currency', 
+            'company_name', 
+            'data_source',
+            'data_update'
+        )
+        ->where('shareholder_name', $name) // Match the shareholder name
+        ->where('date_of_birth', $dob); // Match the date of birth
+
+    // Combine both queries using UNION and paginate the results
+    $allShareholderNames = $shareholderNames
+        ->union($shareholderNamesSecond)
+        ->paginate(10); // Paginate the combined results
 
     // Append the 'shareholder_name' and 'date_of_birth' to the pagination links
-    $shareholderNames->appends(['shareholder_name' => $name, 'date_of_birth' => $dob]);
+    $allShareholderNames->appends(['shareholder_name' => $name, 'date_of_birth' => $dob]);
 
-    // Return the view with the results
-    return view('content.en.indexShareholder', compact('shareholderNames'));
+    // Return the view with the paginated results
+    return view('content.en.indexShareholder', compact('allShareholderNames'));
 }
 
 

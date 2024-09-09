@@ -41,7 +41,7 @@
                                     <input type="hidden" name="shareholder_name" value="{{ $subs->shareholder_name }}">
                                     <input type="hidden" name="date_of_birth" value="{{ $subs->date_of_birth }}"> <!-- Add date of birth -->
                                     <h4 class="card-title mb-0 pt-2"> <!-- mb-0 to remove extra margin -->
-                                        <input type="hidden" name="subsidiary" value="{{ $subs->shareholder_name }}">
+                                        {{-- <input type="hidden" name="subsidiary" value="{{ $subs->shareholder_name }}"> --}}
                                         <button type="submit" style="background: none; border: none; font-weight:bold; color: #106587; font-size:17px; color: #117b99; cursor: pointer; font-weight: bold; transition: color 0.3s;" 
                                                 onmouseover="this.style.color='#007BFF';" onmouseout="this.style.color='#012970';">
                                             {!! nl2br(e($subs->shareholder_name)) !!}

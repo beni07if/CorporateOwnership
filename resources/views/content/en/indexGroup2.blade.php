@@ -119,9 +119,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-5 col-md-4 label">Official Group Name</div>
-                                    @foreach($groups->pluck('group_official_name')->unique() as $group_official_name)
-                                        @if($group_official_name)
-                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($group_official_name)) !!}</div>
+                                    @foreach($groups->pluck('official_group_name')->unique() as $official_group_name)
+                                        @if($official_group_name)
+                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($official_group_name)) !!}</div>
                                         @else
                                         <div class="col-lg-7 col-md-8">: -</div>
                                         @endif
@@ -139,9 +139,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-5 col-md-4 label">Listing Status</div>
-                                    @foreach($groups->pluck('listing_status')->unique() as $listing_status)
-                                        @if($listing_status)
-                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($listing_status)) !!}</div>
+                                    @foreach($groups->pluck('stock_exchange_name')->unique() as $stock_exchange_name)
+                                        @if($stock_exchange_name)
+                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($stock_exchange_name)) !!}</div>
                                         @else
                                         <div class="col-lg-7 col-md-8">: -</div>
                                         @endif
@@ -326,9 +326,9 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-5 col-md-4 label">Total Land Designated and Managed as HCV/HCS Areas</div>
-                                @foreach($groups->pluck('total_land_designed_hcv')->unique() as $total_land_designed_hcv)
-                                    @if($total_land_designed_hcv)
-                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($total_land_designed_hcv)) !!}</div>
+                                @foreach($groups->pluck('total_land_designated_hcv')->unique() as $total_land_designated_hcv)
+                                    @if($total_land_designated_hcv)
+                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($total_land_designated_hcv)) !!}</div>
                                     @else
                                     <div class="col-lg-7 col-md-8">: -</div>
                                     @endif
@@ -342,10 +342,10 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
                             <div class="row">
-                                <div class="col-lg-5 col-md-4 label">Annual FFB Productivity</div>
-                                @foreach($groups->pluck('annual_ffb_productivity')->unique() as $annual_ffb_productivity)
-                                    @if($annual_ffb_productivity)
-                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($annual_ffb_productivity)) !!}</div>
+                                <div class="col-lg-5 col-md-4 label">Annual Productivity by RSPO Certified</div>
+                                @foreach($groups->pluck('annual_productivity_by_rspo_certified')->unique() as $annual_productivity_by_rspo_certified)
+                                    @if($annual_productivity_by_rspo_certified)
+                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($annual_productivity_by_rspo_certified)) !!}</div>
                                     @else
                                     <div class="col-lg-7 col-md-8">: -</div>
                                     @endif
@@ -365,9 +365,9 @@
                             <div class="col-lg-6 col-md-6">
                             <div class="row">
                                 <div class="col-lg-5 col-md-4 label">Annual FFB Productivity by RSPO Certified</div>
-                                @foreach($groups->pluck('unnual_productivity_by_rspo_certified')->unique() as $unnual_productivity_by_rspo_certified)
-                                    @if($unnual_productivity_by_rspo_certified)
-                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($unnual_productivity_by_rspo_certified)) !!}</div>
+                                @foreach($groups->pluck('annual_productivity_by_rspo_certified')->unique() as $annual_productivity_by_rspo_certified)
+                                    @if($annual_productivity_by_rspo_certified)
+                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($annual_productivity_by_rspo_certified)) !!}</div>
                                     @else
                                     <div class="col-lg-7 col-md-8">: -</div>
                                     @endif
@@ -435,9 +435,9 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-5 col-md-4 label">Other Membership</div>
-                                @foreach($groups->pluck('ohters_mention')->unique() as $ohters_mention)
-                                    @if($ohters_mention)
-                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($ohters_mention)) !!}</div>
+                                @foreach($groups->pluck('others_mention')->unique() as $others_mention)
+                                    @if($others_mention)
+                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($others_mention)) !!}</div>
                                     @else
                                     <div class="col-lg-7 col-md-8">: -</div>
                                     @endif
@@ -450,14 +450,14 @@
     
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-lg-5 col-md-4 label">Certification</div>
                                     <div class="col-lg-7 col-md-8">: -</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-5 col-md-4 label">Link Certification</div>
                                     <div class="col-lg-7 col-md-8">: -</div>
-                                </div>
+                                </div> --}}
                                 <div class="row">
                                     <div class="col-lg-5 col-md-4 label">NDPE Policy</div>
                                     @foreach($groups->pluck('ndpe_policy')->unique() as $ndpe_policy)
