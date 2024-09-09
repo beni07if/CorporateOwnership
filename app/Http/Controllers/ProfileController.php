@@ -11,6 +11,7 @@ use Illuminate\View\View;
 use App\Models\Group;
 use App\Models\Consolidation;
 use App\Models\CompanyOwnership;
+use App\Models\CompanyOwnershipSecond;
 use App\Models\Landingpage;
 use App\Models\OtherCompany;
 use App\Models\Policy;
@@ -117,76 +118,206 @@ class ProfileController extends Controller
     //     }
     // }
 
+    // public function searchFunctionSubsidiary(Request $request)
+    // {
+    //     // Ambil input dari request
+    //     $query = $request->input('subsidiary');
+
+    //     // Subquery untuk mendapatkan nama perusahaan unik
+    //     $uniqueCompanyNames = CompanyOwnership::select('company_name')
+    //         ->distinct()
+    //         ->when($query, function ($q) use ($query) {
+    //             return $q->where('company_name', 'LIKE', '%' . $query . '%');
+    //         })
+    //         ->pluck('company_name'); // Dapatkan hanya nama perusahaan sebagai array
+
+    //     // Query utama dengan join untuk mendapatkan detail berdasarkan nama perusahaan unik
+    //     $companyOwnerships = CompanyOwnership::select(
+    //         'company_ownerships.company_name',
+    //         'consolidations.subsidiary',
+    //         'consolidations.country_operation',
+    //         'consolidations.province',
+    //         'consolidations.regency',
+    //         'company_ownerships.country_of_business_address',
+    //         'company_ownerships.business_address',
+    //         'company_ownerships.registered_address'
+    //     )
+    //     ->leftJoin('consolidations', 'company_ownerships.company_name', '=', 'consolidations.subsidiary')
+    //     ->whereIn('company_ownerships.company_name', $uniqueCompanyNames)
+    //     ->groupBy(
+    //         'company_ownerships.company_name',
+    //         'consolidations.subsidiary',
+    //         'consolidations.country_operation',
+    //         'consolidations.province',
+    //         'consolidations.regency',
+    //         'company_ownerships.country_of_business_address',
+    //         'company_ownerships.business_address',
+    //         'company_ownerships.registered_address'
+    //     )
+    //     ->orderBy('company_ownerships.company_name')
+    //     ->paginate(10);
+
+    //     // Append parameter pencarian ke link pagination
+    //     $companyOwnerships->appends(['subsidiary' => $query]);
+
+    //     // Kembalikan ke view dengan nama variabel yang benar
+    //     return view('content.en.searchSubsidiary', [
+    //         'companyOwnerships' => $companyOwnerships,
+    //         'query' => $query
+    //     ]);
+    // }
+
     public function searchFunctionSubsidiary(Request $request)
-{
-    // Ambil input dari request
-    $query = $request->input('subsidiary');
+    {
+        // Ambil input dari request
+        $query = $request->input('subsidiary');
 
-    // Subquery untuk mendapatkan nama perusahaan unik
-    $uniqueCompanyNames = CompanyOwnership::select('company_name')
-        ->distinct()
-        ->when($query, function ($q) use ($query) {
-            return $q->where('company_name', 'LIKE', '%' . $query . '%');
-        })
-        ->pluck('company_name'); // Dapatkan hanya nama perusahaan sebagai array
+        // Subquery untuk mendapatkan nama perusahaan unik dari CompanyOwnership
+        $uniqueCompanyNames = CompanyOwnership::select('company_name')
+            ->distinct()
+            ->when($query, function ($q) use ($query) {
+                return $q->where('company_name', 'LIKE', '%' . $query . '%');
+            })
+            ->pluck('company_name');
 
-    // Query utama dengan join untuk mendapatkan detail berdasarkan nama perusahaan unik
-    $companyOwnerships = CompanyOwnership::select(
-        'company_ownerships.company_name',
-        'consolidations.subsidiary',
-        'consolidations.country_operation',
-        'consolidations.province',
-        'consolidations.regency',
-        'company_ownerships.country_of_business_address',
-        'company_ownerships.business_address',
-        'company_ownerships.registered_address'
-    )
-    ->leftJoin('consolidations', 'company_ownerships.company_name', '=', 'consolidations.subsidiary')
-    ->whereIn('company_ownerships.company_name', $uniqueCompanyNames)
-    ->groupBy(
-        'company_ownerships.company_name',
-        'consolidations.subsidiary',
-        'consolidations.country_operation',
-        'consolidations.province',
-        'consolidations.regency',
-        'company_ownerships.country_of_business_address',
-        'company_ownerships.business_address',
-        'company_ownerships.registered_address'
-    )
-    ->orderBy('company_ownerships.company_name')
-    ->paginate(10);
+        // Jika tidak ada hasil dari CompanyOwnership, cek di CompanyOwnershipSecond
+        if ($uniqueCompanyNames->isEmpty()) {
+            $uniqueCompanyNames = CompanyOwnershipSecond::select('company_name')
+                ->distinct()
+                ->when($query, function ($q) use ($query) {
+                    return $q->where('company_name', 'LIKE', '%' . $query . '%');
+                })
+                ->pluck('company_name');
+        }
 
-    // Append parameter pencarian ke link pagination
-    $companyOwnerships->appends(['subsidiary' => $query]);
+        // Ambil data dari tabel CompanyOwnership
+        $companyOwnerships = DB::table('company_ownerships')
+            ->select(
+                'company_ownerships.company_name',
+                'consolidations.subsidiary',
+                'consolidations.country_operation',
+                'consolidations.province',
+                'consolidations.regency',
+                'company_ownerships.country_of_business_address',
+                'company_ownerships.business_address',
+                'company_ownerships.registered_address'
+            )
+            ->leftJoin('consolidations', 'company_ownerships.company_name', '=', 'consolidations.subsidiary')
+            ->whereIn('company_ownerships.company_name', $uniqueCompanyNames)
+            ->groupBy(
+                'company_ownerships.company_name',
+                'consolidations.subsidiary',
+                'consolidations.country_operation',
+                'consolidations.province',
+                'consolidations.regency',
+                'company_ownerships.country_of_business_address',
+                'company_ownerships.business_address',
+                'company_ownerships.registered_address'
+            );
 
-    // Kembalikan ke view dengan nama variabel yang benar
-    return view('content.en.searchSubsidiary', [
-        'companyOwnerships' => $companyOwnerships,
-        'query' => $query
-    ]);
-}
+        // Ambil data dari tabel CompanyOwnershipSecond
+        $companyOwnershipsSecond = DB::table('company_ownership_seconds')
+            ->select(
+                'company_ownership_seconds.company_name',
+                'consolidations.subsidiary',
+                'consolidations.country_operation',
+                'consolidations.province',
+                'consolidations.regency',
+                'company_ownership_seconds.country_of_business_address',
+                'company_ownership_seconds.business_address',
+                'company_ownership_seconds.registered_address'
+            )
+            ->leftJoin('consolidations', 'company_ownership_seconds.company_name', '=', 'consolidations.subsidiary')
+            ->whereIn('company_ownership_seconds.company_name', $uniqueCompanyNames)
+            ->groupBy(
+                'company_ownership_seconds.company_name',
+                'consolidations.subsidiary',
+                'consolidations.country_operation',
+                'consolidations.province',
+                'consolidations.regency',
+                'company_ownership_seconds.country_of_business_address',
+                'company_ownership_seconds.business_address',
+                'company_ownership_seconds.registered_address'
+            );
+
+        // Gabungkan kedua query dengan UNION
+        $allCompanyOwnerships = $companyOwnerships
+            ->union($companyOwnershipsSecond)
+            ->orderBy('company_name')
+            ->paginate(10);
+
+        // Append parameter pencarian ke link pagination
+        $allCompanyOwnerships->appends(['subsidiary' => $query]);
+
+        // Kembalikan ke view dengan data yang digabungkan
+        return view('content.en.searchSubsidiary', [
+            'companyOwnerships' => $allCompanyOwnerships,
+            'query' => $query
+        ]);
+    }
+
+    // public function searchFunctionShareholder(Request $request)
+    // {
+    //     $shareholder = $request->input('shareholder_name');
+        
+    //     $groups = DB::table('groups')
+    //     ->where('shareholder_name1', $shareholder)
+    //     ->orWhere('shareholder_name2', $shareholder)
+    //     ->orWhere('shareholder_name3', $shareholder)
+    //     ->orWhere('shareholder_name4', $shareholder)
+    //     ->orWhere('shareholder_name5', $shareholder)
+    //     ->get();  
+
+    //     $shareholderNames = CompanyOwnership::select('id','shareholder_name', 'company_name', 'date_of_birth', 'ic_passport_comp_number', 'address')
+    //         ->where('shareholder_name', 'LIKE', '%' . $shareholder . '%')
+    //         ->paginate(10);
+
+    //     // Append the search shareholder_name to the pagination links
+    //     $shareholderNames->appends(['shareholder_name' => $shareholder]);
+
+    //     return view('content.en.searchShareholder', compact('shareholderNames', 'shareholder', 'groups'));
+    // }
 
     public function searchFunctionShareholder(Request $request)
     {
         $shareholder = $request->input('shareholder_name');
-        
-        $groups = DB::table('groups')
-        ->where('shareholder_name1', $shareholder)
-        ->orWhere('shareholder_name2', $shareholder)
-        ->orWhere('shareholder_name3', $shareholder)
-        ->orWhere('shareholder_name4', $shareholder)
-        ->orWhere('shareholder_name5', $shareholder)
-        ->get();  
 
-        $shareholderNames = CompanyOwnership::select('id','shareholder_name', 'company_name', 'date_of_birth', 'ic_passport_comp_number', 'address')
-            ->where('shareholder_name', 'LIKE', '%' . $shareholder . '%')
+        // Ambil data dari tabel groups
+        $groups = DB::table('groups')
+            ->where('shareholder_name1', $shareholder)
+            ->orWhere('shareholder_name2', $shareholder)
+            ->orWhere('shareholder_name3', $shareholder)
+            ->orWhere('shareholder_name4', $shareholder)
+            ->orWhere('shareholder_name5', $shareholder)
+            ->get();
+
+        // Ambil data dari tabel CompanyOwnership
+        $companyOwnerships = DB::table('company_ownerships')
+            ->select('id', 'shareholder_name', 'company_name', 'date_of_birth', 'ic_passport_comp_number', 'address')
+            ->where('shareholder_name', 'LIKE', '%' . $shareholder . '%');
+
+        // Ambil data dari tabel CompanyOwnershipSecond
+        $companyOwnershipsSecond = DB::table('company_ownership_seconds')
+            ->select('id', 'shareholder_name', 'company_name', 'date_of_birth', 'ic_passport_comp_number', 'address')
+            ->where('shareholder_name', 'LIKE', '%' . $shareholder . '%');
+
+        // Gabungkan kedua query dengan UNION
+        $allShareholderNames = $companyOwnerships
+            ->union($companyOwnershipsSecond)
+            ->orderBy('shareholder_name')
             ->paginate(10);
 
-        // Append the search shareholder_name to the pagination links
-        $shareholderNames->appends(['shareholder_name' => $shareholder]);
+        // Append parameter pencarian ke link pagination
+        $allShareholderNames->appends(['shareholder_name' => $shareholder]);
 
-        return view('content.en.searchShareholder', compact('shareholderNames', 'shareholder', 'groups'));
+        // Kembalikan ke view dengan data yang digabungkan
+        return view('content.en.searchShareholder', [
+            'shareholderNames' => $allShareholderNames,
+            'shareholder' => $shareholder,
+            'groups' => $groups
+        ]);
     }
+
 
     public function searchFunctionSRA(Request $request)
     {
