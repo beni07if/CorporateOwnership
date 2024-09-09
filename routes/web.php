@@ -76,13 +76,13 @@ Route::get('/lpd', [ProfileController::class, 'lpd'])->name('lpd');
 Route::post('/corporate-profile-subsidiary-show', [CorporateProfileController::class, 'subsidiaryShow'])->name('subsidiaryShow');
 Route::post('/corporate-profile-other-company-show', [CorporateProfileController::class, 'otherCompanyShow'])->name('otherCompanyShow');
 Route::post('/corporate-profile-group-show', [CorporateProfileController::class, 'groupShow'])->name('groupShow');
-Route::post('/corporate-profile-group2-show', [GroupController::class, 'group2Show'])->name('group2Show');
+// Route::post('/corporate-profile-group2-show', [GroupController::class, 'group2Show'])->name('group2Show');
+Route::match(['get', 'post'], '/corporate-profile-group2-show', [GroupController::class, 'group2Show'])->name('group2Show');
 Route::post('/corporate-profile-sra-show', [CorporateProfileController::class, 'sraShow'])->name('sraShow');
 // Route::post('/corporate-profile-shareholder-show', [CorporateProfileController::class, 'shareholderShow'])->name('shareholderShow');
 // routes/web.php
 Route::match(['get', 'post'], '/corporate-profile-shareholder-show', [CorporateProfileController::class, 'shareholderShow'])->name('shareholderShow');
 Route::match(['get', 'post'], '/corporate-profile-shareholder-shows', [CorporateProfileController::class, 'shareholderShowByCompany'])->name('shareholderShowByCompany');
-
 
 Route::get('/search-groups', [ProfileController::class, 'searchFunctionGroup'])->name('searchFunctionGroup');
 Route::get('/search-quick-group', [FeatureController::class, 'searchFunctionQuickGroup'])->name('searchFunctionQuickGroup');
