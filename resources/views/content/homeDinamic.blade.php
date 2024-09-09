@@ -154,10 +154,10 @@
                 <div class="col-lg-3">
                     <ul class="nav nav-tabs flex-column">
                         <li class="nav-item">
-                            <a class="nav-link " data-bs-toggle="tab" href="#tabs-search-groups">Group</a>
+                            <a class="nav-link active show" data-bs-toggle="tab" href="#tabs-search-groups">Group</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active show" data-bs-toggle="tab" href="#tabs-search-subsidiaries">Company</a>
+                            <a class="nav-link " data-bs-toggle="tab" href="#tabs-search-subsidiaries">Company</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#tabs-search-shareholders">Shareholder</a>
@@ -170,10 +170,10 @@
                 
                 <div class="col-lg-9 mt-4 mt-lg-0">
                     <div class="tab-content">
-                        <div class="tab-pane " id="tabs-search-groups">
+                        <div class="tab-pane active show" id="tabs-search-groups">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Group</h3>
+                                    <h3>Group Company</h3>
                                     <!-- <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the subsidiary companies. The information about Group Company can be used to identify the subsidiary under.</p> -->
                                     
                                     <div class="container">
@@ -188,7 +188,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane active show" id="tabs-search-subsidiaries">
+                        <div class="tab-pane " id="tabs-search-subsidiaries">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
                                     <h3>Company</h3>
