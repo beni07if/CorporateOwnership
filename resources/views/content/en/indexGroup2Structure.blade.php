@@ -61,7 +61,7 @@
                                 @if($googleDocsUrl)
                                     <iframe src="{{ $googleDocsUrl }}" style="width: 100%; height: 600px;" frameborder="0" allowfullscreen></iframe>
                                 @else
-                                    <p>Please contact us to get company structure and other information of {{ $subsidiary }}.</p>
+                                <p>Please contact us at <a href="mailto:helpdesk@earthqualizer.org">helpdesk@earthqualizer.org</a> to get company structure and other information of {{ $subsidiary }}.</p>
                                 @endif
                             @endforeach
                         </div><br>

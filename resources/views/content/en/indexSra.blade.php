@@ -22,12 +22,23 @@
                     <li><a href="#" style="color:#4682B4;">Subsidiary</a></li>
                 </ol> -->
             </div>
+            
             @foreach($sras->pluck('group_name')->unique() as $subs)
             <div class="section-title">
                 <h2>SRA Summary of {{$subs}}</h2>
             </div>
             {{-- <h4 scope="col" class="card-title description">SRA Summary of {{$subs}}</h4> --}}
             @endforeach
+            @if($sras->isNotEmpty())
+            @foreach($sras as $subs)
+            <div class="row pb-3">
+                <form action="{{ route('searchFunctionSRA') }}" method="GET" class="d-flex ms-auto" style="width: 33%;">
+                    <input type="text" class="form-control me-2" name="group_name" placeholder="Search for other group company">
+                    <button type="submit" class="btn btn-info">Search</button>
+                </form>
+            </div>
+            @endforeach
+            @endif
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card">
