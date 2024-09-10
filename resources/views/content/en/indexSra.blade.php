@@ -363,23 +363,23 @@
                                                     <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-3 col-md-4 label">3 = High</div>
+                                                    <div class="col-lg-3 col-md-4 label">2 = 70% to 100%</div>
                                                     <div class="col-lg-9 col-md-8">
-                                                        <p>Full submission</p>
+                                                        <p></p>
                                                     </div>
                                                 </div>
                                                 <hr>
                                                 <div class="row">
-                                                    <div class="col-lg-3 col-md-4 label">2 = Medium</div>
+                                                    <div class="col-lg-3 col-md-4 label">1 = 30% to < 70%</div>
                                                     <div class="col-lg-9 col-md-8">
-                                                        <p>Partial submission </p>
+                                                        <p></p>
                                                     </div>
                                                 </div>
                                                 <hr>
                                                 <div class="row">
-                                                    <div class="col-lg-3 col-md-4 label">1 = Low</div>
+                                                    <div class="col-lg-3 col-md-4 label">0 = less then 30%</div>
                                                     <div class="col-lg-9 col-md-8">
-                                                        <p>No submisson and no RSPO membership</p>
+                                                        <p></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -699,7 +699,7 @@
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
                                 <h6 class="alert-heading">Peatland development (including peatforest) <span style="color:#0AA7C4;">(score {{$sra->score_ndpe_peatland_development}})</span></h6>
-                                <<p>{{$sra->desc_ndpe_peatland_development}}</p>
+                                <p>{{$sra->desc_ndpe_peatland_development}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample17">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -858,21 +858,21 @@
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label">3 = High</div>
                                                     <div class="col-lg-9 col-md-8">
-                                                        <p>No peatland conversion</p>
+                                                        <p>Have commitment and completed full assessment for all concessions</p>
                                                     </div>
                                                 </div>
                                                 <hr>
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label">2 = Medium</div>
                                                     <div class="col-lg-9 col-md-8">
-                                                        <p>Peatland conversion and restoration have been detected</p>
+                                                        <p>Have commitment and/or assessment, but not complete for all concessions</p>
                                                     </div>
                                                 </div>
                                                 <hr>
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label">1 = Low</div>
                                                     <div class="col-lg-9 col-md-8">
-                                                        <p>Peatland conversion detected but no restoration measures have been taken</p>
+                                                        <p>No commitment and assessment has been made</p>
                                                     </div>
                                                 </div>
                                             </div>
