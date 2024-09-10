@@ -840,8 +840,8 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading" style="color:red;">HCV/HCS Assessment <span style="color:#0AA7C4;">(score {{$sra->score_ndpe_hcvhcs_assessment}})</span></h6>
-                                <p>{{$sra->desc_ndpe_hcvhcs_assessment}}</p>
+                                <h6 class="alert-heading" style="color:red;">HCV/HCS Assessment <span style="color:#0AA7C4;">(score {{$sra->score_hcvhcs_assessment}})</span></h6>
+                                <p>{{$sra->desc_hcvhcs_assessment}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample21">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
