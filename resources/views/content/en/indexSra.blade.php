@@ -173,7 +173,7 @@
                     <div class="tab-content pt-2" id="myTabjustifiedContent">
                         <div class="tab-pane fade show active profile-overview" id="transparency-justified" role="tabpanel" aria-labelledby="transparency-tab">
                             <div class="alert alert-light alert-dismissible fade show" role="alert">
-                                <h6 class="alert-heading">Upstream transparency <span style="color:#0AA7C4;">(score 0)</span></h6>
+                                <h6 class="alert-heading">Upstream transparency <span style="color:#0AA7C4;">(score {{$sra->score_transparency_upstream}})</span></h6>
                                 <p>{{$sra->desc_transparency_upstream}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
@@ -215,7 +215,7 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Sustainability and Policy Implementation report <span style="color:#0AA7C4;">(score 0)</span></h6>
+                                <h6 class="alert-heading">Sustainability and Policy Implementation report <span style="color:#0AA7C4;">(score {{$sra->score_transparency_sustainability}})</span></h6>
                                 <p>{{$sra->desc_transparency_sustainability}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample2">
                                     <div class="accordion-item">
@@ -252,7 +252,7 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Refiners and grievance management <span style="color:#0AA7C4;">(score 0)</span></h6>
+                                <h6 class="alert-heading">Refiners and grievance management <span style="color:#0AA7C4;">(score {{$sra->score_transparency_refiners}})</span></h6>
                                 <p>{{$sra->desc_transparency_refiners}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample3">
                                     <div class="accordion-item">
@@ -296,7 +296,7 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Publish Maps <span style="color:#0AA7C4;">(score 1)</span></h6>
+                                <h6 class="alert-heading">Publish Maps <span style="color:#0AA7C4;">(score {{$sra->score_transparency_publish_maps}})</span></h6>
                                 <p>{{$sra->desc_transparency_publish_maps}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample4">
                                     <div class="accordion-item">
@@ -336,7 +336,7 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading" style="color:red;">% of concessions that obtain legal status (HGU, SHM, MPOB) <span style="color:#0AA7C4;">(score 1)</span></h6>
+                                <h6 class="alert-heading" style="color:red;">% of concessions that obtain legal status (HGU, SHM, MPOB) <span style="color:#0AA7C4;">(score {{$sra->score_transparency_concessions}})</span></h6>
                                 <p>{{$sra->desc_transparency_concessions}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample5">
                                     <div class="accordion-item">
@@ -376,7 +376,7 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Website <span style="color:#0AA7C4;">(score 1)</span></h6>
+                                <h6 class="alert-heading">Website <span style="color:#0AA7C4;">(score {{$sra->score_transparency_website}})</span></h6>
                                 <p>{{$sra->desc_transparency_website}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample6">
                                     <div class="accordion-item">
@@ -409,7 +409,7 @@
                         </div>
                         <div class="tab-pane fade" id="rspo-justified" role="tabpanel" aria-labelledby="rspo-tab">
                             <div class="alert alert-light alert-dismissible fade show" role="alert">
-                                <h6 class="alert-heading">Registration at the group level <span style="color:#0AA7C4;">(score 0)</span></h6>
+                                <h6 class="alert-heading">Registration at the group level <span style="color:#0AA7C4;">(score {{$sra->score_rspo_registration}})</span></h6>
                                 <p>{{$sra->desc_rspo_registration}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample7">
                                     <div class="accordion-item">
@@ -449,7 +449,7 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">RSPO certification progress since the first RSPO membership registration date <span style="color:#0AA7C4;">(score 0)</span></h6>
+                                <h6 class="alert-heading">RSPO certification progress since the first RSPO membership registration date <span style="color:#0AA7C4;">(score {{$sra->score_rspo_registration}})</span></h6>
                                 <p>{{$sra->desc_rspo_certification_progress}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample11">
                                     <div class="accordion-item">
@@ -489,7 +489,7 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">% of plantations RSPO audited <span style="color:#0AA7C4;">(score 0)</span></h6>
+                                <h6 class="alert-heading">% of plantations RSPO audited <span style="color:#0AA7C4;">(score {{$sra->score_rspo_percent_plantations}})</span></h6>
                                 <p>{{$sra->desc_rspo_percent_plantations}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample12">
                                     <div class="accordion-item">
@@ -520,7 +520,7 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">RSPO Complaints <span style="color:#0AA7C4;">(score 0)</span></h6>
+                                <h6 class="alert-heading">RSPO Complaints <span style="color:#0AA7C4;">(score {{$sra->score_rspo_complaints}})</span></h6>
                                 <p>{{$sra->desc_rspo_complaints}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample13">
                                     <div class="accordion-item">
@@ -564,7 +564,7 @@
                         </div>
                         <div class="tab-pane fade" id="ndpe-justified" role="tabpanel" aria-labelledby="ndpe-tab">
                             <div class="alert alert-light alert-dismissible fade show" role="alert">
-                                <h6 class="alert-heading">NDPE Policy adopted <span style="color:#0AA7C4;">(score 0)</span></h6>
+                                <h6 class="alert-heading">NDPE Policy adopted <span style="color:#0AA7C4;">(score {{$sra->score_ndpe_policy_adopted}})</span></h6>
                                 <p>{{$sra->desc_ndpe_policy_adopted}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample14">
                                     <div class="accordion-item">
@@ -611,7 +611,7 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Social issues (reported or identified by EQ) <span style="color:#0AA7C4;">(score 3)</span></h6>
+                                <h6 class="alert-heading">Social issues (reported or identified by EQ) <span style="color:#0AA7C4;">(score {{$sra->score_ndpe_social_issues}})</span></h6>
                                 <p>{{$sra->desc_ndpe_social_issues}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample15">
                                     <div class="accordion-item">
@@ -646,7 +646,7 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Deforestation (ha) <span style="color:#0AA7C4;">(score 1)</span></h6>
+                                <h6 class="alert-heading">Deforestation (ha) <span style="color:#0AA7C4;">(score {{$sra->score_ndpe_deforestation}})</span></h6>
                                 <p>{{$sra->desc_ndpe_deforestation}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample16">
                                     <div class="accordion-item">
@@ -687,7 +687,7 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Peatland development (including peatforest) <span style="color:#0AA7C4;">(score 3)</span></h6>
+                                <h6 class="alert-heading">Peatland development (including peatforest) <span style="color:#0AA7C4;">(score {{$sra->score_ndpe_peatland_development}})</span></h6>
                                 <<p>{{$sra->desc_ndpe_peatland_development}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample17">
                                     <div class="accordion-item">
@@ -718,7 +718,7 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Burn areas (ha) <span style="color:#0AA7C4;">(score 3)</span></h6>
+                                <h6 class="alert-heading">Burn areas (ha) <span style="color:#0AA7C4;">(score {{$sra->score_ndpe_burn_areas}})</span></h6>
                                 <p>{{$sra->desc_ndpe_burn_areas}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample18">
                                     <div class="accordion-item">
@@ -749,7 +749,7 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Land protection and usage <span style="color:#0AA7C4;">(score 3)</span></h6>
+                                <h6 class="alert-heading">Land protection and usage <span style="color:#0AA7C4;">(score {{$sra->score_ndpe_land_protection}})</span></h6>
                                 <p>{{$sra->desc_ndpe_land_protection}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample19">
                                     <div class="accordion-item">
@@ -789,7 +789,7 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Restoration in Peatland <span style="color:#0AA7C4;">(score 3)</span></h6>
+                                <h6 class="alert-heading">Restoration in Peatland <span style="color:#0AA7C4;">(score {{$sra->score_ndpe_restoration_in_peatland}})</span></h6>
                                 <p>{{$sra->desc_ndpe_restoration_in_peatland}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample20">
                                     <div class="accordion-item">
@@ -829,7 +829,7 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading" style="color:red;">HCV/HCS Assessment <span style="color:#0AA7C4;">(score 3)</span></h6>
+                                <h6 class="alert-heading" style="color:red;">HCV/HCS Assessment <span style="color:#0AA7C4;">(score {{$sra->score_ndpe_hcvhcs_assessment}})</span></h6>
                                 <p>{{$sra->desc_ndpe_hcvhcs_assessment}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample21">
                                     <div class="accordion-item">
