@@ -1,11 +1,11 @@
 @extends('admin.layout.appAdmin')
 @section('brudcump')
 <div class="pagetitle">
-  <h1>Term of Condition</h1>
+  <h1>Term and Condition</h1>
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-      <li class="breadcrumb-item active">Term of Condition</li>
+      <li class="breadcrumb-item active">Term and Condition</li>
     </ol>
   </nav>
 </div>
@@ -17,8 +17,8 @@
 
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Term of Condition</h5>
-          <!-- <p>Term of Condition</p> -->
+          <h5 class="card-title">Term and Condition</h5>
+          <!-- <p>Term and Condition</p> -->
 
           <!-- Table with stripped rows -->
           <table class="table datatable">
