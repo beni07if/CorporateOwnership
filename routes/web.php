@@ -103,7 +103,7 @@ Route::get('/sra-feature', [FeatureController::class, 'sraFeature'])->name('sraF
 Route::get('/serve-pdf/{filename}', [CorporateProfileController::class, 'servePDF'])->name('serve.pdf');
 
 
-Route::get('/term-and-conditions', [ProfileController::class, 'termAndCondition'])->name('termAndCondition');
+Route::get('/term-and-condition', [ProfileController::class, 'termAndCondition'])->name('termAndCondition');
 Route::get('/privacy-and-policy', [ProfileController::class, 'privacyPolicy'])->name('privacyPolicy');
 Route::get('/user-guide', [CorporateProfileController::class, 'userGuide'])->name('userGuide');
 Route::get('/faqs', [FaqController::class, 'faq'])->name('faq');
