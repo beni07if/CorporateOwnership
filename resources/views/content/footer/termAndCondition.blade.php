@@ -46,12 +46,12 @@
       <div class="container">
 
         <div class="section-title">
-          @foreach($termOfCondition as $term)
+          @foreach($termAndCondition as $term)
             <h2>{!!$term->title!!}</h2>
           @endforeach
         </div>
         <div class="text-justify">
-          @foreach($termOfCondition as $term)
+          @foreach($termAndCondition as $term)
             {!!$term->description!!}
             {!!$term->agreement!!} <br>
             {!!$term->description2!!}

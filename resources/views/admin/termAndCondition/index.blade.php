@@ -33,7 +33,7 @@
               </tr>
             </thead>
             <tbody>
-              @foreach($termOfCondition as $term)
+              @foreach($termAndCondition as $term)
               <tr>
                 <th scope="row">{{$loop->iteration}}</th>
                 <td>{{$term->title}}</td>
@@ -58,7 +58,7 @@
   </div>
 </section>
 
-@foreach($termOfCondition as $term)
+@foreach($termAndCondition as $term)
 <div class="modal fade" id="largeModal{{$term->id}}" tabindex="-1">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">

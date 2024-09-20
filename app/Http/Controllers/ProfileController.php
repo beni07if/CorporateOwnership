@@ -331,10 +331,10 @@ class ProfileController extends Controller
         return view('content.footer.privacyPolicy', compact('policies'));
     }
 
-    public function termOfCondition()
+    public function termAndCondition()
     {
-        $termOfCondition = Termcondition::all();
-        return view('content.footer.termOfCondition', compact('termOfCondition'));
+        $termAndCondition = Termcondition::all();
+        return view('content.footer.termAndCondition', compact('termAndCondition'));
     }
     
     /**
