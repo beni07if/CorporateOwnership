@@ -24,38 +24,51 @@
             <div class="row" style="box-shadow: rgba(44, 73, 100, 0.08) 0px 2px 15px 0px;">
                 <div class="col-xl-12 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
                     
-                    <table class="table table-hover">
+                    <table class="table">
                         <thead>
                             <th class="d-flex justify-content-between align-items-center">
-                                <h4 class="title mb-0">List of Subsidiaries</h4>
+                                <h4 class="title mb-0">Search Result for Companysss</h4>
                                 <form action="{{ route('searchFunctionSubsidiary') }}" method="GET" class="d-flex">
                                     <input type="text" class="form-control me-2" name="query" placeholder="Search other subsidiaries">
                                     <button type="submit" class="btn btn-info">Search</button>
                                 </form>
                             </th>
                         </thead>
+
                         <form action="{{ route('subsidiaryShow') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @if($consolidations->isEmpty())
-                                <p>No results found.</p>
-                            @else
-                                @foreach($consolidations as $subs)
-                                    <tr>
-                                        <td>
-                                            <input type="submit" name="subsidiary" value="{{ $subs->subsidiary }}" class="btn btn-light">
-                                        </td>
-                                        <td>
-                                            <!-- Periksa apakah $companyOwnership ada dan tidak kosong -->
-                                            @if(isset($companyOwnership) && $companyOwnership->isNotEmpty())
-                                                <input type="submit" name="subsidiary" value="Nama Perusahaan: {{ $companyOwnership->first()->company_name }}" class="btn btn-light">
+                                @if($consolidations->isNotEmpty())
+                                    @foreach($consolidations->chunk(2) as $pair)  <!-- Chunk the consolidations into pairs -->
+                                        <tr>
+                                            @foreach($pair as $subs)
+                                                <td>
+                                                    <h4><input type="submit" name="subsidiary" value="{{ $subs->subsidiary }}" style="background-color: transparent; border: none; color: inherit; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='#007BFF'" onmouseout="this.style.color='inherit'"></h4>
+                                                    <p class="pl-2">{{ $subs->country_operation }}, {{$subs->province}}, {{$subs->regency}}.</p>
+                                                </td>
+                                            @endforeach
+                                            <!-- Fill in empty cells if there is an odd number of entries -->
+                                            @if(count($pair) == 1)
+                                                <td></td>
                                             @endif
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                                                <h4 class="alert-heading">Data Not Found</h4>
+                                                <p>Data not found, please enter the correct keywords.</p>
+                                                <hr>
+                                                <p class="mb-0">Please contact Us for more information at <i><b>helpdesk@earthqualizer.org</b></i></p>
+                                            </div>
                                         </td>
                                     </tr>
-                                @endforeach
-                            @endif
+                                @endif
                         </form>
-
                     </table>
+                    {{-- <a href="{{ url()->previous() }}">
+                        <span>Return to previous page</span>
+                    </a> --}}
 
                     <nav aria-label="Pagination Navigation">
                         <ul class="pagination justify-content-center">

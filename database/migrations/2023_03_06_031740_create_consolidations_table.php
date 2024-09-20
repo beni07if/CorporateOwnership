@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('group_type')->nullable();
             $table->text('group_name')->nullable();
             $table->text('official_group_name')->nullable();
-            $table->string('owner')->nullable();
+            $table->text('owner')->nullable();
             $table->string('group_status')->nullable();
             $table->string('stock_exchange')->nullable();
             $table->string('country_registration')->nullable();

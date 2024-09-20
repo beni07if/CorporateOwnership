@@ -31,14 +31,15 @@
     <link href="{{ asset('template/Medilab/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('template/Medilab/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('template/Medilab/assets/vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('template/Medilab/assets/vendor/aos/aos2.css') }}" rel="stylesheet">
     <link href="{{ asset('template/Medilab/assets/css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@next/dist/aos.css" />
 
     <!-- Template Main CSS File -->
-    <link href="{{ asset('template/Medilab/assets/css/style.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('template/Medilab/assets/css/style.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('template/Medilab/assets/css/styleFlexstate.css') }}" rel="stylesheet">
     <link rel="icon" href="{!! asset('img/logo/new-logo-5/png/logo-icon.png') !!}"/>
-    <!-- <link href="{{ asset('css/style.css') }}" rel="stylesheet"> -->
+    {{-- <link href="{{ asset('css/style.css') }}" rel="stylesheet"> --}}
 
     
 
@@ -63,6 +64,10 @@
     @yield('headstyle')
 
     <style>
+        [data-aos] {
+        opacity: 1 !important;
+        visibility: visible !important;
+        }
         #header {
         background: rgba(240, 248, 255, 0); /* Transparan penuh */
         transition: background-color 0.5s; /* Efek transisi */
@@ -188,7 +193,7 @@
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="" href="{{route('corporateProfileEn')}}#why-us">Home</a></li>
+                    <li><a class="" href="{{route('corporateProfileEn')}}">Home</a></li>
                     <li><a class="" href="{{route('feature')}}">Feature</a></li>
                     <!-- <li><a class="" href="{{route('corporateProfileEn')}}#counts">Dataset</a></li> -->
                     <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
@@ -273,7 +278,7 @@
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> Jl. Anggrek No.6, Pontianak City, West Kalimantan</li>
                             <li><i class="bx bx-chevron-right"></i> helpdesk@earthqualizer.org</li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="https://wa.me/628982950531?text=Hello%20World" target="_blank">+628982950531</a></li>
+                            {{-- <li><i class="bx bx-chevron-right"></i> <a href="https://wa.me/628982950531?text=Hello%20World" target="_blank">+628982950531</a></li> --}}
                         </ul>
                     </div>
 
@@ -296,7 +301,7 @@
                 </div>
             </div>
             <div class="text-center text-md-right pt-3 pt-md-0">
-                <!-- <a href="{{route('termOfCondition')}}">Term of Services</a>&emsp;&emsp;&emsp;&emsp; -->
+                <!-- <a href="{{route('termAndCondition')}}">Term of Services</a>&emsp;&emsp;&emsp;&emsp; -->
                 <a href="{{route('privacyPolicy')}}">Privacy & Policy</a>
                 <!-- <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
                 <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
@@ -310,7 +315,7 @@
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('template/Medilab/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{ asset('template/Medilab/assets/vendor/aos/aos.js')}}"></script>
+    <script src="{{ asset('template/Medilab/assets/vendor/aos/aos2.js')}}"></script>
     <script src="{{ asset('template/Medilab/assets/vendor/glightbox/js/glightbox.min')}}.js"></script>
     <script src="{{ asset('template/Medilab/assets/vendor/php-email-form/validate.js')}}"></script>
     <script src="{{ asset('template/Medilab/assets/vendor/purecounter/purecounter.js')}}"></script>
@@ -318,9 +323,9 @@
     <script src="{{ asset('template/NiceAdmin/assets/vendor/chart.js/chart.umd.js')}}"></script>
     <script src="{{ asset('template/Medilab/assets/vendor/purecounter/purecounter_vanilla.js')}}"></script>
 
-  <!-- Template Main JS File -->
-  {{-- <script src="assets/js/main.js"></script> --}}
-  <script src="{{ asset('template/Medilab/assets/js/main.js')}}"></script>
+    <!-- Template Main JS File -->
+    {{-- <script src="assets/js/main.js"></script> --}}
+    {{-- <script src="{{ asset('template/Medilab/assets/js/main.js')}}"></script> --}}
 
     <!-- Template Main JS File -->
     <!-- <script src="{{ asset('template/Medilab/assets/js/main/assets.js') }}"></script> -->
@@ -379,17 +384,23 @@
         });
     </script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aos@next/dist/aos.js"></script>
 
 <script>
     $(document).ready(function() {
+        AOS.init({
+            duration: 1000,  // Durasi animasi dalam milidetik
+            once: true,      // Animasi hanya berjalan sekali
+            mirror: false,   // Animasi saat scrolling ke atas
+        });
+    });
+    $(document).ready(function() {
         $('.dropdown-toggle').dropdown();
     });
-</script>
-
-
+</script> --}}
 
         <!-- tambahan -->
     <!-- Template Main JS File -->

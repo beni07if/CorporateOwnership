@@ -27,34 +27,13 @@
 
 @section('content')
 <main id="main">
-    <!-- Blog Page Title & Breadcrumbs -->
-    <div data-aos="fade" class="page-title">
-      <div class="heading">
-        <div class="container">
-          <div class="row d-flex justify-content-center text-center">
-            <div class="col-lg-8">
-              <h1>Blog</h1>
-              <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <nav class="breadcrumbs">
-        <div class="container">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Blog</li>
-          </ol>
-        </div>
-      </nav>
-    </div><!-- End Page Title -->
 
     <!-- ======= Departments Section ======= -->
     <section id="departments" class="departments">
         <div class="container">
 
             <div class="section-title">
-                <h2>Search for Individual Share Ownership</h2>
+                <h2>Search for Shareholder</h2>
                 <!-- <p>Explore datasets of thousands of companies and their worldwide shareholding networks!</p> -->
             </div>
             <!-- <div id="mapid" style="height: 500px;"></div> -->
@@ -80,7 +59,7 @@
                                         <form id="search-form" action="{{ route('searchFunctionShareholder') }}" method="GET" class="d-flex">
                                             <label for="search-input" class="visually-hidden">Search</label>
                                             <div class="input-group">
-                                                <input type="text" id="search-input" name="query" class="form-control" placeholder="Shareholder name">
+                                                <input type="text" id="search-input" name="shareholder_name" class="form-control" placeholder="Shareholder Name">
                                                 <button type="submit" class="btn btn-info">Search</button>
                                             </div>
                                         </form>

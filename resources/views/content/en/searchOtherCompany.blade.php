@@ -108,9 +108,9 @@
                         
                 </div>
             </div>
-            <a href="{{ url()->previous() }}">
+            {{-- <a href="{{ url()->previous() }}">
                 <span>Return to previous page</span>
-            </a>
+            </a> --}}
         </div>
     </section><!-- End About Section -->
 

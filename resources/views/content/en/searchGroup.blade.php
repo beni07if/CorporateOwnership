@@ -6,114 +6,119 @@
 
 @section('content')
 <main id="main">
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-        <!-- <div class="container-fluid"> -->
-        <div class="container">
-            <div class="breadcrumbs" style="padding-left: 40px; background-color:white;">
-                <!-- <ol style="color:#4682B4;">
-                    <li><a href="#" style="color:#4682B4;">Home</a></li>
-                    <li><a href="#" style="color:#4682B4;">Indonesia</a></li>
-                    <li><a href="#" style="color:#4682B4;">Corporate Profile</a></li>
-                    <li><a href="#" style="color:#4682B4;">Group</a></li>
-                </ol> -->
-                <!-- <h2 style="color:#4682B4;">Subsidiary</h2> -->
-            </div>
-
-            <div class="row" style="box-shadow: rgba(44, 73, 100, 0.08) 0px 2px 15px 0px;">
-                <div class="col-xl-12 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-
-                    <table class="table">
-                        <thead>
-                            <th class="d-flex justify-content-between align-items-center">
-                                <h4 class="title mb-0">Search Result for Groups</h4>
-                                <form action="{{ route('searchFunctionGroup') }}" method="GET" class="d-flex">
-                                    <input type="text" class="form-control me-2" name="group_name" placeholder="Search other groups">
-                                    <button type="submit" class="btn btn-info">Search</button>
+<!-- ======= Doctors Section ======= -->
+<section id="doctors" class="doctors">
+    <div class="container">
+        <div class="section-title">
+            <h2>Group Company</h2>
+            <P>Search results from "{{$query}}"</P>
+        </div>
+        <div class="row pb-3">
+            <form action="{{ route('searchFunctionGroup') }}" method="GET" class="d-flex ms-auto" style="width: 33%;">
+                <input type="text" class="form-control me-2" name="group_name" placeholder="Search for other group company">
+                <button type="submit" class="btn btn-info">Search</button>
+            </form>
+        </div>
+        <div class="row">
+            @if($groups->isNotEmpty())
+                @foreach($groups as $subs)
+                <div class="col-lg-6 mb-4">
+                    <div class="member d-flex flex-column align-items-start card">
+                        <div class="pic">
+                            <img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt="">
+                        </div>
+                        <div class="member-info flex-fill d-flex flex-column justify-content-between">
+                            <div class="d-flex align-items-center mb-2">
+                                
+                                <form action="{{ route('group2Show') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <h4 style="margin-right: 10px;">
+                                        <input type="submit" name="group_name" value="{{ $subs->group_name }}" 
+                                            style="background-color: transparent; border: none; font-weight:bold; color: #106587; cursor: pointer; 
+                                                    transition: color 0.3s;" 
+                                            onmouseover="this.style.color='#007BFF'" onmouseout="this.style.color='inherit'">
+                                    </h4>
                                 </form>
-                            </th>
-                        </thead>
+                            </div>
+                            <p class="pl-2 pr-4">Address: {{ $subs->country_registration }}, {{ $subs->business_address ?? '' }}</p>
+                            
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            @else
+                <div class="col-12">
+                    <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                        <h4 class="alert-heading">Data Not Found</h4>
+                        <p>Data not found, please enter the correct keywords.</p>
+                        <hr>
+                        <p class="mb-0">Please contact us for more information at <i><b>helpdesk@earthqualizer.org</b></i></p>
+                    </div>
+                </div>
+            @endif
+            {{-- <a href="{{ url()->previous() }}">
+                <span>Return to previous page</span>
+            </a> --}}
 
-                        <form action="{{ route('group2Show') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                                @if($groups->isNotEmpty())
-                                    @foreach($groups->chunk(2) as $pair)  <!-- Chunk the groups into pairs -->
-                                        <tr>
-                                            @foreach($pair as $subs)
-                                                <td>
-                                                    <h4><input type="submit" name="group_name" value="{{ $subs->group_name }}" style="background-color: transparent; border: none; color: inherit; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='#007BFF'" onmouseout="this.style.color='inherit'"></h4>
-                                                    <span class="pl-2">{{ $subs->country_registration }}</span>
-                                                    <p class="pl-2">{{ $subs->business_address }}</p>
-                                                </td>
-                                            @endforeach
-                                            <!-- Fill in empty cells if there is an odd number of entries -->
-                                            @if(count($pair) == 1)
-                                                <td></td>
-                                            @endif
-                                        </tr>
-                                    @endforeach
-                                @else
-                                    <tr>
-                                        <td colspan="2">
-                                            <div class="alert alert-secondary alert-dismissible fade show" role="alert">
-                                                <h4 class="alert-heading">Data Not Found</h4>
-                                                <p>Data not found, please enter the correct keywords.</p>
-                                                <hr>
-                                                <p class="mb-0">Please contact Us for more information at <i><b>helpdesk@earthqualizer.org</b></i></p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endif
-                        </form>
-                    </table>
-                    <a href="{{ url()->previous() }}">
-                        <span>Return to previous page</span>
-                    </a>
-
-                    <nav aria-label="Pagination Navigation">
-                        <ul class="pagination justify-content-center">
-
-                            {{-- Previous Page Link --}}
-                            @unless($groups->onFirstPage())
-                                <li class="page-item">
-                                    <a class="page-link" href="{{ $groups->previousPageUrl() }}" rel="prev" aria-label="Previous">@lang('pagination.previous')</a>
-                                </li>
+            <!-- Pagination -->
+            @if($groups->hasPages())
+                <div class="pagination-wrapper d-flex justify-content-center mt-4">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <!-- Previous Page Link -->
+                            @if ($groups->onFirstPage())
+                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
                             @else
-                                <li class="page-item disabled" aria-disabled="true" aria-label="Previous">
-                                    <span class="page-link" aria-hidden="true">@lang('pagination.previous')</span>
-                                </li>
-                            @endunless
+                                <li class="page-item"><a class="page-link" href="{{ $groups->previousPageUrl() }}" rel="prev">&laquo;</a></li>
+                            @endif
 
-                            {{-- Pagination Elements --}}
-                            @for ($page = max(1, $groups->currentPage() - 5); $page <= min($groups->lastPage(), $groups->currentPage() + 5); $page++)
-                                @if ($page == $groups->currentPage())
-                                    <li class="page-item active" aria-current="page"><span class="page-link">{{ $page }}</span></li>
+                            <!-- Pagination Elements -->
+                            @php
+                                $currentPage = $groups->currentPage();
+                                $lastPage = $groups->lastPage();
+                                $startPage = max(1, $currentPage - 2); // Start 2 pages before the current
+                                $endPage = min($lastPage, $currentPage + 2); // End 2 pages after the current
+                            @endphp
+
+                            <!-- First Page Link if current page is greater than 3 -->
+                            @if($startPage > 1)
+                                <li class="page-item"><a class="page-link" href="{{ $groups->url(1) }}">1</a></li>
+                                @if($startPage > 2)
+                                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                                @endif
+                            @endif
+
+                            <!-- Page Links -->
+                            @for ($page = $startPage; $page <= $endPage; $page++)
+                                @if ($page == $currentPage)
+                                    <li class="page-item active"><span class="page-link">{{ $page }}</span></li>
                                 @else
                                     <li class="page-item"><a class="page-link" href="{{ $groups->url($page) }}">{{ $page }}</a></li>
                                 @endif
                             @endfor
 
-                            {{-- Next Page Link --}}
-                            @unless($groups->hasMorePages())
-                                <li class="page-item disabled" aria-disabled="true" aria-label="Next">
-                                    <span class="page-link" aria-hidden="true">@lang('pagination.next')</span>
-                                </li>
-                            @else
-                                <li class="page-item">
-                                    <a class="page-link" href="{{ $groups->nextPageUrl() }}" rel="next" aria-label="Next">@lang('pagination.next')</a>
-                                </li>
-                            @endunless
+                            <!-- Last Page Link if current page is not close to the last -->
+                            @if($endPage < $lastPage)
+                                @if($endPage < $lastPage - 1)
+                                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                                @endif
+                                <li class="page-item"><a class="page-link" href="{{ $groups->url($lastPage) }}">{{ $lastPage }}</a></li>
+                            @endif
 
+                            <!-- Next Page Link -->
+                            @if ($groups->hasMorePages())
+                                <li class="page-item"><a class="page-link" href="{{ $groups->nextPageUrl() }}" rel="next">&raquo;</a></li>
+                            @else
+                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                            @endif
                         </ul>
                     </nav>
-                        
                 </div>
-            </div>
-
+            @endif
         </div>
-    </section><!-- End About Section -->
-
+    </div>
+    
+</section><!-- End Doctors Section -->
     <!-- Leaflet JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js" integrity="sha384-dRnG3QipUv9zvMAkW8XVg+heW0jhvccrGM6yDNC4uK+xmqvBnp+0xuL50PYs10n/" crossorigin=""></script>
 

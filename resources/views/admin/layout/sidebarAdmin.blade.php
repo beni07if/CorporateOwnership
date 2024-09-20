@@ -24,16 +24,16 @@
   <li class="nav-item">
     <a href="{{route('policy.index')}}" class="nav-link collapsed {{ request()->is('inbox') ? 'active' : '' }}">
       <i class="bi bi-inbox"></i>
-      <span>Public Policy</span>
+      <span>Public & Policy</span>
     </a>
   </li>
   <li class="nav-item">
-    <a href="{{route('term-of-condition.index')}}" class="nav-link collapsed {{ request()->is('inbox') ? 'active' : '' }}">
+    <a href="{{route('term-and-conditions.index')}}" class="nav-link collapsed {{ request()->is('inbox') ? 'active' : '' }}">
       <i class="bi bi-inbox"></i>
-      <span>Term of Condition</span>
+      <span>Term and Condition</span>
     </a>
   </li>
-  <li class="nav-item">
+  {{-- <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
       <i class="bi bi-menu-button-wide"></i><span>Database</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
@@ -63,14 +63,14 @@
         </a>
       </li>
     </ul>
-  </li>
+  </li> --}}
   
-  <li class="nav-item nav-link">
+  {{-- <li class="nav-item nav-link">
     <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onchange="toggleMaintenanceMode(this.checked)">
         <label class="form-check-label" for="flexSwitchCheckDefault">Maintenance Mode</label>
     </div>
-  </li>
+  </li> --}}
 
   <script>
       function toggleMaintenanceMode(isChecked) {

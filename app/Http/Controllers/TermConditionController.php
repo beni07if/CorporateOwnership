@@ -14,8 +14,8 @@ class TermConditionController extends Controller
      */
     public function index()
     {
-        $termOfCondition = Termcondition::all();
-        return view('admin.termOfCondition.index', compact('termOfCondition'));
+        $termAndCondition = Termcondition::all();
+        return view('admin.termAndCondition.index', compact('termAndCondition'));
     }
 
     /**
@@ -55,9 +55,9 @@ class TermConditionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $termOfcondition = Termcondition::find($id);
-        $termOfcondition->update($request->all());
-        return redirect()->route('term-of-condition.index')->with('success','Data berhasil diupdate');
+        $termAndcondition = Termcondition::find($id);
+        $termAndcondition->update($request->all());
+        return redirect()->route('term-and-conditions.index')->with('success','Data berhasil diupdate');
     }
 
     /**

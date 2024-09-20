@@ -22,9 +22,23 @@
                     <li><a href="#" style="color:#4682B4;">Subsidiary</a></li>
                 </ol> -->
             </div>
+            
             @foreach($sras->pluck('group_name')->unique() as $subs)
-            <h4 scope="col" class="card-title description">RSA Summary of {{$subs}}</h4>
+            <div class="section-title">
+                <h2>SRA Summary of {{$subs}}</h2>
+            </div>
+            {{-- <h4 scope="col" class="card-title description">SRA Summary of {{$subs}}</h4> --}}
             @endforeach
+            @if($sras->isNotEmpty())
+            @foreach($sras as $subs)
+            <div class="row pb-3">
+                <form action="{{ route('searchFunctionSRA') }}" method="GET" class="d-flex ms-auto" style="width: 33%;">
+                    <input type="text" class="form-control me-2" name="group_name" placeholder="Search for other group company">
+                    <button type="submit" class="btn btn-info">Search</button>
+                </form>
+            </div>
+            @endforeach
+            @endif
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card">
@@ -151,7 +165,7 @@
             <div class="row mt-50" style="margin-top:50px;">
                 <div class="card">
                     <div class="card-body">
-                    <h5 class="card-title">RSA Assessment Details</h5>
+                    <h5 class="card-title">SRA Assessment Details</h5>
 
                     <!-- Default Tabs -->
                     <ul class="nav nav-tabs d-flex" id="myTabjustified" role="tablist">
@@ -165,21 +179,13 @@
                         <button class="nav-link w-100" id="ndpe-tab" data-bs-toggle="tab" data-bs-target="#ndpe-justified" type="button" role="tab" aria-controls="ndpe" aria-selected="false">NDPE Compliance</button>
                         </li>
                     </ul>
+                    @if(count($sras)>0)
+                    @foreach($sras as $sra)
                     <div class="tab-content pt-2" id="myTabjustifiedContent">
                         <div class="tab-pane fade show active profile-overview" id="transparency-justified" role="tabpanel" aria-labelledby="transparency-tab">
                             <div class="alert alert-light alert-dismissible fade show" role="alert">
-                                <h6 class="alert-heading">Upstream transparency <span style="color:#0AA7C4;">(score 0)</span></h6>
-                                <p>The subsidiaries and location of mills are available in  the SY's website, but the company does not mention its total land bank and planted area.</p>
-                                <!-- <div class="row">
-                                    <div class="col-lg-3 col-md-4 label font-weight-bold">Score</div>
-                                    <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">0</div>
-                                    <div class="col-lg-9 col-md-8">
-                                        <p>The subsidiaries and location of mills are available in  the SY's website, but the company does not mention its total land bank and planted area.</p>
-                                    </div>
-                                </div> -->
+                                <h6 class="alert-heading">Upstream transparency <span style="color:#0AA7C4;">(score {{$sra->score_transparency_upstream}})</span></h6>
+                                <p>{{$sra->desc_transparency_upstream}}</p>
                                 <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
@@ -220,16 +226,16 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Sustainability and Policy Implementation report <span style="color:#0AA7C4;">(score 0)</span></h6>
-                                <p>Very limited information available</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <h6 class="alert-heading">Sustainability and Policy Implementation report <span style="color:#0AA7C4;">(score {{$sra->score_transparency_sustainability}})</span></h6>
+                                <p>{{$sra->desc_transparency_sustainability}}</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample2">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-sustainability" aria-expanded="false" aria-controls="flush-collapseOne-sustainability">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-sustainability" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div id="flush-collapseOne-sustainability" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample2">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -257,16 +263,16 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Refiners and grievance management <span style="color:#0AA7C4;">(score 0)</span></h6>
-                                <p>No information available</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <h6 class="alert-heading">Refiners and grievance management <span style="color:#0AA7C4;">(score {{$sra->score_transparency_refiners}})</span></h6>
+                                <p>{{$sra->desc_transparency_refiners}}</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample3">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-refiners" aria-expanded="false" aria-controls="flush-collapseOne-refiners">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-refiners" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div id="flush-collapseOne-refiners" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample3">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -301,16 +307,16 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Publish Maps <span style="color:#0AA7C4;">(score 1)</span></h6>
-                                <p>No submisson and no RSPO membership</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <h6 class="alert-heading">Publish Maps <span style="color:#0AA7C4;">(score {{$sra->score_transparency_publish_maps}})</span></h6>
+                                <p>{{$sra->desc_transparency_publish_maps}}</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample4">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-pubishMaps" aria-expanded="false" aria-controls="flush-collapseOne-pubishMaps">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-pubishMaps" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div id="flush-collapseOne-pubishMaps" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample4">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -341,39 +347,39 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading" style="color:red;">% of concessions that obtain legal status (HGU, SHM, MPOB) <span style="color:#0AA7C4;">(score 1)</span></h6>
-                                <p>No submisson and no RSPO membership</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <h6 class="alert-heading" style="color:red;">% of concessions that obtain legal status (HGU, SHM, MPOB) <span style="color:#0AA7C4;">(score {{$sra->score_transparency_concessions}})</span></h6>
+                                <p>{{$sra->desc_transparency_concessions}}</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample5">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#percent_of_concessions" aria-expanded="false" aria-controls="percent_of_concessions">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="percent_of_concessions" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div id="percent_of_concessions" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample5">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
                                                     <div class="col-lg-9 col-md-8 label font-weight-bold">Description</div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-3 col-md-4 label">3 = High</div>
+                                                    <div class="col-lg-3 col-md-4 label">2 = 70% to 100%</div>
                                                     <div class="col-lg-9 col-md-8">
-                                                        <p>Full submission</p>
+                                                        <p></p>
                                                     </div>
                                                 </div>
                                                 <hr>
                                                 <div class="row">
-                                                    <div class="col-lg-3 col-md-4 label">2 = Medium</div>
+                                                    <div class="col-lg-3 col-md-4 label">1 = 30% to < 70%</div>
                                                     <div class="col-lg-9 col-md-8">
-                                                        <p>Partial submission </p>
+                                                        <p></p>
                                                     </div>
                                                 </div>
                                                 <hr>
                                                 <div class="row">
-                                                    <div class="col-lg-3 col-md-4 label">1 = Low</div>
+                                                    <div class="col-lg-3 col-md-4 label">0 = less then 30%</div>
                                                     <div class="col-lg-9 col-md-8">
-                                                        <p>No submisson and no RSPO membership</p>
+                                                        <p></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -381,16 +387,16 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Website <span style="color:#0AA7C4;">(score 1)</span></h6>
-                                <p>No submisson and no RSPO membership</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <h6 class="alert-heading">Website <span style="color:#0AA7C4;">(score {{$sra->score_transparency_website}})</span></h6>
+                                <p>{{$sra->desc_transparency_website}}</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample6">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-website" aria-expanded="false" aria-controls="flush-collapseOne-website">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-website" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div id="flush-collapseOne-website" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample6">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -414,16 +420,16 @@
                         </div>
                         <div class="tab-pane fade" id="rspo-justified" role="tabpanel" aria-labelledby="rspo-tab">
                             <div class="alert alert-light alert-dismissible fade show" role="alert">
-                                <h6 class="alert-heading">Registration at the group level <span style="color:#0AA7C4;">(score 0)</span></h6>
-                                <p>Not RSPO Member</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <h6 class="alert-heading">Registration at the group level <span style="color:#0AA7C4;">(score {{$sra->score_rspo_registration}})</span></h6>
+                                <p>{{$sra->desc_rspo_registration}}</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample7">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-registratioinGroup" aria-expanded="false" aria-controls="flush-collapseOne-registratioinGroup">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-registratioinGroup" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div id="flush-collapseOne-registratioinGroup" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample7">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -454,16 +460,16 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">RSPO certification progress since the first RSPO membership registration date <span style="color:#0AA7C4;">(score 0)</span></h6>
-                                <p>Not RSPO Member</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <h6 class="alert-heading">RSPO certification progress since the first RSPO membership registration date <span style="color:#0AA7C4;">(score {{$sra->score_rspo_registration}})</span></h6>
+                                <p>{{$sra->desc_rspo_certification_progress}}</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample11">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-rspoCertification" aria-expanded="false" aria-controls="flush-collapseOne-rspoCertification">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-rspoCertification" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div id="flush-collapseOne-rspoCertification" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample11">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -494,16 +500,16 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">% of plantations RSPO audited <span style="color:#0AA7C4;">(score 0)</span></h6>
-                                <p>Not RSPO Member</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <h6 class="alert-heading">% of plantations RSPO audited <span style="color:#0AA7C4;">(score {{$sra->score_rspo_percent_plantations}})</span></h6>
+                                <p>{{$sra->desc_rspo_percent_plantations}}</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample12">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-refiners" aria-expanded="false" aria-controls="flush-collapseOne-refiners">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-refiners" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div id="flush-collapseOne-refiners" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample12">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -525,16 +531,16 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">RSPO Complaints <span style="color:#0AA7C4;">(score 0)</span></h6>
-                                <p>No RSPO Member</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <h6 class="alert-heading">RSPO Complaints <span style="color:#0AA7C4;">(score {{$sra->score_rspo_complaints}})</span></h6>
+                                <p>{{$sra->desc_rspo_complaints}}</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample13">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-pubishMaps" aria-expanded="false" aria-controls="flush-collapseOne-pubishMaps">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-pubishMaps" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div id="flush-collapseOne-pubishMaps" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample13">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -569,16 +575,16 @@
                         </div>
                         <div class="tab-pane fade" id="ndpe-justified" role="tabpanel" aria-labelledby="ndpe-tab">
                             <div class="alert alert-light alert-dismissible fade show" role="alert">
-                                <h6 class="alert-heading">NDPE Policy adopted <span style="color:#0AA7C4;">(score 0)</span></h6>
-                                <p>The company has some policies pertaining to sustainability and  but no explicit commitments to NDPE (bit.ly/3i8Trs9)</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <h6 class="alert-heading">NDPE Policy adopted <span style="color:#0AA7C4;">(score {{$sra->score_ndpe_policy_adopted}})</span></h6>
+                                <p>{{$sra->desc_ndpe_policy_adopted}}</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample14">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-ndpePolicy" aria-expanded="false" aria-controls="flush-collapseOne-ndpePolicy">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-ndpePolicy" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div id="flush-collapseOne-ndpePolicy" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample14">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -616,16 +622,16 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Social issues (reported or identified by EQ) <span style="color:#0AA7C4;">(score 3)</span></h6>
-                                <p>No issues found</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <h6 class="alert-heading">Social issues (reported or identified by EQ) <span style="color:#0AA7C4;">(score {{$sra->score_ndpe_social_issues}})</span></h6>
+                                <p>{{$sra->desc_ndpe_social_issues}}</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample15">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-socialIssues" aria-expanded="false" aria-controls="flush-collapseOne-socialIssues">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-socialIssues" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div id="flush-collapseOne-socialIssues" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample15">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -651,17 +657,16 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Deforestation (ha) <span style="color:#0AA7C4;">(score 1)</span></h6>
-                                <p>2016-2018=1795</p>
-                                <p>2019=1733</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <h6 class="alert-heading">Deforestation (ha) <span style="color:#0AA7C4;">(score {{$sra->score_ndpe_deforestation}})</span></h6>
+                                <p>{{$sra->desc_ndpe_deforestation}}</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample16">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-deforestation" aria-expanded="false" aria-controls="flush-collapseOne-deforestation">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-deforestation" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div id="flush-collapseOne-deforestation" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample16">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -693,17 +698,16 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Peatland development (including peatforest) <span style="color:#0AA7C4;">(score 3)</span></h6>
-                                <p>2016-2018=0</p>
-                                <p>2019=0</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <h6 class="alert-heading">Peatland development (including peatforest) <span style="color:#0AA7C4;">(score {{$sra->score_ndpe_peatland_development}})</span></h6>
+                                <p>{{$sra->desc_ndpe_peatland_development}}</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample17">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-peatland" aria-expanded="false" aria-controls="flush-collapseOne-peatland">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-peatland" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div id="flush-collapseOne-peatland" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample17">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -725,17 +729,16 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Burn areas (ha) <span style="color:#0AA7C4;">(score 3)</span></h6>
-                                <p>2016-2018=0</p>
-                                <p>2019=0</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <h6 class="alert-heading">Burn areas (ha) <span style="color:#0AA7C4;">(score {{$sra->score_ndpe_burn_areas}})</span></h6>
+                                <p>{{$sra->desc_ndpe_burn_areas}}</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample18">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-burnArea" aria-expanded="false" aria-controls="flush-collapseOne-burnArea">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-burnArea" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div id="flush-collapseOne-burnArea" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample18">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -757,16 +760,16 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Land protection and usage <span style="color:#0AA7C4;">(score 3)</span></h6>
-                                <p>No burning</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <h6 class="alert-heading">Land protection and usage <span style="color:#0AA7C4;">(score {{$sra->score_ndpe_land_protection}})</span></h6>
+                                <p>{{$sra->desc_ndpe_land_protection}}</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample19">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-landProtection" aria-expanded="false" aria-controls="flush-collapseOne-landProtection">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-landProtection" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div id="flush-collapseOne-landProtection" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample19">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -797,16 +800,16 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading">Restoration in Peatland <span style="color:#0AA7C4;">(score 3)</span></h6>
-                                <p>No peatland conversion</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <h6 class="alert-heading">Restoration in Peatland <span style="color:#0AA7C4;">(score {{$sra->score_ndpe_restoration_in_peatland}})</span></h6>
+                                <p>{{$sra->desc_ndpe_restoration_in_peatland}}</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample20">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-restorationPeatland" aria-expanded="false" aria-controls="flush-collapseOne-restorationPeatland">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-restorationPeatland" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div id="flush-collapseOne-restorationPeatland" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample20">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -837,16 +840,16 @@
                                     </div>
                                 </div>
                                 <hr style="border-top: 2px solid; border-color: black;">
-                                <h6 class="alert-heading" style="color:red;">HCV/HCS Assessment <span style="color:#0AA7C4;">(score 3)</span></h6>
-                                <p>No peatland conversion</p>
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <h6 class="alert-heading" style="color:red;">HCV/HCS Assessment <span style="color:#0AA7C4;">(score {{$sra->score_hcvhsc_assessment}})</span></h6>
+                                <p>{{$sra->desc_hcvhsc_assessment}}</p>
+                                <div class="accordion accordion-flush" id="accordionFlushExample21">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-hcv-hcs-assessment" aria-expanded="false" aria-controls="flush-collapseOne-hcv-hcs-assessment">
                                                 <p>Click here to details</p>
                                             </button>
                                         </h2>
-                                        <div id="flush-collapseOne-hcv-hcs-assessment" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div id="flush-collapseOne-hcv-hcs-assessment" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample21">
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label font-weight-bold">Score Parameter</div>
@@ -855,21 +858,21 @@
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label">3 = High</div>
                                                     <div class="col-lg-9 col-md-8">
-                                                        <p>No peatland conversion</p>
+                                                        <p>Have commitment and completed full assessment for all concessions</p>
                                                     </div>
                                                 </div>
                                                 <hr>
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label">2 = Medium</div>
                                                     <div class="col-lg-9 col-md-8">
-                                                        <p>Peatland conversion and restoration have been detected</p>
+                                                        <p>Have commitment and/or assessment, but not complete for all concessions</p>
                                                     </div>
                                                 </div>
                                                 <hr>
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-4 label">1 = Low</div>
                                                     <div class="col-lg-9 col-md-8">
-                                                        <p>Peatland conversion detected but no restoration measures have been taken</p>
+                                                        <p>No commitment and assessment has been made</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -880,13 +883,14 @@
                             </div>
                         </div>
                     </div><!-- End Default Tabs -->
-
+                    @endforeach
+                    @endif
                     </div>
                 </div>
             </div>
-            <a href="{{ url()->previous() }}">
+            {{--<a href="{{ url()->previous() }}">
                 <span>Return to previous page</span>
-            </a>
+            </a>--}}
         </div>
     </section><!-- End About Section -->
 
@@ -996,139 +1000,4 @@
 
     // end nav 
 </script>
-
-@section('mapsLeaflet')
-<script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">
-            @foreach($sras as $subs)
-                @if($loop->first)
-                    <h4 class="title mb-0"> {{ $subs->group_name }}</h4>
-                @endif
-            @endforeach</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-            <div class="card" style="width: 100%;">
-                <div class="card-body row">
-                @foreach($sras as $subs)
-                    <div class="col-6">
-                        <h6 class="card-title description">Group Name</h6>
-                        <p class="card-text">{{ $subs->group_name }}</p>
-                        <h6 class="card-title description">Official Group Name</h6>
-                        <p class="card-text">{{ $subs->official_group_name }}</p>
-                        <h6 class="card-title description">Group Status</h6>
-                        <p class="card-text">{{ $subs->group_status }}</p>
-                        <h6 class="card-title description">Stock Exchange Name</h6>
-                        <p class="card-text">{{ $subs->stock_exchange_name }}</p>
-                        <h6 class="card-title description">Controller</h6>
-                        <p class="card-text">{{ $subs->controller }}</p>
-                        <h6 class="card-title description">Business Sector</h6>
-                        <p class="card-text">{{ $subs->business_sector }}</p>
-                        <h6 class="card-title description">Main Product</h6>
-                        <p class="card-text">{{ $subs->main_product }}</p>
-                        <h6 class="card-title description">Commercial Operation Date</h6>
-                        <p class="card-text">{{ $subs->commercial_operation_date }}</p>
-                        <h6 class="card-title description">Country Registration</h6>
-                        <p class="card-text">{{ $subs->country_registration }}</p>
-                        <h6 class="card-title description">Business Address</h6>
-                        <p class="card-text">{{ $subs->business_address }}</p>
-                        <h6 class="card-title description">Country Operation</h6>
-                        <p class="card-text">{{ $subs->country_operation }}</p>
-                        <h6 class="card-title description">Shareholder</h6>
-                        <p class="card-text">{{ $subs->shareholder_name1 }} ({{ $subs->percent_of_share1 }})</p>
-                        <p class="card-text">{{ $subs->shareholder_name2 }} ({{ $subs->percent_of_share2 }})</p>
-                        <p class="card-text">{{ $subs->shareholder_name3 }} ({{ $subs->percent_of_share3 }})</p>
-                        <p class="card-text">{{ $subs->shareholder_name4 }} ({{ $subs->percent_of_share4 }})</p>
-                        <p class="card-text">{{ $subs->shareholder_name5 }} ({{ $subs->percent_of_share5 }})</p>
-                        <!-- <h6 class="card-title description">Group Structure</h6>
-                        <p class="card-text">{{ $subs->group_structure }}</p> -->
-                        <h6 class="card-title description">Management (Name and Position)</h6>
-                        <p class="card-text">{{ $subs->management_name_and_position }}</p>
-                        <h6 class="card-title description">Land Area Controlled</h6>
-                        <p class="card-text">{{ $subs->land_area_controlled }}</p>
-                    </div>
-                    <div class="col-6">
-                        
-                    <h6 class="card-title description">Total Planted</h6>
-                        <p class="card-text">{{ $subs->total_planted }}</p>
-                        <h6 class="card-title description">Total Smallholders</h6>
-                        <p class="card-text">{{ $subs->total_smallholders }}</p>
-                        <h6 class="card-title description">Total Land Designed HCV</h6>
-                        <p class="card-text">{{ $subs->total_land_designated_hcv }}</p>
-                        <h6 class="card-title description">Annual FFB Productivity</h6>
-                        <p class="card-text">{{ $subs->annual_ffb_productivity }}</p>
-                        <h6 class="card-title description">Annual Productivity by RSPO certified</h6>
-                        <p class="card-text">{{ $subs->annual_productivity_by_rspo_certified }}</p>
-                        <h6 class="card-title description">Annual CPO Productivity</h6>
-                        <p class="card-text">{{ $subs->annual_cpo_productivity }}</p>
-                        <h6 class="card-title description">Annual CPK Productivity</h6>
-                        <p class="card-text">{{ $subs->annual_cpk_productivity }}</p>
-                        <h6 class="card-title description">RSPO Member</h6>
-                        <p class="card-text">{{ $subs->rspo_member }}</p>
-                        <h6 class="card-title description">CGF Member</h6>
-                        <p class="card-text">{{ $subs->cgf_member }}</p>
-                        <h6 class="card-title description">ASD Member</h6>
-                        <p class="card-text">{{ $subs->asd_member }}</p>
-                        <h6 class="card-title description">GPNSR Member</h6>
-                        <p class="card-text">{{ $subs->gpnsr_member }}</p>
-                        <h6 class="card-title description">Others Mention</h6>
-                        <p class="card-text">{{ $subs->others_mention }}</p>
-                        <h6 class="card-title description">NDPE Policy</h6>
-                        <p class="card-text">{{ $subs->ndpe_policy }}</p>
-                        <h6 class="card-title description">NDPE Time Bound Plan Implementation</h6>
-                        <p class="card-text">{{ $subs->ndpe_time_bound_plan_implementation }}</p>
-                        <h6 class="card-title description">Sustainability Progress Report</h6>
-                        <p class="card-text">{{ $subs->sustainability_progress_report }}</p>
-                        <h6 class="card-title description">Supply Chain Traceability</h6>
-                        <p class="card-text">{{ $subs->supply_chain_traceability }}</p>
-                        <h6 class="card-title description">Grievance Mechanism</h6>
-                        <p class="card-text">{{ $subs->grievance_mechanism }}</p>
-                        <h6 class="card-title description">Recovery Plan</h6>
-                        <p class="card-text">{{ $subs->recovery_plan }}</p>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-
-      </div>
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-info">Save changes</button>
-      </div> -->
-    </div>
-  </div>
-</div>
-
-<script>
-        var pdfUrl = "{{ asset('file/notarial-act-sras/2021 07 Abdi Budi Mulia.pptx.pdf') }}";
-
-        function loadPdfViewer() {
-            var container = document.getElementById('pdf-viewer-container');
-            var canvas = document.getElementById('pdf-viewer');
-            var params = {
-                pdfUrl: pdfUrl
-            };
-
-            var pdfViewer = new PDFJS.PDFViewer({
-                container: container,
-                viewer: {
-                    container: container,
-                    canvas: canvas,
-                },
-            });
-            pdfViewer.init(params);
-        }
-
-        window.onload = function () {
-            loadPdfViewer();
-        };
-</script>
-
-@endsection
+<script src="{{asset('template/Medilab/assets/js/main.js')}}"></script>
