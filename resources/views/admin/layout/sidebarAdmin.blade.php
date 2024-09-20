@@ -28,7 +28,7 @@
     </a>
   </li>
   <li class="nav-item">
-    <a href="{{route('term-of-condition.index')}}" class="nav-link collapsed {{ request()->is('inbox') ? 'active' : '' }}">
+    <a href="{{route('term-and-condition.index')}}" class="nav-link collapsed {{ request()->is('inbox') ? 'active' : '' }}">
       <i class="bi bi-inbox"></i>
       <span>Term and Condition</span>
     </a>
