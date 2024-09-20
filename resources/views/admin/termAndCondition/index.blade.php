@@ -71,7 +71,7 @@
 
           <!-- Profile Edit Form -->
           
-          <form action="{{route('term-of-condition.update', $term->id)}}" method="POST" enctype="multipart/form-data">
+          <form action="{{route('term-and-conditions.update', $term->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="row mb-3">
