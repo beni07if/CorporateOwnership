@@ -57,7 +57,7 @@ class TermConditionController extends Controller
     {
         $termAndcondition = Termcondition::find($id);
         $termAndcondition->update($request->all());
-        return redirect()->route('term-of-condition.index')->with('success','Data berhasil diupdate');
+        return redirect()->route('term-and-conditions.index')->with('success','Data berhasil diupdate');
     }
 
     /**
