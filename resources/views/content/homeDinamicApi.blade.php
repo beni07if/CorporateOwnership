@@ -26,126 +26,142 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
     <div class="container">
-        @foreach($landingPages as $landingPage)
-        <h1 style="text-align:center;">{!!$landingPage->tagline!!}</h1>
-        @endforeach
-        <!-- <h2>Discover and Analyze Global Corporate Profile Structures for Strategic Insights</h2> -->
-        <!-- <a href="#about" hidden class="btn-get-started scrollto">Search</a> -->
-        <!-- <section id="hero" class="d-flex align-items-center"> -->
-        <!-- <div class="container"> -->
-        <form id="search-form">
+        <div id="landing-pages-container" style="text-align:center;"></div> <!-- Kontainer untuk tagline -->
+    
+        <form id="search-form" hidden>
             <label for="search-input" class="visually-hidden">Search</label>
             <div class="input-group">
-                <!-- <input type="text" id="search-input" class="form-control" placeholder="Find group and subsidiary profile...">
-                <button type="submit" class="btn btn-primary">Search</button> -->
+                <input type="text" id="search-input" class="form-control" placeholder="Search...">
+                <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </form>
-        <!-- </div> -->
-        <!-- </section> -->
     </div>
-</section><!-- End Hero -->
+</section>   
 @endsection
 
 @section('content')
 <main id="main">
 
-    <!-- ======= Why Us Sectionss ======= -->
+    <!-- ======= Why Us Section ======= -->
     <section id="why-us" class="why-us">
         <div class="container">
-            <div class="row">
-                @foreach($landingPages as $landingPage)
-                <div class="col-lg-4 d-flex align-items-stretch">
-                    <div class="content">
-                        <h3 style="color:#ffffff;">{!!$landingPage->title_short_definition!!}</h3>
-                        <p>
-                            {!!$landingPage->short_definition!!}
-                        </p>
+            <div class="row" id="landing-pages-container2"></div> <!-- Kontainer untuk data dari API -->
+        </div>
+    </section>
+
+    {{-- API Script --}}
+    <script>
+        // Fungsi untuk mengambil data dari API
+        async function fetchLandingPagesData() {
+            try {
+                // Permintaan ke API
+                const response = await fetch('/api/v1/landing-pages');
+    
+                // Validasi respons
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+    
+                // Konversi ke JSON
+                const data = await response.json();
+    
+                // Validasi struktur data
+                if (data.status !== 'success' || !Array.isArray(data.data)) {
+                    throw new Error('Invalid API response structure');
+                }
+    
+                // Tampilkan data di dua kontainer berbeda
+                displayTaglines(data.data);
+                displayLandingPagesDetails(data.data);
+            } catch (error) {
+                // Tangani kesalahan
+                console.error('Error fetching landing pages:', error);
+                displayError();
+            }
+        }
+
+        // Fungsi untuk menampilkan taglines
+        function displayTaglines(pages) {
+            const container = document.getElementById('landing-pages-container');
+            container.innerHTML = ''; // Kosongkan kontainer
+            pages.forEach(page => {
+                const h1 = document.createElement('h1');
+                h1.textContent = page.tagline || 'No tagline available';
+                container.appendChild(h1);
+            });
+        }
+
+        // Fungsi untuk menampilkan detail landing pages
+        function displayLandingPagesDetails(pages) {
+            const container = document.getElementById('landing-pages-container2');
+            container.innerHTML = ''; // Kosongkan kontainer
+            pages.forEach(landingPage => {
+                // Elemen kolom kiri
+                const colLeft = `
+                    <div class="col-lg-4 d-flex align-items-stretch">
+                        <div class="content">
+                            <h3 style="color:#ffffff;">${landingPage.title_short_definition || 'No title available'}</h3>
+                            <p>${landingPage.short_definition || 'No definition available'}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-8 d-flex align-items-stretch">
-                    <div class="icon-boxes d-flex flex-column justify-content-center">
-                        <div class="row">
-                            <div class="col-xl-4 d-flex align-items-stretch">
-                                <div class="icon-box mt-4 mt-xl-0">
-                                    <i class="ri-database-line"></i>
-                                    <h4>{!!$landingPage->title_of_data1!!}</h4>
-                                    <h2>{!!$landingPage->number_of_data1!!} +</h2>
-                                    <p>{!!$landingPage->tag_of_data1!!}</p>
-                                    <!-- <p>There are thousands of groups along with their subsidiaries, shareholders and other important information.</p> -->
-                                </div>
-                            </div>
-                            <div class="col-xl-4 d-flex align-items-stretch">
-                                <div class="icon-box mt-4 mt-xl-0">
-                                    <i class="ri-building-fill"></i>
-                                    <h4>{!!$landingPage->title_of_data2!!}</h4>
-                                    <h2>{!!$landingPage->number_of_data2!!} +</h2>
-                                    <p>{!!$landingPage->tag_of_data2!!}</p>
-                                    <!-- <p>There are tens of thousands of subsidiaries along with their location, shareholder, and other important information.</p> -->
-                                </div>
-                            </div>
-                            <div class="col-xl-4 d-flex align-items-stretch">
-                                <div class="icon-box mt-4 mt-xl-0">
-                                    <i class="ri-admin-line"></i>
-                                    <h4>{!!$landingPage->title_of_data3!!}</h4>
-                                    <h2>{!!$landingPage->number_of_data3!!} +</h2>
-                                    <p>{!!$landingPage->tag_of_data3!!}</p>
-                                    <!-- <p>There are tens of thousands of shareholders and their shareholdings in several companies</p> -->
-                                </div>
+                `;
+
+                // Elemen kolom kanan
+                const colRight = `
+                    <div class="col-lg-8 d-flex align-items-stretch">
+                        <div class="icon-boxes d-flex flex-column justify-content-center">
+                            <div class="row">
+                                ${generateDataColumns(landingPage)}
                             </div>
                         </div>
                     </div>
+                `;
+
+                // Gabungkan kolom kiri dan kanan
+                container.innerHTML += colLeft + colRight;
+            });
+        }
+
+        // Fungsi untuk membuat kolom data
+        function generateDataColumns(landingPage) {
+            const data = [
+                { icon: 'ri-database-line', title: landingPage.title_of_data1, number: landingPage.number_of_data1, tag: landingPage.tag_of_data1 },
+                { icon: 'ri-building-fill', title: landingPage.title_of_data2, number: landingPage.number_of_data2, tag: landingPage.tag_of_data2 },
+                { icon: 'ri-admin-line', title: landingPage.title_of_data3, number: landingPage.number_of_data3, tag: landingPage.tag_of_data3 },
+            ];
+
+            return data.map(d => `
+                <div class="col-xl-4 d-flex align-items-stretch">
+                    <div class="icon-box mt-4 mt-xl-0">
+                        <i class="${d.icon}"></i>
+                        <h4>${d.title || 'No data title'}</h4>
+                        <h2>${d.number || '0'} +</h2>
+                        <p>${d.tag || 'No tag available'}</p>
+                    </div>
                 </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
+            `).join('');
+        }
+
+        // Fungsi untuk menampilkan pesan error
+        function displayError() {
+            const container1 = document.getElementById('landing-pages-container');
+            const container2 = document.getElementById('landing-pages-container2');
+            const errorMessage = `<p style="color: red;">Failed to load landing pages. Please try again later.</p>`;
+            container1.innerHTML = errorMessage;
+            container2.innerHTML = errorMessage;
+        }
+
+        // Panggil fungsi fetchLandingPagesData saat halaman dimuat
+        window.onload = fetchLandingPagesData;
+    </script>
     <!-- End Why Us Section -->
 
-    <!-- ======= Why Us Section ======= -->
-    <section id="why-us2" class="why-us2 section-bg" hidden>
-      <div class="container" >
-
-        <div class="row">
-
-          <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
-
-            <div class="content">
-              <h3><strong>Corporate Profile</strong></h3>
-              <p>
-              Corporate Profile InovasiDigital dirancang untuk memberikan Anda akses mudah dan transparan ke data kepemilikan perusahaan kami. Temukan informasi mendalam mengenai pemegang saham utama, struktur grup, serta hubungan strategis yang membantu kami memimpin inovasi di industri digital.
-              </p>
-            </div>
-
-            <!-- <div class="accordion-list">
-              <ul>
-                <li>
-                  <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"><span>01</span> Non consectetur a erat nam at lectus urna duis? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                  <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
-                    <p>
-                      Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            </div> -->
-
-          </div>
-
-          <!-- <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("asset/img/perusahaan-multinasional.png");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div> -->
-          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img">
-          <img src="{{ asset('img/perusahaan-multinasional.png')}}" class="img-fluid" alt="">
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Why Us Section -->
-    
     <!-- ======= Departments Section ======= -->
     <section id="departments" class="departments">
         <div class="container">
 
             <div class="section-title">
-                <h2>AGRIBIZ</h2>
+                <h2>Corporate Profile</h2>
                 {{-- <p>Explore datasets of thousands of companies and their worldwide shareholding networks!</p> --}}
             </div>
             <!-- <div id="mapid" style="height: 500px;"></div> -->
@@ -669,13 +685,9 @@
     });
 </script>
 
-<!-- <script
-src='//fw-cdn.com/10921532/3683145.js'
-chat='true'>
-</script> -->
-
 <script
 src='//fw-cdn.com/10921532/3683145.js'
 chat='true'
 widgetId='6b8436d0-ab38-43ab-868d-d5b103918e69'>
 </script>
+

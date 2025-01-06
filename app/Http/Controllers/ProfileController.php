@@ -28,7 +28,20 @@ class ProfileController extends Controller
         // $groupNameeee = Consolidation::all();
         $landingPages = Landingpage::all();
         return view('content.homeDinamic', compact('landingPages'));
+        // return view('content.homeDinamicApi');
     }
+    
+    public function indexApi()
+    {
+        $landingPages = Landingpage::all();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Landing pages retrieved successfully.',
+            'data' => $landingPages,
+        ], 200);
+    }
+
     public function lpd()
     {
         $landingPages = Landingpage::all();
@@ -41,6 +54,18 @@ class ProfileController extends Controller
         $groupName = Consolidation::all();
         return view('content.en.feature.feature', compact('subsidiary', 'groupName'));
     }
+    
+    public function featureApi()
+    {
+        $subsidiary = Consolidation::all();
+        $groupName = Consolidation::all(); // Consider if you need to fetch this differently
+
+        return response()->json([
+            'subsidiary' => $subsidiary,
+            'group_name' => $groupName,
+        ]);
+    }
+
 
     public function searchFunctionGroup(Request $request)
     {

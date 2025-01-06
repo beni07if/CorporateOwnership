@@ -189,7 +189,7 @@
 
             <!-- <h1 class="logo me-auto"><a href="{{route('corporateProfileEn')}}">ID Corporate</a></h1> -->
             <!-- Uncomment below if you prefer to use an image logo -->
-            <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo-5/png/logo-no-background.png')}}" alt="" class="img-fluid"></a>
+            <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo/Agribiz_Color.png')}}" alt="" class="img-fluid"></a>
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
@@ -265,7 +265,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-3 footer-newsletter">
-                        <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo-4/png/logo-company-ownership-rb.png')}}" alt="" class="img-fluid" style="height:30px; width: auto;"></a>
+                        <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo/Agribiz_Color.png')}}" alt="" class="img-fluid" style="height:40px; width: auto;"></a>
                         <br><br>
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="{{route('faq')}}">FAQ (Frequently Asked Questions)</a></li>

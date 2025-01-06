@@ -11,7 +11,7 @@
         "google/apiclient": "^2.14",
         "guzzlehttp/guzzle": "^7.5",
         "laravel/framework": "^10.0",
-        "laravel/sanctum": "^3.2",
+        "laravel/sanctum": "^3.3",
         "laravel/scout": "^10.6",
         "laravel/socialite": "^5.11",
         "laravel/tinker": "^2.8",
