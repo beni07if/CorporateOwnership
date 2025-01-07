@@ -56,13 +56,14 @@
                                     <!-- <p class="fst-italic">Shareholders are the owners of a corporation and have a financial interest in the company's performance and profitability. Shareholders can be individual or entities. The information about company’s shareholders can be used to identify the people responsible and rule the company.</p> -->
                                     <!-- <p class="fst-italic">Shareholders are the owners of a corporation and have a financial interest in the company's performance and profitability. Shareholders can be individual or entities. Find people/companies who own shares in several companies.</p> -->
                                     <div class="container">
-                                        <form id="search-form" action="{{ route('searchFunctionSRA') }}" method="GET" class="d-flex">
-                                            <label for="search-input" class="visually-hidden">Search</label>
-                                            <div class="input-group">
-                                                <input type="text" id="search-input" name="group_name" class="form-control" placeholder="Group name">
-                                                <button type="submit" class="btn btn-info">Search</button>
-                                            </div>
-                                        </form>
+                                        <div class="row pb-3 justify-content-center">
+                                            <form action="{{ route('searchFunctionSRA') }}" method="GET" class="d-flex" style="width: 100%; background-color: #f8f9fa; border-radius: 10px; padding: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                                <input type="text" class="form-control me-2" name="group_name" placeholder="Search for other group company" style="border: 1px solid #007bff; border-radius: 5px;">
+                                                <button type="submit" class="btn btn-info" style="border-radius: 5px; transition: background-color 0.3s;">
+                                                    Search
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 text-center order-1 order-lg-2">

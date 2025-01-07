@@ -215,6 +215,12 @@
             height: 100%; /* Set height to match the card */
         }
 
+        /* Hover effect for button */
+        .btn-info:hover {
+                background-color: #0056b3; /* Darker shade on hover */
+                color: white;
+            }
+
         /* Tambahkan gaya lain sesuai kebutuhan Anda */
     </style>
 

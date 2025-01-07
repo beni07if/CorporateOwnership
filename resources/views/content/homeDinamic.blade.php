@@ -146,7 +146,7 @@
 
             <div class="section-title">
                 <h2>AGRIBIZ</h2>
-                {{-- <p>Explore datasets of thousands of companies and their worldwide shareholding networks!</p> --}}
+                <p>Get company information quickly</p>
             </div>
             <!-- <div id="mapid" style="height: 500px;"></div> -->
 
@@ -177,9 +177,11 @@
                                     <!-- <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the subsidiary companies. The information about Group Company can be used to identify the subsidiary under.</p> -->
                                     
                                     <div class="container">
-                                        <form action="{{ route('searchFunctionGroup') }}" method="GET" class="d-flex">
-                                            <input type="text" class="form-control me-2" name="group_name" placeholder="Group name">
-                                            <button type="submit" class="btn btn-info">Search</button>
+                                        <form action="{{ route('searchFunctionGroup') }}" method="GET" class="d-flex" style="width: 100%; background-color: #f8f9fa; border-radius: 10px; padding: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                            <input type="text" class="form-control me-2" name="group_name" placeholder="Type a group name" style="border: 1px solid #007bff; border-radius: 5px;">
+                                            <button type="submit" class="btn btn-info" style="border-radius: 5px; transition: background-color 0.3s;">
+                                                Search
+                                            </button>
                                         </form>
                                     </div>
                                 </div>
@@ -195,9 +197,11 @@
                                     <!-- <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the subsidiary companies. The information about Group Company can be used to identify the subsidiary under.</p> -->
                                     
                                     <div class="container">
-                                        <form action="{{ route('searchFunctionSubsidiary') }}" method="GET" class="d-flex">
-                                            <input type="text" class="form-control me-2" name="subsidiary" placeholder="Company name">
-                                            <button type="submit" class="btn btn-info">Search</button>
+                                        <form action="{{ route('searchFunctionSubsidiary') }}" method="GET" class="d-flex" style="width: 100%; background-color: #f8f9fa; border-radius: 10px; padding: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                            <input type="text" class="form-control me-2" name="subsidiary_name" placeholder="Type a company name" style="border: 1px solid #007bff; border-radius: 5px;">
+                                            <button type="submit" class="btn btn-info" style="border-radius: 5px; transition: background-color 0.3s;">
+                                                Search
+                                            </button>
                                         </form>
                                     </div>
                                 </div>
@@ -213,10 +217,14 @@
                                     <!-- <p class="fst-italic">A group company is a collection of individual companies or subsidiaries that are controlled by a single parent company. The parent company, often referred to as the holding company or the group, typically holds a majority stake or controlling the subsidiary companies. The information about Group Company can be used to identify the subsidiary under.</p> -->
                                     
                                     <div class="container">
-                                        <form action="{{ route('searchFunctionShareholder') }}" method="GET" class="d-flex">
-                                            <input type="text" class="form-control me-2" name="shareholder_name" placeholder="Shareholder name">
-                                            <button type="submit" class="btn btn-info">Search</button>
-                                        </form>
+                                        <div class="row pb-3 justify-content-center">
+                                            <form action="{{ route('searchFunctionShareholder') }}" method="GET" class="d-flex" style="width: 100%; background-color: #f8f9fa; border-radius: 10px; padding: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                                <input type="text" class="form-control me-2" name="shareholder_name" placeholder="Type a shareholder name" style="border: 1px solid #007bff; border-radius: 5px;">
+                                                <button type="submit" class="btn btn-info" style="border-radius: 5px; transition: background-color 0.3s;">
+                                                    Search
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 text-center order-1 order-lg-2">

@@ -13,12 +13,15 @@
             <h2>Shareholdings</h2>
             <P>Search results from "{{$shareholder}}"</P>
         </div>
-        <div class="row pb-3">
-            <form action="{{ route('searchFunctionShareholder') }}" method="GET" class="d-flex ms-auto" style="width: 33%;">
-                <input type="text" class="form-control me-2" name="shareholder_name" placeholder="Search for other shareholder">
-                <button type="submit" class="btn btn-info">Search</button>
+        <div class="row pb-3 justify-content-center">
+            <form action="{{ route('searchFunctionShareholder') }}" method="GET" class="d-flex" style="width: 33%; background-color: #f8f9fa; border-radius: 10px; padding: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <input type="text" class="form-control me-2" name="shareholder_name" placeholder="Search for other shareholder company" style="border: 1px solid #007bff; border-radius: 5px;">
+                <button type="submit" class="btn btn-info" style="border-radius: 5px; transition: background-color 0.3s;">
+                    Search
+                </button>
             </form>
         </div>
+        
         <div class="row">
             @if($shareholderNames->isNotEmpty())
                 @foreach($shareholderNames as $subs)
