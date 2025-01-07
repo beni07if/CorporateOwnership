@@ -165,8 +165,57 @@
             margin-bottom: 10px; /* Memberi jarak antara setiap elemen li */
         }
 
-        /* Tambahkan gaya lain sesuai kebutuhan Anda */
+        .overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.8);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 1000;
+                }
+                .zoomed {
+                    max-width: 90%;
+                    max-height: 90%;
+                    transition: transform 0.5s ease;
+                }
+                .zoomed:hover {
+                    transform: scale(1.1);
+                }
+                .close-button {
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    background-color: white;
+                    border: none;
+                    padding: 10px;
+                    cursor: pointer;
+                }
+                .overlay-card {
+                    background-color: white;
+                    cursor: pointer;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+                .gallery-item {
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px; /* Set a fixed height */
+        }
+        .gallery-image {
+            object-fit: cover;
+            width: 100%;
+            height: 100%; /* Set height to match the card */
+        }
 
+        /* Tambahkan gaya lain sesuai kebutuhan Anda */
     </style>
 
 </head>

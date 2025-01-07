@@ -276,6 +276,98 @@
     
     <!-- End About Section -->
 
+    <!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery" hidden>
+        <div class="container">
+  
+          <div class="section-title">
+            <h2>Gallery</h2>
+            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          </div>
+        </div>
+  
+        <div class="container-fluid">
+            <div class="row g-0 justify-content-center">
+                <!-- Gallery Items Row 1 -->
+                <div class="col-lg-5 col-md-6 px-3">
+                    <div class="gallery-item position-relative">
+                        <a href="{{ asset('img/bg/bgn1.png') }}" class="gallery-lightbox">
+                            <img src="{{ asset('img/bg/bgn1.png') }}" alt="Gallery Image 1" class="img-fluid">
+                        </a>
+                        <div class="card overlay-card" onclick="showImage('{{ asset('storage/' . $landingPage->key_feature_image1) }}')">
+                            <div class="card-body text-center">
+                                <h5 class="card-title"><a href="">{!!$landingPage->key_feature_title1!!}</a></h5>
+                                <p class="card-text">{!!$landingPage->key_feature_desc1!!}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="col-lg-5 col-md-6 px-3">
+                    <div class="gallery-item position-relative">
+                        <a href="{{ asset('img/bg/bgn2.jpg') }}" class="gallery-lightbox">
+                            <img src="{{ asset('img/bg/bgn2.jpg') }}" alt="Gallery Image 2" class="img-fluid">
+                        </a>
+                        <div class="card overlay-card" onclick="showImage('{{ asset('img/bg/bgn2.jpg') }}')">
+                            <div class="card-body text-center">
+                                <p class="card-text">Click here to see another image</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="row g-0 justify-content-center mt-4">
+                <!-- Gallery Items Row 2 -->
+                <div class="col-lg-5 col-md-6 px-3">
+                    <div class="gallery-item position-relative">
+                        <a href="{{ asset('img/bg/bg1.jpeg') }}" class="gallery-lightbox">
+                            <img src="{{ asset('img/bg/bg1.jpeg') }}" alt="Gallery Image 3" class="img-fluid">
+                        </a>
+                        <div class="card overlay-card" onclick="showImage('{{ asset('img/bg/bg1.jpeg') }}')">
+                            <div class="card-body text-center">
+                                <p class="card-text">Click here to see another image</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="col-lg-5 col-md-6 px-3">
+                    <div class="gallery-item position-relative">
+                        <a href="{{ asset('img/bg/bg2.jpeg') }}" class="gallery-lightbox">
+                            <img src="{{ asset('img/bg/bg2.jpeg') }}" alt="Gallery Image 4" class="img-fluid">
+                        </a>
+                        <div class="card overlay-card" onclick="showImage('{{ asset('img/bg/bg2.jpeg') }}')">
+                            <div class="card-body text-center">
+                                <p class="card-text">Click here to see another image</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Overlay -->
+            <div id="overlay" class="overlay" style="display: none;">
+                <img id="zoomedImage" class="zoomed" alt="Zoomed Image" />
+                <button class="close-button" onclick="closeImage()">Close</button>
+            </div>
+        
+            <!-- Scripts -->
+            <script>
+                function showImage(imageUrl) {
+                    const zoomedImage = document.getElementById('zoomedImage');
+                    zoomedImage.src = imageUrl;
+                    document.getElementById('overlay').style.display = 'flex';
+                }
+        
+                function closeImage() {
+                    document.getElementById('overlay').style.display = 'none';
+                    document.getElementById('zoomedImage').src = '';
+                }
+            </script>
+        </div>
+    </section><!-- End Gallery Section -->
+
     <!-- ======= About Section ======= -->
     <section id="about2" class="about2">
       <div class="container">
