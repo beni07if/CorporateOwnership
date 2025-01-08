@@ -220,6 +220,10 @@
                 background-color: #0056b3; /* Darker shade on hover */
                 color: white;
             }
+            .zoom-in:hover {
+        color: #007BFF;
+        transform: scale(1.1); /* Zoom in effect */
+    }
 
         /* Tambahkan gaya lain sesuai kebutuhan Anda */
     </style>
@@ -323,7 +327,7 @@
                         <a href="{{route('corporateProfileEn')}}" class="logo me-auto"><img src="{{asset('img/logo/new-logo/Agribiz_Color.png')}}" alt="" class="img-fluid" style="height:40px; width: auto;"></a>
                         <br><br>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="{{route('faq')}}">FAQ (Frequently Asked Questions)</a></li>
+                            <li><a href="{{route('faq')}}">FAQ (Frequently Asked Questions)</a></li>
                             <!-- <li><i class="bx bx-chevron-right"></i> <a href="{{route('userGuide')}}">User Guides</a></li> -->
                         </ul>
                     </div>

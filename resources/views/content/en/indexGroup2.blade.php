@@ -81,449 +81,538 @@
             </div>
           <div class="col-xl-12">
   
-            <form action="{{ route('searchFunctionGroup') }}" method="GET" class="d-flex ms-auto" style="width: 33%;">
-                <input type="text" class="form-control me-2" name="group_name" placeholder="Search for other company groups">
-                <button type="submit" class="btn btn-info">Search</button>
-            </form>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <form action="{{ route('searchFunctionGroup') }}" method="GET" class="d-flex" style="width: 50%; background-color: #f8f9fa; border-radius: 10px; padding: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <input type="text" class="form-control me-2" name="group_name" placeholder="Search for other group company" style="border: 1px solid #007bff; border-radius: 5px;">
+                    <button type="submit" class="btn btn-info" style="border-radius: 5px; transition: background-color 0.3s;">
+                        Search
+                    </button>
+                </form>
+            </div>
+            <div class="card">
+                @if(count($groups)>0)
+                <div class="card-body">
+                    
+                    <div class="d-flex justify-content-between">
+                        <nav>
+                            @foreach($groups->pluck('group_name')->unique() as $subs)
+                                <h5 class="card-title me-3">{{ $subs }}</h5>
+                            @endforeach
+                        </nav>
+                        <nav class="zoom-in">
+                            @if($groups->isNotEmpty())
+                            @foreach($groups as $subs)
+                            <form action="{{ route('group2ShowStructure') }}" target="_blank" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="d-flex align-items-center">
+                                    <h5 class="card-title mb-0">
+                                        <input type="submit" name="group_name" value="Group Structure" 
+                                            style="background-color: transparent; border: none; font-weight: bold; color: #106587; cursor: pointer; 
+                                                   transition: color 0.3s;" 
+                                            onmouseover="this.style.color='#007BFF'" onmouseout="this.style.color='inherit'">
+                                    </h5>
+                                    <span class="badge bg-info text-dark" style="margin-top: 20px;"><i class="bi-file-earmark-pdf me-1"></i> pdf</span>
+                                </div>
+                            </form>
+                            @endforeach
+                            @endif
+                        </nav>
+                        <nav>
+                            <h5 class="card-title">RSPO Member</h5>
+                            @foreach($groups->pluck('rspo_member')->unique() as $rspo_member)
+                                <span class="badge {{ $rspo_member == 'Yes' ? 'bg-info text-dark' : 'bg-warning text-dark' }}">
+                                    <i class="{{ $rspo_member == 'Yes' ? 'bi bi-check-circle' : 'bi bi-exclamation-triangle' }} me-1"></i>
+                                    {{ $rspo_member == 'Yes' ? 'Yes' : 'No' }}
+                                </span>
+                            @endforeach
+                        </nav>
+                        <nav>
+                            <h5 class="card-title">NDPE Policy</h5>
+                            @foreach($groups->pluck('ndpe_policy')->unique() as $ndpe_policy)
+                                <span class="badge {{ $ndpe_policy == 'Yes' ? 'bg-info text-dark' : 'bg-warning text-dark' }}">
+                                    <i class="{{ $ndpe_policy == 'Yes' ? 'bi bi-check-circle' : 'bi bi-exclamation-triangle' }} me-1"></i>
+                                    {{ $ndpe_policy == 'Yes' ? 'Yes' : 'No' }}
+                                </span>
+                            @endforeach
+                        </nav>
+                    </div>
+                </div>
+                @endif
+            </div><br>         
             
             <div class="card">
               <div class="card-body pt-3">
                 <div class="tab-content pt-2">
                     @if(count($groups)>0)
                     <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                        <div class="d-flex justify-content-between flex-wrap">
-                            <div class="d-flex flex-wrap">
-                                @foreach($groups->pluck('group_name')->unique() as $subs)
-                                    <h5 class="card-title me-3">{{ $subs }}</h5>
+                        <div class="alert alert-light border-light alert-dismissible fade show bg-opacity-50" role="alert">
+                            <div class="d-flex justify-content-between flex-wrap">
+                                <div class="d-flex flex-wrap">
+                                        <h5 class="card-title me-3">Basic Information</h5>
+                                </div>
+                            </div>     
+                            @foreach($groups->pluck('group_name')->unique() as $subs)
+                            {{-- <p class="small fst-italic">Company structure of {{$subs}}</p> --}}
+                            @endforeach
+    
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-4 label">Group Name</div>
+                                        @foreach($groups->pluck('group_name')->unique() as $group_name)
+                                            @if($group_name)
+                                            <div class="col-lg-7 col-md-8">: {!! nl2br(e($group_name)) !!}</div>
+                                            @else
+                                            <div class="col-lg-7 col-md-8">: -</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-4 label">Official Group Name</div>
+                                        @foreach($groups->pluck('official_group_name')->unique() as $official_group_name)
+                                            @if($official_group_name)
+                                            <div class="col-lg-7 col-md-8">: {!! nl2br(e($official_group_name)) !!}</div>
+                                            @else
+                                            <div class="col-lg-7 col-md-8">: -</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-4 label">Group Status</div>
+                                        @foreach($groups->pluck('group_status')->unique() as $group_status)
+                                            @if($group_status)
+                                            <div class="col-lg-7 col-md-8">: {!! nl2br(e($group_status)) !!}</div>
+                                            @else
+                                            <div class="col-lg-7 col-md-8">: -</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-4 label">Listing Status</div>
+                                        @foreach($groups->pluck('stock_exchange_name')->unique() as $stock_exchange_name)
+                                            @if($stock_exchange_name)
+                                            <div class="col-lg-7 col-md-8">: {!! nl2br(e($stock_exchange_name)) !!}</div>
+                                            @else
+                                            <div class="col-lg-7 col-md-8">: -</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-4 label">Business Sector</div>
+                                        @foreach($groups->pluck('business_sector')->unique() as $business_sector)
+                                            @if($business_sector)
+                                            <div class="col-lg-7 col-md-8">: {!! nl2br(e($business_sector)) !!}</div>
+                                            @else
+                                            <div class="col-lg-7 col-md-8">: -</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-4 label">Main Product</div>
+                                        @foreach($groups->pluck('main_product')->unique() as $main_product)
+                                            @if($main_product)
+                                            <div class="col-lg-7 col-md-8">: {!! nl2br(e($main_product)) !!}</div>
+                                            @else
+                                            <div class="col-lg-7 col-md-8">: -</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                            
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-4 label">Incorporation Date</div>
+                                        @foreach($groups->pluck('incorporation_date')->unique() as $incorporation_date)
+                                            @if($incorporation_date)
+                                            <div class="col-lg-7 col-md-8">: {!! nl2br(e($incorporation_date)) !!}</div>
+                                            @else
+                                            <div class="col-lg-7 col-md-8">: -</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-4 label">Country Registration</div>
+                                        @foreach($groups->pluck('country_registration')->unique() as $country_registration)
+                                            @if($country_registration)
+                                            <div class="col-lg-7 col-md-8">: {!! nl2br(e($country_registration)) !!}</div>
+                                            @else
+                                            <div class="col-lg-7 col-md-8">: -</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-4 label">Country Operation</div>
+                                        @foreach($groups->pluck('country_operation')->unique() as $country_operation)
+                                            @if($country_operation)
+                                            <div class="col-lg-7 col-md-8">: {!! nl2br(e($country_operation)) !!}</div>
+                                            @else
+                                            <div class="col-lg-7 col-md-8">: -</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-4 label">Business Address</div>
+                                        @foreach($groups->pluck('business_address')->unique() as $business_address)
+                                            @if($business_address)
+                                            <div class="col-lg-7 col-md-8">: {!! nl2br(e($business_address)) !!}</div>
+                                            @else
+                                            <div class="col-lg-7 col-md-8">: -</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>      
+                        </div><hr>
+
+                        <div class="alert alert-light border-light alert-dismissible fade show" role="alert">
+                            <div class="d-flex justify-content-between flex-wrap">
+                                <div class="d-flex flex-wrap">
+                                        <h5 class="card-title me-3">Management and Controller</h5>
+                                </div>
+                            </div>   
+        
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Controller</div>
+                                @foreach($groups->pluck('controller')->unique() as $controller)
+                                    @if($controller)
+                                    <div class="col-lg-9 col-md-8">: {!! nl2br(e($controller)) !!}</div>
+                                    @else
+                                    <div class="col-lg-9 col-md-8">: -</div>
+                                    @endif
                                 @endforeach
                             </div>
-                        </div>                        
-                        
-                        @foreach($groups->pluck('group_name')->unique() as $subs)
-                        {{-- <p class="small fst-italic">Company structure of {{$subs}}</p> --}}
-                        @endforeach
-
-                        <h5 class="card-title">Basic Information</h5>
-    
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label">Group Name</div>
-                                    @foreach($groups->pluck('group_name')->unique() as $group_name)
-                                        @if($group_name)
-                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($group_name)) !!}</div>
-                                        @else
-                                        <div class="col-lg-7 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label">Official Group Name</div>
-                                    @foreach($groups->pluck('official_group_name')->unique() as $official_group_name)
-                                        @if($official_group_name)
-                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($official_group_name)) !!}</div>
-                                        @else
-                                        <div class="col-lg-7 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label">Group Status</div>
-                                    @foreach($groups->pluck('group_status')->unique() as $group_status)
-                                        @if($group_status)
-                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($group_status)) !!}</div>
-                                        @else
-                                        <div class="col-lg-7 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label">Listing Status</div>
-                                    @foreach($groups->pluck('stock_exchange_name')->unique() as $stock_exchange_name)
-                                        @if($stock_exchange_name)
-                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($stock_exchange_name)) !!}</div>
-                                        @else
-                                        <div class="col-lg-7 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label">Business Sector</div>
-                                    @foreach($groups->pluck('business_sector')->unique() as $business_sector)
-                                        @if($business_sector)
-                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($business_sector)) !!}</div>
-                                        @else
-                                        <div class="col-lg-7 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label">Main Product</div>
-                                    @foreach($groups->pluck('main_product')->unique() as $main_product)
-                                        @if($main_product)
-                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($main_product)) !!}</div>
-                                        @else
-                                        <div class="col-lg-7 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
+        
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Name and Position</div>
+                                @foreach($groups->pluck('management_name_and_position')->unique() as $management_name_and_position)
+                                    @if($management_name_and_position)
+                                    <div class="col-lg-9 col-md-8">: {!! nl2br(e($management_name_and_position)) !!}</div>
+                                    @else
+                                    <div class="col-lg-9 col-md-8">: -</div>
+                                    @endif
+                                @endforeach
                             </div>
-                        
-                            <div class="col-lg-6 col-md-6">
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label">Incorporation Date</div>
-                                    @foreach($groups->pluck('incorporation_date')->unique() as $incorporation_date)
-                                        @if($incorporation_date)
-                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($incorporation_date)) !!}</div>
-                                        @else
-                                        <div class="col-lg-7 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label">Country Registration</div>
-                                    @foreach($groups->pluck('country_registration')->unique() as $country_registration)
-                                        @if($country_registration)
-                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($country_registration)) !!}</div>
-                                        @else
-                                        <div class="col-lg-7 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label">Country Operation</div>
-                                    @foreach($groups->pluck('country_operation')->unique() as $country_operation)
-                                        @if($country_operation)
-                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($country_operation)) !!}</div>
-                                        @else
-                                        <div class="col-lg-7 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label">Business Address</div>
-                                    @foreach($groups->pluck('business_address')->unique() as $business_address)
-                                        @if($business_address)
-                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($business_address)) !!}</div>
-                                        @else
-                                        <div class="col-lg-7 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>      
+                        </div><hr>
 
-                        <h5 class="card-title">Management and Controller</h5>
-    
-                        <div class="row">
-                            <div class="col-lg-3 col-md-4 label ">Controller</div>
-                            @foreach($groups->pluck('controller')->unique() as $controller)
-                                @if($controller)
-                                <div class="col-lg-9 col-md-8">: {!! nl2br(e($controller)) !!}</div>
-                                @else
-                                <div class="col-lg-9 col-md-8">: -</div>
-                                @endif
-                            @endforeach
-                        </div>
-    
-                        <div class="row">
-                            <div class="col-lg-3 col-md-4 label ">Name and Position</div>
-                            @foreach($groups->pluck('management_name_and_position')->unique() as $management_name_and_position)
-                                @if($management_name_and_position)
-                                <div class="col-lg-9 col-md-8">: {!! nl2br(e($management_name_and_position)) !!}</div>
-                                @else
-                                <div class="col-lg-9 col-md-8">: -</div>
-                                @endif
-                            @endforeach
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-6 col-md-12">
-                                <h5 class="card-title">Shareholders</h5>
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-8">
-                                        @foreach($groups as $subs)
-                                        <form action="{{ route('searchFunctionShareholder') }}" method="GET" enctype="multipart/form-data">
+                        <div class="alert alert-light border-light alert-dismissible fade show" role="alert">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="d-flex justify-content-between flex-wrap">
+                                        <div class="d-flex flex-wrap">
+                                                <h5 class="card-title me-3">Shareholders</h5>
+                                        </div>
+                                    </div>   
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-8">
+                                            @foreach($groups as $subs)
+                                            <form action="{{ route('searchFunctionShareholder') }}" method="GET" enctype="multipart/form-data">
+                                                @csrf
+                                                <div>
+                                                    @if($subs->shareholder_name1 !== 'Nil')
+                                                        <input type="submit" name="shareholder_name" value="{{ $subs->shareholder_name1 }}" class="text-muted" style="border: none;"> ({{ $subs->percent_of_share1 }}) <br>
+                                                    @endif
+                            
+                                                    @if($subs->shareholder_name2 !== 'Nil')
+                                                        <input type="submit" name="shareholder_name" value="{{ $subs->shareholder_name2 }}" class="text-muted" style="border: none;"> ({{ $subs->percent_of_share2 }}) <br>
+                                                    @endif
+                            
+                                                    @if($subs->shareholder_name3 !== 'Nil')
+                                                        <input type="submit" name="shareholder_name" value="{{ $subs->shareholder_name3 }}" class="text-muted" style="border: none;"> ({{ $subs->percent_of_share3 }}) <br>
+                                                    @endif
+                            
+                                                    @if($subs->shareholder_name4 !== 'Nil')
+                                                        <input type="submit" name="shareholder_name" value="{{ $subs->shareholder_name4 }}" class="text-muted" style="border: none;"> ({{ $subs->percent_of_share4 }}) <br>
+                                                    @endif
+                            
+                                                    @if($subs->shareholder_name5 !== 'Nil')
+                                                        <input type="submit" name="shareholder_name" value="{{ $subs->shareholder_name5 }}" class="text-muted" style="border: none;"> ({{ $subs->percent_of_share5 }})
+                                                    @endif
+                                                </div>
+                                            </form>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="d-flex justify-content-between flex-wrap">
+                                        <div class="d-flex flex-wrap">
+                                                <h5 class="card-title me-3">Subidiary</h5>
+                                        </div>
+                                    </div>   
+                                    <div class="row">
+                                        <form action="{{ route('subsidiaryShow') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
+                                            @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
                                             <div>
-                                                @if($subs->shareholder_name1 !== 'Nil')
-                                                    <input type="submit" name="shareholder_name" value="{{ $subs->shareholder_name1 }}" class="text-muted" style="border: none;"> ({{ $subs->percent_of_share1 }}) <br>
-                                                @endif
-                        
-                                                @if($subs->shareholder_name2 !== 'Nil')
-                                                    <input type="submit" name="shareholder_name" value="{{ $subs->shareholder_name2 }}" class="text-muted" style="border: none;"> ({{ $subs->percent_of_share2 }}) <br>
-                                                @endif
-                        
-                                                @if($subs->shareholder_name3 !== 'Nil')
-                                                    <input type="submit" name="shareholder_name" value="{{ $subs->shareholder_name3 }}" class="text-muted" style="border: none;"> ({{ $subs->percent_of_share3 }}) <br>
-                                                @endif
-                        
-                                                @if($subs->shareholder_name4 !== 'Nil')
-                                                    <input type="submit" name="shareholder_name" value="{{ $subs->shareholder_name4 }}" class="text-muted" style="border: none;"> ({{ $subs->percent_of_share4 }}) <br>
-                                                @endif
-                        
-                                                @if($subs->shareholder_name5 !== 'Nil')
-                                                    <input type="submit" name="shareholder_name" value="{{ $subs->shareholder_name5 }}" class="text-muted" style="border: none;"> ({{ $subs->percent_of_share5 }})
-                                                @endif
+                                                <input type="submit" name="subsidiary" value="{{ $subs }}" class="text-muted" style="border: none;">
                                             </div>
+                                            @endforeach
                                         </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><hr>
+
+                        <div class="alert alert-light border-light alert-dismissible fade show" role="alert">
+                            <div class="d-flex justify-content-between flex-wrap">
+                                <div class="d-flex flex-wrap">
+                                        <h5 class="card-title me-3">Land Area (in hectare)</h5>
+                                </div>
+                            </div>   
+        
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-4 label">Land Area Controlled</div>
+                                    @foreach($groups->pluck('land_area_controlled')->unique() as $land_area_controlled)
+                                        @if($land_area_controlled)
+                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($land_area_controlled)) !!}</div>
+                                        @else
+                                        <div class="col-lg-7 col-md-8">: -</div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-4 label">Total Planted</div>
+                                    @foreach($groups->pluck('total_planted')->unique() as $total_planted)
+                                        @if($total_planted)
+                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($total_planted)) !!}</div>
+                                        @else
+                                        <div class="col-lg-7 col-md-8">: -</div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-4 label">Total Smallholders</div>
+                                    @foreach($groups->pluck('total_smallholders')->unique() as $total_smallholders)
+                                        @if($total_smallholders)
+                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($total_smallholders)) !!}</div>
+                                        @else
+                                        <div class="col-lg-7 col-md-8">: -</div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-4 label">Total Land Designated and Managed as HCV/HCS Areas</div>
+                                    @foreach($groups->pluck('total_land_designated_hcv')->unique() as $total_land_designated_hcv)
+                                        @if($total_land_designated_hcv)
+                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($total_land_designated_hcv)) !!}</div>
+                                        @else
+                                        <div class="col-lg-7 col-md-8">: -</div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                </div>
+                            </div>
+                        </div><hr>
+
+                        <div class="alert alert-light border-light alert-dismissible fade show" role="alert">
+                            <div class="d-flex justify-content-between flex-wrap">
+                                <div class="d-flex flex-wrap">
+                                        <h5 class="card-title me-3">Productivity/Volume Handled (tonnes per year)</h5>
+                                </div>
+                            </div>   
+        
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-4 label">Annual Productivity by RSPO Certified</div>
+                                    @foreach($groups->pluck('annual_productivity_by_rspo_certified')->unique() as $annual_productivity_by_rspo_certified)
+                                        @if($annual_productivity_by_rspo_certified)
+                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($annual_productivity_by_rspo_certified)) !!}</div>
+                                        @else
+                                        <div class="col-lg-7 col-md-8">: -</div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-4 label">Annual CPO Productivity</div>
+                                    @foreach($groups->pluck('annual_cpo_productivity')->unique() as $annual_cpo_productivity)
+                                        @if($annual_cpo_productivity)
+                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($annual_cpo_productivity)) !!}</div>
+                                        @else
+                                        <div class="col-lg-7 col-md-8">: -</div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-4 label">Annual FFB Productivity by RSPO Certified</div>
+                                    @foreach($groups->pluck('annual_productivity_by_rspo_certified')->unique() as $annual_productivity_by_rspo_certified)
+                                        @if($annual_productivity_by_rspo_certified)
+                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($annual_productivity_by_rspo_certified)) !!}</div>
+                                        @else
+                                        <div class="col-lg-7 col-md-8">: -</div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-4 label">Annual CPK Productivity</div>
+                                    @foreach($groups->pluck('annual_cpk_productivity')->unique() as $annual_cpk_productivity)
+                                        @if($annual_cpk_productivity)
+                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($annual_cpk_productivity)) !!}</div>
+                                        @else
+                                        <div class="col-lg-7 col-md-8">: -</div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                </div>
+                            </div>
+                        </div><hr>
+
+                        <div class="alert alert-light border-light alert-dismissible fade show" role="alert">
+                            <div class="d-flex justify-content-between flex-wrap">
+                                <div class="d-flex flex-wrap">
+                                        <h5 class="card-title me-3">Membership in Global Sustainable Scheme</h5>
+                                </div>
+                            </div>   
+        
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-4 label">RSPO Member</div>
+                                    @foreach($groups->pluck('rspo_member')->unique() as $rspo_member)
+                                        @if($rspo_member)
+                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($rspo_member)) !!}</div>
+                                        @else
+                                        <div class="col-lg-7 col-md-8">: -</div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-4 label">CGF Member</div>
+                                    @foreach($groups->pluck('cgf_member')->unique() as $cgf_member)
+                                        @if($cgf_member)
+                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($cgf_member)) !!}</div>
+                                        @else
+                                        <div class="col-lg-7 col-md-8">: -</div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-4 label">ASD Member</div>
+                                    @foreach($groups->pluck('asd_member')->unique() as $asd_member)
+                                        @if($asd_member)
+                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($asd_member)) !!}</div>
+                                        @else
+                                        <div class="col-lg-7 col-md-8">: -</div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-4 label">GPNSR Member</div>
+                                    @foreach($groups->pluck('gpnsr_member')->unique() as $gpnsr_member)
+                                        @if($gpnsr_member)
+                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($gpnsr_member)) !!}</div>
+                                        @else
+                                        <div class="col-lg-7 col-md-8">: -</div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-4 label">Other Membership</div>
+                                    @foreach($groups->pluck('others_mention')->unique() as $others_mention)
+                                        @if($others_mention)
+                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($others_mention)) !!}</div>
+                                        @else
+                                        <div class="col-lg-7 col-md-8">: -</div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                </div>
+                            </div>
+                        </div><hr>
+
+                        <div class="alert alert-light border-light alert-dismissible fade show" role="alert">
+                            <div class="d-flex justify-content-between flex-wrap">
+                                <div class="d-flex flex-wrap">
+                                        <h5 class="card-title me-3">Transparency and Responsibility</h5>
+                                </div>
+                            </div>   
+        
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    {{-- <div class="row">
+                                        <div class="col-lg-5 col-md-4 label">Certification</div>
+                                        <div class="col-lg-7 col-md-8">: -</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-4 label">Link Certification</div>
+                                        <div class="col-lg-7 col-md-8">: -</div>
+                                    </div> --}}
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-4 label">NDPE Policy</div>
+                                        @foreach($groups->pluck('ndpe_policy')->unique() as $ndpe_policy)
+                                            @if($ndpe_policy)
+                                            <div class="col-lg-7 col-md-8">: {!! nl2br(e($ndpe_policy)) !!}</div>
+                                            @else
+                                            <div class="col-lg-7 col-md-8">: -</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-4 label">NDPE Time Bound Plan Implementation</div>
+                                        @foreach($groups->pluck('ndpe_time_bound_plan_implementation')->unique() as $ndpe_time_bound_plan_implementation)
+                                            @if($ndpe_time_bound_plan_implementation)
+                                            <div class="col-lg-7 col-md-8">: {!! nl2br(e($ndpe_time_bound_plan_implementation)) !!}</div>
+                                            @else
+                                            <div class="col-lg-7 col-md-8">: -</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-4 label">Sustainability Progress Report</div>
+                                        @foreach($groups->pluck('sustainability_progress_report')->unique() as $sustainability_progress_report)
+                                            @if($sustainability_progress_report)
+                                            <div class="col-lg-7 col-md-8">: {!! nl2br(e($sustainability_progress_report)) !!}</div>
+                                            @else
+                                            <div class="col-lg-7 col-md-8">: -</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-4 label">Supply Chain Traceability</div>
+                                        @foreach($groups->pluck('supply_chain_traceability')->unique() as $supply_chain_traceability)
+                                            @if($supply_chain_traceability)
+                                            <div class="col-lg-7 col-md-8">: {!! nl2br(e($supply_chain_traceability)) !!}</div>
+                                            @else
+                                            <div class="col-lg-7 col-md-8">: -</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-4 label">Grievance Mechanism</div>
+                                        @foreach($groups->pluck('grievance_mechanism')->unique() as $grievance_mechanism)
+                                            @if($grievance_mechanism)
+                                            <div class="col-lg-7 col-md-8">: {!! nl2br(e($grievance_mechanism)) !!}</div>
+                                            @else
+                                            <div class="col-lg-7 col-md-8">: -</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-4 label">Recovery Plan</div>
+                                        @foreach($groups->pluck('recovery_plan')->unique() as $recovery_plan)
+                                            @if($recovery_plan)
+                                            <div class="col-lg-7 col-md-8">: {!! nl2br(e($recovery_plan)) !!}</div>
+                                            @else
+                                            <div class="col-lg-7 col-md-8">: -</div>
+                                            @endif
                                         @endforeach
                                     </div>
                                 </div>
                             </div>
+                        </div><hr>
                         
-                            <div class="col-lg-6 col-md-12">
-                                <h5 class="card-title">Subsidiary</h5>
-                                <div class="row">
-                                    <form action="{{ route('subsidiaryShow') }}" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
-                                        <div>
-                                            <input type="submit" name="subsidiary" value="{{ $subs }}" class="text-muted" style="border: none;">
-                                        </div>
-                                        @endforeach
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        
-
-                        <h5 class="card-title">Land Area (in hectare)</h5>
-    
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-4 label">Land Area Controlled</div>
-                                @foreach($groups->pluck('land_area_controlled')->unique() as $land_area_controlled)
-                                    @if($land_area_controlled)
-                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($land_area_controlled)) !!}</div>
-                                    @else
-                                    <div class="col-lg-7 col-md-8">: -</div>
-                                    @endif
-                                @endforeach
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-5 col-md-4 label">Total Planted</div>
-                                @foreach($groups->pluck('total_planted')->unique() as $total_planted)
-                                    @if($total_planted)
-                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($total_planted)) !!}</div>
-                                    @else
-                                    <div class="col-lg-7 col-md-8">: -</div>
-                                    @endif
-                                @endforeach
-                            </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-4 label">Total Smallholders</div>
-                                @foreach($groups->pluck('total_smallholders')->unique() as $total_smallholders)
-                                    @if($total_smallholders)
-                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($total_smallholders)) !!}</div>
-                                    @else
-                                    <div class="col-lg-7 col-md-8">: -</div>
-                                    @endif
-                                @endforeach
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-5 col-md-4 label">Total Land Designated and Managed as HCV/HCS Areas</div>
-                                @foreach($groups->pluck('total_land_designated_hcv')->unique() as $total_land_designated_hcv)
-                                    @if($total_land_designated_hcv)
-                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($total_land_designated_hcv)) !!}</div>
-                                    @else
-                                    <div class="col-lg-7 col-md-8">: -</div>
-                                    @endif
-                                @endforeach
-                            </div>
-                            </div>
-                        </div>
-                        
-                        <h5 class="card-title">Productivity/Volume Handled (tonnes per year)</h5>
-    
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-4 label">Annual Productivity by RSPO Certified</div>
-                                @foreach($groups->pluck('annual_productivity_by_rspo_certified')->unique() as $annual_productivity_by_rspo_certified)
-                                    @if($annual_productivity_by_rspo_certified)
-                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($annual_productivity_by_rspo_certified)) !!}</div>
-                                    @else
-                                    <div class="col-lg-7 col-md-8">: -</div>
-                                    @endif
-                                @endforeach
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-5 col-md-4 label">Annual CPO Productivity</div>
-                                @foreach($groups->pluck('annual_cpo_productivity')->unique() as $annual_cpo_productivity)
-                                    @if($annual_cpo_productivity)
-                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($annual_cpo_productivity)) !!}</div>
-                                    @else
-                                    <div class="col-lg-7 col-md-8">: -</div>
-                                    @endif
-                                @endforeach
-                            </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-4 label">Annual FFB Productivity by RSPO Certified</div>
-                                @foreach($groups->pluck('annual_productivity_by_rspo_certified')->unique() as $annual_productivity_by_rspo_certified)
-                                    @if($annual_productivity_by_rspo_certified)
-                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($annual_productivity_by_rspo_certified)) !!}</div>
-                                    @else
-                                    <div class="col-lg-7 col-md-8">: -</div>
-                                    @endif
-                                @endforeach
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-5 col-md-4 label">Annual CPK Productivity</div>
-                                @foreach($groups->pluck('annual_cpk_productivity')->unique() as $annual_cpk_productivity)
-                                    @if($annual_cpk_productivity)
-                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($annual_cpk_productivity)) !!}</div>
-                                    @else
-                                    <div class="col-lg-7 col-md-8">: -</div>
-                                    @endif
-                                @endforeach
-                            </div>
-                            </div>
-                        </div>
-                        
-                        
-                        <h5 class="card-title">Membership in Global Sustainable Scheme</h5>
-    
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-4 label">RSPO Member</div>
-                                @foreach($groups->pluck('rspo_member')->unique() as $rspo_member)
-                                    @if($rspo_member)
-                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($rspo_member)) !!}</div>
-                                    @else
-                                    <div class="col-lg-7 col-md-8">: -</div>
-                                    @endif
-                                @endforeach
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-5 col-md-4 label">CGF Member</div>
-                                @foreach($groups->pluck('cgf_member')->unique() as $cgf_member)
-                                    @if($cgf_member)
-                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($cgf_member)) !!}</div>
-                                    @else
-                                    <div class="col-lg-7 col-md-8">: -</div>
-                                    @endif
-                                @endforeach
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-5 col-md-4 label">ASD Member</div>
-                                @foreach($groups->pluck('asd_member')->unique() as $asd_member)
-                                    @if($asd_member)
-                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($asd_member)) !!}</div>
-                                    @else
-                                    <div class="col-lg-7 col-md-8">: -</div>
-                                    @endif
-                                @endforeach
-                            </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-4 label">GPNSR Member</div>
-                                @foreach($groups->pluck('gpnsr_member')->unique() as $gpnsr_member)
-                                    @if($gpnsr_member)
-                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($gpnsr_member)) !!}</div>
-                                    @else
-                                    <div class="col-lg-7 col-md-8">: -</div>
-                                    @endif
-                                @endforeach
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-5 col-md-4 label">Other Membership</div>
-                                @foreach($groups->pluck('others_mention')->unique() as $others_mention)
-                                    @if($others_mention)
-                                    <div class="col-lg-7 col-md-8">: {!! nl2br(e($others_mention)) !!}</div>
-                                    @else
-                                    <div class="col-lg-7 col-md-8">: -</div>
-                                    @endif
-                                @endforeach
-                            </div>
-                            </div>
-                        </div>                     
-                        
-                        <h5 class="card-title">Transparency and Responsibility</h5>
-    
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                                {{-- <div class="row">
-                                    <div class="col-lg-5 col-md-4 label">Certification</div>
-                                    <div class="col-lg-7 col-md-8">: -</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label">Link Certification</div>
-                                    <div class="col-lg-7 col-md-8">: -</div>
-                                </div> --}}
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label">NDPE Policy</div>
-                                    @foreach($groups->pluck('ndpe_policy')->unique() as $ndpe_policy)
-                                        @if($ndpe_policy)
-                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($ndpe_policy)) !!}</div>
-                                        @else
-                                        <div class="col-lg-7 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label">NDPE Time Bound Plan Implementation</div>
-                                    @foreach($groups->pluck('ndpe_time_bound_plan_implementation')->unique() as $ndpe_time_bound_plan_implementation)
-                                        @if($ndpe_time_bound_plan_implementation)
-                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($ndpe_time_bound_plan_implementation)) !!}</div>
-                                        @else
-                                        <div class="col-lg-7 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label">Sustainability Progress Report</div>
-                                    @foreach($groups->pluck('sustainability_progress_report')->unique() as $sustainability_progress_report)
-                                        @if($sustainability_progress_report)
-                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($sustainability_progress_report)) !!}</div>
-                                        @else
-                                        <div class="col-lg-7 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label">Supply Chain Traceability</div>
-                                    @foreach($groups->pluck('supply_chain_traceability')->unique() as $supply_chain_traceability)
-                                        @if($supply_chain_traceability)
-                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($supply_chain_traceability)) !!}</div>
-                                        @else
-                                        <div class="col-lg-7 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label">Grievance Mechanism</div>
-                                    @foreach($groups->pluck('grievance_mechanism')->unique() as $grievance_mechanism)
-                                        @if($grievance_mechanism)
-                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($grievance_mechanism)) !!}</div>
-                                        @else
-                                        <div class="col-lg-7 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label">Recovery Plan</div>
-                                    @foreach($groups->pluck('recovery_plan')->unique() as $recovery_plan)
-                                        @if($recovery_plan)
-                                        <div class="col-lg-7 col-md-8">: {!! nl2br(e($recovery_plan)) !!}</div>
-                                        @else
-                                        <div class="col-lg-7 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>        
-                        
-                        @if($groups->isNotEmpty())
+                        {{-- @if($groups->isNotEmpty())
                         @foreach($groups as $subs)
                         <form action="{{ route('group2ShowStructure') }}" target="_blank" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -535,7 +624,7 @@
                             </h5>
                         </form>
                         @endforeach
-                        @endif
+                        @endif --}}
                         
                         {{-- <h5 class="card-title">Company Group Structure</h5>
                         <div>
