@@ -106,12 +106,16 @@
                                 @csrf
                                 <div class="d-flex align-items-center">
                                     <h5 class="card-title mb-0">
-                                        <input type="submit" name="group_name" value="Group Structure" 
+                                        <button type="submit" name="group_name" value="{{ $subs->group_name }}"
                                             style="background-color: transparent; border: none; font-weight: bold; color: #106587; cursor: pointer; 
                                                    transition: color 0.3s;" 
                                             onmouseover="this.style.color='#007BFF'" onmouseout="this.style.color='inherit'">
+                                            Group Structure
+                                        </button>
                                     </h5>
-                                    <span class="badge bg-info text-dark" style="margin-top: 20px;"><i class="bi-file-earmark-pdf me-1"></i> pdf</span>
+                                    <span class="badge bg-info text-dark" style="margin-top: 20px;">
+                                        <i class="bi-file-earmark-pdf me-1"></i> pdf
+                                    </span>
                                 </div>
                             </form>
                             @endforeach
