@@ -198,7 +198,7 @@
                                     
                                     <div class="container">
                                         <form action="{{ route('searchFunctionSubsidiary') }}" method="GET" class="d-flex" style="width: 100%; background-color: #f8f9fa; border-radius: 10px; padding: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                                            <input type="text" class="form-control me-2" name="subsidiary_name" placeholder="Type a company name" style="border: 1px solid #007bff; border-radius: 5px;">
+                                            <input type="text" class="form-control me-2" name="subsidiary" placeholder="Type a company name" style="border: 1px solid #007bff; border-radius: 5px;">
                                             <button type="submit" class="btn btn-info" style="border-radius: 5px; transition: background-color 0.3s;">
                                                 Search
                                             </button>
