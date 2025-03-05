@@ -299,81 +299,84 @@ class GroupController extends Controller
             }
         }
 
-        if ($subsidiaries->isNotEmpty()) {
-            $subsidiary = $subsidiaries->first();
-            $shareholders = explode(',', $subsidiary->shareholder_subsidiary);
-            $shareholder_data = [];
-            $total_share = 0;
+        // // jangan dihapus, ini di hide karna jika diaktifkan maka ada beberapa group yang error pagenya
+        // if ($subsidiaries->isNotEmpty()) {
+        //     $subsidiary = $subsidiaries->first();
+        //     $shareholders = explode(',', $subsidiary->shareholder_subsidiary);
+        //     $shareholder_data = [];
+        //     $total_share = 0;
 
-            if (is_array($shareholders)) {
-                foreach ($shareholders as $shareholder) {
-                    $share_info = explode('(', $shareholder);
-                    $shareholder_name = trim($share_info[0]);
+        //     if (is_array($shareholders)) {
+        //         foreach ($shareholders as $shareholder) {
+        //             $share_info = explode('(', $shareholder);
+        //             $shareholder_name = trim($share_info[0]);
 
-                    if (isset($share_info[1])) {
-                        $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
-                        $total_share += $share_percentage;
-                        $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
-                    } else {
-                        $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => null];
-                    }
-                }
-            } else {
-                $share_info = explode('(', $shareholders);
-                $shareholder_name = trim($share_info[0]);
+        //             if (isset($share_info[1])) {
+        //                 $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
+        //                 $total_share += $share_percentage;
+        //                 $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
+        //             } else {
+        //                 $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => null];
+        //             }
+        //         }
+        //     } else {
+        //         $share_info = explode('(', $shareholders);
+        //         $shareholder_name = trim($share_info[0]);
 
-                if (isset($share_info[1])) {
-                    $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
-                    $total_share += $share_percentage;
-                    $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
-                } else {
-                    $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => null];
-                }
-            }
+        //         if (isset($share_info[1])) {
+        //             $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
+        //             $total_share += $share_percentage;
+        //             $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
+        //         } else {
+        //             $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => null];
+        //         }
+        //     }
 
-            usort($shareholder_data, function ($a, $b) {
-                return $b['share_percentage'] <=> $a['share_percentage'];
-            });
+        //     usort($shareholder_data, function ($a, $b) {
+        //         return $b['share_percentage'] <=> $a['share_percentage'];
+        //     });
 
-            $majority_shareholder = $shareholder_data[0]['name'];
-            $majority_share_percentage = $shareholder_data[0]['share_percentage'];
+        //     $majority_shareholder = $shareholder_data[0]['name'];
+        //     $majority_share_percentage = $shareholder_data[0]['share_percentage'];
 
-            if ($subsidiary->group_type == 'Independent') {
-                $group_narrative = 'is a company controlled by';
-                $group_narrative2 = '';
-            } else if ($subsidiary->group_type == 'Coop') {
-                $group_narrative = 'is a cooperative controlled by';
-                $group_narrative2 = '';
-            } else {
-                $group_narrative = 'is a subsidiary of the ';
-                $group_narrative2 = ' group';
-            }
+        //     if ($subsidiary->group_type == 'Independent') {
+        //         $group_narrative = 'is a company controlled by';
+        //         $group_narrative2 = '';
+        //     } else if ($subsidiary->group_type == 'Coop') {
+        //         $group_narrative = 'is a cooperative controlled by';
+        //         $group_narrative2 = '';
+        //     } else {
+        //         $group_narrative = 'is a subsidiary of the ';
+        //         $group_narrative2 = ' group';
+        //     }
 
-            // narasi shareholder v1 with no link
-            if (count($shareholder_data) > 1) {
-                if ($total_share > 50) {
-                    $response = $subsidiary->group_name . ' is a group of companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
-                } else {
-                    $response = $subsidiary->group_name . ' is a group companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
-                }
-            } else {
-                // $response = $subsidiary->group_name . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . $subsidiary->principal_activities . '.' . 'Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
-                $response = $subsidiary->group_name . ' is a group companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
-            }
+        //     // narasi shareholder v1 with no link
+        //     if (count($shareholder_data) > 1) {
+        //         if ($total_share > 50) {
+        //             $response = $subsidiary->group_name . ' is a group of companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
+        //         } else {
+        //             $response = $subsidiary->group_name . ' is a group companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
+        //         }
+        //     } else {
+        //         // $response = $subsidiary->group_name . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . $subsidiary->principal_activities . '.' . 'Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
+        //         $response = $subsidiary->group_name . ' is a group companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
+        //     }
 
-            if (count($shareholder_data) > 0) {
-                $perusahaan = implode(' and ', $subsidiaries->pluck('group_name')->unique()->toArray());
-            } else {
-                $perusahaan = '';
-            }
+        //     if (count($shareholder_data) > 0) {
+        //         $perusahaan = implode(' and ', $subsidiaries->pluck('group_name')->unique()->toArray());
+        //     } else {
+        //         $perusahaan = '';
+        //     }
 
-            // end narasi shareholder v1 with no link
-        } else {
-            $response = 'Subsidiary not found..';
-        }
+        //     // end narasi shareholder v1 with no link
+        // } else {
+        //     $response = 'Subsidiary not found..';
+        // }
 
-        // $subsidiary = response()->json(['message' => $response]);
-        $subsidiary = $response;
+        // // $subsidiary = response()->json(['message' => $response]);
+        // $subsidiary = $response;
+        // // end jangan dihapus
+
         return view('content.en.indexGroup2Structure', compact('groups'));
     }
 
@@ -576,81 +579,84 @@ class GroupController extends Controller
             }
         }
 
-        if ($subsidiaries->isNotEmpty()) {
-            $subsidiary = $subsidiaries->first();
-            $shareholders = explode(',', $subsidiary->shareholder_subsidiary);
-            $shareholder_data = [];
-            $total_share = 0;
+        // // jangan dihapus, kalo ini diaktifkan maka ada beberpa group yang error pagenya, perlu di cek
+        // if ($subsidiaries->isNotEmpty()) {
+        //     $subsidiary = $subsidiaries->first();
+        //     $shareholders = explode(',', $subsidiary->shareholder_subsidiary);
+        //     $shareholder_data = [];
+        //     $total_share = 0;
 
-            if (is_array($shareholders)) {
-                foreach ($shareholders as $shareholder) {
-                    $share_info = explode('(', $shareholder);
-                    $shareholder_name = trim($share_info[0]);
+        //     if (is_array($shareholders)) {
+        //         foreach ($shareholders as $shareholder) {
+        //             $share_info = explode('(', $shareholder);
+        //             $shareholder_name = trim($share_info[0]);
 
-                    if (isset($share_info[1])) {
-                        $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
-                        $total_share += $share_percentage;
-                        $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
-                    } else {
-                        $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => null];
-                    }
-                }
-            } else {
-                $share_info = explode('(', $shareholders);
-                $shareholder_name = trim($share_info[0]);
+        //             if (isset($share_info[1])) {
+        //                 $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
+        //                 $total_share += $share_percentage;
+        //                 $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
+        //             } else {
+        //                 $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => null];
+        //             }
+        //         }
+        //     } else {
+        //         $share_info = explode('(', $shareholders);
+        //         $shareholder_name = trim($share_info[0]);
 
-                if (isset($share_info[1])) {
-                    $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
-                    $total_share += $share_percentage;
-                    $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
-                } else {
-                    $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => null];
-                }
-            }
+        //         if (isset($share_info[1])) {
+        //             $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
+        //             $total_share += $share_percentage;
+        //             $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
+        //         } else {
+        //             $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => null];
+        //         }
+        //     }
 
-            usort($shareholder_data, function ($a, $b) {
-                return $b['share_percentage'] <=> $a['share_percentage'];
-            });
+        //     usort($shareholder_data, function ($a, $b) {
+        //         return $b['share_percentage'] <=> $a['share_percentage'];
+        //     });
 
-            $majority_shareholder = $shareholder_data[0]['name'];
-            $majority_share_percentage = $shareholder_data[0]['share_percentage'];
+        //     $majority_shareholder = $shareholder_data[0]['name'];
+        //     $majority_share_percentage = $shareholder_data[0]['share_percentage'];
 
-            if ($subsidiary->group_type == 'Independent') {
-                $group_narrative = 'is a company controlled by';
-                $group_narrative2 = '';
-            } else if ($subsidiary->group_type == 'Coop') {
-                $group_narrative = 'is a cooperative controlled by';
-                $group_narrative2 = '';
-            } else {
-                $group_narrative = 'is a subsidiary of the ';
-                $group_narrative2 = ' group';
-            }
+        //     if ($subsidiary->group_type == 'Independent') {
+        //         $group_narrative = 'is a company controlled by';
+        //         $group_narrative2 = '';
+        //     } else if ($subsidiary->group_type == 'Coop') {
+        //         $group_narrative = 'is a cooperative controlled by';
+        //         $group_narrative2 = '';
+        //     } else {
+        //         $group_narrative = 'is a subsidiary of the ';
+        //         $group_narrative2 = ' group';
+        //     }
 
-            // narasi shareholder v1 with no link
-            if (count($shareholder_data) > 1) {
-                if ($total_share > 50) {
-                    $response = $subsidiary->group_name . ' is a group of companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
-                } else {
-                    $response = $subsidiary->group_name . ' is a group companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
-                }
-            } else {
-                // $response = $subsidiary->group_name . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . $subsidiary->principal_activities . '.' . 'Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
-                $response = $subsidiary->group_name . ' is a group companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
-            }
+        //     // narasi shareholder v1 with no link
+        //     if (count($shareholder_data) > 1) {
+        //         if ($total_share > 50) {
+        //             $response = $subsidiary->group_name . ' is a group of companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
+        //         } else {
+        //             $response = $subsidiary->group_name . ' is a group companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
+        //         }
+        //     } else {
+        //         // $response = $subsidiary->group_name . ' ' . $group_narrative . ' ' . $subsidiary->group_name . ' located at ' . $subsidiary->principal_activities . '.' . 'Mayoritas kepemilikan sahamnya dimiliki oleh <a href="' . route('shareholder', ['name' => $majority_shareholder]) . '">' . $majority_shareholder . '</a> sebesar ' . $majority_share_percentage . '%. ';
+        //         $response = $subsidiary->group_name . ' is a group companies operating in ' . $subsidiary->country_operation . ' and engaged in ' . $subsidiary->principal_activities . '.';
+        //     }
 
-            if (count($shareholder_data) > 0) {
-                $perusahaan = implode(' and ', $subsidiaries->pluck('group_name')->unique()->toArray());
-            } else {
-                $perusahaan = '';
-            }
+        //     if (count($shareholder_data) > 0) {
+        //         $perusahaan = implode(' and ', $subsidiaries->pluck('group_name')->unique()->toArray());
+        //     } else {
+        //         $perusahaan = '';
+        //     }
 
-            // end narasi shareholder v1 with no link
-        } else {
-            $response = 'Subsidiary not found..';
-        }
+        //     // end narasi shareholder v1 with no link
+        // } else {
+        //     $response = 'Subsidiary not found..';
+        // }
 
-        // $subsidiary = response()->json(['message' => $response]);
-        $subsidiary = $response;
+        // // $subsidiary = response()->json(['message' => $response]);
+        // $subsidiary = $response;
+        // // end jangan dihapus
+
         // return $subsidiary;
         // return view('content.en.test', compact('consolidations'));
         // return view('content.en.indexGroup', compact('consolidations', 'perusahaan', 'subsidiary', 'users0', 'consul0', 'consol0', 'coordinates0'));

@@ -16,10 +16,61 @@
             </div>
           <div class="col-xl-12">
   
-            <form action="{{ route('searchFunctionSubsidiary') }}" method="GET" class="d-flex ms-auto" style="width: 33%;">
-                <input type="text" class="form-control me-2" name="subsidiary" placeholder="Search for other company">
-                <button type="submit" class="btn btn-info">Search</button>
-            </form>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <form action="{{ route('searchFunctionSubsidiary') }}" method="GET" class="d-flex" style="width: 50%; background-color: #f8f9fa; border-radius: 10px; padding: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <input type="text" class="form-control me-2" name="subsidiary" placeholder="Search for other company" style="border: 1px solid #007bff; border-radius: 5px;">
+                    <button type="submit" class="btn btn-info" style="border-radius: 5px; transition: background-color 0.3s;">
+                        Search
+                    </button>
+                </form>
+            </div>
+
+            <div class="card">
+                @if(count($consolidations)>0)
+                <div class="card-body">
+                    
+                    <div class="d-flex justify-content-between">
+                        <nav>
+                            @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
+                                <h5 class="card-title me-3">{{ $subs }}</h5>
+                            @endforeach
+                        </nav>
+                        <nav class="zoom-in">
+                            @if($consolidations->isNotEmpty())
+                                @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
+                                <form action="{{ route('subsidiaryShowNotarialDeed') }}" target="_blank" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="d-flex align-items-center">
+                                        <h5 class="card-title mb-0">
+                                            <button type="submit" name="subsidiary" value="{{ $subs }}"
+                                                style="background-color: transparent; border: none; font-weight: bold; color: #106587; cursor: pointer; 
+                                                        transition: color 0.3s;" 
+                                                onmouseover="this.style.color='#007BFF'" onmouseout="this.style.color='inherit'">
+                                                Notarial Deed
+                                            </button>
+                                        </h5>
+                                        <span class="badge bg-info text-dark" style="margin-top: 20px;">
+                                            <i class="bi-file-earmark-pdf me-1"></i> pdf
+                                        </span>
+                                    </div>
+                                </form>
+                                @endforeach
+                            @endif
+                        </nav>
+                        
+                        <nav>
+                            <h5 class="card-title">RSPO Certified</h5>
+                            @foreach($consolidations->pluck('rspo_certified')->unique() as $rspo_certified)
+                                <span class="badge bg-info text-dark">
+                                    <i class="bi bi-check-circle me-1"></i>
+                                    {{ $rspo_certified }}
+                                </span>
+                            @endforeach
+                        </nav>
+                    </div>
+                </div>
+                @endif
+            </div><br> 
             
             <div class="card">
               <div class="card-body pt-3">
@@ -27,152 +78,151 @@
                     @if($companyOwnership->isNotEmpty())
                     {{-- @if ($consolidations->isNotEmpty()) --}}
                     <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                        <div class="alert alert-light border-light alert-dismissible fade show bg-opacity-50" role="alert">
+                            <div class="d-flex justify-content-between flex-wrap">
+                                <div class="d-flex flex-wrap">
+                                        <h5 class="card-title me-3">General Information</h5>
+                                </div>
+                            </div>   
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-4 label">Company Name</div>
+                                        @foreach($companyOwnership->pluck('company_name')->unique() as $company_name)
+                                            @if($company_name)
+                                            <div class="col-lg-6 col-md-8">: {!! nl2br(e($company_name)) !!}</div>
+                                            @else
+                                            <div class="col-lg-6 col-md-8">: -</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-4 label">Company Type</div>
+                                        <div class="col-lg-6 col-md-8">
+                                            @php
+                                                $addresses = $companyOwnership->pluck('company_type')->unique()->filter(); // Hanya ambil yang unik dan tidak null
+                                            @endphp
+                                    
+                                            @if($addresses->isEmpty())
+                                                : -
+                                            @else
+                                                : 
+                                                @foreach($addresses as $company_type)
+                                                    {!! nl2br(e($company_type)) !!} <br>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-4 label">Group</div>
+                                        {{-- @if(auth()->check() && in_array(auth()->user()->user_level, ['Standard', 'Premium']))
+                                        @foreach($consolidations->pluck('group_name')->unique() as $group_name)
+                                            @if($group_name)
+                                            <div class="col-lg-3 col-md-8">: {!! nl2br(e($group_name)) !!}</div>
+                                            @else
+                                            <div class="col-lg-6 col-md-8">: -</div>
+                                            @endif
+                                        @endforeach
+                                        @endif --}}
+                                        @foreach($consolidations->pluck('group_name')->unique() as $group_name)
+                                        @if($group_name)
+                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($group_name)) !!}</div>
+                                        @else
+                                        <div class="col-lg-6 col-md-8">: -</div>
+                                        @endif
+                                    @endforeach
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-4 label">Nature of Business</div>
+                                        <div class="col-lg-6 col-md-8">
+                                            @php
+                                                $addresses = $companyOwnership->pluck('nature_of_business')->unique()->filter(); // Hanya ambil yang unik dan tidak null
+                                            @endphp
+                                    
+                                            @if($addresses->isEmpty())
+                                                : -
+                                            @else
+                                                : 
+                                                @foreach($addresses as $nature_of_business)
+                                                    {!! nl2br(e($nature_of_business)) !!} <br>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-4 label">Country of Business Address</div>
+                                        <div class="col-lg-6 col-md-8">
+                                            @php
+                                                $addresses = $companyOwnership->pluck('country_of_business_address')->unique()->filter(); // Hanya ambil yang unik dan tidak null
+                                            @endphp
+                                    
+                                            @if($addresses->isEmpty())
+                                                : -
+                                            @else
+                                                : 
+                                                @foreach($addresses as $country_of_business_address)
+                                                    {!! nl2br(e($country_of_business_address)) !!} <br>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-4 label">Business Address</div>
+                                        <div class="col-lg-6 col-md-8">
+                                            @php
+                                                $addresses = $companyOwnership->pluck('business_address')->unique()->filter(); // Hanya ambil yang unik dan tidak null
+                                            @endphp
+                                    
+                                            @if($addresses->isEmpty())
+                                                : -
+                                            @else
+                                                : 
+                                                @foreach($addresses as $business_address)
+                                                    {!! nl2br(e($business_address)) !!} <br>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-4 label">Principal Activity</div>
+                                        <div class="col-lg-6 col-md-8">
+                                            @if($consolidations->pluck('principal_activities')->unique()->isNotEmpty())
+                                                @foreach($consolidations->pluck('principal_activities')->unique() as $principal_activity)
+                                                    <div>
+                                                        @if($principal_activity)
+                                                            : {!! nl2br(e($principal_activity)) !!}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </div>
+                                                @endforeach
+                                            @else
+                                                <div>-</div>
+                                            @endif
+                                        </div>
+                                    </div>                                
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-4 label">Country Operation</div>
+                                        @foreach($consolidations->pluck('country_operation')->unique() as $country_operation)
+                                            @if($country_operation)
+                                            <div class="col-lg-3 col-md-8">: {!! nl2br(e($country_operation)) !!}</div>
+                                            @else
+                                            <div class="col-lg-6 col-md-8">: -</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div><hr>
+
                         <div class="d-flex justify-content-between flex-wrap">
                             <div class="d-flex flex-wrap">
-                                @foreach($companyOwnership->pluck('company_name')->unique() as $subs)
-                                    <h5 class="card-title me-3">{{ $subs }}</h5>
-                                @endforeach
+                                    <h5 class="card-title me-3">Registration Details</h5>
                             </div>
-                        </div>                        
-                        
-                        {{-- <p>{{$subsidiari}}</p> --}}
-                        <h5 class="card-title">General Information</h5>
-    
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-4 label">Company Name</div>
-                                    @foreach($companyOwnership->pluck('company_name')->unique() as $company_name)
-                                        @if($company_name)
-                                        <div class="col-lg-6 col-md-8">: {!! nl2br(e($company_name)) !!}</div>
-                                        @else
-                                        <div class="col-lg-6 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-4 label">Company Type</div>
-                                    <div class="col-lg-6 col-md-8">
-                                        @php
-                                            $addresses = $companyOwnership->pluck('company_type')->unique()->filter(); // Hanya ambil yang unik dan tidak null
-                                        @endphp
-                                
-                                        @if($addresses->isEmpty())
-                                            : -
-                                        @else
-                                            : 
-                                            @foreach($addresses as $company_type)
-                                                {!! nl2br(e($company_type)) !!} <br>
-                                            @endforeach
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-4 label">Group</div>
-                                    {{-- @if(auth()->check() && in_array(auth()->user()->user_level, ['Standard', 'Premium']))
-                                    @foreach($consolidations->pluck('group_name')->unique() as $group_name)
-                                        @if($group_name)
-                                        <div class="col-lg-3 col-md-8">: {!! nl2br(e($group_name)) !!}</div>
-                                        @else
-                                        <div class="col-lg-6 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                    @endif --}}
-                                    @foreach($consolidations->pluck('group_name')->unique() as $group_name)
-                                    @if($group_name)
-                                    <div class="col-lg-6 col-md-8">: {!! nl2br(e($group_name)) !!}</div>
-                                    @else
-                                    <div class="col-lg-6 col-md-8">: -</div>
-                                    @endif
-                                @endforeach
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-4 label">Nature of Business</div>
-                                    <div class="col-lg-6 col-md-8">
-                                        @php
-                                            $addresses = $companyOwnership->pluck('nature_of_business')->unique()->filter(); // Hanya ambil yang unik dan tidak null
-                                        @endphp
-                                
-                                        @if($addresses->isEmpty())
-                                            : -
-                                        @else
-                                            : 
-                                            @foreach($addresses as $nature_of_business)
-                                                {!! nl2br(e($nature_of_business)) !!} <br>
-                                            @endforeach
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                        
-                            <div class="col-lg-6 col-md-6">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-4 label">Country of Business Address</div>
-                                    <div class="col-lg-6 col-md-8">
-                                        @php
-                                            $addresses = $companyOwnership->pluck('country_of_business_address')->unique()->filter(); // Hanya ambil yang unik dan tidak null
-                                        @endphp
-                                
-                                        @if($addresses->isEmpty())
-                                            : -
-                                        @else
-                                            : 
-                                            @foreach($addresses as $country_of_business_address)
-                                                {!! nl2br(e($country_of_business_address)) !!} <br>
-                                            @endforeach
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-4 label">Business Address</div>
-                                    <div class="col-lg-6 col-md-8">
-                                        @php
-                                            $addresses = $companyOwnership->pluck('business_address')->unique()->filter(); // Hanya ambil yang unik dan tidak null
-                                        @endphp
-                                
-                                        @if($addresses->isEmpty())
-                                            : -
-                                        @else
-                                            : 
-                                            @foreach($addresses as $business_address)
-                                                {!! nl2br(e($business_address)) !!} <br>
-                                            @endforeach
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-4 label">Principal Activity</div>
-                                    <div class="col-lg-6 col-md-8">
-                                        @if($consolidations->pluck('principal_activities')->unique()->isNotEmpty())
-                                            @foreach($consolidations->pluck('principal_activities')->unique() as $principal_activity)
-                                                <div>
-                                                    @if($principal_activity)
-                                                        : {!! nl2br(e($principal_activity)) !!}
-                                                    @else
-                                                        -
-                                                    @endif
-                                                </div>
-                                            @endforeach
-                                        @else
-                                            <div>-</div>
-                                        @endif
-                                    </div>
-                                </div>                                
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-4 label">Country Operation</div>
-                                    @foreach($consolidations->pluck('country_operation')->unique() as $country_operation)
-                                        @if($country_operation)
-                                        <div class="col-lg-3 col-md-8">: {!! nl2br(e($country_operation)) !!}</div>
-                                        @else
-                                        <div class="col-lg-6 col-md-8">: -</div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-
-                        <h5 class="card-title">Registration Details</h5>
-    
+                        </div>   
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
                                 <div class="row">
@@ -316,10 +366,13 @@
                                 </div>
                                 
                             </div>
-                        </div>
+                        </div><hr>
 
-                        <h5 class="card-title">Certification</h5>
-    
+                        <div class="d-flex justify-content-between flex-wrap">
+                            <div class="d-flex flex-wrap">
+                                    <h5 class="card-title me-3">Certification</h5>
+                            </div>
+                        </div>   
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
                                 <div class="row">
@@ -345,10 +398,13 @@
                                     @endforeach
                                 </div>
                             </div>
-                        </div>              
+                        </div><hr>
 
-                        <h5 class="card-title">Shareholders/Management</h5>
-
+                        <div class="d-flex justify-content-between flex-wrap">
+                            <div class="d-flex flex-wrap">
+                                    <h5 class="card-title me-3">Shareholders/Management</h5>
+                            </div>
+                        </div>   
                         {{-- <div class="row" hidden>
                             <div class="col-lg-3 col-md-4 label">Shareholder</div>
                             <div class="col-lg-9 col-md-8">
@@ -462,9 +518,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            
-                        </div>
+                        </div><hr>
                         
                         <h5 class="card-title" hidden>Facility</h5>
     
@@ -610,8 +664,11 @@
                             </div>
                         </div>
                         
-                        <h5 class="card-title">Estate</h5>
-    
+                        <div class="d-flex justify-content-between flex-wrap">
+                            <div class="d-flex flex-wrap">
+                                    <h5 class="card-title me-3">Estate</h5>
+                            </div>
+                        </div>
                         <div class="row">
                             <!-- Estate Column -->
                             <div class="col-lg-6 col-md-6">

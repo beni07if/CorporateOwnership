@@ -79,6 +79,7 @@ Route::post('/corporate-profile-group-show', [CorporateProfileController::class,
 // Route::post('/corporate-profile-group2-show', [GroupController::class, 'group2Show'])->name('group2Show');
 Route::match(['get', 'post'], '/corporate-profile-group2-show', [GroupController::class, 'group2Show'])->name('group2Show');
 Route::match(['get', 'post'], '/corporate-profile-group-structure', [GroupController::class, 'group2ShowStructure'])->name('group2ShowStructure');
+Route::match(['get', 'post'], '/corporate-profile-subsidiary-notary-deed', [CorporateProfileController::class, 'subsidiaryShowNotarialDeed'])->name('subsidiaryShowNotarialDeed');
 Route::post('/corporate-profile-sra-show', [CorporateProfileController::class, 'sraShow'])->name('sraShow');
 // Route::post('/corporate-profile-shareholder-show', [CorporateProfileController::class, 'shareholderShow'])->name('shareholderShow');
 // routes/web.php

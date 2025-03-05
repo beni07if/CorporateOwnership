@@ -275,6 +275,15 @@ class CorporateProfileController extends Controller
         
     }
 
+    public function subsidiaryShowNotarialDeed(Request $request)
+    {
+        $subsidiaryName = $request->input('subsidiary');
+        $consolidations = DB::table('consolidations')
+            ->where('subsidiary', $subsidiaryName)
+            ->get();
+        return view('content.en.indexSubsidiaryNotarialDeed', compact('consolidations'));
+    }
+
     public function subsidiaryShow(Request $request)
     {
 
