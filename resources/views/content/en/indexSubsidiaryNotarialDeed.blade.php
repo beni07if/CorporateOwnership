@@ -56,13 +56,14 @@
                                                                                                     }
                                                                                                 @endphp
 
-                                                                                                {{-- @if(!empty($filePath))
-                                                                                                <iframe src="{{ $filePath }}" width="100%" height="600px"></iframe>
+                                                                                                @if(!empty($filePath))
+                                                                                                    <iframe src="{{ $filePath }}" width="100%" height="600px"></iframe>
                                                                                                 @else
-                                                                                                <p>Please contact us to get notarial deed and other information of
-                                                                                                    {{$subsidiaryGroup->first()->subsidiary}}.</p>
+                                                                                                    <p>Please contact us
+                                                                                                        {{-- to get notarial deed and other information of
+                                                                                                        {{$subsidiaryGroup->first()->subsidiary}}.</p> --}}
                                                                                                 @endif
-                                                                                                <!-- <p class="text-muted">{{ $subsidiary }}</p> --> --}}
+                                                                                                <!-- <p class="text-muted">{{ $subsidiary }}</p> -->
                                                                 @endforeach
                                                             </div><br>
 
