@@ -432,49 +432,49 @@ class CorporateProfileController extends Controller
             $shareholder_data = [];
             $total_share = 0;
 
-            if (is_array($shareholders)) {
-                foreach ($shareholders as $shareholder) {
-                    $share_info = explode('(', $shareholder);
-                    $shareholder_name = trim($share_info[0]);
+            // if (is_array($shareholders)) {
+            //     foreach ($shareholders as $shareholder) {
+            //         $share_info = explode('(', $shareholder);
+            //         $shareholder_name = trim($share_info[0]);
 
-                    if (isset($share_info[1])) {
-                        $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
-                        $total_share += $share_percentage;
-                        $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
-                    } else {
-                        $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => null];
-                    }
-                }
-            } else {
-                $share_info = explode('(', $shareholders);
-                $shareholder_name = trim($share_info[0]);
+            //         if (isset($share_info[1])) {
+            //             $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
+            //             $total_share += $share_percentage;
+            //             $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
+            //         } else {
+            //             $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => null];
+            //         }
+            //     }
+            // } else {
+            //     $share_info = explode('(', $shareholders);
+            //     $shareholder_name = trim($share_info[0]);
 
-                if (isset($share_info[1])) {
-                    $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
-                    $total_share += $share_percentage;
-                    $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
-                } else {
-                    $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => null];
-                }
-            }
+            //     if (isset($share_info[1])) {
+            //         $share_percentage = str_replace(['%', ')'], '', $share_info[1]);
+            //         $total_share += $share_percentage;
+            //         $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => $share_percentage];
+            //     } else {
+            //         $shareholder_data[] = ['name' => $shareholder_name, 'share_percentage' => null];
+            //     }
+            // }
 
-            usort($shareholder_data, function ($a, $b) {
-                return $b['share_percentage'] <=> $a['share_percentage'];
-            });
+            // usort($shareholder_data, function ($a, $b) {
+            //     return $b['share_percentage'] <=> $a['share_percentage'];
+            // });
 
-            $majority_shareholder = $shareholder_data[0]['name'];
-            $majority_share_percentage = $shareholder_data[0]['share_percentage'];
+            // $majority_shareholder = $shareholder_data[0]['name'];
+            // $majority_share_percentage = $shareholder_data[0]['share_percentage'];
 
-            if ($subsidiary->group_type == 'Independent') {
-                $group_narrative = 'is a company controlled by';
-                $group_narrative2 = '';
-            } else if ($subsidiary->group_type == 'Coop') {
-                $group_narrative = 'is a cooperative controlled by';
-                $group_narrative2 = '';
-            } else {
-                $group_narrative = 'is a subsidiary of the ';
-                $group_narrative2 = ' group';
-            }
+            // if ($subsidiary->group_type == 'Independent') {
+            //     $group_narrative = 'is a company controlled by';
+            //     $group_narrative2 = '';
+            // } else if ($subsidiary->group_type == 'Coop') {
+            //     $group_narrative = 'is a cooperative controlled by';
+            //     $group_narrative2 = '';
+            // } else {
+            //     $group_narrative = 'is a subsidiary of the ';
+            //     $group_narrative2 = ' group';
+            // }
 
             $response = '';
 
