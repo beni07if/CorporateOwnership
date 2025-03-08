@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="section-title">
                     @foreach($consolidations->pluck('subsidiary')->unique() as $subs)
-                        <h2 class="card-title">Notarial Deed of {{$subs}}</h2>
+                        <h2 class="card-title">Notary Act of {{$subs}}</h2>
                     @endforeach
                 </div>
                 <div class="col-xl-12">
