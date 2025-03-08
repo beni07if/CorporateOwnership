@@ -59,7 +59,7 @@
                                                                                                 @if(!empty($filePath))
                                                                                                     <iframe src="{{ $filePath }}" width="100%" height="600px"></iframe>
                                                                                                 @else
-                                                                                                    <p>Please contact us
+                                                                                                    <p>To access the notary act, please contact us at helpdesk@earqualizer.org
                                                                                                         {{-- to get notarial deed and other information of
                                                                                                         {{$subsidiaryGroup->first()->subsidiary}}.</p> --}}
                                                                                                 @endif
