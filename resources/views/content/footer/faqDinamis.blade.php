@@ -100,7 +100,7 @@
         var question = document.getElementById("custom-faq-question-" + index);
         var answer = document.getElementById("custom-faq-answer-" + index);
 
-        // Toggle class for visual state
+        // Toggle class for visual states
         question.classList.toggle("open");
         answer.classList.toggle("show");
         }
