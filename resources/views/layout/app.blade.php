@@ -21,6 +21,8 @@
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
     <!-- Vendor CSS Files -->
@@ -412,12 +414,14 @@
     <!-- Vendor JS Files -->
     <script src="{{ asset('template/Medilab/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{ asset('template/Medilab/assets/vendor/aos/aos2.js')}}"></script>
-    <script src="{{ asset('template/Medilab/assets/vendor/glightbox/js/glightbox.min')}}.js"></script>
+    <script src="{{ asset('template/Medilab/assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
     <script src="{{ asset('template/Medilab/assets/vendor/php-email-form/validate.js')}}"></script>
     <script src="{{ asset('template/Medilab/assets/vendor/purecounter/purecounter.js')}}"></script>
     <script src="{{ asset('template/Medilab/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
     <script src="{{ asset('template/NiceAdmin/assets/vendor/chart.js/chart.umd.js')}}"></script>
     <script src="{{ asset('template/Medilab/assets/vendor/purecounter/purecounter_vanilla.js')}}"></script>
+    <!-- Bootstrap JS (untuk accordion bisa collapse) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Template Main JS File -->
     {{--
@@ -431,56 +435,72 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            var header = document.getElementById("header");
+            // Header scroll logic
+            const header = document.getElementById("header");
+            if (header) {
+                window.addEventListener("scroll", function () {
+                    if (window.scrollY > 0) {
+                        header.classList.add("header-solid");
+                    } else {
+                        header.classList.remove("header-solid");
+                    }
+                });
+            }
 
-            window.addEventListener("scroll", function () {
-                // Jika halaman di-scroll ke bawah, tambahkan kelas untuk mengubah latar belakang menjadi putih
-                if (window.scrollY > 0) {
-                    header.classList.add("header-solid");
-                }
-                // Jika halaman di-scroll kembali ke atas, hapus kelas untuk mengembalikan latar belakang transparan
-                else {
-                    header.classList.remove("header-solid");
-                }
-            });
+            // Tombol kategori
+            const subsidiaryBtn = document.getElementById('subsidiary-btn');
+            const groupBtn = document.getElementById('group-btn');
+            const ownershipBtn = document.getElementById('ownership-btn');
+
+            const searchForm = document.getElementById('search-form');
+            const searchInput = document.getElementById('search-input');
+
+            let activeCategory = 'subsidiary'; // Default kategori
+
+            // Tambahkan event listener hanya jika elemen ada
+            if (subsidiaryBtn) {
+                subsidiaryBtn.addEventListener('click', () => {
+                    activeCategory = 'subsidiary';
+                    console.log('Kategori aktif: subsidiary');
+                });
+            }
+
+            if (groupBtn) {
+                groupBtn.addEventListener('click', () => {
+                    activeCategory = 'group';
+                    console.log('Kategori aktif: group');
+                });
+            }
+
+            if (ownershipBtn) {
+                ownershipBtn.addEventListener('click', () => {
+                    activeCategory = 'ownership';
+                    console.log('Kategori aktif: ownership');
+                });
+            }
+
+            if (searchForm && searchInput) {
+                searchForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const searchValue = searchInput.value.toLowerCase();
+
+                    if (activeCategory === 'subsidiary') {
+                        console.log('Search subsidiary:', searchValue);
+                        // TODO: tampilkan hasil ke card
+                    } else if (activeCategory === 'group') {
+                        console.log('Search group:', searchValue);
+                        // TODO: tampilkan hasil ke card
+                    } else if (activeCategory === 'ownership') {
+                        console.log('Search ownership:', searchValue);
+                        // TODO: tampilkan hasil ke card
+                    }
+                });
+            } else {
+                console.warn('searchForm atau searchInput tidak ditemukan di DOM.');
+            }
         });
     </script>
 
-    <script>
-        const subsidiaryBtn = document.getElementById('subsidiary-btn');
-        const groupBtn = document.getElementById('group-btn');
-        const ownershipBtn = document.getElementById('ownership-btn');
-
-        const searchForm = document.getElementById('search-form');
-        const searchInput = document.getElementById('search-input');
-
-        subsidiaryBtn.addEventListener('click', () => {
-            searchForm.addEventListener('submit', (event) => {
-                event.preventDefault();
-                const searchValue = searchInput.value.toLowerCase();
-                // Cari hasil search pada kategori subsidiary
-                // Tampilkan hasil search pada card
-            });
-        });
-
-        groupBtn.addEventListener('click', () => {
-            searchForm.addEventListener('submit', (event) => {
-                event.preventDefault();
-                const searchValue = searchInput.value.toLowerCase();
-                // Cari hasil search pada kategori group
-                // Tampilkan hasil search pada card
-            });
-        });
-
-        ownershipBtn.addEventListener('click', () => {
-            searchForm.addEventListener('submit', (event) => {
-                event.preventDefault();
-                const searchValue = searchInput.value.toLowerCase();
-                // Cari hasil search pada kategori ownership
-                // Tampilkan hasil search pada card
-            });
-        });
-    </script>
 
     {{--
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

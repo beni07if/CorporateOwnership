@@ -41,32 +41,71 @@
 
         @if($faqs->isEmpty())
       <p class="text-center">No FAQs available.</p>
-    @else
-    <!-- F.A.Q Group 1 -->
-    <div class="card">
-    <div class="card-body">
-      <div class="accordion accordion-flush" id="faq-group-1">
+      @else
+        <style>
+        .custom-faq-container {
+        margin: 20px 0;
+        }
 
-      @foreach ($faqs as $faq)
-      <div class="accordion-item">
-      <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-      data-bs-target="#faq-{{ $loop->index }}">
-      {{ $faq->question ?? 'No question available' }}
-      </button>
-      </h2>
-      <div id="faq-{{ $loop->index }}" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
-      <div class="accordion-body">
-      {!! $faq->answer ?? 'No answer available' !!}
-      </div>
-      </div>
-      </div>
-    @endforeach
+        .custom-faq-item {
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+        }
 
+        .custom-faq-question {
+        cursor: pointer;
+        font-weight: bold;
+        margin: 0;
+        position: relative;
+        }
+
+        .custom-faq-question::after {
+        content: '+';
+        position: absolute;
+        right: 0;
+        font-weight: normal;
+        }
+
+        .custom-faq-question.open::after {
+        content: '-';
+        }
+
+        .custom-faq-answer {
+        display: none;
+        margin-top: 8px;
+        color: #555;
+        }
+
+        .custom-faq-answer.show {
+        display: block;
+        }
+        </style>
+
+        <div class="custom-faq-container">
+        @foreach ($faqs as $faq)
+      <div class="custom-faq-item">
+        <p class="custom-faq-question" onclick="toggleFaqAnswer({{ $loop->index }})"
+        id="custom-faq-question-{{ $loop->index }}">
+        {!! $faq->question ?? 'No question available' !!}
+        </p>
+        <div class="custom-faq-answer" id="custom-faq-answer-{{ $loop->index }}">
+        {!! $faq->answer ?? 'No answer available' !!}
+        </div>
       </div>
-    </div>
-    </div><!-- End F.A.Q Group 1 -->
-  @endif
+      @endforeach
+        </div>
+
+        <script>
+        function toggleFaqAnswer(index) {
+        var question = document.getElementById("custom-faq-question-" + index);
+        var answer = document.getElementById("custom-faq-answer-" + index);
+
+        // Toggle class for visual state
+        question.classList.toggle("open");
+        answer.classList.toggle("show");
+        }
+        </script>
+      @endif
 
       </div>
       </div>
